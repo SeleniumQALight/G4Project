@@ -1,0 +1,6 @@
+LoginPage
+
+button.login = ".//button........."// сам локатор
+
+
+HomePage
