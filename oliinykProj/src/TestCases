@@ -1,0 +1,95 @@
+Steps to reproduce - STP
+PreCondition - PC
+PostCondition - PoC
+Expected result - ER
+
+TC1
+Name: Registration
+
+PC: You are on main page https://qa-complex-app-for-testing.herokuapp.com/
+
+STP:
+1. Enter user name in "Username registration field" (example "QAAtest")
+2. Enter email in "Email registration field"
+3. Enter password in "Create a password" field
+4. Click on button "Sign up for OurApp"
+
+ER:
+Home page
+In the header there is username that was used by registration
+Also in the header there are buttons "Create Post" and "Sign Out"
+
+PoC:
+Remember login and password that was entered for creating the user.
+
+TC2
+Name: Sign out
+
+PC: You are authorized
+
+STP:
+1. Click on "Sign Out" button
+
+ER:
+Main Page
+There are "Sign in" button in header and "Sign up for OurApp" button at page
+
+TC3
+Name: Login in
+
+PC: You are on main page https://qa-complex-app-for-testing.herokuapp.com/
+
+STP:
+1. Enter username (that was used in TC1) in field "Username" at header.
+2. Enter password (that was used in TC1) in field "Password" at header.
+3. Click "Sign in" button.
+
+ER:
+Home page
+In the header there is username that was used by registration
+Also in the header there are buttons "Create Post" and "Sign Out"
+
+PoC: ----
+
+TC4
+Name: Create a post
+
+PC: You are Signed in. Home page.
+
+STP:
+1. Click on "Create Post" button
+2. Enter some title of the post in "Title" field
+3. Enter some text of the post in "Body Content" field
+4. Click on check-box "This is a unique post"
+5. Click on dropdown "Select value"
+6. Click on "Chastnoe soobschenie" in dropdown
+7. Click on "Save New Post" button
+
+ER:
+Post page
+Message "New post successfully created"
+Title that was entered is shown
+In "Posted by", the username of user that made post is shown
+Text that was entered is shown
+In "Note:This post was written for" message written: "One Person"
+
+PoC: ----
+
+TC5
+Name: Delete posted message
+
+PC: You are Signed in. Home page.
+The user who is logged in has posted at least one post.
+
+STP:
+1. Click on "My Profile" icon
+2. Remember count of posts
+3. Click on first post in the list of opened My Profile page
+4. Click on trash icon in opened post page
+
+ER:
+My profile page
+Message "Post successfully deleted" is shown
+Count of posts is less on 1
+
+Poc: ----
