@@ -1,7 +1,26 @@
 LoginPage
-button.login=".//button"
-
-
+.//input[@id='username8']  login input
+.//input[@name='password' and @placeholder='Password'] password
+.//button[@class='btn btn-primary btn-sm'] Sign In
+.//input[@id='username-register'] username input
+.//input[@id='email-register'] email
+.//input[@id='password-register'] password
+.//button[@type='submit'] Sign Up button
 
 HomePage
+.//a[@class='btn btn-sm btn-success mr-2'] - Create Post button
+.//a[@class='mr-2'] - My Profile button
+.//button[@class='btn btn-sm btn-secondary'] Sign Out
 
+
+ProfilePage
+.//div[@class='profile-nav nav nav-tabs pt-2 mb-4'] - Tabs Posts Followers Following
+.//a[@class='list-group-item list-group-item-action'][1] - newly created post
+
+CreatePostPage
+.//input[@id='post-title'] - Title
+.//textarea[@id='post-body'] - Body
+.//button[@class='btn btn-primary'] - Save New Post button
+
+PostPage
+.//div[@class='alert alert-success text-center' and contains(., 'New post successfully created.')] - "New post successfully created." message

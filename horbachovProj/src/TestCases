@@ -1,47 +1,59 @@
-Tc1
-Log in
-pre
 
-1
-2
-3
+1) Sign In
+.//input[@id='username8']  login input
+.//input[@name='password' and @placeholder='Password'] password
+.//button[@class='btn btn-primary btn-sm'] Sign In
 
-Expected result
+-open https://qa-complex-app-for-testing.herokuapp.com/
+-insert 'qaauto' into user name
+-insert '123456qwerty' into password
+-press Sign In
+ER: element 'Sign Out' has appeared in the top right corner
 
+2) Sign Up
 
-Tc2
-Log out
+.//input[@id='username-register'] username input
+.//input[@id='email-register'] email
+.//input[@id='password-register'] password
+.//button[@type='submit'] Sign Up button
 
-1
-2
-3
+-open https://qa-complex-app-for-testing.herokuapp.com/
+-insert a username (random string) into 'Username' field (field's placeholder - Pick a username)
+-insert a email (random string) into 'Email' field (field's placeholder - you@example.com)
+-insert a password (random string, length >=12) into 'Password' field (field's placeholder - Create a password)
+- press 'Sign up for OurApp' button
+ER: element 'Sign Out' has appeared in the top rigt corner; h2 element with following message is displayed - 'Hello <strong>{username},</strong> your feed is empty.'
 
-Expected result
+3) Create Post
 
-Tc3
---Name
+.//a[@class='btn btn-sm btn-success mr-2'] - Create Post button
+.//input[@id='post-title'] - Title
+.//textarea[@id='post-body'] - Body
+.//button[@class='btn btn-primary'] - Save New Post button
+.//div[@class='alert alert-success text-center' and contains(., 'New post successfully created.')] - "New post successfully created." message
+.//a[@class='list-group-item list-group-item-action'][1] - newly created post
 
-1
-2
-3
+Pre - user is signed in
+- click Create Post Button
+- add title
+- add Body Content
+- click Save New Post
+ER1: user has been redirected to /post/{id}, message "New post successfully created." is displayed;
+- go to Profile page/Posts (Posts tab is opened by default)
+ER2: the newly created post{id} heads the list under Posts tab on Profile page
 
-Expected result
+4) My profile
 
+.//a[@class='mr-2'] - My Profile button
+.//div[@class='profile-nav nav nav-tabs pt-2 mb-4'] - Tabs Posts Followers Following
 
-Tc4
---Name
+- on Home page click on My Profile button
+ER: three tabs (Posts Followers Following) are displayed
 
-1
-2
-3
+5) Sign Out
+.//button[@class='btn btn-sm btn-secondary'] Sign Out
+.//button[@class='btn btn-primary btn-sm'] Sign In
 
-Expected result
-
-Tc5
---Name
-
-1
-2
-3
-
-Expected result
+Pre - user is signed in
+- Click Sign Out
+ER: Sign In button is displayed
