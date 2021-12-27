@@ -1,30 +1,36 @@
-Test case # 1
+Login page:
 
-1. Username field - .//*[@id="username-register"]
+1. Username field (registry form) - .//*[@id="username-register"]
 2. Email field - .//*[@id="email-register"]
-3. Password field - .//*[@id="password-register"]
+3. Password field (registry form) - .//*[@id="password-register"]
 4. Sign up for OurApp button - .//*[@type="submit"]
+5. Username field (sign in form) - .//*[@name="username" and @class="form-control form-control-sm input-dark"]
+6. Password field (sign in form) - .//*[@name="password" and @class="form-control form-control-sm input-dark"]
+7. Sign in button - .//*[@type="submit"]
 
 
-Test case # 2
+Home page:
 
-Username field - .//*[@id="username5"]
-Password field - .//*[@name="password" and @class="form-control form-control-sm input-dark"]
-Create Post button - .//*[@class="btn btn-primary btn-sm"]
-
-
-Test case # 3
-
-Sign in button - .//*[@type="submit"]
+1. Create Post button - .//*[@class="btn btn-primary btn-sm"]
+2. Sign Out button - .//*[@class="btn btn-sm btn-secondary"]
 
 
-Test case # 4
+Create Post page:
 
-Create Post button - .//*[@class="btn btn-sm btn-success mr-2"]
-Body Content field - .//*[@id="post-body"]
-Save New Post button - .//*[@class="btn btn-primary"]
+1. Body Content field - .//*[@id="post-body"]
+2. Save New Post button - .//*[@class="btn btn-primary"]
 
 
-Test case # 5
 
-Sign Out button - .//*[@class="btn btn-sm btn-secondary"]
+
+
+
+
+
+
+
+
+
+
+
+
