@@ -1,75 +1,30 @@
 Test case # 1
-Summary: Sign up for OurApp button with valid values in Username, Email and Password fields.
 
-Preconditions:
-1. The website https://qa-complex-app-for-testing.herokuapp.com/  is opened.
-2. The user with the name anbondarenko isn’t registered.
-
-Steps to reproduce:
-1. Enter “anbondarenko” to the Username field.
-2. Enter “anbondarenko@mailinator.com” to the Email field.
-3. Enter “111111111111” to the Password field.
-4. Click on the button Sign up for OurApp.
-
-Expected result:
-There is the next text on the page: “Hello anbondarenko, your feed is empty. Your feed displays the latest posts from the people you follow. If you don’t have any friends to follow that’s okay; you can use the “Search” feature in the top menu bar to find content written by people with similar interests and then follow them.”
+1. Username field - .//*[@id="username-register"]
+2. Email field - .//*[@id="email-register"]
+3. Password field - .//*[@id="password-register"]
+4. Sign up for OurApp button - .//*[@type="submit"]
 
 
 Test case # 2
-Summary: Create Post button.
 
-Preconditions:
-1. The website https://qa-complex-app-for-testing.herokuapp.com/  is opened.
-2. The user with the name anbondarenko is registered.
-
-Steps to reproduce:
-1. Enter “anbondarenko” to the Username field.
-2. Enter “111111111111” to the Password field.
-3. Click on the button Sign in.
-4. Click on the button Create Post.
-
-Expected result:
-There are on the page: “Title” field, “Body Content” field, “This is a unique post” checkbox, “Select value” drop-down menu, “Save New Post” button.
+Username field - .//*[@id="username5"]
+Password field - .//*[@name="password" and @class="form-control form-control-sm input-dark"]
+Create Post button - .//*[@class="btn btn-primary btn-sm"]
 
 
 Test case # 3
-Summary:  Sign in button with empty Username and Password fields.
 
-Steps to reproduce:
-1. Go to https://qa-complex-app-for-testing.herokuapp.com/.
-2. Click on the button Sign in.
-
-Expected result:
-There is an Error message on the page.
+Sign in button - .//*[@type="submit"]
 
 
 Test case # 4
-Summary: Save New Post button with empty “Title” field.
 
-Preconditions:
-1. The website https://qa-complex-app-for-testing.herokuapp.com/  is opened.
-2. The user with the name anbondarenko is already signed in.
-
-Steps to reproduce:
-1. Click on the button Create Post.
-2. Enter some text and symbols to Body Content field, for example, Test543@.
-3. Click on Save New Post button.
-
-Expected result:
-1. There is pop-up message near Title field – “Заполните это поле”.
-2. The post wasn’t saved.
+Create Post button - .//*[@class="btn btn-sm btn-success mr-2"]
+Body Content field - .//*[@id="post-body"]
+Save New Post button - .//*[@class="btn btn-primary"]
 
 
 Test case # 5
-Summary: Sign Out button.
 
-Preconditions:
-1. The website https://qa-complex-app-for-testing.herokuapp.com/  is opened.
-2. The user with the name anbondarenko is already signed in.
-
-Steps to reproduce:
-1. Click on the button Sign Out.
-
-Expected result:
-1. There are Sign in and Sign up for OurApp buttons on the page.
-2. The user was signed out.
+Sign Out button - .//*[@class="btn btn-sm btn-secondary"]
