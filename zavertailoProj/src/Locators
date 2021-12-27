@@ -1,12 +1,12 @@
 LoginPage
 
-button.login = ".//input[@id = 'username5']"
+button.login = ".//input[@name="username" and @placeholder="Username"]"
 button.password = ".//div//input[@type= 'password']"
-button.Sign In = ".//*[text()='Sign In']" or ".//div//button [not (@type)]"
+button.Sign In = ".//*[text()='Sign In']"
 //button.Sign up for OurApp = ".//button [@type]"
 
 HomePage
-link./profile = ".//a[@class="mr-2"]" or .//a[@href="/profile/qaauto"]"
+link./profile = ".//a[@href="/profile/qaauto"]"
 link./create-post = ".//a[@href="/create-post"]"
 button.Sign Out = ".//button"
 title.Create Post = ".//input [@id="post-title"]"
