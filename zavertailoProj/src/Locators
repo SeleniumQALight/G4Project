@@ -1,0 +1,23 @@
+LoginPage
+
+button.login = ".//input[@name="username" and @placeholder="Username"]"
+button.password = ".//div//input[@type= 'password']"
+button.Sign In = ".//*[text()='Sign In']"
+//button.Sign up for OurApp = ".//button [@type]"
+
+HomePage
+link./profile = ".//a[@href="/profile/qaauto"]"
+link./create-post = ".//a[@href="/create-post"]"
+button.Sign Out = ".//button"
+title.Create Post = ".//input [@id="post-title"]"
+Body Content.Create Post = ".//textarea[@id="post-body"]"
+Checkbox "This is a unique post" = ".//input[@id="”UniquePost”"]"
+button.Save New Post = ".//button[text()='Save New Post']"
+Edit post= ".//span//a"
+Title in Edit post = ".//input [@id="post-title"]"
+Title in Body Content = ".//textarea" or  ".//textarea [@id="post-body"]"
+button.Save Updates = ".//button[@class='btn btn-primary']"
+Success.Update = ".//div [@class = 'alert alert-success text-center']"
+button.My Profile for link /edit  = link./profile
+button.Delete = ".//button [@data-original-title="Delete"]"
+Success.Delete = ".//div[@class='alert alert-success text-center']"

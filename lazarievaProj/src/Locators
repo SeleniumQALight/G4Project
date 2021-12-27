@@ -1,0 +1,14 @@
+Login page:
+
+SIGN UP-->>>
+button.SignUp =
+input.userNameSignUP =
+input.emailField =
+input.passwordField =
+_______________________
+SIGN IN-->>>
+button.SignIn =
+input.userNameSignIn =
+input.passwordFieldSignIn
+
+Home page:

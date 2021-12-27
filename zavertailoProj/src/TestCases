@@ -1,0 +1,55 @@
+TestCase1
+Name:Login
+Precond: login check for a previously created user
+
+Steps
+1 Ореn site "https://qa-complex-app-for-testing.herokuapp.com/"
+2 Enter login "qaauto" in input where "id=username"
+3 Enter password "123456qwerty" for login in input where name = "password"
+4 Push the button "Sign In"
+
+Expected result: The user sees the "My Profile" and can "Sign Out"
+
+TestCase2
+Name:Create Post
+Precond:User must be log in
+
+Steps
+1 Push the button "Create Post"
+2 Enter the text "New Post" + "today's date" in input where id="post-title"
+3 Enter a text of 250 characters that contains Cyrillic, Latin, symbols and numbers in input where id="post-body"
+4 Make active checkbox where id="”UniquePost”"
+5 Push the button "Save New Post"
+
+Expected result: Location post in create-post = https://qa-complex-app-for-testing.herokuapp.com/post/Location post
+and have "New post successfully created" and have in href title data-original-title="Edit"
+
+TestCase3
+Name:Edit
+Precond: The ability to edit the publicationEdit the post you just created. Location post= id Create Post
+
+Steps
+1 Click edit in /post/Location post
+2 Delete the last character and add a new one in textarea where id="post-body"
+3 Push the button "Save Updates"
+
+Expected result: User see "Post successfully updated." and url /post/Location post/edit
+
+TestCase4
+Name: Displaying a post in a profile and the ability to delete it
+Precond:Previously created post. You need login users. For this case I use  "qaauto". Location post= id Create Post
+
+Steps
+1 Push href=/profile/qaauto
+2 Сome in href=/post/Location post
+3 Click button="Delete"
+
+Expected result: User see "Post successfully deleted" and don't see /post/Location post
+
+TestCase5
+Name:Sign Out
+Precond: User needs to be logged in
+
+1 Click button="Sign Out"
+
+Expected result: User see input field login (input id="username3"), input where name="password", button=Sign In
