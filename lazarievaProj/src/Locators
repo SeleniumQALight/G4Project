@@ -1,14 +1,52 @@
 Login page:
 
 SIGN UP-->>>
-button.SignUp =
-input.userNameSignUP =
-input.emailField =
-input.passwordField =
+input.userNameSignUP = .//input[@id='username-register']
+input.emailField = .//input[@id='email-register']
+input.passwordField = .//input[@id='password-register']
+button.SignUp = .//*[@type='submit']
 _______________________
 SIGN IN-->>>
-button.SignIn =
-input.userNameSignIn =
-input.passwordFieldSignIn
+input.userNameSignIn = .//input[@id='username4']
+input.passwordFieldSignIn = .//input[@placeholder='Password']
+button.SignIn = .//*[@class='btn btn-primary btn-sm']
 
-Home page:
+
+HOME page:
+HEADER:
+  Icon  "My profile" - .//img[@data-placement='bottom' and @data-original-title='My Profile']
+  Icon "Chat" -     .//*[@data-placement='bottom' and @data-original-title='Chat']
+  Icon "Search" -  .//*[@data-placement='bottom' and @data-original-title='Search']
+  UserName  - .//*[@class='text-white mr-2'] --- .//*[@class='text-white mr-2' and text()='--UserName--']
+  Button "Sign Out" - .//*[@class='btn btn-sm btn-secondary']
+  Button "Create Post" - .//a[@href ='/create-post']
+
+Hello message:
+
+
+
+
+CREATE POST page:
+  Label 'Title' - .//label[@for='post-title']
+  Input Title field - .//input[@id='post-title']
+  Input Text field -  .//textarea[@id='post-body']
+  Checkbox "This is a unique post" -.//input[@id='UniquePost']
+  Dropdown "Select value" - .//*[@id='select1']
+  Select value "Group Message" - .//option[@value ='Group Message']
+  Button "Save New Post" - .//button[@class ='btn btn-primary']
+
+MY PROFILE page:
+link -https://qa-complex-app-for-testing.herokuapp.com/profile/{{UserName}} --- in the {{UserName}} put the Username
+Small avatar - //*[@class='avatar-small']
+List of the posts - //*[@class='list-group']
+Specific title of the post - .//*/strong[text()='TITLE of the Post'] ---->>in the 'TITLE of the Post'
+                                                                     -->> title of the newly created post
+
+Button DELETE post - .//*[@class='delete-post-button text-danger']  OR .//*[@class='delete-post-form d-inline'] (POST) ??
+Button Edit  post - .//*[@class='svg-inline--fa fa-edit fa-w-18']
+Tile of the opened post before edit/delete - .//*[text()='TITLE of the Post'] ---->>in the 'TITLE of the Post'
+                                                                         -->> title of the newly created post
+Message" Post successfully deleted" -  .//div[@class='alert alert-success text-center']
+
+
+
