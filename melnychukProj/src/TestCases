@@ -1,14 +1,48 @@
 TC1
-name
-steps
-1
-2
-3
+NAME: in as registered user
+STEPS
+1 Open site https://qa-complex-app-for-testing.herokuapp.com/
+2 Enter Username  qaauto
+3 Enter pass 123456qwerty
+4 Click on sign in  button
 EXP Result
+User is logged in
+text "Hello qaauto" displayed
+
 TC2
-name
-steps
-1
-2
-3
+NAME: Create a post by logged in user
+Precondition: user is logged in
+Steps
+1 Click on Create Post button
+2 Type text in Title field
+3 type tesxt in Body content field
+4. click on checkbox This is a unique post
+5. Click on Svae  button
 EXP Result
+Post created
+- text displayed "New post successfully created."
+TC3
+NAME: Delete created post
+Precondition: create a post
+STEPS
+1 On page with created post click on Delete button
+2 check text
+Expected
+text displayed "Post successfully deleted"
+
+TC4
+NAME: Register as new User
+Steps
+1. Open site https://qa-complex-app-for-testing.herokuapp.com/
+2. fill in username field
+3. fill in Email field
+4. fill in Pasword field
+5. Click on SIgn Up  button
+
+TC5
+NAME: Sign out
+Precondition: user is logged in
+1. button Sign out exist
+2. click on Sign out button
+ Expected
+ User is signed out

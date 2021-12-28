@@ -1,4 +1,32 @@
-Login Page
-button.login=".//button"
+
+ Login Page
+ // sign up a new user
+ Username field - ".//*[@id='username-register']"
+ Email field - ".//*[@id='email-register']"
+ Password field - ".//*[@id='password-register']"
+ Sign up button - " .//*[@type='submit']"
+
 
 Home Page
+Create a post button - ".//*[@href="/create-post"]"
+My Profile button -".//*[@href="/profile/frgthyhthrth"]"
+Search field - ".//*[@data-original-title='Search']"
+Chat - ".//*[@data-original-title='Chat']"
+Link ComplexApp - ".//*[@class='text-white']"
+Hello UsernameText - ".//h2/strong[contains(text(),'frgthyhthrth')]"
+Sign out button  - ".//*[@class='btn btn-sm btn-secondary']"
+
+Create Post Page
+Title - ".//*[@id='post-title']"
+Body Content  -".//*[@id='post-body']"
+Checkbox Uniq post  - ".//*[@id='”UniquePost”']"
+Dropdown value- ".//select/option[@value='One Person']"
+Save new Post button  - ".//*[@class = 'btn btn-primary']"
+
+Post Page
+New Post created text - ".//*[text()='New post successfully created.']"
+Delete post button - "class="delete-post-button text-danger"
+Edit post button  - ".//*[@data-icon='edit']"
+
+Profile Page
+Username Text - ".//h2[contains(text(),'frgthyhthrth  ')]"
