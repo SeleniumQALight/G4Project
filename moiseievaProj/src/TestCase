@@ -1,0 +1,37 @@
+TC1 Success registration
+precondition: DB had been reset
+1 open mainPage https://qa-complex-app-for-testing.herokuapp.com/
+2 enter valid user name for registration to the field
+3 enter valid email for registration to the field
+4 enter valid password for registration to the field
+5 click submit button 'Sign up for OurApp'
+ER: user name and logout button 'Sign Out' are present
+
+TC2 Registration with empty fields
+1 open mainPage https://qa-complex-app-for-testing.herokuapp.com/
+2 click submit button 'Sign up for OurApp'
+ER: submit button is present, error messages are displayed:
+"Username must be at least 3 characters."
+"You must provide a valid email address."
+"Password must be at least 12 characters."
+
+TC3 Registration with invalid user name
+1 open mainPage https://qa-complex-app-for-testing.herokuapp.com/
+2 enter invalid user name "qaauto" for registration to the field
+3 enter valid email for registration to the field
+4 enter valid password for registration to the field
+5 click submit button 'Sign up for OurApp'
+ER: submit button is present, error message is displayed: "That username is already taken."
+
+TC4 Success authorization
+1 open mainPage https://qa-complex-app-for-testing.herokuapp.com/
+2 enter "qaauto" to username login field
+3 enter "123456qwerty" to password field at login form
+4 click submit button 'Sign In'
+ER: user name and logout button 'Sign Out' are present
+
+TC5 Authorization with empty password
+1 open mainPage https://qa-complex-app-for-testing.herokuapp.com/
+2 enter "qaauto" to username login field
+3 click submit button 'Sign In'
+ER: submit login button is present, error message is displayed: "Error"
