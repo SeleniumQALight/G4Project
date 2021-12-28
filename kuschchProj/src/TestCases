@@ -1,19 +1,72 @@
 Tc1
-Log in
-pre
+New user
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
 
-1
-2
-3
-4
+1 Ввести "yuriy" в поле ввода "Username"
+2 Ввести "some@gmail" в поле "Email"
+3 Ввести "1111111111" в поле ввода "Password"
+4 Нажать кнопку "Sign up for OurApp"
 
-Expected result
+Expected result: Отображается текст "Hello yuriy, your feed is empty."
+
 
 Tc2
+Log in
+
+preconditions
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = yuriy, Password = 1111111111 появляется "Error", выполнить Tc1 и вылогиниться.
+
+1 Ввести "yuriy" в поле ввода "Username"
+2 Ввести "1111111111" в поле ввода "Password"
+3 Нажать кнопку "Sign in"
+
+Expected result: Отображается "yuriy" в хедере сайта.
+
+
+Tc3
 Log out
 
-1
-2
-3
+preconditions
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = yuriy, Password = 1111111111 появляется "Error", выполнить Tc1 и вылогиниться.
 
-Expected result
+1 Ввести "yuriy" в поле ввода "Username"
+2 Ввести "1111111111" в поле ввода "Password"
+3 Нажать кнопку "Sign in"
+4 Нажать кнопку "Sign Out"
+
+Expected result: Отобразится текст "Are you sick of short tweets and impersonal “shared” posts that are reminiscent
+of the late 90’s email forwards? We believe getting back to actually writing is the key to enjoying the internet again."
+
+
+Tc4
+Page search
+
+preconditions
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = yuriy, Password = 1111111111 появляется "Error", выполнить Tc1 и вылогиниться.
+
+1 Ввести "yuriy" в поле ввода "Username"
+2 Ввести "1111111111" в поле ввода "Password"
+3 Нажать кнопку "Sign in"
+4 Перейти по ссылке "search"
+
+Expected result: Отобразится поле для поиска c текстом "What are you interested in?"
+
+
+Tc5
+Search-results
+
+preconditions
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = yuriy, Password = 1111111111 появляется "Error", выполнить Tc1 и вылогиниться.
+Создать пользователя "Test"
+
+1 Ввести "yuriy" в поле ввода "Username"
+2 Ввести "1111111111" в поле ввода "Password"
+3 Нажать кнопку "Sign in"
+4 Перейти по ссылке "search"
+5 Ввести слово "Test"
+
+Expected result: Отобразится "Search Results"
