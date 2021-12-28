@@ -5,7 +5,7 @@ field.passwordForRegistration = "//input[@id='password-register']";
 button.submitButtonForRegistration = "//button[@type='submit']";
 
 HeaderMenuUser
-button.signOut = "//button";
+button.signOut = "//button[text()='Sign Out']";
 span.userName = "//span[@class='text-white mr-2']";
 
 HeaderMenuGuest
