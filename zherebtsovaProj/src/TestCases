@@ -1,1 +1,33 @@
-12334
+1.Checking items on footer Home page
+STR
+1.Open https://qa-complex-app-for-testing.herokuapp.com/
+2.Check view of footer
+Expected result
+Copyright © 2019 OurApp. All rights reserved. is displayed in footer
+
+2.Checking title in Header bar
+1.Open https://qa-complex-app-for-testing.herokuapp.com/
+2.Check view of header bar
+Expected result
+Text "Complex app for testing - QA" is  displayed in header bar
+
+3.Checking ability to login with correct credentials in Header
+1.Open https://qa-complex-app-for-testing.herokuapp.com/
+2.Input qaauto in login field, input 123456qwerty in password field
+3.Click on Sing in button
+Expected result
+4.User redirected to his profile page, welcome text with his name, search, chat, My profile, create post, sing out buttons and username are displayed
+
+4.Checking ability to create new user
+1.Open https://qa-complex-app-for-testing.herokuapp.com/
+2.Input Alena in Username field, input oz9391391@gmail.com in e-mail and input oz9391391@gmail.com in password field
+3.Click on Sign up for OurApp button
+Expected result
+User redirected to his profile page, welcome text with his name, search, chat, My profile, create post, sing out buttons and username are displayed
+
+5.Checking ability to login with incorrect e-mail and password
+1.Open https://qa-complex-app-for-testing.herokuapp.com/
+2.Input qaauto1 in login field, input 123456qwerty1 in password field
+3.Click on Sing in button
+Expected result
+User is not logged in, notification "Error" is displayed
