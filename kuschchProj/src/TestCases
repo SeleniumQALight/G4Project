@@ -1,6 +1,9 @@
 Tc1
 New user
+
+preconditions
 Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = yuriy, Password = 1111111111 не появляется "Error", выполнить удаление пользователя username = yuriy.
 
 1 Ввести "yuriy" в поле ввода "Username"
 2 Ввести "some@gmail" в поле "Email"
@@ -61,7 +64,7 @@ Search-results
 preconditions
 Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
 Если при вводе username = yuriy, Password = 1111111111 появляется "Error", выполнить Tc1 и вылогиниться.
-Создать пользователя "Test"
+Создать пост "Test"
 
 1 Ввести "yuriy" в поле ввода "Username"
 2 Ввести "1111111111" в поле ввода "Password"

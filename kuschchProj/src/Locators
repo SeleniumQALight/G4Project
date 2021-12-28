@@ -1,5 +1,5 @@
  LoginPage
-input.username              =   ".//input[@id = 'username8']"
+input.username              =   ".//input[@class = 'form-control form-control-sm input-dark']"
 input.password              =   ".//input[@name = 'password']"
 button.signIn               =   ".//button[@class = 'btn btn-primary btn-s']"
 input.username-register     =   ".//input[@id = 'username-register']"
