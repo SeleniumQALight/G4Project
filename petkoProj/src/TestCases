@@ -8,7 +8,7 @@ Correct Sign in
 Steps:
 1. Enter in the login field "Username" value = "qaauto"
 2. Enter in the login field "Password" value = "123456qwerty"
-3. Click on Sing in button
+3. Click on Sign in button
 
 Expected result : Sign in is correct. You can see and click Log out-button on the user page
 
@@ -64,7 +64,7 @@ OR
 Test case 3 (Correct registration)
 
 Steps
-1. Click on the button "Sing out"
+1. Click on the button "Sign out"
 
 Expected result:
 Log out was correct. User can see "Sign In " button on the Main page of the site
