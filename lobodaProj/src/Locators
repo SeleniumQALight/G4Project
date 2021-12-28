@@ -1,0 +1,38 @@
+LoginPage
+userNameReg = ".//input[@id='username-register']"
+userEmailReg = ".//input[@id='email-register']"
+userPasswordReg = ".//input[@id='password-register']"
+buttonSignUp = ".//button[@type='submit']"
+userNameSignIn = ".//input[@name='username' and @placeholder='Username']"
+userPasswordSignIn = ".//input[@name='password' and @placeholder='Password']"
+buttonSignIn = ".//button[text()='Sign In']"
+
+
+HomePage
+userNameHeader = ".//span[contains(text(),' loboda')]"
+buttonSingOut = ".//button[text()='Sign Out']"
+helloMessage = ".//strong[text()='loboda']"
+buttonUserProfile = ".//img[@data-original-title='My Profile']"
+buttonCreatePost = ".//a[text()='Create Post']"
+
+
+UserProfilePage
+userName = ".//h2[contains(text(),'qaauto')]"
+tabPosts = ".//a[contains(text(),'Posts:')]"
+tabFollowers = ".//a[contains(text(),'Followers:')]"
+tabFollowing = ".//a[contains(text(),'Following:')]"
+
+
+CreatePostPage
+postTitle = ".//input[@id='post-title']"
+postBodyContent = ".//textarea[@id='post-body']"
+checkBoxUniquePost = ".//input[@id='”UniquePost”']"
+selectValue = ".//select[@id='select1']"
+optionAllUsers = ".//option[@value='All Users']"
+buttonSaveNewPost = ".//button[text()='Save New Post']"
+
+
+NewCreatedPostPage
+messagePostCreated = ".//*[@class='alert alert-success text-center']"
+postTitle = ".//h2[text() = 'loboda-1']"
+postPermission = ".//*[contains(text(),'All Users')]"
