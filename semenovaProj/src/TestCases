@@ -1,1 +1,50 @@
 Test Case1
+Title: Authorization.
+
+1 Open site "https://qa-complex-app-for-testing.herokuapp.com/"
+2 Enter login "qaauto" in the field "Username".
+3 Enter password "123456qwerty" in the field "Password".
+4 Click on the button "Sign in".
+
+Expected result: The user goes to the home page of the site.
+---------------------------------------------------
+Test Case2
+Title: Create Post.
+
+1 On the home page of the website click on the link "Create Post".
+2 Click on the button "Save New Post".
+Expected result: The post cannot be created, the user is prompted to fill in the field "Title".
+3 Fill in the field "Title" using only a space.
+4 Click on the button "Save New Post".
+Expected result: The post cannot be created, the user sees the inscription "You must provide a title.".
+5 Fill in the field "Title".
+6 Click on the button "Save New Post".
+Expected result: The post cannot be created, the user is prompted to fill in the field "Body Content".
+7 Fill in the field "Body Content" using only a space.
+Expected result: The post cannot be created, the user sees the inscription "You must provide a content.".
+8 Fill in the field "Body Content".
+Expected result: The post was created and user sees the inscription "New post successfully created.".
+
+----------------------------------------------------
+Test Case3
+Title: My Profile.
+
+1 On the home page of the website click on the link "My Profile".
+
+Expected result: User sees all his created posts and can edit or delete them.
+
+------------------------------------------------------
+Test Case4
+Title: Link "Search".
+
+1 On the home page of the website click on the link "Search".
+
+Expected result: The user goes to the search menu and can enter parameters in the search bar.
+
+-------------------------------------------------------
+Test Case5
+Title: Log in
+
+1 On the home page of the website click on the button "Sign Out".
+
+Expected result: The user is logged out and goes to the login/registration page.

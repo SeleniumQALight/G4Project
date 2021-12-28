@@ -1,3 +1,18 @@
 Login Page
+1 Field "Username" - .//input[@name='username' and @placeholder='Username']
+2 Field "Password" - .//input[@name='password' and @placeholder='Password']
+3 Button "Sign in" - .//button[@class='btn btn-primary btn-sm']
+
 
 Home Page
+1 Link "Create Post" - .//a[@href='/create-post']
+2 Button "Save New Post" - .//button[@class='btn btn-primary']
+3 Field "Title" - .//input[@type='text' and @name='title']
+4 Field "You must provide a title." - /html/body/div[2]/div[1]
+5 Field "You must provide a content." - /html/body/div[2]/div[2]
+
+6 Link "My Profile" - .//a[@href='/profile/qaauto' and @class='mr-2']
+
+7 Link "Search" - .//a[@href='#']
+
+8 Button "Sign Out" - .//button[@class='btn btn-sm btn-secondary']
