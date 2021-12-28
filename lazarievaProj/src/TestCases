@@ -1,5 +1,105 @@
-Test Case1
-Create new user
-Steps:
+---Test Case 01
+Create new user - happy path.
+  STEPS:
+  Open the app in the Chrome browser by the link https://qa-complex-app-for-testing.herokuapp.com/
+        ->Login page opened->ER: "Sign In" button & "Sign up for OurApp" button displayed.
+1 Type: 'Qwerty555' in the Username field of the SignUp form
+2 Press enter
+3 Type: '1234test@test.com' in the Email field of the SignUp form
+4 Press enter
+5 Type: '1234qwerty555' in the Password field of the SignUp form
+6 Press enter
+7 Click the "Sign up for OurApp" button
+  EXPECTED RESULT:
+  1 The message " Your feed displays the latest posts from the people you follow.
+    If you don’t have any friends to follow that’s okay; you can use the “Search”." ---displayed
+  2 The Icon My profile, Chat, search, UserName, buttons: Create Post, Sign Out -displayed
+8  Close Browser.
 
-Expected result:
+
+---Test Case 02
+Verify if the error messages appeared in case-> incorrect value set in the fields of the sign up form.
+  STEPS:
+  Open the app in the Chrome browser by the link https://qa-complex-app-for-testing.herokuapp.com/
+        -> Login page opened->ER: "Sign In" & "Sign up for OurApp" button displayed.
+1 Type: 'Qwerty555' in the Username field of the SignUp form
+2 Press enter
+3 Type: 'test' in the Email field of the SignUp form
+4 Press enter
+5 Type: 'test' in the Password field of the SignUp form
+6 Press enter
+7 Click the "Sign up for OurApp" button
+  EXPECTED RESULTS:
+  The following error messages are displayed:
+  1 Username must be at least 3 characters.
+  2 You must provide a valid email address.
+  3 Password must be at least 12 characters.
+
+ Close Browser.
+
+
+---Test Case 03
+Verify if the new user can login with the correct credentials.
+---Verify if the new user canNot login with the incorrect password/username----
+
+  PRECONDITIONS: The user 'Qwerty555' was  created.
+  STEPS:
+  Open the app in the Chrome browser by the link https://qa-complex-app-for-testing.herokuapp.com/
+        -> Login page opened-> ER: "Sign In" button & "Sign up for OurApp" button displayed.
+1 Type: 'Qwerty555' in the Username field
+2 Press enter
+3 Type: '1234qwerty555' in the Password field
+4 Press enter
+5 Click 'Sign In' button
+   EXPECTED RESULT:
+   1 The message " Your feed displays the latest posts from the people you follow.
+                   If you don’t have any friends to follow that’s okay; you can use the “Search”."
+                   ---displayed
+   2 The Icon My profile, Chat, search, UserName & buttons: Create Post, Sign Out - displayed
+ Close Browser.
+
+
+---Test Case4
+Verify if the user can create a post.
+ PRECONDITIONS: The user Qwerty555 was created and logged in.
+ STEPS:
+1 Click "Create Post" button - ER: tile "First post" is displayed
+2 Enter the tile "First post from user Qwerty555" in the Title field
+3 Enter the following text:
+   "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat." --->>>
+  in the the "Body Content" field
+4 Mark checkbox "This is a unique post" - true
+5 Click the dropdown "Select value"
+6 Select the value "Group Message"
+7 Click the button "Save New Post"
+  EXPECTED RESULT:
+  1 Message "New post successfully created."  - appeared in the page
+  2 The Title "First post from user Qwerty555" displayed
+  3 Posted by-  user name "Qwerty555" is displayed
+  4 Text from step 3 "----" displayed
+  5 The Note contains the correct value -->  **Group Message**
+Close Browser.
+
+
+---Test Case 05
+Verify if the newly created post can be deleted.
+ PRECONDITIONS:
+ 1 The user Qwerty555 was created and logged in.
+ 2 The new post was created.
+ STEPS:
+1 Click "My Profile" icon. -> ER: Small avatar appeared, List of posts is visible
+2 Find the newly created post " First post from user Qwerty555" in the list of posts.
+3 Click the post "First post from user Qwerty555" ->
+  ER: The Post Title "First post from user Qwerty555" displayed, Buttons: Edit & Delete are visible
+4 Click "DELETE" button
+ EXPECTED RESULT:
+ 1 Message" Post successfully deleted" is displayed.
+ 2 The title of deleted  post isn`t displayed in the list of post
+ 3 Small avatar displayed, list of posts is visible
+Close Browser.
+
+
+----- Log in with the user -qaauto, password - 123456qwerty
