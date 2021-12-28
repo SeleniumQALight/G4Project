@@ -61,7 +61,7 @@ Verify if the new user can login with the correct credentials.
 
 ---Test Case4
 Verify if the user can create a post.
- PRECONDITIONS: The user was created and logged in.
+ PRECONDITIONS: The user  Qwerty555 was created and logged in.
  STEPS:
 1 Click "Create Post" button - ER: tile "First post" is displayed
 2 Enter the tile "First post" in the Title field

@@ -7,7 +7,7 @@ input.passwordField = .//input[@id='password-register']
 button.SignUp = .//*[@type='submit']
 _______________________
 SIGN IN-->>>
-input.userNameSignIn = .//input[@id='username4']
+input.userNameSignIn = .//input[@id='username4'] OR .//input[@name='username']
 input.passwordFieldSignIn = .//input[@placeholder='Password']
 button.SignIn = .//*[@class='btn btn-primary btn-sm']
 
