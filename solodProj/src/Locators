@@ -1,6 +1,17 @@
 Log page
+1).//button[@type='submit' and @class='py-3 mt-4 btn btn-lg btn-success btn-block']
+2).//div [@class='alert alert-danger text-center']
+2a).//*/div[contains(text(),'Error')]
+3).//form [@action='/register']//div [@class='form-group']//label[@for='password-register']//small
+3a).//form [@action='/register']//div[3]//label//small
 
 
 
 
 Ex page
+4).//div [@class='form-group'][4]//select//option [contains(text(),'Сообщение для группы')]
+4a).//div [@class='form-group'][4]//select//option[1]
+4b).//div [@class='form-group'][4]//select//option[2]
+4c).//div [@class='form-group'][4]//select//option[3]
+5).//div//form[@class='chat-form border-top']
+6).//button [@class='btn btn-primary']
