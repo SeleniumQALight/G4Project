@@ -3,7 +3,7 @@ TC1 - Успешное создание нового пользователя
 Шаги:
 1. Перейти по ссылке: https://qa-complex-app-for-testing.herokuapp.com/
 2. Проверить наличие полей Username, Email, Pasword и кнопки Sign up for OurApp
-3. В поле Username ввести значение "Sign up for OurApp"
+3. В поле Username ввести значение "loboda"
 4. В поле Email ввести значение "loboda@test.test"
 5. В поле Pasword ввести значение "123456789012"
 6. Нажать кнопку Sign up for OurApp
