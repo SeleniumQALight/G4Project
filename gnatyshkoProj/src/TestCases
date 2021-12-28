@@ -1,11 +1,57 @@
-https://qa-complex-app-for-testing.herokuapp.com/
-TC #1
-prerequisite
+website: https://qa-complex-app-for-testing.herokuapp.com/
+username: qaauto
+password: 123456qwerty
 
-Log in
+TC #1: Check the user is successfully signed in to the website
+Prerequisite: The user is already registered in the website and is currently signed out. The Login page is open in browser.
 
-1
-2
-3
+1. Fill in the user's username and password
+2. Click the button 'Sign In'
 
-Expected Result
+Expected Result: The user sees his username and the button 'Sign out' on the right corner of the upper window.
+______________________________________________________________________________________________________________
+
+TC #2: Check the user is not signed in to the website with incorrect password
+Prerequisite: The user is already registered in the website and is currently signed out. The Login page is open in browser.
+
+1. Fill in the user's username
+2. Fill in the password which differs from that one the user was registered with
+3. Click the button 'Sign In'
+
+Expected Result: The error message pops up and the user doesn't see the button 'Sign out' (the user stays on the LoginPage)
+__________________________________________________________________________________________________________________________
+
+TC #3. Check the user can create a post
+Prerequisite: The user is already registered in the website and is currently signed in. The HomePage page is open in browser.
+
+1. Click on 'Create post'
+2. Fill in 'Title'
+3. Fill in 'Body content'
+4. Choose 'Частнок сообщение' in 'Select value'
+5. Click on 'Save new post'
+
+Expected Result:
+The message pops up with text "New post successfully created." and the user sees the name of the created post
+The user sees that the post was created by his username and date of creation
+The user sees that the post was not written to all users
+The user sees the content of the post
+_______________________________________________________________________________________________________________________
+
+TC #4. Check the created post is present in MyProfile
+Prerequisite: The user is already registered in the website and is currently signed in. The User has already created the post. The PostPage is open in browser
+
+1. Click on 'My profile' sign
+2. In MyProfilePage in the list of posts click on the post with the title which matches with the title the post was earlier created
+
+Expected Result: In MyProfilePage the name of the created post matches with the name and date the post was earlier created by the user.
+After clicking on the name of the post the user moves to the PostPage of the current post.
+______________________________________________________________________________________________________________________
+
+TC #5. Check that post can be found in search
+Prerequisite: The user is already registered in the website and is currently signed in. The MyProfilePage is open in browser
+
+1. In the list of posts choose the name of post for searching
+2. Click on 'Search' on the upper side of the window
+3. In searchField type name of the post
+
+Expected Result: On SearchPage in the SearchResults the user sees the item which matches with the name, author and date of the post

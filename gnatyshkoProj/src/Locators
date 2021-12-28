@@ -1,4 +1,37 @@
 LoginPage
-button.login=".//button"
+input.username = ".//input[@name='username' and @placeholder='Username']"
+input.password = .//input[@name='password' and @placeholder='Password']
+button.signIn = ".//button[text()='Sign In']"
+error = .//div[text()='Error']
 
 HomePage
+span.username = ".//span[@class='text-white mr-2' and contains(text(),'qaauto')]"
+button.signOut = ".//button[text()='Sign Out']"
+href.createPost = ".//a[@href='/create-post']"
+
+CreatePostPage
+input.postTitle = ".//input[@id='post-title']"
+textarea.bodyContent = ".//textarea[@id='post-body']"
+select.onePersonValue = ".//div[@class='form-group']//select[@id='select1']//option[@value='One Person']"
+button.saveNewPost = ".//button[@class='btn btn-primary' and text()='Save New Post']"
+
+PostPage
+message.postCreated = ".//div[contains(text(), 'post successfully created')]"
+href.username = ".//a[@href='/profile/qaauto' and contains(text(), 'qaauto')]"
+text.postDate = ".//p[@class='text-muted small mb-4']/text()[3]"
+text.postForOnePerson = ".//u[contains(text(), 'One Person' )]"
+text.postContent = ".//p[contains(text(), 'Merry Christmas')]"
+href.myProfile = ".//a[@href='/profile/qaauto' and @class='mr-2']"
+
+MyProfilePage
+href.postLink = ".//div[@class='list-group']//a[@href='/post/61c9979810ded2000414f87b']"
+href.search = ".//a[@data-original-title='Search']"
+
+SearchPage
+input.searchField = ".//input[@id='live-search-field']"
+href.searchPostInfo = ".//div[@class='live-search-results live-search-results--visible']//a[@class='list-group-item list-group-item-action' and @href='/post/61c87327b619e7000442d8c6']"
+
+
+
+
+
