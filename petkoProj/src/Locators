@@ -2,7 +2,7 @@ mainpage.url = https://qa-complex-app-for-testing.herokuapp.com/
 
 Main page
 button.singin = .//button[@class='btn btn-primary btn-sm']
-input.singin.login = .//input[@id='username1']
+input.singin.login = .//input[@name='username' and @placeholder='Username']
 input.singin.password = .//input[@name='password' and not(@id='password-register')]
 message.error = .//div[@class='alert alert-danger text-center']
 
@@ -21,6 +21,8 @@ button.savemessage = .//button[@class='btn btn-primary']
 
 New message page
 div.messageWasCreated = .//div[@class='alert alert-success text-center']
+header.postName = ".//h2[text() = 'Some title Petko']"
+button.deletePost = .//button[@class='delete-post-button text-danger']
 
 
 

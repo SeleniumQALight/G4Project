@@ -47,12 +47,15 @@ Test case 3 (Correct registration)
 
 Steps
 1. Click on the button "Create post"
-2. Enter in the field "Title" value "Some title"
+2. Enter in the field "Title" value "Some title Petko"
 3. Enter in the field "Body content" value "Some text in the new post"
 4. Click on the button "Create new post"
 
 Expected result:
 User can see message "New post successfully created." in div.messageWasCreated
+User can see post with given name on the page
+User can see the delete button for this post
+
 
 //
 Test case 5
