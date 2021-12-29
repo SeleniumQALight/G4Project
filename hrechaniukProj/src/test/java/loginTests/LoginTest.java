@@ -2,7 +2,7 @@ package loginTests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,7 +26,7 @@ public class LoginTest {
         System.out.println("login was entered");
 
         webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
-        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys("123456qwert");
+        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys("123456qwerty");
         System.out.println("password was entered");
 
         webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
