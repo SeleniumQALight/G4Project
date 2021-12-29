@@ -1,7 +1,7 @@
 LoginPage
 
 button.login = ".//input[@name="username" and @placeholder="Username"]"
-button.password = ".//div//input[@type= 'password']"
+button.password = ".//div//input[@type='password']"
 button.Sign In = ".//*[text()='Sign In']"
 //button.Sign up for OurApp = ".//button [@type]"
 
