@@ -14,7 +14,8 @@ Create new user - happy path.
   1 The message " Your feed displays the latest posts from the people you follow.
     If you don’t have any friends to follow that’s okay; you can use the “Search”." ---displayed
   2 The Icon My profile, Chat, search, UserName, buttons: Create Post, Sign Out -displayed
-8  Close Browser.
+  POSTCONDITIONS:
+Close Browser.
 
 
 ---Test Case 02
@@ -34,7 +35,7 @@ Verify if the error messages appeared in case-> incorrect value set in the field
   1 Username must be at least 3 characters.
   2 You must provide a valid email address.
   3 Password must be at least 12 characters.
-
+  POSTCONDITIONS:
  Close Browser.
 
 
@@ -56,6 +57,7 @@ Verify if the new user can login with the correct credentials.
                    If you don’t have any friends to follow that’s okay; you can use the “Search”."
                    ---displayed
    2 The Icon My profile, Chat, search, UserName & buttons: Create Post, Sign Out - displayed
+   POSTCONDITIONS:
  Close Browser.
 
 
@@ -81,6 +83,7 @@ Verify if the user can create a post.
   3 Posted by-  user name "Qwerty555" is displayed
   4 Text from step 3 "----" displayed
   5 The Note contains the correct value -->  **Group Message**
+  POSTCONDITIONS:
 Close Browser.
 
 
@@ -99,6 +102,8 @@ Verify if the newly created post can be deleted.
  1 Message" Post successfully deleted" is displayed.
  2 The title of deleted  post isn`t displayed in the list of post
  3 Small avatar displayed, list of posts is visible
+
+ POSTONDITIONS:
 Close Browser.
 
 
