@@ -35,10 +35,20 @@ public class LoginTest {
 
         Assert.assertTrue("Button Sign Out not displayed", dispayedButtonSignOut());
 
-        driver.findElement(By.xpath(".//button[text()='Sign Out']")).click();
-        Assert.assertTrue("Button 'Sign up for OurApp' not displayed",buttonSignUpDisplayed());
-        System.out.println("Log out and enter for main page");
+        driver.quit();
+        System.out.println("Browser closed");
 
+    }
+
+    @Test
+    public void notValidLogIn() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+
+        driver.get("https://qa-complex-app-for-testing.herokuapp.com/");
+        System.out.println("Site was opened");
 
         driver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
         driver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys("abcdefg");
@@ -51,14 +61,13 @@ public class LoginTest {
         driver.findElement(By.xpath(".//button[text()='Sign In']")).click();
         System.out.println("Sign in button was clicked");
 
-        Assert.assertTrue("Button 'Sign up for OurApp' not displayed",buttonSignUpDisplayed());
+        Assert.assertTrue("Button 'Sign up for OurApp' not displayed", buttonSignUpDisplayed());
         System.out.println("Button 'Sign up for OurApp' is displayed");
-        Assert.assertTrue("Wrong text is displayed",textErrorIsDisplayed());
+        Assert.assertTrue("Wrong text is displayed", textErrorIsDisplayed());
         System.out.println("Text is right");
 
         driver.quit();
-        System.out.println("Browser closed");
-
+        System.out.println("Browser was closed");
     }
 
     private boolean dispayedButtonSignOut(){
