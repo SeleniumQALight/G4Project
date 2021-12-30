@@ -6,45 +6,46 @@ Title: Authorization.
 3 Enter password "123456qwerty" in the field "Password".
 4 Click on the button "Sign in".
 
-Expected result: The user goes to the home page of the site.
+Expected result: The user goes to the home page of the site
+and sees the "My Profile" and button "Sign Out".
 ---------------------------------------------------
 Test Case2
 Title: Create Post.
+Precondition: User must be logged in.
 
 1 On the home page of the website click on the link "Create Post".
-2 Click on the button "Save New Post".
-Expected result: The post cannot be created, the user is prompted to fill in the field "Title".
-3 Fill in the field "Title" using only a space.
-4 Click on the button "Save New Post".
-Expected result: The post cannot be created, the user sees the inscription "You must provide a title.".
-5 Fill in the field "Title".
-6 Click on the button "Save New Post".
-Expected result: The post cannot be created, the user is prompted to fill in the field "Body Content".
-7 Fill in the field "Body Content" using only a space.
-Expected result: The post cannot be created, the user sees the inscription "You must provide a content.".
-8 Fill in the field "Body Content".
-Expected result: The post was created and user sees the inscription "New post successfully created.".
+2 Enter the name in the field "Title".
+3 Fill in the textarea "Body Content".
+4 Make checkbox "This is a unique post" active.
+5 Click on the button "Save New Post".
+Expected result: The user sees the inscription "New post successfully created." and
+under the title of his post he can click on the profile button to go to the tab "My Profile".
 
 ----------------------------------------------------
 Test Case3
 Title: My Profile.
+Precondition: User must be logged in.
 
 1 On the home page of the website click on the link "My Profile".
 
-Expected result: User sees all his created posts and can edit or delete them.
+Expected result: The user sees a sign with his profile and three tabs ("Posts:", "Followers:", "Following:".
 
 ------------------------------------------------------
 Test Case4
 Title: Link "Search".
+Precondition: User must be logged in.
 
 1 On the home page of the website click on the link "Search".
+2 Enter the required parameters in the search field "What are you interested in?".
 
-Expected result: The user goes to the search menu and can enter parameters in the search bar.
+Expected result: The user sees posts that match the request or does not see
+if there are no posts that match the request.
 
 -------------------------------------------------------
 Test Case5
-Title: Log in
+Title: Log out
+Precondition: User must be logged in.
 
 1 On the home page of the website click on the button "Sign Out".
 
-Expected result: The user is logged out and goes to the login/registration page.
+Expected result: The user is logged out, sees the login/registration page and button "Log in".

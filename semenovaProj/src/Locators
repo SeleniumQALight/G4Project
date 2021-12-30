@@ -8,11 +8,18 @@ Home Page
 1 Link "Create Post" - .//a[@href='/create-post']
 2 Button "Save New Post" - .//button[@class='btn btn-primary']
 3 Field "Title" - .//input[@type='text' and @name='title']
-4 Field "You must provide a title." - /html/body/div[2]/div[1]
-5 Field "You must provide a content." - /html/body/div[2]/div[2]
+4 Textarea "Bode Content" - .//textarea[@id='post-body']
 
-6 Link "My Profile" - .//a[@href='/profile/qaauto' and @class='mr-2']
+5 Link "My Profile" - .//a[@href='/profile/qaauto' and @class='mr-2']
+6 Links "My Profile" on the page where the user sees a message about a successfully created post
+  above the post title - .//img[@class='avatar-tiny']
+7 Link "Posts" - .//a[@href='/profile/qaauto' and @class='profile-nav-link nav-item nav-link active']
+8 Link "Followers" - .//a[@href='/profile/qaauto/followers' and @class='profile-nav-link nav-item nav-link ']
+9 Link "Following" - .//a[@href='/profile/qaauto/following' and @class='profile-nav-link nav-item nav-link ']
+10 Checkbox "This is a unique post" - .//input[@type='checkbox']
 
-7 Link "Search" - .//a[@href='#']
+11 Link "Search" - .//a[@href='#']
+12 Search field "What are you interested in?" -
+.//input[@type='text' and @placeholder='What are you interested in?']
 
-8 Button "Sign Out" - .//button[@class='btn btn-sm btn-secondary']
+13 Button "Sign Out" - .//button[@class='btn btn-sm btn-secondary']
