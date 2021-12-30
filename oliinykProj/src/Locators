@@ -4,7 +4,7 @@ Main page locators
 2. Email registration field: .//input[@id='email-register']
 3. "Create a password" field: .//input[@id='password-register']
 4. Button "Sign up for OurApp": .//button[text()='Sign up for OurApp']
-5. Header "Username": .//input[@id='username4']
+5. Header "Username": .//input[@name='username' and @placeholder='Username']
 6. Header "Password": .//input[@placeholder='Password']
 7. "Sign in" button: .//button[text()='Sign In']
 
