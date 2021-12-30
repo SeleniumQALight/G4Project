@@ -1,13 +1,15 @@
 TC1
-NAME: in as registered user
+NAME: Log in as registered user
 STEPS
 1 Open site https://qa-complex-app-for-testing.herokuapp.com/
 2 Enter Username  qaauto
 3 Enter pass 123456qwerty
 4 Click on sign in  button
+5 Check Sign out button
 EXP Result
-User is logged in
-text "Hello qaauto" displayed
+- User is logged in
+- text "Hello qaauto" displayed
+- Sign out button displayed
 
 TC2
 NAME: Create a post by logged in user
@@ -15,12 +17,16 @@ Precondition: user is logged in
 Steps
 1 Click on Create Post button
 2 Type text in Title field
-3 type tesxt in Body content field
+3 type text in Body content field
 4. click on checkbox This is a unique post
-5. Click on Svae  button
+5. Click on Save  button
+6. Check text displayed "New post successfully created."
+7. Post title displayed
+8. Open user Profile
+9. Check Post exist in the list by title
 EXP Result
-Post created
-- text displayed "New post successfully created."
+Post created; text displayed; Post exist in the list by title
+
 TC3
 NAME: Delete created post
 Precondition: create a post
@@ -29,20 +35,29 @@ STEPS
 2 check text
 Expected
 text displayed "Post successfully deleted"
+3. open user profile
+4. check that post deleted ( no post with  title of deleted post)
+EXpected: post deleted from the list
 
 TC4
 NAME: Register as new User
 Steps
 1. Open site https://qa-complex-app-for-testing.herokuapp.com/
-2. fill in username field
-3. fill in Email field
-4. fill in Pasword field
+2. fill in username field (testuser)
+3. fill in Email field (testusermail@gmail.com)
+4. fill in Pasword field(123456789qwerty)
 5. Click on SIgn Up  button
+6. Check text "Hello testuser, your feed is empty."
+7. Button Sign Out displayed
+Expected: text for new registered user displayed; Button Sign Out displayed
 
 TC5
 NAME: Sign out
 Precondition: user is logged in
 1. button Sign out exist
+2. button sign in Not displayed
 2. click on Sign out button
+3. check sign in button
  Expected
+ Sign in button displayed
  User is signed out
