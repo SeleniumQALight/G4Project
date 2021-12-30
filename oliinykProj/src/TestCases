@@ -40,7 +40,7 @@ Name: Login in
 PC: You are on main page https://qa-complex-app-for-testing.herokuapp.com/
 
 STP:
-1. Enter username (that was used in TC1 or use qaa) in field "Username" at header.
+1. Enter username (that was used in TC1 or use default username "qaauto") in field "Username" at header.
 2. Enter password (that was used in TC1 or password for default username "123456qwerty") in field "Password" at header.
 3. Click "Sign in" button.
 
