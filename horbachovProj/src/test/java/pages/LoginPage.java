@@ -49,7 +49,7 @@ public void enterPasswordIntoInputPassword(String password){
 public void clickOnButtonSignIn() {
     try {
         webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
-        logger.info("Button Sign is was clicked");
+        logger.info("Button Sign In was clicked");
     } catch (Exception e) {
         printErrorAndStopTest(e);
     }

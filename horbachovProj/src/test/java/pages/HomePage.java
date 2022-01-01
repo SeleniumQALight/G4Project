@@ -11,10 +11,11 @@ public class HomePage extends ParentPage {
 
     public boolean isButtonSignOutDisplayed(){
         try{
-            logger.info("Success !!!");
+
             return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
 
         } catch (Exception e) {
+            logger.info("Sign Out button is not displayed !!!");
             return false;
         }
     }
