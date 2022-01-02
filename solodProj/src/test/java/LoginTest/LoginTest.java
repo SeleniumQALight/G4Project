@@ -24,8 +24,8 @@ public class LoginTest {
         //открывает УРЛ
         webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");//открой то что мы вставили в ""
         System.out.println("Site was opened");
-        webDriver.findElement(By.xpath(".//*[@name='username' and @placeholder='Username']")).clear();//ВЕБДРАЙВЕР найди мне елемент по Хпаз, но сначало почисти поле ЮсерИмя
-        webDriver.findElement(By.xpath(".//*[@name='username' and @placeholder='Username']")).sendKeys("qaauto");//введи в логин то что мы ему сказали
+        webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();//ВЕБДРАЙВЕР найди мне елемент по Хпаз, но сначало почисти поле ЮсерИмя
+        webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys("qaauto");//введи в логин то что мы ему сказали
         System.out.println("Login was entered");
 
         webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();//ВЕБДРАЙВЕР найди мне елемент по Хпаз, но сначало почисти поле Пароль
