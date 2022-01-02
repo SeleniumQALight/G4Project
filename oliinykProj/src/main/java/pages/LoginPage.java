@@ -46,6 +46,24 @@ public class LoginPage extends ParentPage {
             printErrorAndStopTest(e);
         }
     }
+    public boolean displayedMessageError(){
+        try {
+            return driver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).getText().equalsIgnoreCase("error");
+
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+            return false;
+        }
+    }
+
+    public boolean buttonSingUpIsDisplayed(){
+        try {
+            return driver.findElement(By.xpath(".//button[@type='submit']")).isDisplayed();
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+            return false;
+        }
+    }
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can't work with element" + e);
