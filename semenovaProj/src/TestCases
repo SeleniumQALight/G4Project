@@ -11,8 +11,9 @@ and sees the "My Profile" and button "Sign Out".
 ---------------------------------------------------
 Test Case2
 Title: Create Post.
-Precondition: User must be logged in.
-
+Precondition: 1 User must be logged in.
+              2 When creating a post, check on the "My Profile" page that the post is unique,
+               if there is such a post, then delete it.
 1 On the home page of the website click on the link "Create Post".
 2 Enter the name in the field "Title".
 3 Fill in the textarea "Body Content".
@@ -20,7 +21,8 @@ Precondition: User must be logged in.
 5 Click on the button "Save New Post".
 Expected result: The user sees the inscription "New post successfully created." and
 under the title of his post he can click on the profile button to go to the tab "My Profile".
-
+6 Go to tab "My Profile".
+Expected result: There is a created post in the column "Posts".
 ----------------------------------------------------
 Test Case3
 Title: My Profile.
@@ -28,18 +30,18 @@ Precondition: User must be logged in.
 
 1 On the home page of the website click on the link "My Profile".
 
-Expected result: The user sees a sign with his profile and three tabs ("Posts:", "Followers:", "Following:".
+Expected result: The user sees a sign with his profile and three tabs ("Posts:", "Followers:", "Following:").
 
 ------------------------------------------------------
 Test Case4
 Title: Link "Search".
-Precondition: User must be logged in.
-
+Precondition: 1 User must be logged in.
+              2 A post was created by the user
 1 On the home page of the website click on the link "Search".
 2 Enter the required parameters in the search field "What are you interested in?".
 
-Expected result: The user sees posts that match the request or does not see
-if there are no posts that match the request.
+Expected result: The user sees posts that match the request.
+
 
 -------------------------------------------------------
 Test Case5
