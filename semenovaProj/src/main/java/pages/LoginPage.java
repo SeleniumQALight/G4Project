@@ -43,7 +43,7 @@ public class LoginPage extends ParentPage {
     public void clickOnButtonSingIn() {
         try {
             webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
-            logger.info("Button Sign In wsa clicked");
+            logger.info("Button Sign In was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
