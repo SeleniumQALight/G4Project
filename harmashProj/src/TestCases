@@ -1,0 +1,55 @@
+TC-1 "It is possible to create post with filled title and body"
+PRE:
+1. User is signed in (login - qaauto, password-123456qwerty)
+2. Page is opened https://qa-complex-app-for-testing.herokuapp.com/profile/qaauto
+STEPS:
+- click Create Post Button
+- add title "First Post"
+- add Body Content "Text for first post"
+- activate checkbox "Unigue post"
+- click Save New Post
+
+ER: user has been redirected to /post/{id}, message "New post successfully created." is displayed;
+
+TC- 2 "It is NOT possible to create post without filled title and body"
+PRE:
+1. User is signed in (login - qaauto, password-123456qwerty)
+2. Page is opened https://qa-complex-app-for-testing.herokuapp.com/profile/qaauto
+STEPS:
+- click Create Post Button
+- click Save New Post
+
+ER: Message "Please fill in this field" on the screen
+
+TC-3 "Edit page is accessible"
+PRE:
+1. User is signed in (login - qaauto, password-123456qwerty)
+2. Page with created post is opened https://qa-complex-app-for-testing.herokuapp.com/post/61d1fe456f5c760004762542
+STEPS:
+- click on edit icon
+
+ER: edit page is opened
+
+TC-4 "It is possible to edit content on edit page"
+PRE:
+1. User is signed in (login - qaauto, password-123456qwerty)
+2. Page with created post is opened https://qa-complex-app-for-testing.herokuapp.com/post/61d1fe456f5c760004762542
+3. Some post was already created
+STEPS:
+- add symbol to the title
+- add symbol to the body
+- click on button Save updates
+
+ER: Changes were saved -> message Post successfully updated is on the screen.
+
+TC-5 "It is possible to send message in chat"
+PRE:
+1. User is signed in (login - qaauto, password-123456qwerty)
+STEPS:
+- click chat icon
+- type message into input field
+- send message using enter
+
+ER: Message is visible
+
+
