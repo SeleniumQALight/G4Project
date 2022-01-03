@@ -9,34 +9,33 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public void openLoginPage() {
+    public void openLoginPage(){
         try {
             webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
-            logger.info("LoginPage was open");
-        } catch (Exception e) {
-            logger.error("Cannot open LoginPage " + e);
-            Assert.fail("Cannot open LoginPage " + e);
+            logger.info("Login page was opened");
+        } catch (Exception e){
+          logger.error("Can not open Login Page" + e);
+            Assert.fail("Can not open Login Page" + e);
         }
+
     }
 
     public void enterLoginIntoInputLogin(String login) {
-        try {
+        try{
             webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
-            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"))
-                    .sendKeys(login);
+            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys(login);
             logger.info(login + " was inputted into Input Login");
-        } catch (Exception e) {
+        }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
 
-    public void enterLoginIntoInputPassword(String password) {
-        try {
+    public void enterPasswordIntoInputPassword(String passWord){
+        try{
             webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
-            webDriver.findElement(By.xpath(".//input[@placeholder='Password']"))
-                    .sendKeys(password);
-            logger.info(password + " was inputted");
-        } catch (Exception e) {
+            webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys(passWord);
+            logger.info(passWord + " was inputted");
+    }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
@@ -51,14 +50,7 @@ public class LoginPage extends ParentPage {
     }
 
     private void printErrorAndStopTest(Exception e) {
-        logger.error("Cannot work with element " + e);
-        Assert.fail("Cannot work with element " + e);
-    }
-    public boolean isErrorMessageDisplayed() {
-        try {
-            return webDriver.findElement(By.xpath(".//div[text()='Error']")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        logger.error("Can not work with element" + e);
+        Assert.fail("Can not work with element" + e);
     }
 }
