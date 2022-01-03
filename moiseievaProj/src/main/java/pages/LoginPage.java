@@ -61,7 +61,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    public String isErrorTextDisplayed() {
+    public String getTextFromAllert() {
         try {
             return webDriver.findElement(By.xpath("//div[@class='alert alert-danger text-center']")).getText();
         } catch (Exception e) {

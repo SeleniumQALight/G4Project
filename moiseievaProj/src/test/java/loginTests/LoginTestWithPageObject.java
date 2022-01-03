@@ -21,7 +21,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterLoginIntoInputLogin("qa-auto");
         loginPage.enterPasswordIntoInputLogin("123456qwerty");
         loginPage.clickOnButtonSignIn();
-        Assert.assertEquals("Error", loginPage.isErrorTextDisplayed());
+        Assert.assertEquals("Error", loginPage.getTextFromAllert());
         Assert.assertTrue("Button Sign In is not displayed", loginPage.isButtonSignInDisplayed());
     }
 
