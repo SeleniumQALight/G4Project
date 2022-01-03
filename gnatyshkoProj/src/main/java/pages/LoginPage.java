@@ -50,9 +50,15 @@ public class LoginPage extends ParentPage {
         }
     }
 
-
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
+    }
+    public boolean isErrorMessageDisplayed() {
+        try {
+            return webDriver.findElement(By.xpath(".//div[text()='Error']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
