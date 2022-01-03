@@ -1,9 +1,62 @@
-Tc 1
+Tc1
+Log in
 
-1
-2
-3
+1. Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+2. Ввести "aostapiuk" в поле ввода "Username"
+3. Ввести "qwerty" в поле ввода "Password"
+4. Нажать кнопку "Sign in"
 
-Expected results
+Expected result: Отображается "Error" в хедере
 
-Tc 2
+
+Тс2
+New user
+
+1. Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+2. Ввести "aostapiuk" в поле ввода "Username"
+3. Ввести "example@mail" в поле "Email"
+4. Ввести "123456qwerty" в поле ввода "Password"
+5. Нажать кнопку "Sign up for OurApp"
+
+Expected result: Отображается текст "Hello aostapiuk, your feed is empty."
+
+
+Tc3
+Log out
+
+1. Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+2. Ввести "aostapiuk" в поле ввода "Username"
+3. Ввести "123456qwerty" в поле ввода "Password"
+4. Нажать кнопку "Sign in"
+5. Нажать кнопку "Sign Out"
+
+Expected result: Успешно разлогинит и перекинет на Login Page
+
+
+Tc4
+Create Post
+
+1. Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+2. Ввести "aostapiuk" в поле ввода "Username"
+3. Ввести "123456qwerty" в поле ввода "Password"
+4. Нажать кнопку "Sign in"
+5. Нажать кнопку "Create Post"
+6. Ввести текст "New" в поле "Title"
+7. Нажать кнопку "Save New Post"
+
+Expected results: На экран выведется сообщение "Заполните это поле"
+
+
+Тс5
+Create Post End
+
+1. Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+2. Ввести "aostapiuk" в поле ввода "Username"
+3. Ввести "123456qwerty" в поле ввода "Password"
+4. Нажать кнопку "Sign in"
+5. Нажать кнопку "Create Post"
+6. Ввести текст "New" в поле "Title"
+7. Ввести текст "Piu-piu" в поле "Body Content"
+7. Нажать кнопку "Save New Post"
+
+Expected results: Отобразится уведомление об успешном создании поста: "New post successfully created."
