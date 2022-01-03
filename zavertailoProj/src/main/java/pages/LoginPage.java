@@ -56,4 +56,20 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);
     }
+
+    public boolean IsButtonSignUpForOurAppDisplayed(){
+        try{
+            return  webDriver.findElement(By.xpath(".//button[@type='submit']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean IsButtonErrorForOurAppDisplayed(){
+        try{
+            return  webDriver.findElement(By.xpath(".//*[text()='Error']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
 }
