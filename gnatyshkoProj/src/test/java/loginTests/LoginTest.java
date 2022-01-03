@@ -69,6 +69,9 @@ public class LoginTest {
         Assert.assertFalse("Button Sign Out is displayed"
                 , isButtonSignOutDisplayed());
 
+        Assert.assertTrue("Error message is not displayed"
+                , isErrorMessageDisplayed());
+
         webDriver.quit();
         System.out.println("Browser was closed");
     }
@@ -76,6 +79,14 @@ public class LoginTest {
     private boolean isButtonSignOutDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        try {
+            return webDriver.findElement(By.xpath(".//div[text()='Error']")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
