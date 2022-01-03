@@ -56,7 +56,7 @@ public class LoginTest {
 
         webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
         webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"))
-                .sendKeys("qaauto");
+                .sendKeys("qaaut");
         System.out.println("Login was entered");
 
         webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys("123456qwerty");
