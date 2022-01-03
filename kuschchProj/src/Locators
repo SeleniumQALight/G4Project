@@ -1,4 +1,17 @@
-LoginPage
-button.login=".//button"
+ LoginPage
+input.username              =   ".//input[@Class = 'form-control form-control-sm input-dark' and @placeholder = 'Username']"
+input.password              =   ".//input[@name = 'password']"
+button.signIn               =   ".//button[@class = 'btn btn-primary btn-s']"
+input.username-register     =   ".//input[@id = 'username-register']"
+input.email-register        =   ".//input[@id = 'email-register']"
+input.password-register     =   ".//input[@id = 'password-register']"
+button.sign-up-for-OurApp   =   ".//button[@type= 'submit']"
+p.text-muted                =   ".//p[@class = 'lead text-muted']"
 
 HomePage
+button.sign-out             =   ".//button[@class='btn btn-sm btn-secondary']"
+a.search                    =   ".//a[@class = 'text-white mr-2 header-search-icon']"
+
+SearchPage
+input.search                =   "container container--narrow"
+div.search-result           =   ".//div[@class = 'list-group-item active']"

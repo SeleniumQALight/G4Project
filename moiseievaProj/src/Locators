@@ -1,0 +1,14 @@
+MainPage
+field.nameForRegistration = "//input[@id='username-register']";
+field.emailForRegistration = "//input[@id='email-register']";
+field.passwordForRegistration = "//input[@id='password-register']";
+button.submitButtonForRegistration = "//button[@type='submit']";
+
+HeaderMenuUser
+button.signOut = "//button[text()='Sign Out']";
+span.userName = "//span[@class='text-white mr-2']";
+
+HeaderMenuGuest
+field.userNameForLogin = "//header//input[@name='username']";
+field.passwordForLogin = "//header//input[@name='password']";
+button.submitButtonForLogin = "//header//button";
