@@ -1,2 +1,29 @@
-Login page
-button.login=
+mainpage.url = https://qa-complex-app-for-testing.herokuapp.com/
+
+Main page
+button.singin = .//button[@class='btn btn-primary btn-sm']
+input.singin.login = .//input[@name='username' and @placeholder='Username']
+input.singin.password = .//input[@name='password' and not(@id='password-register')]
+message.error = .//div[@class='alert alert-danger text-center']
+
+
+User page
+
+button.singout = .//button[@class='btn btn-sm btn-secondary']
+span.username = .//span[@class='text-white mr-2']
+button.createpost = .//a[@class='btn btn-sm btn-success mr-2']
+
+
+Creating post page
+input.messagetitle = .//input[@id='post-title']
+textarea.body = .//textarea[@id='post-body']
+button.savemessage = .//button[@class='btn btn-primary']
+
+New message page
+div.messageWasCreated = .//div[@class='alert alert-success text-center']
+header.postName = ".//h2[text() = 'Some title Petko']"
+button.deletePost = .//button[@class='delete-post-button text-danger']
+
+
+
+

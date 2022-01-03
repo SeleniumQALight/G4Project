@@ -1,1 +1,74 @@
-Some cases
+Preconditions for all cases
+1. Open main page https://qa-complex-app-for-testing.herokuapp.com/
+
+//
+Test case 1
+Correct Sign in
+
+Steps:
+1. Enter in the login field "Username" value = "qaauto"
+2. Enter in the login field "Password" value = "123456qwerty"
+3. Click on Sign in button
+
+Expected result : Sign in is correct. You can see and click Log out-button on the user page
+
+//
+Test case 2
+Incorrect Sign in
+
+Steps:
+1. Enter in the login field "Username" value = "123456qwerty"
+2. Enter in the login field "Password" value = "qaauto"
+3. Click on Sing in button
+
+Expected result : Sign in is incorrect. You can see div "Error" on the main page
+
+//
+Test case 3
+Correct registration
+
+Steps:
+1. Enter in the registration field "Username" value = "123dds"
+2. Enter in the registration field "Password" value = "123456789012345"
+3. Enter in the registration field "Email" value = "123dsd@gmailffffff.com"
+4. Click on Sing up button
+
+Expected result :
+Correct registration and sing in. User can see user page and username = name entered during registration
+
+//
+Test case 4
+Creation new post
+
+Preconditions:
+Test case 1 (Correct sing in)
+OR
+Test case 3 (Correct registration)
+
+Steps
+1. Click on the button "Create post"
+2. Enter in the field "Title" value "Some title Petko"
+3. Enter in the field "Body content" value "Some text in the new post"
+4. Click on the button "Create new post"
+
+Expected result:
+User can see message "New post successfully created." in div.messageWasCreated
+User can see post with given name on the page
+User can see the delete button for this post
+
+
+//
+Test case 5
+Correct logout
+
+Preconditions:
+Test case 1 (Correct sing in)
+OR
+Test case 3 (Correct registration)
+
+Steps
+1. Click on the button "Sign out"
+
+Expected result:
+Log out was correct. User can see "Sign In " button on the Main page of the site
+
