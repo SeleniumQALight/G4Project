@@ -15,4 +15,12 @@ public class HomePage extends ParentPage {
             return false;
         }
     }
+
+    public boolean isButtonSignInDisplayed(){
+        try {
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
