@@ -53,6 +53,22 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    public boolean isButtonSignInDisplayed(){
+        try {
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean isErrorAlertDisplayed(){
+        try {
+            return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 
 
     private void printErrorAndStopTest(Exception e) {
