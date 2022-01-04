@@ -49,6 +49,14 @@ public class LoginPage extends ParentPage {
     }
 
 
+    public boolean isButtonSignInDisplayed(){
+        try {
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
