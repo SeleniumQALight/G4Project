@@ -42,6 +42,29 @@ public class LoginTest {
         webDriver.quit();
         System.out.println("browsser was closed");
 
+        //--------------------------logOut----------------------------//
+
+        webDriver.findElement(By.xpath(".//button[@Class = 'btn btn-sm btn-secondary']")).click();
+        System.out.println("log Out");
+
+        //--------------------------Negative test----------------------------//
+        webDriver.findElement(By.xpath (".//input[@name='username' and @placeholder='Username']")).clear();
+        webDriver.findElement(By.xpath (".//input[@name='username' and @placeholder='Username']")).sendKeys("incorrect");
+        System.out.println("login incorrect");
+
+        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
+        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys("incorrect");
+        System.out.println("pass incorrect");
+
+        webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
+        System.out.println("btn was clicked");
+
+        Assert.assertTrue("\n" +
+                "error message was not displayed", errorMessageMainPage());
+
+        webDriver.quit();
+        System.out.println("browsser was closed");
+
     }
 
     private boolean isButtonSignOutDisplayed(){
