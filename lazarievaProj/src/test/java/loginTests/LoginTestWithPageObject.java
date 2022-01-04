@@ -16,7 +16,22 @@ public class LoginTestWithPageObject extends BaseTest {
      Assert.assertTrue("Button SignOut is not displayed",
              homePage.isButtonSignOutDisplayed());
 
+ }
+
+ @Test
+ public  void invalidLogin(){
+  loginPage.openLoginPage();
+  loginPage.enterLoginIntoInputLogin("test555");
+  loginPage.enterLoginIntoInputPassword("12qwerty");
+  loginPage.clickOnButtonSignIn();
+
+  Assert.assertFalse("Button SignOut is not displayed",
+          homePage.isButtonSignOutDisplayed());
+  Assert.assertTrue("The the SignUP Button isn`t displayed",
+          loginPage.verifyIfTheSignUPButtonIsDisplayed());
 
 
  }
+
+
 }
