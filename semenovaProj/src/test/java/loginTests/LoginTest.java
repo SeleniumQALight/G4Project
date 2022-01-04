@@ -44,7 +44,7 @@ public class LoginTest {
     }
 
     @Test
-    public void unvalidLogIn() {
+    public void unValidLogIn() {
 
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
@@ -66,10 +66,10 @@ public class LoginTest {
         System.out.println("Button was clicked");
 
 
-        Assert.assertFalse("Button SignOut is not displayed", isButtonSignOutDisplayed());
+        Assert.assertFalse("Button SignOut is displayed", isButtonSignOutDisplayed());
 
 
-        Assert.assertTrue("Message Error is not dislayed", isMessageErrorDisplayed());
+        Assert.assertTrue("Message Error is not displayed", isMessageErrorDisplayed());
 
         webDriver.quit();
         System.out.println("Browser was closed");
