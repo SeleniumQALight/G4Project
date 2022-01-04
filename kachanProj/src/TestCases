@@ -18,7 +18,7 @@ User successfully logged in with username "qaauto", password "123456qwerty"
 User locates on the homepage in own profile.
 Steps:
 1. Tap "create post" button on the homepage.
-2. Enter text "TestKachan" in title field.
+2. Enter text "Test + qa surname + current date" in title field.
 3. Enter any text in body content.
 4. Put checkbox in "This is a unique post".
 5. Select value "message to the group".
@@ -44,6 +44,7 @@ Summary: Check ability to use the search field
 Pre-condition:
 User successfully logged in with username "qaauto", password "123456qwerty"
 User locates on the homepage in own profile.
+The post with the title "Test" is created
 Steps:
 1. Tap the "Search" icon
 2. Enter "Test" text into the search field.
@@ -55,11 +56,12 @@ Summary: Edit post
 Pre-condition:
 User successfully logged in with username "qaauto", password "123456qwerty"
 User locates on the homepage in own profile.
+The post with the title "Test" is created
 Steps:
 1. Tap "My Profile" icon.
-2. Choose and click on "TestKachan" post
+2. Choose and click on "Test" post
 3. Tap "Edit" icon
-4. Change title to "TestKachan1".
+4. Change title to "Test + qa surname + current date".
 5. Change body content to "111".
 6. Tap "Save Updates"
 Expected result:

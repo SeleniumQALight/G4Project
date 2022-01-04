@@ -1,5 +1,5 @@
 Login Page
-header username field  .//input[@name='username' and @id='username5']
+header username field  .//input[@name ="username" and @placeholder = "Username"]
 header password field  .//input[@placeholder='Password']
 Sing In button         .//button[@class='btn btn-primary btn-sm']
 
