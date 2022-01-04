@@ -11,86 +11,78 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
     WebDriver webDriver;
-
     @Test
-    public void validLogIn() {
-
+    public void validLogIn(){
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+        webDriver.manage().window().maximize(); //полноэкранный режим
+        webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS); //задержка перед выполнением действий
 
         webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
         System.out.println("Site was opened");
 
         webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
-        webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"))
-                .sendKeys("qaauto");
+        webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys("qaauto");
         System.out.println("Login was entered");
 
+        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
         webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys("123456qwerty");
         System.out.println("password was entered");
 
         webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
         System.out.println("Button was clicked");
 
+        Assert.assertTrue("Button Sign Out is not displayed", isButtonSignOutDisplayed() );
 
-        Assert.assertTrue("Button SignOut is not displayed"
-                , isButtonSignOutDisplayed());
+
         webDriver.quit();
         System.out.println("Browser was closed");
-
 
     }
 
     @Test
-    public void unValidLogIn() {
-
+    public void unValidLogIn(){
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+        webDriver.manage().window().maximize(); //полноэкранный режим
+        webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS); //задержка перед выполнением действий
 
         webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
         System.out.println("Site was opened");
 
         webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
-        webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"))
-                .sendKeys("qaaut");
+        webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys("qauto");
         System.out.println("Login was entered");
 
-        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys("123456qwerty");
+        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
+        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys("123456werty");
         System.out.println("password was entered");
 
         webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
         System.out.println("Button was clicked");
 
-
-        Assert.assertFalse("Button SignOut is displayed", isButtonSignOutDisplayed());
-
-
-        Assert.assertTrue("Message Error is not displayed", isMessageErrorDisplayed());
+        Assert.assertTrue("Button Sign In is not displayed", isButtonSignInDisplayed() );
 
         webDriver.quit();
         System.out.println("Browser was closed");
 
-
     }
 
-    private boolean isButtonSignOutDisplayed() {
-        try {
+
+    private  boolean isButtonSignOutDisplayed(){
+        try{
             return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-
-    }
-
-    private boolean isMessageErrorDisplayed() {
-        try {
-            return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
-        } catch (Exception e) {
+        }catch (Exception e){
             return false;
         }
     }
+
+    private  boolean isButtonSignInDisplayed(){
+        try{
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 }

@@ -4,18 +4,18 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends ParentPage {
+public class LoginPage extends ParentPage{
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public void openLoginPage(){
-        try {
+        try{
             webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
             logger.info("Login page was opened");
         }catch (Exception e){
-            logger.error("Can not open Login Page" + e);
-            Assert.fail("Can not open Login Page" + e);
+            logger.error("cann't open Login Page" + e);
+            Assert.fail("cann't open Login Page" + e);
         }
     }
 
@@ -23,17 +23,17 @@ public class LoginPage extends ParentPage {
         try{
             webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
             webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys(login);
-            logger.info(login + "was inputted into Input Login");
-        }catch (Exception e) {
+            logger.info(login + " was inputted into Input Login");
+        }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
 
-    public void enterPassWordIntoInputPassWord(String passWord){
-        try {
+    public void enterPassWordIntoPassWord(String passWord) {
+        try{
             webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
             webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys(passWord);
-            logger.info(passWord + " was inputted into Input Password");
+            logger.info(passWord + " was inputted ");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -46,20 +46,11 @@ public class LoginPage extends ParentPage {
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
+
     }
-
-
-    public boolean isButtonSignInDisplayed(){
-        try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
 
     private void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element" + e);
-        Assert.fail("Can not work with element" + e);
+        logger.error("Cann't work with element" + e);
+        Assert.fail("Cann't work with element" + e);
     }
 }
