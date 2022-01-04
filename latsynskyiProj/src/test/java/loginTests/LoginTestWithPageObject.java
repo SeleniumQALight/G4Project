@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
-    public void validLogin() {
+    public void validLoginTest() {
         loginPage.openLoginPage();
         loginPage.enterLoginIntoInputLogin("qaauto");
         loginPage.enterPassWordIntoInputPassWord("123456qwerty");
