@@ -1,0 +1,68 @@
+
+Test case 1
+Summary: Check successful login to the website
+Pre-condition:
+Account is previously created
+Steps:
+1. Go to the Login page https://qa-complex-app-for-testing.herokuapp.com/
+2. Enter username "qaauto"
+3. Enter password "123456qwerty"
+4. Tap "Sign in" button
+Expected result:
+The user successfully logged in. "Sign out" button and user profile appeared
+
+Test case 2
+Summary: Create unique post for group
+Pre-condition:
+User successfully logged in with username "qaauto", password "123456qwerty"
+User locates on the homepage in own profile.
+Steps:
+1. Tap "create post" button on the homepage.
+2. Enter text "Test + qa surname + current date" in title field.
+3. Enter any text in body content.
+4. Put checkbox in "This is a unique post".
+5. Select value "message to the group".
+6. Tap "Save New Post" button.
+Expected result:
+Message "New post successfully created" appears.
+The created post is displayed in the list of posts by tapping on the "My profile" button
+
+Test case 3
+Summary: Check possibility to send message to the chat
+Pre-condition:
+User successfully logged in with username "qaauto", password "123456qwerty"
+User locates on the homepage in own profile.
+Steps:
+1. Tap Chat icon
+2. Type a message "Hello"
+3. Tap Enter on the keyboard.
+Expected result:
+Message "Hello" appeared in the chat area.
+
+Test case 4
+Summary: Check ability to use the search field
+Pre-condition:
+User successfully logged in with username "qaauto", password "123456qwerty"
+User locates on the homepage in own profile.
+The post with the title "Test" is created
+Steps:
+1. Tap the "Search" icon
+2. Enter "Test" text into the search field.
+Expected result:
+The list of search results appears.
+
+Test case 5
+Summary: Edit post
+Pre-condition:
+User successfully logged in with username "qaauto", password "123456qwerty"
+User locates on the homepage in own profile.
+The post with the title "Test" is created
+Steps:
+1. Tap "My Profile" icon.
+2. Choose and click on "Test" post
+3. Tap "Edit" icon
+4. Change title to "Test + qa surname + current date".
+5. Change body content to "111".
+6. Tap "Save Updates"
+Expected result:
+The message "Post successfully updated" appeared
