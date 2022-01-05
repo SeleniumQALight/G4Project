@@ -16,6 +16,27 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUserNameSignUpForm;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailSignUpForm;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordSignUpForm;
+
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement alertTextUserNameAtLeast3Chars;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement alertTextEmailMustBeValid;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement alertPasswordAtLeast12Chars;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -39,15 +60,31 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputPasswordSignIn, password);
     }
 
-    public void clickOnButtonSignIn() {
+    public void clickOnButton() {
         clickOnElement(buttonSignIn);
+    }
+
+    public void enterUsernameIntoInputUsernameSignUpForm(String username){
+        enterTextIntoElement(inputUserNameSignUpForm, username);
+    }
+
+    public void enterEmailIntiEmailInputSignUpForm(String email){
+        enterTextIntoElement(inputEmailSignUpForm, email);
+    }
+
+    public void enterPasswordIntoPasswordInputSignUpForm(String password){
+        enterTextIntoElement(inputPasswordSignUpForm, password);
+    }
+
+    public void clickOnSignUpButton(){
+        clickOnElement(buttonSignUp);
     }
 
     public HomePage loginWithValidCredentials(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASS);
-        clickOnButtonSignIn();
+        clickOnButton();
         return new HomePage(webDriver);
     }
 }
