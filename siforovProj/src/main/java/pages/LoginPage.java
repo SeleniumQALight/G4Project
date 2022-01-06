@@ -80,6 +80,22 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUp);
     }
 
+    public boolean userNameAlertTextIsVisible(){
+        return elementIsVisible(alertTextUserNameAtLeast3Chars);
+    }
+
+    public boolean emailAlertTextIsVisible(){
+        return elementIsVisible(alertTextEmailMustBeValid);
+    }
+
+    public boolean passwordAlertTextIsVisible(){
+        return elementIsVisible(alertPasswordAtLeast12Chars);
+    }
+
+    public boolean signUpButtonIsVisible(){
+        return elementIsVisible(buttonSignUp);
+    }
+
     public HomePage loginWithValidCredentials(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);

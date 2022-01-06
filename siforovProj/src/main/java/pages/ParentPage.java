@@ -17,6 +17,16 @@ public class ParentPage {
         PageFactory.initElements(webDriver, this);
     }
 
+    protected boolean elementIsVisible(WebElement webElement){
+        try{
+            webElement.isDisplayed();
+            return true;
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+            return false;
+        }
+    }
+
     protected void enterTextIntoElement(WebElement webElement, String text) {
         try {
             webElement.clear();
