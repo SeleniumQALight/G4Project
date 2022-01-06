@@ -2,6 +2,7 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,6 +43,15 @@ public class LoginPage extends ParentPage {
 //            printErrorAndStopTest(e);
 //        }
         enterTextInToElement(inputLoginSignIn, login);
+    }
+
+    public boolean verifyIfTheSignUPButtonIsDisplayed() {
+        try {
+            return webDriver.findElement(By.xpath(".//*[@type='submit']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     public void enterPasswordIntoInputPassword(String password) {
