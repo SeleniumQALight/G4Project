@@ -1,0 +1,23 @@
+Login Page
+header username field  .//input[@name ="username" and @placeholder = "Username"]
+header password field  .//input[@placeholder='Password']
+Sing In button         .//button[@class='btn btn-primary btn-sm']
+
+Home Page
+Create Post button     .//a[@href ='/create-post']
+Title field            .//input [@id ='post-title']
+Body Content           .//textarea [@id ='post-body']
+CheackBox              .// input[@id="”UniquePost”"]
+Select Value           .//select//option[@value = 'Group Message']
+Save New Post          .//button[text()='Save New Post']
+My Profile             .//a[@href = '/profile/qaauto' and @class='mr-2']
+User Post link         .//a[@href="/post/61cb0996738670000463a3a5"]
+Save updates           .//button [text() = 'Save Updates']
+Search                 .//a [@ href = "#"]
+Search field           .//input[@id = 'live-search-field']
+Chat area              .//div[@id='chat']
+Chat field             .//input[@id='chatField']
+
+
+
+

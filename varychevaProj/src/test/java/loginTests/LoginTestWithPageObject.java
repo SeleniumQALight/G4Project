@@ -23,6 +23,6 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPassWordIntoInputPassWord("123456qwerty");
         loginPage.clickOnButtonSingIn();
 
-        assertTrue("Sing in button is not displayed", homePage.isButtonSignInDisplayed());
+        assertTrue("Sing in button is not displayed", loginPage.isButtonSignInDisplayed());
     }
 }
