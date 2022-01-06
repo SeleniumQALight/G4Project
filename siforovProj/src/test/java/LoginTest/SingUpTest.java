@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class SingUpTest extends BaseTest {
+    //Homework3
     @Test
     public void invalidSignUpTest(){
         loginPage.openLoginPage();

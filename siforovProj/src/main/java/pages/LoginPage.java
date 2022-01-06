@@ -96,6 +96,10 @@ public class LoginPage extends ParentPage {
         return elementIsVisible(buttonSignUp);
     }
 
+    public boolean signInButtonIsVisible(){
+        return elementIsVisible(buttonSignIn);
+    }
+
     public HomePage loginWithValidCredentials(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
