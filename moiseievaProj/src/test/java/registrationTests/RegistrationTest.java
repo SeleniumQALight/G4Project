@@ -7,7 +7,6 @@ public class RegistrationTest extends BaseTest {
 
     @Test
     public void invalidRegistrationTest() {
-        loginPage.openLoginPage();
         registrationPage.userInvalidRegistration();
         registrationPage.isRegistrationErrorsDisplayed();
     }

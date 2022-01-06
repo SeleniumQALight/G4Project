@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class RegistrationPage extends ParentPage {
+    LoginPage loginPage = new LoginPage(webDriver);
+
     @FindBy(xpath = "//input[@id='username-register']")
     private WebElement inputUserName;
     @FindBy(xpath = "//input[@id='email-register']")
@@ -43,6 +45,7 @@ public class RegistrationPage extends ParentPage {
     }
 
     public void userInvalidRegistration() {
+        loginPage.openLoginPage();
         enterNameIntoInputRegistration(TestData.INVALID_USER_NAME);
         enterPasswordIntoRegistration(TestData.INVALID_PASS);
         enterEmailIntoInputRegistration(TestData.INVALID_EMAIL);
