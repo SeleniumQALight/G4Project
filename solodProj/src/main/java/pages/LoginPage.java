@@ -25,7 +25,7 @@ public class LoginPage extends ParentPage {
         try {
             webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
             webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys(login);
-            logger.info(login+"was inputted into Input Login");
+            logger.info(login+" was inputted into Input Login");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
