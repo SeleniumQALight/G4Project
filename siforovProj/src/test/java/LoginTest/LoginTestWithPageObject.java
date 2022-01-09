@@ -25,4 +25,15 @@ public class LoginTestWithPageObject extends BaseTest {
 
         Assert.assertTrue("The Sign In button isn't displayed. User isn't on the Log in page", loginPage.signInButtonIsVisible());
     }
+
+    //Homework1
+    @Test
+    public void invalidLogInWithEmptyDataTest(){
+        loginPage.openLoginPage();
+        loginPage.enterLoginIntoInputLogin("");
+        loginPage.enterPasswordIntoInputPassword("");
+        loginPage.clickOnButton();
+
+        Assert.assertTrue("The Sign In button isn't displayed. User isn't on the Log in page", loginPage.signInButtonIsVisible());
+    }
 }

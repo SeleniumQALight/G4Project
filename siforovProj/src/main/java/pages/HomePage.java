@@ -14,8 +14,14 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//a[@class='mr-2']")
     private WebElement profileLink;
 
-    @FindBy(xpath = ".//a[contains(text(),'Posts')]")
-    private WebElement postsTab;
+    @FindBy(xpath = ".//span[@class='text-white mr-2 header-chat-icon']")
+    private WebElement chatItem;
+
+    @FindBy(xpath = ".//div[@id='chat-wrapper']")
+    private WebElement chatObject;
+
+    @FindBy(xpath = ".//a[@class='text-white mr-2 header-search-icon']")
+    private WebElement searchItem;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -39,13 +45,22 @@ public class HomePage extends ParentPage {
     }
 
     //homework1
-    public void clickOnProfileLink(){
+    public HomePage clickOnProfileLink(){
         clickOnElement(profileLink);
+        return new HomePage(webDriver);
     }
 
     //homework1
-    public boolean postTabIsVisible(){
-       return elementIsVisible(postsTab);
+    public void clickOnChatIcon(){
+        clickOnElement(chatItem);
+    }
+
+    public boolean chatIsOpened(){
+        return elementIsVisible(chatObject);
+    }
+
+    public boolean searchItemIsVisible(){
+        return elementIsVisible(searchItem);
     }
 
 }
