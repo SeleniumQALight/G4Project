@@ -1,10 +1,13 @@
 package pages;
 
+import libs.TestData;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.Locale;
 
 
 public class ParentPage {
@@ -44,6 +47,18 @@ public class ParentPage {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    protected boolean compareElementTextWithExpectedText(WebElement webElement){
+        try {
+            if (webElement.getText().equals(TestData.VALID_USERNAME.toLowerCase(Locale.ROOT))) {
+                return true;
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+            return false;
+        }
+        return false;
     }
 
     private void printErrorAndStopTest(Exception e) {

@@ -1,7 +1,7 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +22,9 @@ public class HomePage extends ParentPage {
 
     @FindBy(xpath = ".//a[@class='text-white mr-2 header-search-icon']")
     private WebElement searchItem;
+
+    @FindBy(xpath = ".//span[@class='text-white mr-2']")
+    private WebElement currentUserName;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -63,4 +66,7 @@ public class HomePage extends ParentPage {
         return elementIsVisible(searchItem);
     }
 
+    public boolean checkUserName(){
+        return compareElementTextWithExpectedText(currentUserName);
+    }
 }

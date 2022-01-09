@@ -35,6 +35,7 @@ public class SingUpTest extends BaseTest {
         Thread.sleep(2000);
         loginPage.clickOnSignUpButton();
 
-        Assert.assertTrue("User hasn't been registered", homePage.isButtonSignOutDisplayed());
+        Assert.assertTrue("Sign up button is not displayed", homePage.isButtonSignOutDisplayed());
+        Assert.assertTrue("Username isn't displayed", homePage.checkUserName());
     }
 }
