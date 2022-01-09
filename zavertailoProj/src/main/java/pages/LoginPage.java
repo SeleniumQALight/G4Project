@@ -17,6 +17,18 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSingIn;
 
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUserNameRegiste;
+
+    @FindBy(xpath = ".//input[@id ='email-register']")
+    private WebElement inputEmailRegister;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPassWordRegister;
+
+    @FindBy(xpath = ".//button[@type ='submit']")
+    private WebElement ButtonSignUpForOurApp;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -66,10 +78,28 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
 
     }
 
+    public void enterLoginInputIntoUserNameRegiste(String login){
+        enterTextInToElement(inputUserNameRegiste, login);
+    }
+
+    public void enterEmailIntoInputEmail (String email){
+        enterTextInToElement(inputEmailRegister, email);
+    }
+    public void enterPassWordIntoInputPassWordRegister(String pasword){
+        enterTextInToElement(inputPassWordRegister, pasword);
+    }
+
+    public void clickOnButtonSignUpForOurApp(){
+        clickOnElement(ButtonSignUpForOurApp);
+
+    }
+
 //    private void printErrorAndStopTest(Exception e) {
 //        logger.error("Can not work with element" + e);
 //        Assert.fail("Can not work with element" + e);
 //   }
+
+
 
     public HomePage loginWithValidCred(){
         openLoginPage();
@@ -90,6 +120,29 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
     public boolean IsButtonErrorForOurAppDisplayed(){
         try{
             return  webDriver.findElement(By.xpath(".//*[text()='Error']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public boolean isDivTextErrorLoginDisplayed(){
+        try{
+            return  webDriver.findElement(By.xpath(".//div[contains(text(), 'Username must be at least 3 characters.')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean isDivTextErrorEmailDisplayed(){
+        try{
+            return  webDriver.findElement(By.xpath(".//div[contains(text(), 'You must provide a valid email address.')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean isDivTextErrorPasswordDisplayed(){
+        try{
+            return  webDriver.findElement(By.xpath(".//div[contains(text(), 'Password must be at least 12 characters.')]")).isDisplayed();
         }catch (Exception e){
             return false;
         }

@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass()); //логирование
-   protected LoginPage loginPage; //объявили переменную
+   protected LoginPage loginPage; //объявили переменнуюprotected RegistrPage registrPage;
     protected HomePage homePage;
     @Before
     public  void setUp(){
