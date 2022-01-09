@@ -16,6 +16,9 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement ButtonSingIn;
 
+    @FindBy(xpath =".//div[text()='Invalid username / password']" )
+    private WebElement Errormsg;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -75,4 +78,12 @@ public class LoginPage extends ParentPage{
         clickOnButtonSingIn();
           return new HomePage(webDriver);
     }
+    public boolean errormsgIsDisplayed (){
+        try{
+            return  Errormsg.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 }
