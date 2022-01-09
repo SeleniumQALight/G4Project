@@ -36,6 +36,16 @@ public class ParentPage {
         }
     }
 
+    protected boolean isElementDisplayed(WebElement webElement){
+        try{
+            webElement.isDisplayed();
+            logger.info("Element is displayed");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+            return false;
+        } return true;
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);

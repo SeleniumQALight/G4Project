@@ -17,6 +17,27 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = ".//input[@id = 'username-register']")
+    private WebElement inputLoginSignUp;
+
+    @FindBy(xpath = ".//input[@id = 'password-register']")
+    private WebElement inputPasswordSignUp;
+
+    @FindBy(xpath = ".//input[@id = 'email-register']")
+    private WebElement inputEmailSignUp;
+
+    @FindBy(xpath = ".//button[@type = 'submit']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[text() = 'Username must be at least 3 characters.']")
+    private WebElement errorSignUpLoginValidation;
+
+    @FindBy(xpath = ".//div[text() = 'You must provide a valid email address.']")
+    private WebElement errorSignUpEmailValidation;
+
+    @FindBy(xpath = ".//div[text() = 'Password must be at least 12 characters.']")
+    private WebElement errorSignUpPasswordValidation;
+
 
 
     public LoginPage(WebDriver webDriver) {
@@ -48,8 +69,24 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputPasswordSignIn, password);
     }
 
+    public void enterSignUpLogin(String login){
+        enterTextInToElement(inputLoginSignUp, login);
+    }
+
+    public void enterSignUpEmail(String email){
+        enterTextInToElement(inputEmailSignUp, email);
+    }
+
+    public void enterSignUpPassword(String password){
+        enterTextInToElement(inputPasswordSignUp, password);
+    }
+
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
+    }
+
+    public void clickOnButtonSignUp(){
+        clickOnElement(buttonSignUp);
     }
 
     public HomePage loginWithValidCred(){
@@ -60,12 +97,20 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    public boolean isButtonSignInDisplayed(){
-        try {
-            return buttonSignIn.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+    public void isButtonSignInDisplayed(){
+        isElementDisplayed(buttonSignIn);
+    }
+
+    public void isErrorLoginValidationForSignUpDisplayed(){
+        isElementDisplayed(errorSignUpLoginValidation);
+    }
+
+    public void isErrorEmailValidationForSignUpDisplayed(){
+        isElementDisplayed(errorSignUpEmailValidation);
+    }
+
+    public void isErrorPasswordValidationForSignUpDisplayed(){
+        isElementDisplayed(errorSignUpPasswordValidation);
     }
 
 }
