@@ -1,0 +1,8 @@
+.//input[@name='username' and @placeholder='Pick a username']
+.//input[@name='email' and @placeholder='you@example.com']
+.//input[@name='password' and @placeholder='Create a password']
+.//button[@type='submit'] или .//button[text()='Sign up for OurApp']
+.//input[@id='live-search-field']
+.//a[contains(text(), 'Complex app for testing - QA')]
+.//a[@href='/create-post']  или .//a[contains(text(), 'Create Post')]
+.//*[@class='flex-row my-3 my-md-0']//span[text()=' qaauto1']

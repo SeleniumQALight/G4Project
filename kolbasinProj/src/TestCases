@@ -1,0 +1,114 @@
+TEST_CASE_1(Registration)
+Pre-condition:
+1. открыть браузер;
+2. перейти по ссылке (https://qa-complex-app-for-testing.herokuapp.com/) .
+
+Steps:
+1. очистить поле "Username" (.//input[@name='username' and @placeholder='Pick a username']);
+2. очистить поле "Email" (.//input[@name='email' and @placeholder='you@example.com']);
+3. очистить поле "Password" (.//input[@name='password' and @placeholder='Create a password']);
+4. в поле "Username"(.//input[@name='username' and @placeholder='Pick a username']) ввести валидные данные не зарегистрированного пользователя;
+5. в поле "Email"(.//input[@name='email' and @placeholder='you@example.com']) ввести валидные данные не зарегистрированного пользователя;
+6. в поле "Password"(.//input[@name='password' and @placeholder='Create a password']) ввести валидные данные не зарегистрированного пользователя;
+7. нажать кнопку "Sign up for OurApp"(.//button[text()='Sign up for OurApp']) .
+
+Expected result:
+1. наличие кнопки "Sign Out"(.//button[text()='Sign Out']);
+2. в блоке (.//*[@class='container py-md-5 container--narrow']) указаны данные внесенные в поле "Username";
+3. в блоке <div class="flex-row my-3 my-md-0"></div> указаны данные внесенные в поле "Username"(.//span[@class='text-white mr-2']) .
+
+Post-condition:
+1. закрыть браузер.
+
+========================================
+TEST_CASE_2(Authorisation)
+Pre-condition:
+1. открыть браузер;
+2. перейти по ссылке (https://qa-complex-app-for-testing.herokuapp.com/) .
+
+Steps:
+1. очистить поле "Username"(.//input[@name='username' and @placeholder='Username']);
+2. очистить поле "Password"(.//input[@placeholder='Password']);
+3. в поле "Username"(.//input[@name='username' and @placeholder='Username']) ввести валидные данные зарегистрированного пользователя;
+4. в поле "Password"(.//input[@placeholder='Password']) ввести валидные данные зарегистрированного пользователя;
+5. нажать кнопку "Sign In" (.//button[text()='Sign In']) .
+
+Expected result:
+1. наличие кнопки "Sign Out"(.//button[text()='Sign Out']);
+2. в блоке (.//*[@class='container py-md-5 container--narrow']) указаны данные внесенные в поле "Username";
+3. в блоке <div class="flex-row my-3 my-md-0"></div> указаны данные внесенные в поле "Username"(.//span[@class='text-white mr-2']) .
+
+Post-condition:
+1. закрыть браузер.
+
+========================================
+TEST_CASE_3(Log out)
+Pre-condition:
+1. открыть браузер;
+2. перейти по ссылке (https://qa-complex-app-for-testing.herokuapp.com/);
+3. выполнить TEST_CASE_1 / TEST_CASE_2 .
+
+Steps:
+1. нажать кнопку "Sign Out" .
+
+Expected result:
+1. кнопка "Sign Out" сменяется кнопкой "Sign In"(.//button[text()='Sign In']);
+2. появляется кнопка "Sign up for OurApp"(.//button[text()='Sign up for OurApp']) .
+
+Post-condition:
+1. закрыть браузер.
+
+========================================
+TEST_CASE_4(Add post)
+Pre-condition:
+1. открыть браузер;
+2. перейти по ссылке (https://qa-complex-app-for-testing.herokuapp.com/);
+3. выполнить TEST_CASE_2 .
+
+Steps:
+1. нажать на "Create Post"(.//a[contains(text(), 'Create Post')]);
+2. в поле "Title" ввести данные(локатор);
+3. в поле "Body Content" ввести данные(локатор);
+4. в выпадающем списке "Select value" выбрать "Общедоступное"(локатор);
+5. нажать "Save New Post" (локатор).
+
+Expected result:
+1. переход на страницу поста;
+2. отображается текст "New post successful" (локатор);
+3. в блоке (.//*[@class='d-flex justify-content-between']//h2) отображаются данные введенные в поле "Title";
+4. в блоке (.//*[@class='body-content']//p) отображаются данные введенные в поле "Body Content";
+5. в блоке (.//*[@class='Body Content']//u) установлено значение "All Users" .
+
+Post-condition:
+1. закрыть браузер.
+
+========================================
+TEST_CASE_5(Update post)
+Pre-condition:
+1. открыть браузер;
+2. перейти по ссылке (https://qa-complex-app-for-testing.herokuapp.com/);
+3. выполнить TEST_CASE_2 .
+4. выполнить TEST_CASE_4 .
+
+Steps:
+1. нажать ""(локатор);
+2. нажать на выбранный пост(локатор);
+3. нажать на "редактирование поста"(локатор);
+4. внести изменения в поле ""(локатор);
+5. внести изменения в поле ""(локатор);
+6. нажать на чекбокс ""(локатор);
+7. в выпадающем списке "Select value" выбрать "Частное сообщение"(локатор);
+8. нажать ""(локатор);
+9. нажать ""(локатор);
+10. прейти на измененную публикацию .
+
+Expected result:
+1. появляется сообщение "Post successfully updated"(локатор);
+3. в блоке (.//*[@class='d-flex justify-content-between']//h2) отображаются данные введенные в поле "Title";
+4. в блоке (.//*[@class='body-content']//p) отображаются данные введенные в поле "Body Content";
+5. в блоке (.//*[@class='Body Content']//u) установлено значение "One Person" .
+
+Post-condition:
+1. закрыть браузер.
+
+========================================
