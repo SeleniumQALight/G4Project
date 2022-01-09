@@ -16,28 +16,31 @@ public class ParentPage {
     }
 
     protected void enterTextInToElement(WebElement webElement, String text) {
-        try{
+        try {
             webElement.clear();
             webElement.sendKeys(text);
             logger.info((text + "  was inputted"));
 
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
-     protected void  clickOnElement(WebElement webElement){
-         try{
-             webElement.click();
-             logger.info(("WebElement clicked"));
-         }catch (Exception e){
-             printErrorAndStopTest(e);
-         }
-     }
 
-
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element  " +e);
-        Assert.fail("Can not work with element  " +e);
+    protected void clickOnElement(WebElement webElement) {
+        try {
+            webElement.click();
+            logger.info(("WebElement clicked"));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
+
+    //changed to public void to use in the home/login pages
+    public void printErrorAndStopTest(Exception e) {
+        //private void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element  " + e);
+        Assert.fail("Can not work with element  " + e);
+    }
+
 
 }

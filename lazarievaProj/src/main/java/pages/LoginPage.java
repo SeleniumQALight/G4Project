@@ -2,12 +2,12 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+    //Sign IN
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputLoginSignIn;
 
@@ -16,6 +16,26 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSignIn;
+    // Sign Up Form
+    @FindBy(xpath = ".//*[@type='submit']")
+    private WebElement buttonSignUPForOurApp;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUserNameInSignUpForm;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailInSignUpForm;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputUserPassWordInSignUpForm;
+
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement validationUserNameMessage;
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement validationUserEmailMessage;
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement validationUserPasswordMessage;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -45,15 +65,6 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputLoginSignIn, login);
     }
 
-    public boolean verifyIfTheSignUPButtonIsDisplayed() {
-        try {
-            return webDriver.findElement(By.xpath(".//*[@type='submit']")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-
-    }
-
     public void enterPasswordIntoInputPassword(String password) {
         enterTextInToElement(inputPasswordSignIn, password);
     }
@@ -69,4 +80,66 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
+    public boolean verifyIfTheSignUPButtonIsDisplayed() {
+        try {
+            return buttonSignUPForOurApp.isDisplayed();
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+            return false;
+        }
+
+    }
+
+    public void enterUserNameInTheSignUpForm(String userName) {
+        enterTextInToElement(inputUserNameInSignUpForm, userName);
+    }
+
+    public void enterUserEmailInTheSignUpForm(String userEmail) {
+        enterTextInToElement(inputEmailInSignUpForm, userEmail);
+    }
+
+    public void enterUserPasswordInTheSignUpForm(String userPassword) {
+        enterTextInToElement(inputUserPassWordInSignUpForm, userPassword);
+    }
+
+    public void clickOnButtonSignUpForOurApp() {
+        clickOnElement(buttonSignUPForOurApp);
+    }
+
+    public LoginPage enterInvalidDataInTheSignUpForm() {
+        enterUserNameInTheSignUpForm(TestData.INVALID_USER_NAME);
+        enterUserEmailInTheSignUpForm(TestData.INVALID_EMAIL);
+        enterUserPasswordInTheSignUpForm(TestData.INVALID_PASS);
+        clickOnButtonSignUpForOurApp();
+        return new LoginPage(webDriver);
+    }
+
+    public boolean isValidationUserNameMessageDisplayed() {
+        try {
+            return validationUserNameMessage.isDisplayed();
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+            return false;
+        }
+    }
+
+    public boolean isValidationUserEmailMessageDisplayed() {
+        try {
+            return validationUserEmailMessage.isDisplayed();
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+            return false;
+        }
+    }
+
+    public boolean isValidationUserPasswordMessageDisplayed() {
+        try {
+            return validationUserPasswordMessage.isDisplayed();
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+            return false;
+        }
+    }
 }
+
