@@ -16,4 +16,15 @@ public class LoginTestWithPageObject extends BaseTest {
                 , homePage.isButtonSignOutDisplayed());
     }
 
+    @Test
+    public void notМalidLogintest(){
+        loginPage.openLoginPage();
+        loginPage.enterLoginIntoInputLogin("qaauto");
+        loginPage.enterPassWordIntoInputPassWord("12345qwerty");
+        loginPage.clickOnButtonSingIn();
+
+        Assert.assertTrue("Error messages is not displayed"
+                , loginPage.errorMessageMainPage());
+    }
+
 }

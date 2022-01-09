@@ -54,4 +54,12 @@ public class LoginPage extends ParentPage{
         logger.error("Can not work with element" +e);
         Assert.fail("Can not work with element" + e);
     }
+
+    public boolean errorMessageMainPage() {
+        try {
+            return webDriver.findElement(By.xpath(".//div[@Class = 'alert alert-danger text-center']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
