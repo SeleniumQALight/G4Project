@@ -9,13 +9,11 @@ public class RegistrationTestWithPageObject extends BaseTest {
     public void unValidRegistration() {
         loginPage.openLoginPage();
         loginPage.enterUsernameIntoInputPickUsername("tr");
-        Assert.assertTrue("Message is not displayed", loginPage.messageFieldPickUsernameDisplayed());
         loginPage.enterEmailIntoInputEmail("test.com");
-        Assert.assertTrue("Message is not displayed", loginPage.messageFieldEmail());
         loginPage.enterCreatePasswordIntoInputCreatePaswword("123");
-        Assert.assertTrue("Message is not displayed",loginPage.messageFieldCreatePassword());
         loginPage.clickOnButtonSignUpForOurApp();
-
-
+        Assert.assertTrue("Message is not displayed", loginPage.messageFieldPickUsernameDisplayed());
+        Assert.assertTrue("Message is not displayed", loginPage.messageFieldEmail());
+        Assert.assertTrue("Message is not displayed", loginPage.messageFieldCreatePassword());
     }
 }

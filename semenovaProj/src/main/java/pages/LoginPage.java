@@ -91,41 +91,43 @@ public class LoginPage extends ParentPage {
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
-    public void enterUsernameIntoInputPickUsername(String username){
-        enterTextIntoElement(inputPickUsername,username);
+
+    public void enterUsernameIntoInputPickUsername(String username) {
+        enterTextIntoElement(inputPickUsername, username);
     }
 
-    public void enterEmailIntoInputEmail(String email){
-        enterTextIntoElement(inputEmail,email);
+    public void enterEmailIntoInputEmail(String email) {
+        enterTextIntoElement(inputEmail, email);
     }
 
-    public void enterCreatePasswordIntoInputCreatePaswword(String createPassword){
-        enterTextIntoElement(inputCreatePassword,createPassword);
+    public void enterCreatePasswordIntoInputCreatePaswword(String createPassword) {
+        enterTextIntoElement(inputCreatePassword, createPassword);
     }
-    public void clickOnButtonSignUpForOurApp(){
+
+    public void clickOnButtonSignUpForOurApp() {
         clickOnEltment(buttonSignUpForOurApp);
     }
+
     public boolean messageFieldPickUsernameDisplayed() {
         try {
-            return webDriver.findElement(By.xpath(".//div[text()='Username must be at least 3 characters.']"))
-                    .isDisplayed();
+            return messageIsDisplayed(messageFieldCreatePassword);
         } catch (Exception e) {
             return false;
         }
     }
-    public boolean messageFieldEmail(){
+
+    public boolean messageFieldEmail() {
         try {
-            return webDriver.findElement(By.xpath(".//div[text()='You must provide a valid email address.']"))
-                    .isDisplayed();
-        }catch (Exception e){
+            return messageIsDisplayed(messageFieldEmail);
+        } catch (Exception e) {
             return false;
         }
     }
-    public boolean messageFieldCreatePassword(){
+
+    public boolean messageFieldCreatePassword() {
         try {
-            return webDriver.findElement(By.xpath(".//div[text()='Password must be at least 12 characters.']"))
-                    .isDisplayed();
-        }catch (Exception e){
+            return messageIsDisplayed(messageFieldCreatePassword);
+        } catch (Exception e) {
             return false;
         }
     }
