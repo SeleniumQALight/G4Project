@@ -22,7 +22,7 @@ public class ParentPage {
         try{
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted");
+            logger.info(text + "   was inputted");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
