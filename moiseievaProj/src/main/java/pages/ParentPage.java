@@ -38,4 +38,14 @@ public class ParentPage {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+    public void checkTextFromElement(String text, WebElement element) {
+        try {
+            Assert.assertEquals(text, element.getText());
+            logger.info("Error text '"+ text +"' is correct");
+        } catch (Exception e) {
+            logger.error("Error text '"+ text +"' is not correct" + e);
+            Assert.fail("Error text '"+ text +"' is not correct" + e);
+        }
+    }
 }

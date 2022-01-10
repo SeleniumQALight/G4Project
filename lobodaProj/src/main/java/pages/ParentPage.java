@@ -37,4 +37,16 @@ public class ParentPage {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+    protected String getTextFromElement(WebElement webElement){
+        try {
+           String text = webElement.getText();
+            logger.info("Text from Element: " + text);
+            return text;
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+        return null;
+    }
+
 }
