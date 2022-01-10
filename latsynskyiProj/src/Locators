@@ -1,1 +1,16 @@
 
+1 (.//input[@name='username'and @id='username-register'])            Username  reg
+2 (.//input[@name='email'and @id='email-register'])                  Email     reg
+3 (.//input[@name='password'and @id='password-register'])            Pasword   reg
+4 (.//button[text()='Sign up for OurApp'])                           Sign up for OurApp
+5 (.//input[@name='username' and @placeholder='Username'])           Username  (Sign In)
+6 (.//input[@placeholder='Password'])                                Pasword   (Sign In)
+7 (.//button[@class='btn btn-primary btn-sm' and text()='Sign In'])  Sign In
+8 (.//a[@href='/profile/qaauto'])                                    Sign Out
+9 (.//a[@href='/create-post'])                                       My Profile
+10 (.//input[@name='title'and@id='post-title'])                      Title
+11 (.//textarea[@name='body'and@id='post-body'])                     Body Content
+12 (.//button[text()='Save New Post'])                               Save New Post
+13 (.//a[@href='/post/61cde274b471e80004075a9d/edit'])               Edit
+14 (.//button[@class='delete-post-button text-danger'])              Delete
+15 (.//button[@class='btn btn-primary'])                             Save Updates
