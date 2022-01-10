@@ -57,7 +57,7 @@ public void validLogin(){
         System.out.println("button was clicked ");
 
         Assert.assertTrue("Negative test failed"
-                ,ButtonSignOutIsAbsent());
+                , isErrorMsgDisplayed());
         System.out.println("Negative test passed");
 
 
@@ -77,7 +77,7 @@ public void validLogin(){
 
             }
 
-            private boolean ButtonSignOutIsAbsent (){
+            private boolean isErrorMsgDisplayed(){
         try{
             return  webDriver.findElement(By.xpath(".//div[text()='Invalid username / password']")).isDisplayed();
         }catch (Exception e){
