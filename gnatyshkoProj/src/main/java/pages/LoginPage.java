@@ -17,7 +17,7 @@ public class LoginPage extends ParentPage {
     private WebElement buttonSignIn;
 
     @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
-    private WebElement messageError;
+    private WebElement messageErrorSignIn;
 
     @FindBy(xpath = ".//input[@id='username-register']")
     private WebElement inputUsernameSignUp;
@@ -89,26 +89,23 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUp);
     }
 
-    public boolean isErrorMessageDisplayed() {
-        try {
-            return messageError.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+    public LoginPage checkIsErrorMessageSignInDisplayed() {
+        Assert.assertTrue("Error about invalid Username is not displayed", elementIsDisplayed(messageErrorSignIn));
+        return this;
     }
 
     public LoginPage checkIsErrorUsernameSignupDisplayed() {
-        Assert.assertTrue("Error about invalid Username is not displayed", errorUsernameSignup.isDisplayed());
+        Assert.assertTrue("Error about invalid Username is not displayed", elementIsDisplayed(errorUsernameSignup));
         return this;
     }
 
     public LoginPage checkIsErrorEmailSignupDisplayed() {
-        Assert.assertTrue("Error about invalid Email is not displayed", errorEmailSignup.isDisplayed());
+        Assert.assertTrue("Error about invalid Email is not displayed", elementIsDisplayed(errorEmailSignup));
         return this;
     }
 
     public LoginPage checkIsErrorPasswordSignupDisplayed() {
-        Assert.assertTrue("Error about invalid Password is not displayed", errorPasswordSignup.isDisplayed());
+        Assert.assertTrue("Error about invalid Password is not displayed", elementIsDisplayed(errorPasswordSignup));
         return this;
     }
 
@@ -120,11 +117,19 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    public LoginPage loginWithInvalidCredentials() {
+        openLoginPage();
+        enterLoginIntoInputLogin("qa");
+        enterLoginIntoInputPassword("123456qwerty");
+        clickOnButtonSignIn();
+        return new LoginPage(webDriver);
+    }
+
     public LoginPage signUpWithInvalidCredentials() {
         openLoginPage();
-        enterUsernameIntoInputUsernameSignUp(TestData.INVALID_USERNAME);
-        enterEmailIntoInputEmailSignUp(TestData.INVALID_EMAIL);
-        enterPasswordIntoInputPasswordSignUp(TestData.INVALID_PASSWORD);
+        enterUsernameIntoInputUsernameSignUp("tr");
+        enterEmailIntoInputEmailSignUp("test.com");
+        enterPasswordIntoInputPasswordSignUp("123");
         clickOnButtonSignUp();
         return new LoginPage(webDriver);
     }

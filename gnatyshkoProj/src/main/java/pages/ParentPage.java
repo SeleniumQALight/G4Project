@@ -27,6 +27,14 @@ public class ParentPage {
         }
     }
 
+    protected boolean elementIsDisplayed(WebElement webElement) {
+        try {
+           return webElement.isDisplayed();
+        } catch(Exception e){
+            return false;
+        }
+    }
+
     protected void clickOnElement(WebElement webElement){
         try {
             webElement.click();
