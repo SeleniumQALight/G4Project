@@ -17,33 +17,38 @@ public class ParentPage {
         PageFactory.initElements(webDriver, this);
     }
 
-    protected void enterTextInToElement(WebElement webElement, String text){
-        try{
+    protected void enterTextInToElement(WebElement webElement, String text) {
+        try {
             webElement.clear();
             webElement.sendKeys(text);
             logger.info(text + " was inputted ");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void clickOnElement(WebElement webElement){
-        try{
+    protected void clickOnElement(WebElement webElement) {
+        try {
             webElement.click();
             logger.info("Element was clicked");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected boolean isElementDisplayed(WebElement webElement){
-        try{
-            webElement.isDisplayed();
-            logger.info("Element is displayed");
-        }catch (Exception e){
-            printErrorAndStopTest(e);
+    protected boolean isElementDisplayed(WebElement webElement) {
+        try {
+            if (webElement.isDisplayed()) {
+                logger.info("Element is displayed");
+                return true;
+            } else {
+                logger.info("Element is not displayed");
+                return false;
+            }
+        } catch (Exception e) {
+            logger.info("The element was not found");
             return false;
-        } return true;
+        }
     }
 
     private void printErrorAndStopTest(Exception e) {
