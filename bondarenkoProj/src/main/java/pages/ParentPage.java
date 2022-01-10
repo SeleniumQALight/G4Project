@@ -37,4 +37,13 @@ public class ParentPage {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+   protected void isMessageForFieldDisplayed(WebElement webElement){
+        try{
+            webElement.isDisplayed();
+            logger.info(webElement + " is displayed");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+   }
 }

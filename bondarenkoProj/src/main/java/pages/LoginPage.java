@@ -109,45 +109,58 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignUpForOutApp);
     }
 
-    public boolean isMessageForUsernameSignUpFieldDisplayed(){
-        try {
-            return messageForUsernameSignUpField.isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+   // public boolean isMessageForUsernameSignUpFieldDisplayed(){
+   //     try {
+  //          return messageForUsernameSignUpField.isDisplayed();
+  //      }catch (Exception e){
+  //          return false;
+  //      }
+ //   }
+
+ //   public LoginPage checkIsMessageForUsernameSignUpFieldDisplayed(){
+ //       Assert.assertTrue("Message for Username field is not displayed", isMessageForUsernameSignUpFieldDisplayed());
+ //       return this;
+ //   }
+
+ //   public boolean isMessageForEmailSignUpFieldDisplayed(){
+ //       try {
+  //          return messageForEmailSignUpField.isDisplayed();
+  //      }catch (Exception e){
+ //           return false;
+ //       }
+ //   }
+
+ //   public LoginPage checkIsMessageForEmailSignUpFieldDisplayed(){
+  //      Assert.assertTrue("Message for Email field is not displayed", isMessageForEmailSignUpFieldDisplayed());
+ //       return this;
+//    }
+
+  //  public boolean isMessageForPasswordSignUpFieldDisplayed(){
+ //       try {
+ //           return messageForPasswordSignUpFiled.isDisplayed();
+  //      }catch (Exception e){
+  //          return false;
+  //      }
+ //   }
+
+//    public LoginPage checkIsMessageForPasswordSignUpFieldDisplayed(){
+ //       Assert.assertTrue("Message for Password field is not displayed", isMessageForPasswordSignUpFieldDisplayed());
+//        return this;
+//    }
+
+    public void checkIsMessageForUsernameSignUpFieldDisplayed(){
+        isMessageForFieldDisplayed(messageForUsernameSignUpField);
     }
 
-    public LoginPage checkIsMessageForUsernameSignUpFieldDisplayed(){
-        Assert.assertTrue("Message for Username field is not displayed", isMessageForUsernameSignUpFieldDisplayed());
-        return this;
+    public void checkIsMessageForEmailSignUpFieldDisplayed(){
+        isMessageForFieldDisplayed(messageForEmailSignUpField);
     }
 
-    public boolean isMessageForEmailSignUpFieldDisplayed(){
-        try {
-            return messageForEmailSignUpField.isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+    public void checkIsMessageForPasswordSignUpFieldDisplayed(){
+        isMessageForFieldDisplayed(messageForPasswordSignUpFiled);
     }
-
-    public LoginPage checkIsMessageForEmailSignUpFieldDisplayed(){
-        Assert.assertTrue("Message for Email field is not displayed", isMessageForEmailSignUpFieldDisplayed());
-        return this;
-    }
-
-    public boolean isMessageForPasswordSignUpFieldDisplayed(){
-        try {
-            return messageForPasswordSignUpFiled.isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
-    }
-
-    public LoginPage checkIsMessageForPasswordSignUpFieldDisplayed(){
-        Assert.assertTrue("Message for Password field is not displayed", isMessageForPasswordSignUpFieldDisplayed());
-        return this;
-    }
-
 }
+
+
 
 
