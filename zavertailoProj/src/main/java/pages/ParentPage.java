@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -26,6 +27,16 @@ public class ParentPage {
             printErrorAndStopTest(e);
         }
     }
+
+   protected void checkExpectedResult(WebElement webElement, String text) {
+       try{
+           webElement.isDisplayed();
+           logger.info(text + " text c conforms ");
+       }catch (Exception e){
+           printErrorAndStopTest(e);
+       }
+  }
+
 
     protected void clickOnElement(WebElement webElement){
         try {

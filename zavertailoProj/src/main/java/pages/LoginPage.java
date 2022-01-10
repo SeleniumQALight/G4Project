@@ -29,6 +29,15 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
     @FindBy(xpath = ".//button[@type ='submit']")
     private WebElement ButtonSignUpForOurApp;
 
+    @FindBy(xpath = ".//div[contains(text(), 'Username must be at least 3 characters.')]")
+    private WebElement divInUsername;
+
+    @FindBy(xpath = ".//div[contains(text(), 'You must provide a valid email address.')]")
+    private WebElement divInEmail;
+
+    @FindBy(xpath = ".//div[contains(text(), 'Password must be at least 12 characters.')]")
+    private WebElement divInPassword;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -55,7 +64,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         enterTextInToElement(inputLoginSingIn, login);
     }
 
-    public void enterPassWordIntoInputPassWord (String passWord){
+    public void enterPassWordIntoInputPassWord(String passWord) {
 //        try {
 //            inputPassWordSingIn.clear();
 //            inputPassWordSingIn.sendKeys(passWord);
@@ -66,7 +75,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         enterTextInToElement(inputPassWordSingIn, passWord);
     }
 
-    public void clickOnButtonSignIn(){
+    public void clickOnButtonSignIn() {
 //        try {
 //            buttonSingIn.click();
 //            logger.info("Button Sing In was clicked");
@@ -78,18 +87,19 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
 
     }
 
-    public void enterLoginInputIntoUserNameRegiste(String login){
+    public void enterLoginInputIntoUserNameRegiste(String login) {
         enterTextInToElement(inputUserNameRegiste, login);
     }
 
-    public void enterEmailIntoInputEmail (String email){
+    public void enterEmailIntoInputEmail(String email) {
         enterTextInToElement(inputEmailRegister, email);
     }
-    public void enterPassWordIntoInputPassWordRegister(String pasword){
+
+    public void enterPassWordIntoInputPassWordRegister(String pasword) {
         enterTextInToElement(inputPassWordRegister, pasword);
     }
 
-    public void clickOnButtonSignUpForOurApp(){
+    public void clickOnButtonSignUpForOurApp() {
         clickOnElement(ButtonSignUpForOurApp);
 
     }
@@ -100,8 +110,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
 //   }
 
 
-
-    public HomePage loginWithValidCred(){
+    public HomePage loginWithValidCred() {
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
         enterPassWordIntoInputPassWord(TestData.VALID_PASS);
@@ -109,42 +118,41 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         return new HomePage(webDriver);
     }
 
-    public boolean IsButtonSignUpForOurAppDisplayed(){
-        try{
-            return  webDriver.findElement(By.xpath(".//button[@type='submit']")).isDisplayed();
-        }catch (Exception e){
+    public boolean IsButtonSignUpForOurAppDisplayed() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[@type='submit']")).isDisplayed();
+        } catch (Exception e) {
             return false;
         }
     }
 
-    public boolean IsButtonErrorForOurAppDisplayed(){
-        try{
-            return  webDriver.findElement(By.xpath(".//*[text()='Error']")).isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
-    }
-    public boolean isDivTextErrorLoginDisplayed(){
-        try{
-            return  webDriver.findElement(By.xpath(".//div[contains(text(), 'Username must be at least 3 characters.')]")).isDisplayed();
-        }catch (Exception e){
+    public boolean IsButtonErrorForOurAppDisplayed() {
+        try {
+            return webDriver.findElement(By.xpath(".//*[text()='Error']")).isDisplayed();
+        } catch (Exception e) {
             return false;
         }
     }
 
-    public boolean isDivTextErrorEmailDisplayed(){
-        try{
-            return  webDriver.findElement(By.xpath(".//div[contains(text(), 'You must provide a valid email address.')]")).isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+//    public boolean isDivTextErrorLoginDisplayed(){
+//        try{
+//            return  webDriver.findElement(By.xpath(".//div[contains(text(), 'Username must be at least 3 characters.')]")).isDisplayed();
+//        }catch (Exception e){
+//            return false;
+//       }
+//    }
+
+    public void isDivTextErrorLoginDisplayed(String message) {
+        checkExpectedResult(divInUsername, message);
     }
 
-    public boolean isDivTextErrorPasswordDisplayed(){
-        try{
-            return  webDriver.findElement(By.xpath(".//div[contains(text(), 'Password must be at least 12 characters.')]")).isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+
+    public void isDivTextErrorEmailDisplayed(String message) {
+        checkExpectedResult(divInEmail, message);
     }
+
+    public void isDivTextErrorPasswordDisplayed(String message) {
+        checkExpectedResult(divInPassword, message);
+    }
+
 }
