@@ -28,12 +28,11 @@ public class ParentPage {
         }
     }
 
-   protected void checkExpectedResult(WebElement webElement, String text) {
+   protected boolean isElementDispleid(WebElement webElement) {
        try{
-           webElement.isDisplayed();
-           logger.info(text + " text c conforms ");
+           return webElement.isDisplayed();
        }catch (Exception e){
-           printErrorAndStopTest(e);
+           return false;
        }
   }
 

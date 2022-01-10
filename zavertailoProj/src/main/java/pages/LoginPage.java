@@ -142,17 +142,17 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
 //       }
 //    }
 
-    public void isDivTextErrorLoginDisplayed(String message) {
-        checkExpectedResult(divInUsername, message);
+    public boolean isDivTextErrorLoginDisplayed() {
+        return isElementDispleid(divInUsername);
     }
 
 
-    public void isDivTextErrorEmailDisplayed(String message) {
-        checkExpectedResult(divInEmail, message);
+    public boolean isDivTextErrorEmailDisplayed() {
+        return isElementDispleid(divInEmail);
     }
 
-    public void isDivTextErrorPasswordDisplayed(String message) {
-        checkExpectedResult(divInPassword, message);
+    public boolean isDivTextErrorPasswordDisplayed() {
+        return  isElementDispleid(divInPassword);
     }
 
 }
