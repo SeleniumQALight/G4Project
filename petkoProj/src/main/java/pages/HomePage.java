@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,12 +15,12 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
-    public void isButtonSignOutDisplayed(){
-        isElementDisplayed(buttonSignOut);
+    public boolean isButtonSignOutDisplayed(){
+        return isElementDisplayed(buttonSignOut);
     }
 
     public HomePage checkIsButtonSignOutDisplayed(){
-        isButtonSignOutDisplayed();
+        Assert.assertTrue("Button SignOut is not displayed",isButtonSignOutDisplayed());
         return this;
     }
 }

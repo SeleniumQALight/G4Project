@@ -97,20 +97,20 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    public void isButtonSignInDisplayed(){
-        isElementDisplayed(buttonSignIn);
+    public boolean isButtonSignInDisplayed(){
+        return isElementDisplayed(buttonSignIn);
     }
 
-    public void isErrorLoginValidationForSignUpDisplayed(){
-        isElementDisplayed(errorSignUpLoginValidation);
+    public boolean isErrorLoginValidationForSignUpDisplayed(){
+       return isElementDisplayed(errorSignUpLoginValidation);
     }
 
-    public void isErrorEmailValidationForSignUpDisplayed(){
-        isElementDisplayed(errorSignUpEmailValidation);
+    public boolean isErrorEmailValidationForSignUpDisplayed(){
+       return isElementDisplayed(errorSignUpEmailValidation);
     }
 
-    public void isErrorPasswordValidationForSignUpDisplayed(){
-        isElementDisplayed(errorSignUpPasswordValidation);
+    public boolean isErrorPasswordValidationForSignUpDisplayed(){
+        return isElementDisplayed(errorSignUpPasswordValidation);
     }
 
 }

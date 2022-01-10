@@ -1,6 +1,7 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class RegistrationTest extends BaseTest {
@@ -13,9 +14,9 @@ public class RegistrationTest extends BaseTest {
         loginPage.enterSignUpPassword("123");
         loginPage.clickOnButtonSignUp();
 
-        loginPage.isErrorLoginValidationForSignUpDisplayed();
-        loginPage.isErrorEmailValidationForSignUpDisplayed();
-        loginPage.isErrorPasswordValidationForSignUpDisplayed();
+        Assert.assertTrue("Login validation error missing", loginPage.isErrorLoginValidationForSignUpDisplayed());
+        Assert.assertTrue("Email validation error missing", loginPage.isErrorEmailValidationForSignUpDisplayed());
+        Assert.assertTrue("Password validation error missing" , loginPage.isErrorPasswordValidationForSignUpDisplayed());
 
 
     }
