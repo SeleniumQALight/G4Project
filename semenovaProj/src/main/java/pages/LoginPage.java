@@ -109,27 +109,20 @@ public class LoginPage extends ParentPage {
     }
 
     public boolean messageFieldPickUsernameDisplayed() {
-        try {
-            return messageIsDisplayed(messageFieldCreatePassword);
-        } catch (Exception e) {
-            return false;
-        }
+
+        return messageIsDisplayed(messageFieldPickUsername);
     }
 
     public boolean messageFieldEmail() {
-        try {
-            return messageIsDisplayed(messageFieldEmail);
-        } catch (Exception e) {
-            return false;
-        }
+
+        return messageIsDisplayed(messageFieldEmail);
+
     }
 
     public boolean messageFieldCreatePassword() {
-        try {
-            return messageIsDisplayed(messageFieldCreatePassword);
-        } catch (Exception e) {
-            return false;
-        }
+
+        return messageIsDisplayed(messageFieldCreatePassword);
+
     }
 
 }
