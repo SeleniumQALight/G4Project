@@ -25,25 +25,28 @@ public class ParentPage {
         }
     }
 
-    protected  void clickOnElement(WebElement webElement){
-        try{
+    protected void clickOnElement(WebElement webElement) {
+        try {
             webElement.click();
             logger.info(webElement + "Element was clicked");
-    }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
 
-   protected void isMessageForFieldDisplayed(WebElement webElement){
+    protected boolean isMessageForFieldDisplayed(WebElement webElement){
         try{
             webElement.isDisplayed();
             logger.info(webElement + " is displayed");
+            return true;
         }catch (Exception e){
             printErrorAndStopTest(e);
+            return false;
         }
-   }
+    }
 }

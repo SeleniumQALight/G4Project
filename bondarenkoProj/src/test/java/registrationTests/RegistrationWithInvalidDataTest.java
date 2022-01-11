@@ -1,6 +1,7 @@
 package registrationTests;
 
 import baseTest.BaseTest;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class RegistrationWithInvalidDataTest extends BaseTest {
@@ -14,6 +15,5 @@ public class RegistrationWithInvalidDataTest extends BaseTest {
         loginPage.checkIsMessageForUsernameSignUpFieldDisplayed();
         loginPage.checkIsMessageForEmailSignUpFieldDisplayed();
         loginPage.checkIsMessageForPasswordSignUpFieldDisplayed();
-
     }
 }
