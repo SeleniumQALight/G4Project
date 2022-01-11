@@ -14,7 +14,10 @@ public class LoginPage extends ParentPage{
     private WebElement inputPassWordSingIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement ButtonSingIn;
+    private WebElement buttonSingIn;
+
+    @FindBy(xpath =".//div[text()='Invalid username / password']" )
+    private WebElement errormsg;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -60,7 +63,7 @@ public class LoginPage extends ParentPage{
 //        }catch (Exception e){
 //            printErrorAndStopTest(e);
 //        }
-        clickOnElement(ButtonSingIn);
+        clickOnElement(buttonSingIn);
     }
 
 
@@ -75,4 +78,12 @@ public class LoginPage extends ParentPage{
         clickOnButtonSingIn();
           return new HomePage(webDriver);
     }
+    public boolean errormsgIsDisplayed (){
+        try{
+            return  errormsg.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 }

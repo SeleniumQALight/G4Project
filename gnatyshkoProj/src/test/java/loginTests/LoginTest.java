@@ -86,7 +86,7 @@ public class LoginTest {
 
     public boolean isErrorMessageDisplayed() {
         try {
-            return webDriver.findElement(By.xpath(".//div[text()='Error']")).isDisplayed();
+            return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
