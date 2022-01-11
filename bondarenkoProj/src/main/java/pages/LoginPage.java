@@ -149,17 +149,14 @@ public class LoginPage extends ParentPage {
 //    }
 
     public boolean isMessageForUsernameSignUpFieldDisplayed(){
-        isMessageForFieldDisplayed(messageForUsernameSignUpField);
-        return true;
+        return isMessageForFieldDisplayed(messageForUsernameSignUpField);
     }
    public LoginPage checkIsMessageForUsernameSignUpFieldDisplayed(){
       Assert.assertTrue("Message for Username field is not displayed", isMessageForUsernameSignUpFieldDisplayed());
-        return this;
-    }
+      return this;}
 
     public boolean isMessageForEmailSignUpFieldDisplayed(){
-        isMessageForFieldDisplayed(messageForEmailSignUpField);
-        return true;
+        return isMessageForFieldDisplayed(messageForEmailSignUpField);
     }
     public LoginPage checkIsMessageForEmailSignUpFieldDisplayed(){
       Assert.assertTrue("Message for Email field is not displayed", isMessageForEmailSignUpFieldDisplayed());
@@ -167,8 +164,7 @@ public class LoginPage extends ParentPage {
    }
 
     public boolean isMessageForPasswordSignUpFieldDisplayed(){
-        isMessageForFieldDisplayed(messageForPasswordSignUpFiled);
-        return true;
+        return isMessageForFieldDisplayed(messageForPasswordSignUpFiled);
     }
    public LoginPage checkIsMessageForPasswordSignUpFieldDisplayed(){
       Assert.assertTrue("Message for Password field is not displayed", isMessageForPasswordSignUpFieldDisplayed());
