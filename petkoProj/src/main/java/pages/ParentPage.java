@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
@@ -48,6 +49,35 @@ public class ParentPage {
         } catch (Exception e) {
             logger.info("The element was not found");
             return false;
+        }
+    }
+
+    protected void selectTextInDropDown(WebElement dropDown, String text){
+        try{
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DD");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectValueInDropDown(WebElement dropDown, String value){
+        try{
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + "was selected in DD");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void waitChatToBeHide(){
+        //TODO wait chat
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
