@@ -31,8 +31,10 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
     private WebElement validationUserNameMessage;
+
     @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
     private WebElement validationUserEmailMessage;
+
     @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
     private WebElement validationUserPasswordMessage;
 
@@ -82,13 +84,7 @@ public class LoginPage extends ParentPage {
     }
 
     public boolean verifyIfTheSignUPButtonIsDisplayed() {
-        try {
-            return buttonSignUPForOurApp.isDisplayed();
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-            return false;
-        }
-
+        return isElementDisplayed(buttonSignUPForOurApp);
     }
 
     public void enterUserNameInTheSignUpForm(String userName) {
@@ -108,38 +104,26 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage enterInvalidDataInTheSignUpForm() {
-        enterUserNameInTheSignUpForm(TestData.INVALID_USER_NAME);
-        enterUserEmailInTheSignUpForm(TestData.INVALID_EMAIL);
-        enterUserPasswordInTheSignUpForm(TestData.INVALID_PASS);
+        enterUserNameInTheSignUpForm("tr");
+        enterUserEmailInTheSignUpForm("test.com");
+        enterUserPasswordInTheSignUpForm("123");
         clickOnButtonSignUpForOurApp();
         return new LoginPage(webDriver);
     }
 
     public boolean isValidationUserNameMessageDisplayed() {
-        try {
-            return validationUserNameMessage.isDisplayed();
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-            return false;
-        }
+        return isElementDisplayed(validationUserNameMessage);
+
     }
 
     public boolean isValidationUserEmailMessageDisplayed() {
-        try {
-            return validationUserEmailMessage.isDisplayed();
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-            return false;
-        }
+        return isElementDisplayed(validationUserEmailMessage);
+
     }
 
     public boolean isValidationUserPasswordMessageDisplayed() {
-        try {
-            return validationUserPasswordMessage.isDisplayed();
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-            return false;
-        }
+        return isElementDisplayed(validationUserPasswordMessage);
+
     }
 }
 

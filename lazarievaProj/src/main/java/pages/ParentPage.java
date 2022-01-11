@@ -42,5 +42,19 @@ public class ParentPage {
         Assert.fail("Can not work with element  " + e);
     }
 
+    protected boolean isElementDisplayed(WebElement webElement) {
+        try {
+            boolean state = webElement.isDisplayed();
+            if (state) {
+                logger.error("Element is displayed");
+            } else {
+                logger.error("Element is NOT  displayed");
+            }
+            return state;
+        } catch (Exception e) {
+            logger.error("Element is NOT  displayed");
+            return false;
+        }
+    }
 
 }

@@ -1,7 +1,6 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,11 +14,7 @@ public class HomePage extends ParentPage {
     }
 
     public boolean isButtonSignOutDisplayed() {
-        try {
-            return buttonSignOut.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return isElementDisplayed(buttonSignOut);
     }
 
     public HomePage checkIsButtonSignOutDisplayed() {
