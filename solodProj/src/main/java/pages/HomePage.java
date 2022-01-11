@@ -17,11 +17,5 @@ public class HomePage  extends ParentPage{
 
 
     }
-    public boolean isErrorFieldDisplayed(){
-        try {
-            return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
-    }
+
 }
