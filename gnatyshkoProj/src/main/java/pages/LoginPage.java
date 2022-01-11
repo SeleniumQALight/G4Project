@@ -16,8 +16,29 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
-    @FindBy(xpath = ".//div[text()='Error']")
-    private WebElement messageError;
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement messageErrorSignIn;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUsernameSignUp;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailSignUp;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordSignUp;
+
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[contains(text(), 'Username must be at least 3 characters.')]")
+    private WebElement errorUsernameSignup;
+
+    @FindBy(xpath = ".//div[contains(text(), 'You must provide a valid email address.')]")
+    private WebElement errorEmailSignup;
+
+    @FindBy(xpath = ".//div[contains(text(), 'Password must be at least 12 characters.')]")
+    private WebElement errorPasswordSignup;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -42,30 +63,74 @@ public class LoginPage extends ParentPage {
 //            printErrorAndStopTest(e);
 //        }
         enterTextIntoElement(inputLoginSignIn, login);
-
     }
 
     public void enterLoginIntoInputPassword(String password) {
         enterTextIntoElement(inputPasswordSignIn, password);
     }
 
+    public void enterUsernameIntoInputUsernameSignUp(String username) {
+        enterTextIntoElement(inputUsernameSignUp, username);
+    }
+
+    public void enterEmailIntoInputEmailSignUp(String email) {
+        enterTextIntoElement(inputEmailSignUp, email);
+    }
+
+    public void enterPasswordIntoInputPasswordSignUp(String password) {
+        enterTextIntoElement(inputPasswordSignUp, password);
+    }
+
     public void clickOnButtonSignIn() {
-      clickOnElement(buttonSignIn);
+        clickOnElement(buttonSignIn);
     }
 
-    public boolean isErrorMessageDisplayed() {
-        try {
-            return messageError.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+    public void clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
     }
 
-    public HomePage loginWithValidCredentials(){
+    public LoginPage checkIsErrorMessageSignInDisplayed() {
+        Assert.assertTrue("Error about invalid Username is not displayed", elementIsDisplayed(messageErrorSignIn));
+        return this;
+    }
+
+    public LoginPage checkIsErrorUsernameSignupDisplayed() {
+        Assert.assertTrue("Error about invalid Username is not displayed", elementIsDisplayed(errorUsernameSignup));
+        return this;
+    }
+
+    public LoginPage checkIsErrorEmailSignupDisplayed() {
+        Assert.assertTrue("Error about invalid Email is not displayed", elementIsDisplayed(errorEmailSignup));
+        return this;
+    }
+
+    public LoginPage checkIsErrorPasswordSignupDisplayed() {
+        Assert.assertTrue("Error about invalid Password is not displayed", elementIsDisplayed(errorPasswordSignup));
+        return this;
+    }
+
+    public HomePage loginWithValidCredentials() {
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
         enterLoginIntoInputPassword(TestData.VALID_PASS);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage loginWithInvalidCredentials() {
+        openLoginPage();
+        enterLoginIntoInputLogin("qa");
+        enterLoginIntoInputPassword("123456qwerty");
+        clickOnButtonSignIn();
+        return new LoginPage(webDriver);
+    }
+
+    public LoginPage signUpWithInvalidCredentials() {
+        openLoginPage();
+        enterUsernameIntoInputUsernameSignUp("tr");
+        enterEmailIntoInputEmailSignUp("test.com");
+        enterPasswordIntoInputPasswordSignUp("123");
+        clickOnButtonSignUp();
+        return new LoginPage(webDriver);
     }
 }

@@ -35,6 +35,38 @@ public void validLogin(){
         webDriver.quit();
         System.out.println("browser was closed");
     }
+
+    @Test
+    public void inValidLogin (){
+        WebDriverManager.chromedriver().setup();
+        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(7,TimeUnit.SECONDS);
+        webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
+        System.out.println("Site was opened");
+
+        webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
+        webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys("qa-auto");
+        System.out.println("login was entered");
+
+        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
+        webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys("123456qwerty");
+        System.out.println("password was entered");
+
+        webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
+        System.out.println("button was clicked ");
+
+        Assert.assertTrue("Negative test failed"
+                , isErrorMsgDisplayed());
+        System.out.println("Negative test passed");
+
+
+        webDriver.quit();
+        System.out.println("browser was closed");
+
+
+
+    }
     private boolean isButtonSignOutDisplayed(){
             try{
                     return  webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
@@ -44,6 +76,14 @@ public void validLogin(){
 
 
             }
-    }
+
+            private boolean isErrorMsgDisplayed(){
+        try{
+            return  webDriver.findElement(By.xpath(".//div[text()='Invalid username / password']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+            }
+}
 
 
