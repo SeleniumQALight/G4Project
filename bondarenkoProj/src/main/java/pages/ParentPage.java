@@ -41,11 +41,8 @@ public class ParentPage {
 
     protected boolean isMessageForFieldDisplayed(WebElement webElement){
         try{
-            webElement.isDisplayed();
-            logger.info(webElement + " is displayed");
-            return true;
+            return webElement.isDisplayed();
         }catch (Exception e){
-            printErrorAndStopTest(e);
             return false;
         }
     }

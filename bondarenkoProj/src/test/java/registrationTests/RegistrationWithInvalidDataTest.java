@@ -1,7 +1,6 @@
 package registrationTests;
 
 import baseTest.BaseTest;
-import org.junit.Assert;
 import org.junit.Test;
 
 public class RegistrationWithInvalidDataTest extends BaseTest {
