@@ -20,10 +20,18 @@ public class ParentPage {
         try{
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted");
+            logger.info(text + " was inputted");
         }
         catch(Exception e){
             printErrorAndStopTest(e);
+        }
+    }
+
+    protected boolean elementIsDisplayed(WebElement webElement) {
+        try {
+           return webElement.isDisplayed();
+        } catch(Exception e){
+            return false;
         }
     }
 
