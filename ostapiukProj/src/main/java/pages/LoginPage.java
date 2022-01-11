@@ -13,6 +13,14 @@ public class LoginPage extends ParentPage{
     private WebElement inputPassWordSignIn;
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSignIn;
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputLoginSignUp;
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailSignUp;
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPassWordSignUp;
+    @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
+    private WebElement buttonSignUpForOurApp;
 
 
 
@@ -49,11 +57,36 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignIn);
     }
 
+    public void enterLoginIntoInputLoginSignUp(String login){
+        enterTextIntoElement(inputLoginSignUp, login);
+    }
+
+    public void enterEmailIntoInputEmailSignUp(String email){
+        enterTextIntoElement(inputEmailSignUp, email);
+    }
+
+    public void enterPassWordIntoPassSignUp(String passWord){
+        enterTextIntoElement(inputPassWordSignUp, passWord);
+    }
+
+    public void clickOnButtonSignUp(){
+        clickOnElement(buttonSignUpForOurApp);
+    }
+
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
         enterPassWordIntoPassWord(TestData.VALID_PASS);
         clickOnButtonSignIn();
+        return new HomePage(webDriver);
+    }
+
+    public HomePage loginWithUnValidCred(){
+        openLoginPage();
+        enterLoginIntoInputLoginSignUp(TestData.UNVALID_LOGIN);
+        enterEmailIntoInputEmailSignUp(TestData.UNVALID_EMAIL);
+        enterPassWordIntoPassSignUp(TestData.UNVALID_PASS);
+        clickOnButtonSignUp();
         return new HomePage(webDriver);
     }
 }
