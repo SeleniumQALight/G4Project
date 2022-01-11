@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.PageFactoryFinder;
+import org.openqa.selenium.support.ui.Select;
 
 
 public class ParentPage {
@@ -30,8 +31,15 @@ public class ParentPage {
 
    protected boolean isElementDispleid(WebElement webElement) {
        try{
+           boolean state = webElement.isDisplayed(); // нет елемента
+           if (state){
+               logger.info("Element is displayed"); // есть елемент
+           } else {
+               logger.info("Element is not displayed");// нет елемента
+           }
            return webElement.isDisplayed();
        }catch (Exception e){
+           logger.info("Element is not displayed");
            return false;
        }
   }
@@ -43,6 +51,36 @@ public class ParentPage {
             logger.info("Element was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDown(WebElement dropDown, String text){
+        try {
+            Select select = new Select(dropDown);//передать закрытый дробдаун
+            select.selectByVisibleText(text);//выбрать нужный текст
+            logger.info(text + "was selected in DD");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectValueInDropDown (WebElement dropDown, String value){
+        try {
+            Select select = new Select(dropDown);//передать закрытый дробдаун
+            select.selectByValue(value);//выбрать нужный текст
+            logger.info(value + "was selected in DD");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+
+    }
+
+    protected void waitChatTobeHide(){
+        //ToDO wait chat
+        try {
+            Thread.sleep(1000); //свернуть все и подождать в милисекундах alt + entr
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
