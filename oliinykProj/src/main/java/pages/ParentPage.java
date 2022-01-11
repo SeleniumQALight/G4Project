@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -37,6 +38,15 @@ public class ParentPage {
             logger.info("Element was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
+        }
+    }
+
+    protected boolean checkErrorText(WebElement element){
+        try {
+            return element.isDisplayed();
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+            return false;
         }
     }
 }

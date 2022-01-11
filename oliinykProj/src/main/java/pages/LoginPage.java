@@ -128,30 +128,14 @@ public class LoginPage extends ParentPage {
     }
 
     public boolean checkErrorTextSignUpLogin(){
-        try {
-            return errorTextLoginSignUp.getText().equalsIgnoreCase("Username must be at least 3 characters.");
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-            return false;
-        }
+        return checkErrorText(errorTextLoginSignUp);
     }
 
     public boolean checkErrorTextSignUpMail(){
-        try {
-            return errorTextMailSignUp.getText().equalsIgnoreCase("You must provide a valid email address.");
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-            return false;
-        }
+        return checkErrorText(errorTextMailSignUp);
     }
 
     public boolean checkErrorTextSignUpPass(){
-        try {
-            return errorTextPassSignUp.getText().equalsIgnoreCase("Username must be at least 3 characters.");
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-            return false;
+        return checkErrorText(errorTextPassSignUp);
         }
     }
-
-}
