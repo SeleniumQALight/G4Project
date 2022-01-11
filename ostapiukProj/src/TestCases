@@ -1,0 +1,81 @@
+Tc1
+New user
+
+preconditions
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = aostapiuk, Password = 123456qwerty не появляется "Error", выполнить удаление пользователя username = aostapiuk.
+
+1 Ввести "aostapiuk" в поле ввода "Username"
+2 Ввести "example@mail" в поле "Email"
+3 Ввести "123456qwerty" в поле ввода "Password"
+4 Нажать кнопку "Sign up for OurApp"
+
+Expected result: Отображается текст "Hello aostapiuk, your feed is empty."
+
+
+Тс2
+Log in
+
+preconditions
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = aostapiuk, Password = 123456qwerty появляется "Error", выполнить Tc1 и вылогиниться.
+
+1 Ввести "aostapiuk" в поле ввода "Username"
+2 Ввести "123456qwerty" в поле ввода "Password"
+3 Нажать кнопку "Sign in"
+
+Expected result: Отображается "aostapiuk" в хедере сайта.
+
+
+Tc3
+Log out
+
+preconditions
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = aostapiuk, Password = 123456qwerty появляется "Error", выполнить Tc1 и вылогиниться.
+
+1 Ввести "aostapiuk" в поле ввода "Username"
+2 Ввести "123456qwerty" в поле ввода "Password"
+3 Нажать кнопку "Sign in"
+4 Проверить наличие кнопки "Sign Out"
+5 Нажать кнопку "Sign Out"
+6 Проверить наличие кнопки "Sign in"
+
+Expected result: Успешно разлогинит и перекинет на Login Page
+
+
+Tc4
+Check creating post without Body Content
+
+preconditions
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = aostapiuk, Password = 123456qwerty появляется "Error", выполнить Tc1 и вылогиниться.
+
+1 Ввести "aostapiuk" в поле ввода "Username"
+2 Ввести "123456qwerty" в поле ввода "Password"
+3 Нажать кнопку "Sign in"
+4 Нажать кнопку "Create Post"
+5 Ввести текст "New" в поле "Title"
+6 Нажать кнопку "Save New Post"
+
+Expected results: На экран выведется сообщение "Заполните это поле"
+
+
+Тс5
+Create Post
+
+preconditions
+Перейти на сайт "https://qa-complex-app-for-testing.herokuapp.com/".
+Если при вводе username = aostapiuk, Password = 123456qwerty появляется "Error", выполнить Tc1 и вылогиниться.
+
+1 Ввести "aostapiuk" в поле ввода "Username"
+2 Ввести "123456qwerty" в поле ввода "Password"
+3 Нажать кнопку "Sign in"
+4 Нажать кнопку "Create Post"
+5 Ввести текст "New" в поле "Title"
+6 Ввести текст "Piu-piu" в поле "Body Content"
+7 Нажать кнопку "Save New Post"
+8 Проверить наличие текста, который вводили в поле "Title"
+9 Проверить время создания поста
+
+Expected results: Отобразится уведомление об успешном создании поста: "New post successfully created." и информация об авторе и времени создания "Posted by aostapiuk on 1/4/2022"
