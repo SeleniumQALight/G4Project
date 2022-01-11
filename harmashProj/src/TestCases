@@ -9,7 +9,8 @@ STEPS:
 - activate checkbox "Unigue post"
 - click Save New Post
 
-ER: user has been redirected to /post/{id}, message "New post successfully created." is displayed;
+ER: 1)User has been redirected to /post/{id}, message "New post successfully created." is displayed;
+    2) The newly created post{id} heads the list under Posts tab on Profile page
 
 TC- 2 "It is NOT possible to create post without filled title and body"
 PRE:
@@ -25,6 +26,7 @@ TC-3 "Edit page is accessible"
 PRE:
 1. User is signed in (login - qaauto, password-123456qwerty)
 2. Page with created post is opened https://qa-complex-app-for-testing.herokuapp.com/post/61d1fe456f5c760004762542
+3. Delete icon is on this page
 STEPS:
 - click on edit icon
 
@@ -40,7 +42,8 @@ STEPS:
 - add symbol to the body
 - click on button Save updates
 
-ER: Changes were saved -> message Post successfully updated is on the screen.
+ER: 1.Changes were saved -> message Post successfully updated is on the screen.
+    2.The newly edited post{id} heads the list under Posts tab on Profile page
 
 TC-5 "It is possible to send message in chat"
 PRE:
