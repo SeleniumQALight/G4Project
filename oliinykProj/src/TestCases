@@ -57,15 +57,19 @@ Name: Create a post
 PC: You are Signed in. Home page.
 
 STP:
-1. Click on "Create Post" button
-2. Enter some title of the post in "Title" field
-3. Enter some text of the post in "Body Content" field
-4. Click on check-box "This is a unique post"
-5. Click on dropdown "Select value"
-6. Click on "Chastnoe soobschenie" in dropdown
-7. Click on "Save New Post" button
+1. Click on "My Profile" icon
+2. Remember quantity of posts
+3. Click on "Create Post" button
+4. Enter some title of the post in "Title" field
+5. Enter some text of the post in "Body Content" field
+6. Click on check-box "This is a unique post"
+7. Click on dropdown "Select value"
+8. Click on "Chastnoe soobschenie" in dropdown
+9. Click on "Save New Post" button
+10. Click on "My Profile" icon
 
 ER:
+Result for STP 9:
 Post page
 Message "New post successfully created"
 Title that was entered is shown
@@ -73,6 +77,10 @@ In "Posted by", the username of user that made post is shown
 Text that was entered is shown
 In "Note:This post was written for" message written: "One Person"
 
+Result for STP 10:
+Profile page
+Quantity of posts increased by 1
+Title and date are shown on the first position in posts block
 PoC: ----
 
 TC5
