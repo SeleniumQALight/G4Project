@@ -26,7 +26,7 @@ public class ParentPage {
         }
     }
 
-    private void printErrorAndStopTest(Exception e) {
+    void printErrorAndStopTest(Exception e) {
         logger.error("Can't work with element" + e);
         Assert.fail("Can't work with element" + e);
     }
