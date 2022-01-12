@@ -21,4 +21,22 @@ public class CreatePostTest extends BaseTest {
                     .checkIsRedirectToPostPage()
                     .checkTextInAlert("New post successfully created.");
     }
+
+    //Homework 4 (Custom select)
+    @Test
+    public void createNewPostUsingCustomSelect(){
+        loginPage
+                .loginWithValidCredentials()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnCreatePostButton();
+        createPostPage
+                .checkIsRedirectToCreatePostPage()
+                .enterTextIntoTitleInput(TestData.VALID_POST_TITLE)
+                .enterTextIntoBody(TestData.VALID_TEXT)
+//                    .selectTextInDropDownCreatePost("Частное сообщение")
+                .selectValueInDDUsingList("Частное сообщение")
+                .clickOnSaveNewPostButton()
+                .checkIsRedirectToPostPage()
+                .checkTextInAlert("New post successfully created.");
+    }
 }

@@ -5,12 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreatePostPage extends ParentPageWithHeader{
+import java.util.List;
 
-    @FindBy(id="post-title")
+public class CreatePostPage extends ParentPageWithHeader {
+
+    @FindBy(id = "post-title")
     private WebElement titleInput;
 
-    @FindBy(id="post-body")
+    @FindBy(id = "post-body")
     private WebElement textAreaInput;
 
     @FindBy(xpath = ".//input[@type='checkbox']")
@@ -22,16 +24,19 @@ public class CreatePostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//select[@name='select1']/option")
+    private List<WebElement> selectOptions;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public CreatePostPage checkIsRedirectToCreatePostPage(){
-        Assert.assertTrue("The Create Post page is not reached" , elementIsVisible(titleInput));
+    public CreatePostPage checkIsRedirectToCreatePostPage() {
+        Assert.assertTrue("The Create Post page is not reached", elementIsVisible(titleInput));
         return this;
     }
 
-    public CreatePostPage enterTextIntoTitleInput(String text){
+    public CreatePostPage enterTextIntoTitleInput(String text) {
         enterTextIntoElement(titleInput, text);
         return this;
     }
@@ -53,6 +58,11 @@ public class CreatePostPage extends ParentPageWithHeader{
 
     public CreatePostPage selectValueInDropDownRole(String valueForSelect) {
         selectValueInDropDown(dropDownRole, valueForSelect);
+        return this;
+    }
+
+    public CreatePostPage selectValueInDDUsingList(String optionForSelect) {
+        selectTextInDDWithListOfElements(selectOptions, optionForSelect);
         return this;
     }
 
