@@ -1,6 +1,7 @@
 package postsTests;
 
 import baseTest.BaseTest;
+import libs.TestData;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
@@ -8,6 +9,16 @@ public class CreatePostTest extends BaseTest {
     public void createNewPost(){
             loginPage
                     .loginWithValidCredentials()
-                    .checkIsButtonSignOutDisplayed();
+                    .checkIsButtonSignOutDisplayed()
+                    .clickOnCreatePostButton();
+            createPostPage
+                    .checkIsRedirectToCreatePostPage()
+                    .enterTextIntoTitleInput(TestData.VALID_POST_TITLE)
+                    .enterTextIntoBody(TestData.VALID_TEXT)
+//                    .selectTextInDropDownCreatePost("Частное сообщение")
+                    .selectValueInDropDownRole("One Person")
+                    .clickOnSaveNewPostButton()
+                    .checkIsRedirectToPostPage()
+                    .checkTextInAlert("New post successfully created.");
     }
 }

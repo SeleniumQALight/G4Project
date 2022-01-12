@@ -9,7 +9,18 @@ public class CreatePostTest extends BaseTest {
     public void createNewPost(){
         loginPage
                 .loginWithValidCred()
-                .checkIsButtonSignOutDisplayed();
+                .checkIsButtonSignOutDisplayed()
+                .clickOnCreatePostButton();
+
+        createPostPage
+                .checkIsRedirectToCreatePostPage()
+                .enterTextIntoTitleInput("G4-Petko")
+                .enterTextIntoBodyInput("Body post")
+//              .selectTextInDropDownRole("Частное сообщение")
+                .selectValueInDropDownRole("One Person")
+                .clickOnButtonSaveNewPost()
+                .checkIsRedirectToPostPage()
+                .checkTextInAlert("New post successfully created.");
 
     }
 }

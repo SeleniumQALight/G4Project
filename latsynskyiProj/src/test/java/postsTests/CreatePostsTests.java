@@ -8,7 +8,17 @@ public class CreatePostsTests extends BaseTest {
     public void createNewPost(){
       loginPage
               .loginWithValidCred()
-              .checkIsButtonSignOutDisplayed();
+              .checkIsButtonSignOutDisplayed()
+              .clickOnCreatePostButton();
+      createPostPage.checkIsRedirectToCreatePostPage()
+              .enterTextInToTitleInput("G4-Latsynskyi")
+              .enterTextInToBodyInput("Body post")
+              //.selectTextInDropDownRole("Частное сообщение")
+              .selectValueInDropDownRole("One Person")
+              .clickOnButtonSaveNewPost()
+              .checkIsRedirectPostPage()
+              .checkTextInAlert("New post successfully created.")
+      ;
 
     }
 

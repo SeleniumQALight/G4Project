@@ -18,6 +18,27 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement clickButtonSingIn;
 
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputLoginSignUp;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputMailSignUP;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPassSignUp;
+
+    @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement errorTextLoginSignUp;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement errorTextMailSignUp;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement errorTextPassSignUp;
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -72,6 +93,21 @@ public class LoginPage extends ParentPage {
         return new  HomePage(driver);
     }
 
+    public void  enterNotValidLogin(String login) {
+        enterTextIntoElement(inputLoginSignUp, login);
+    }
+
+    public void enterNotValidMail(String mail){
+        enterTextIntoElement(inputMailSignUP, mail);
+    }
+
+    public void enterNotValidPassword(String pass){
+        enterTextIntoElement(inputPassSignUp, pass);
+    }
+    public void clickOnSignUp(){
+        clickOnElement(buttonSignUp);
+    }
+
     public boolean displayedMessageError(){
         try {
             return driver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).getText().equalsIgnoreCase("error");
@@ -91,8 +127,18 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can't work with element" + e);
-        Assert.fail("Can't work with element" + e);
+    public LoginPage checkErrorTextSignUpLogin(){
+        Assert.assertTrue("Message on login field isn't displayed", checkErrorText(errorTextLoginSignUp));
+        return this;
     }
-}
+
+    public LoginPage checkErrorTextSignUpMail(){
+        Assert.assertTrue("Message on email field isn't displayed", checkErrorText(errorTextMailSignUp));
+        return this;
+    }
+
+    public LoginPage checkErrorTextSignUpPass(){
+        Assert.assertTrue("Message on password field isn't displayed", checkErrorText(errorTextPassSignUp));
+        return this;
+        }
+    }
