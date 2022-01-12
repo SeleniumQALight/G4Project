@@ -1,0 +1,28 @@
+LOGIN PAGE
+--> LOG IN
+.//input[@name="username" and @placeholder="Username"]  login input
+.//input[@placeholder='Username']  login input
+.//input[@name='password' and @placeholder='Password'] password
+.//button[@class='btn btn-primary btn-sm'] Sign In
+.//input[@id='username-register'] username input
+
+HOME PAGE
+--> CREATE POST
+.//a[@href='/create-post'] button Create post
+.//input[@id='post-title'] title input
+.//textarea[@id='post-body'] Body input
+.//button[@class='btn btn-primary'] button Save new post
+.//input[@type="checkbox"] checkbox Unique post
+
+--> EDIT POST
+.//a[@href='/post/61d1fe456f5c760004762542/edit'] edit icon
+.//a[@href='/post/61d1fe456f5c760004762542'] edit page
+.//button[@class='btn btn-primary'] button save updates
+.//div[@class='alert alert-success text-center'] Post successfully updated.
+.//button[@class='delete-post-button text-danger'] Delete icon
+
+--> SEND MESSAGE IN CHAT
+.//span[@class='text-white mr-2 header-chat-icon'] chat icon
+.//input[@type='text' and @class ="chat-field"] input message
+.//div[@class='chat-message-inner'] entered text
+.//span[@class ="chat-title-bar-close"] close chat
