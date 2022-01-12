@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -16,6 +17,7 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass());//сюда будет передаватся красивый логи
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected CreatePostPage createPostPage;
 
     @Before //будет запущена перед каждой аннотацией
     public void setUp() {
@@ -26,6 +28,7 @@ public class BaseTest {
         logger.info("Browser was opened");
         loginPage=new LoginPage(webDriver);
         homePage=new HomePage(webDriver);
+        createPostPage=new CreatePostPage(webDriver);
     }
 
     @After//будет запущена после каждой аннотацией
