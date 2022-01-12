@@ -127,15 +127,18 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    public boolean checkErrorTextSignUpLogin(){
-        return checkErrorText(errorTextLoginSignUp);
+    public LoginPage checkErrorTextSignUpLogin(){
+        Assert.assertTrue("Message on login field isn't displayed", checkErrorText(errorTextLoginSignUp));
+        return this;
     }
 
-    public boolean checkErrorTextSignUpMail(){
-        return checkErrorText(errorTextMailSignUp);
+    public LoginPage checkErrorTextSignUpMail(){
+        Assert.assertTrue("Message on email field isn't displayed", checkErrorText(errorTextMailSignUp));
+        return this;
     }
 
-    public boolean checkErrorTextSignUpPass(){
-        return checkErrorText(errorTextPassSignUp);
+    public LoginPage checkErrorTextSignUpPass(){
+        Assert.assertTrue("Message on password field isn't displayed", checkErrorText(errorTextPassSignUp));
+        return this;
         }
     }
