@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -17,6 +18,8 @@ public class BaseTest {
     //оголошуємо змінну loginPage/homepage
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected CreatePostPage createPostPage;
+
 
     @Before
     public void setUp() {
@@ -25,9 +28,10 @@ public class BaseTest {
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         logger.info("Browser was opened");
-        //create new page object and wlii work with webDriver(chrome)
+        //create new page object and will work with webDriver(chrome)
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        createPostPage = new CreatePostPage(webDriver);
 
     }
 

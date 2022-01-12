@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -17,6 +18,7 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected CreatePostPage createPostPage;
     @Before // запущена перед каждой аннотацией Тест
     public void setUp(){
         WebDriverManager.chromedriver().setup(); // установка нужной версии
@@ -26,6 +28,8 @@ public class BaseTest {
         logger.info("browser was open");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        createPostPage = new CreatePostPage(webDriver);
+
 
     }
 

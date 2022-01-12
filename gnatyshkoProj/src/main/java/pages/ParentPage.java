@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
@@ -20,10 +21,25 @@ public class ParentPage {
         try{
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted");
+            logger.info(text + " was inputted");
         }
         catch(Exception e){
             printErrorAndStopTest(e);
+        }
+    }
+
+    protected boolean isElementDisplayed(WebElement webElement) {
+        try {
+            boolean state = webElement.isDisplayed();
+            if(state==true){
+                logger.info("Element is displayed");
+            } else {
+                logger.info("Element is not displayed");
+            }
+           return state;
+        } catch(Exception e){
+            logger.info("Element is not displayed");
+            return false;
         }
     }
 
@@ -33,6 +49,35 @@ public class ParentPage {
             logger.info("Element was clicked");
         } catch(Exception e){
             printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDown(WebElement dropDown, String text){
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DO");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectValueInDropDown(WebElement dropDown, String value){
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DO");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void waitChatToBeHide(){
+        //TODO wait chat
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
