@@ -62,7 +62,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public CreatePostPage selectValueInDDUsingList(String optionForSelect) {
-        selectTextInDDWithListOfElements(selectOptions, optionForSelect);
+        selectTextInDropDownByUI(selectOptions, optionForSelect);
         return this;
     }
 

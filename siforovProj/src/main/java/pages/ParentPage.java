@@ -82,7 +82,7 @@ public class ParentPage {
         }
     }
 
-    protected void selectTextInDDWithListOfElements(List<WebElement> selectOptionsList, String textOfOption){
+    protected void selectTextInDropDownByUI(List<WebElement> selectOptionsList, String textOfOption){
         try{
             for (int i = 0; i < selectOptionsList.size(); i++) {
                 if (selectOptionsList.get(i).getText().equals(textOfOption)) {
