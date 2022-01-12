@@ -113,7 +113,6 @@ public class LoginPage extends ParentPage {
             return driver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).getText().equalsIgnoreCase("error");
 
         }catch (Exception e){
-            printErrorAndStopTest(e);
             return false;
         }
     }
@@ -122,7 +121,6 @@ public class LoginPage extends ParentPage {
         try {
             return driver.findElement(By.xpath(".//button[@type='submit']")).isDisplayed();
         }catch (Exception e){
-            printErrorAndStopTest(e);
             return false;
         }
     }
