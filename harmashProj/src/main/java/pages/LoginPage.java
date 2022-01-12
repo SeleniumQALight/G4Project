@@ -39,11 +39,11 @@ public class LoginPage extends ParentPage {
 //        } catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-        enterTextInTpElement(inputLoginSignIn,login);
+        enterTextInToElement(inputLoginSignIn,login);
     }
 
     public void enterPasswordIntoInputPassWord(String passWord) {
-        enterTextInTpElement(inputPassWordSignIn,passWord);
+        enterTextInToElement(inputPassWordSignIn,passWord);
     }
 
     public void clickOnButtonSignIn() {
