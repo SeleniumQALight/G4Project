@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -20,5 +21,10 @@ public class HomePage extends ParentPage {
         }catch (Exception e){
             return false;
         }
+    }
+
+    public HomePage checkIsButtonSignOutDisplayed(){
+        Assert.assertTrue(" Button SignOut Is not displayed", isButtonSignOutDisplayed());
+    return this;
     }
 }
