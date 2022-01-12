@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pajes.CreatePostPage;
 import pajes.HomePage;
 import pajes.LoginPage;
 
@@ -16,6 +17,7 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected CreatePostPage createPostPage;
         @Before
         public  void setUp(){
             WebDriverManager.chromedriver().setup();;
@@ -25,6 +27,7 @@ public class BaseTest {
             logger.info("Browser was open");
             loginPage = new LoginPage(webDriver);
             homePage = new HomePage(webDriver);
+            createPostPage = new CreatePostPage(webDriver);
 
         }
         @After

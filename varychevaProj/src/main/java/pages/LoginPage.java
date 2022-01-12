@@ -2,10 +2,24 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
+import static libs.TestData.VALID_LOGIN;
+import static libs.TestData.VALID_PASS;
 import static org.junit.Assert.fail;
 
 public class LoginPage extends ParentPage {
+
+    @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+    private WebElement inputLoginSignIn;
+
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPasswordSignIn;
+
+    @FindBy(xpath = ".//button[text()='Sign In']")
+    private WebElement buttonSignIn;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -22,37 +36,30 @@ public class LoginPage extends ParentPage {
 
 
     public void enterLoginIntoInputLogin(String login) {
-        try {
-            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
-            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys(login);
-            logger.info(login + " was inputted into Input Login");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+        enterTextIntoElement(inputLoginSignIn, login);
     }
 
     public void enterPassWordIntoInputPassWord(String passWord) {
-        try {
-            webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
-            webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys(passWord);
-            logger.info(passWord + " was inputted ");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+        enterTextIntoElement(inputPasswordSignIn, passWord);
     }
 
     public void clickOnButtonSingIn() {
+        clickOnElement(buttonSignIn);
+    }
+
+    public boolean isButtonSignInDisplayed() {
         try {
-            webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
-            logger.info("Button Sing In was clicked");
+            return buttonSignIn.isDisplayed();
         } catch (Exception e) {
-            printErrorAndStopTest(e);
+            return false;
         }
     }
 
-
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element" + e);
-        fail("Can not work with element" + e);
+    public HomePage loginWithValidCred() {
+        openLoginPage();
+        enterLoginIntoInputLogin(VALID_LOGIN);
+        enterPassWordIntoInputPassWord(VALID_PASS);
+        clickOnButtonSingIn();
+        return new HomePage(webDriver);
     }
 }

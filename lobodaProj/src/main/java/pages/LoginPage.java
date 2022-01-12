@@ -1,11 +1,49 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 
 public class LoginPage extends ParentPage{
+    @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+    private WebElement inputLoginSignIn;
+
+    @FindBy(xpath = ".//input[@name='password' and @placeholder='Password']")
+    private WebElement inputPassWordSignIn;
+
+    @FindBy(xpath = ".//button[text()='Sign In']")
+    private WebElement buttonSignIn;
+
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement errorAlert;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputLoginSignUp;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPassWordSignUp;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailSignUp;
+
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//input[@id='username-register']/following-sibling::div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private WebElement alertInvalidLogin;
+
+    @FindBy(xpath = ".//input[@id='email-register']/following-sibling::div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private WebElement alertInvalidEmail;
+
+    @FindBy(xpath = ".//input[@id='password-register']/following-sibling::div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private WebElement alertInvalidPassWord;
+
+
+
+
     public LoginPage(WebDriver webDriver){
         super(webDriver);
     }
@@ -22,40 +60,20 @@ public class LoginPage extends ParentPage{
     }
 
     public void enterLoginIntoInputLogin(String login) {
-        try {
-            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
-            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys(login);
-            logger.info(login + " was inputted into Input Login");
-
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-        }
+        enterTextInToElement(inputLoginSignIn, login);
     }
 
     public void enterPassWordIntoInputPassWord(String passWord) {
-        try {
-            webDriver.findElement(By.xpath(".//input[@name='password' and @placeholder='Password']")).clear();
-            webDriver.findElement(By.xpath(".//input[@name='password' and @placeholder='Password']")).sendKeys(passWord);
-            logger.info(passWord + " was inputted");
-
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-        }
+        enterTextInToElement(inputPassWordSignIn, passWord);
     }
 
     public void clickOnButtonSignIn(){
-        try {
-            webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
-            logger.info("Button Sign In was clicked");
-
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-        }
+        clickOnElement(buttonSignIn);
     }
 
     public boolean isButtonSignInDisplayed(){
         try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+            return buttonSignIn.isDisplayed();
         }catch (Exception e){
             return false;
         }
@@ -63,16 +81,58 @@ public class LoginPage extends ParentPage{
 
     public boolean isErrorAlertDisplayed(){
         try {
-            return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
+            return errorAlert.isDisplayed();
         }catch (Exception e){
             return false;
         }
     }
 
-
-
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element" + e);
-        Assert.fail("Can not work with element" + e);
+    public HomePage loginWithValidCred(){
+        openLoginPage();
+        enterLoginIntoInputLogin(TestData.VALID_LOGIN);
+        enterPassWordIntoInputPassWord(TestData.VALID_PASS);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
+
+    public void enterLoginIntoInputLoginSignUp(String login) {
+        enterTextInToElement(inputLoginSignUp, login);
+    }
+
+    public void enterPassWordIntoInputPassWordSignUp(String passWord) {
+        enterTextInToElement(inputPassWordSignUp, passWord);
+    }
+
+    public void enterEmailIntoInputEmailSignUp(String email) {
+        enterTextInToElement(inputEmailSignUp, email);
+    }
+
+    public void clickOnButtonSignUp(){
+        clickOnElement(buttonSignUp);
+    }
+
+    public boolean isTextInAlertInvalidLoginCorrect() {
+        try {
+            return getTextFromElement(alertInvalidLogin).equals("Username must be at least 3 characters.");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isTextInAlertInvalidEmailCorrect() {
+        try {
+            return getTextFromElement(alertInvalidEmail).equals("You must provide a valid email address.");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isTextInAlertInvalidPassWordCorrect() {
+        try {
+            return getTextFromElement(alertInvalidPassWord).equals("Password must be at least 12 characters.");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

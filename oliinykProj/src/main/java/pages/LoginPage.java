@@ -1,10 +1,45 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+    //postoyanno ispolyzuemie elementi
+    @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+    private WebElement inputLoginSingIn;
+
+    @FindBy(xpath = ".//input[@type= 'password' and @placeholder='Password']")
+    private WebElement inputPasswordSingIn;
+
+    @FindBy(xpath = ".//button[text()='Sign In']")
+    private WebElement clickButtonSingIn;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputLoginSignUp;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputMailSignUP;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPassSignUp;
+
+    @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement errorTextLoginSignUp;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement errorTextMailSignUp;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement errorTextPassSignUp;
+
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -20,32 +55,59 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterLoginIntoInputLogin(String login) {
-        try {
-            driver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
-            driver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys(login);
-            logger.info(login + " was entered into login field");
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-        }
+//        try {
+//            inputLoginSingIn.clear();
+//            inputLoginSingIn.sendKeys(login);
+//            logger.info(login + " was entered into login field");
+//        }catch (Exception e){
+//            printErrorAndStopTest(e);
+//        }
+        enterTextIntoElement(inputLoginSingIn, login);
     }
     public void enterPasswordIntoInputPassword(String pass){
-        try {
-            driver.findElement(By.xpath(".//input[@type= 'password' and @placeholder='Password']")).clear();
-            driver.findElement(By.xpath(".//input[@type= 'password' and @placeholder='Password']")).sendKeys(pass);
-            logger.info((pass + " was entered into password field"));
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-        }
+//        try {
+//            inputPasswordSingIn.clear();
+//            inputPasswordSingIn.sendKeys(pass);
+//            logger.info((pass + " was entered into password field"));
+//        }catch (Exception e){
+//            printErrorAndStopTest(e);
+//        }
+        enterTextIntoElement(inputPasswordSingIn,pass);
     }
 
     public void clickOnSignIn(){
-        try {
-            driver.findElement(By.xpath(".//button[text()='Sign In']")).click();
-            logger.info("Button Sign In was clicked");
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-        }
+//        try {
+//            clickButtonSingIn.click();
+//            logger.info("Button Sign In was clicked");
+//        }catch (Exception e){
+//            printErrorAndStopTest(e);
+//        }
+        clickOnElement(clickButtonSingIn);
     }
+
+    public HomePage logedInHomepage(){
+        openLoginPage();
+        enterLoginIntoInputLogin(TestData.VALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.VALID_PASS);
+        clickOnSignIn();
+        return new  HomePage(driver);
+    }
+
+    public void  enterNotValidLogin(String login) {
+        enterTextIntoElement(inputLoginSignUp, login);
+    }
+
+    public void enterNotValidMail(String mail){
+        enterTextIntoElement(inputMailSignUP, mail);
+    }
+
+    public void enterNotValidPassword(String pass){
+        enterTextIntoElement(inputPassSignUp, pass);
+    }
+    public void clickOnSignUp(){
+        clickOnElement(buttonSignUp);
+    }
+
     public boolean displayedMessageError(){
         try {
             return driver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).getText().equalsIgnoreCase("error");
@@ -65,8 +127,18 @@ public class LoginPage extends ParentPage {
         }
     }
 
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can't work with element" + e);
-        Assert.fail("Can't work with element" + e);
+    public LoginPage checkErrorTextSignUpLogin(){
+        Assert.assertTrue("Message on login field isn't displayed", checkErrorText(errorTextLoginSignUp));
+        return this;
     }
-}
+
+    public LoginPage checkErrorTextSignUpMail(){
+        Assert.assertTrue("Message on email field isn't displayed", checkErrorText(errorTextMailSignUp));
+        return this;
+    }
+
+    public LoginPage checkErrorTextSignUpPass(){
+        Assert.assertTrue("Message on password field isn't displayed", checkErrorText(errorTextPassSignUp));
+        return this;
+        }
+    }

@@ -1,10 +1,21 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+    @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+    private WebElement inputLoginSignIn;
+
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPasswordSignIn;
+
+    @FindBy(xpath = ".//button[text()='Sign In']")
+    private WebElement buttonSignIn;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -15,47 +26,47 @@ public class LoginPage extends ParentPage {
             webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
             logger.info("Login Page was opened");
 
-        }catch (Exception e){
-            logger.error("Can not open Login Page " +e);
+        } catch (Exception e) {
+            logger.error("Can not open Login Page " + e);
             //Assert message will send in the Test Report
-            Assert.fail("Can not open Login Page " +e);
+            Assert.fail("Can not open Login Page " + e);
         }
     }
 
     public void enterLoginIntoInputLogin(String login) {
-        try{
-            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
-            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys(login);
-            logger.info(login+ " was inputted into Input Login field");
-
-        }catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+//        try {
+//            inputLoginSignIn.clear();
+//            inputLoginSignIn.sendKeys(login);
+//            logger.info(login + " was inputted into Input Login field");
+//
+//        } catch (Exception e) {
+//            printErrorAndStopTest(e);
+//        }
+        enterTextInToElement(inputLoginSignIn, login);
     }
 
-    public void enterLoginIntoInputPassword(String password) {
-        try{
-            webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
-            webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys(password);
-            logger.info(password+ " was inputted into Input Login field");
-
-        }catch (Exception e) {
-            printErrorAndStopTest(e);
+    public boolean verifyIfTheSignUPButtonIsDisplayed() {
+        try {
+            return webDriver.findElement(By.xpath(".//*[@type='submit']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
         }
+
     }
+
+    public void enterPasswordIntoInputPassword(String password) {
+        enterTextInToElement(inputPasswordSignIn, password);
+    }
+
     public void clickOnButtonSignIn() {
-        try{
-            webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
-            logger.info("Sign in Button clicked");
-
-        }catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+        clickOnElement(buttonSignIn);
     }
 
-
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element" + e);
-        Assert.fail("Can not work with element");
+    public HomePage loginWithValidCred() {
+        openLoginPage();
+        enterLoginIntoInputLogin(TestData.VALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.VALID_PASS);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }

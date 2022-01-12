@@ -1,13 +1,46 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+    @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+    private WebElement inputLoginSignIn;
+
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPasswordSignIn;
+
+    @FindBy(xpath = ".//button[text()='Sign In']")
+    private WebElement buttonSignIn;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUserNameSignUpForm;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailSignUpForm;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordSignUpForm;
+
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement alertTextUserNameAtLeast3Chars;
+
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement alertTextEmailMustBeValid;
+
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement alertPasswordAtLeast12Chars;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
 
     public void openLoginPage() {
         try {
@@ -20,36 +53,58 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterLoginIntoInputLogin(String login) {
-        try {
-            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).clear();
-            webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']")).sendKeys(login);
-            logger.info(login + " was inputted into Input Login");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+        enterTextIntoElement(inputLoginSignIn, login);
     }
 
     public void enterPasswordIntoInputPassword(String password) {
-        try {
-            webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).clear();
-            webDriver.findElement(By.xpath(".//input[@placeholder='Password']")).sendKeys(password);
-            logger.info(password + " was inputted into Input Password");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+        enterTextIntoElement(inputPasswordSignIn, password);
     }
 
-    public void clickOnButtonSignIn() {
-        try {
-            webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
-            logger.info("Button was clicked");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+    public void clickOnButton() {
+        clickOnElement(buttonSignIn);
     }
 
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element " + e);
-        Assert.fail("Can not work with element " + e);
+    public void enterUsernameIntoInputUsernameSignUpForm(String username){
+        enterTextIntoElement(inputUserNameSignUpForm, username);
+    }
+
+    public void enterEmailIntiEmailInputSignUpForm(String email){
+        enterTextIntoElement(inputEmailSignUpForm, email);
+    }
+
+    public void enterPasswordIntoPasswordInputSignUpForm(String password){
+        enterTextIntoElement(inputPasswordSignUpForm, password);
+    }
+
+    public void clickOnSignUpButton(){
+        clickOnElement(buttonSignUp);
+    }
+
+    public boolean userNameAlertTextIsVisible(){
+        return elementIsVisible(alertTextUserNameAtLeast3Chars);
+    }
+
+    public boolean emailAlertTextIsVisible(){
+        return elementIsVisible(alertTextEmailMustBeValid);
+    }
+
+    public boolean passwordAlertTextIsVisible(){
+        return elementIsVisible(alertPasswordAtLeast12Chars);
+    }
+
+    public boolean signUpButtonIsVisible(){
+        return elementIsVisible(buttonSignUp);
+    }
+
+    public boolean signInButtonIsVisible(){
+        return elementIsVisible(buttonSignIn);
+    }
+
+    public HomePage loginWithValidCredentials(){
+        openLoginPage();
+        enterLoginIntoInputLogin(TestData.VALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.VALID_PASS);
+        clickOnButton();
+        return new HomePage(webDriver);
     }
 }

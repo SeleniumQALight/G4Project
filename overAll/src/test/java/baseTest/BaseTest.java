@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -17,6 +18,8 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected CreatePostPage createPostPage;
+
     @Before
     public void setUp(){
         WebDriverManager.chromedriver().setup();
@@ -26,6 +29,7 @@ public class BaseTest {
         logger.info("Browser was opened");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        createPostPage = new CreatePostPage(webDriver);
     }
     @After
     public void tearDown(){

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
-    public void validLoginTest(){
+    public void validLoginTest() {
         loginPage.openLoginPage();
         loginPage.enterLoginIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
@@ -15,6 +15,16 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Button SignOut is not displayed", homePage.isButtonSignOutDisplayed());
 
 
+    }
+
+    @Test
+    public void inValidLoginTest() {
+        loginPage.openLoginPage();
+        loginPage.enterLoginIntoInputLogin("qaaut");
+        loginPage.enterPasswordIntoInputPassword("12345");
+        loginPage.clickOnButtonSignIn();
+
+        Assert.assertFalse("Button SignOut is not displayed", homePage.isButtonSignOutDisplayed());
 
     }
 }

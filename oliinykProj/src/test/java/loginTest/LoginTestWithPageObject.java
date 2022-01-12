@@ -12,7 +12,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnSignIn();
 
-        Assert.assertTrue("Button Sign Out went for wecetion", homePage.dispayedButtonSignOut());
+        Assert.assertTrue("Button Sign Out went for vacation", homePage.isDispayedButtonSignOut());
     }
     @Test
     public void notValidLogin(){
