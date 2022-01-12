@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends ParentPage {
+public class LoginPage extends ParentPageWithHeader {
     // тут будут описаны все елементы
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
 // указываем FindBy далее xpath- елемент будет найден по этому xpath
@@ -73,13 +73,7 @@ public class LoginPage extends ParentPage {
 //        Assert.fail("CanT work with element" + e);
 //    }
 
-    public boolean isErrorFieldDisplayed() {
-        try {
-            return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -103,6 +97,7 @@ public class LoginPage extends ParentPage {
             return false;
         }
     }
+
 }
 
 
