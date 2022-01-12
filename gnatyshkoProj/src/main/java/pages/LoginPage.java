@@ -90,22 +90,22 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkIsErrorMessageSignInDisplayed() {
-        Assert.assertTrue("Error about invalid Username is not displayed", elementIsDisplayed(messageErrorSignIn));
+        Assert.assertTrue("Error about invalid Username is not displayed", isElementDisplayed(messageErrorSignIn));
         return this;
     }
 
     public LoginPage checkIsErrorUsernameSignupDisplayed() {
-        Assert.assertTrue("Error about invalid Username is not displayed", elementIsDisplayed(errorUsernameSignup));
+        Assert.assertTrue("Error about invalid Username is not displayed", isElementDisplayed(errorUsernameSignup));
         return this;
     }
 
     public LoginPage checkIsErrorEmailSignupDisplayed() {
-        Assert.assertTrue("Error about invalid Email is not displayed", elementIsDisplayed(errorEmailSignup));
+        Assert.assertTrue("Error about invalid Email is not displayed", isElementDisplayed(errorEmailSignup));
         return this;
     }
 
     public LoginPage checkIsErrorPasswordSignupDisplayed() {
-        Assert.assertTrue("Error about invalid Password is not displayed", elementIsDisplayed(errorPasswordSignup));
+        Assert.assertTrue("Error about invalid Password is not displayed", isElementDisplayed(errorPasswordSignup));
         return this;
     }
 
