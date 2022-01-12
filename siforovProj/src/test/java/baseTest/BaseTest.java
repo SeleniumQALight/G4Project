@@ -6,9 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.ProfilePage;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +16,7 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected HomePage homePage;
     protected ProfilePage profilePage;
+    protected CreatePostPage createPostPage;
 
     @Before
     public void setUp() {
@@ -29,6 +28,7 @@ public class BaseTest {
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
         profilePage = new ProfilePage(webDriver);
+        createPostPage = new CreatePostPage(webDriver);
     }
 
     @After
