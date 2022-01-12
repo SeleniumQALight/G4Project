@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
 import java.util.Locale;
 
 
@@ -77,6 +78,24 @@ public class ParentPage {
             select.selectByVisibleText(text);
             logger.info(text+" was selected in DD");
         }catch(Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUI(List<WebElement> selectOptionsList, String textOfOption){
+        try{
+            for (int i = 0; i < selectOptionsList.size(); i++) {
+                if (selectOptionsList.get(i).getText().equals(textOfOption)) {
+                    selectOptionsList.get(i).click();
+                    logger.info("The " + textOfOption + "has been clicked");
+                    break;
+                }else{
+                    if(i == selectOptionsList.size()-1){
+                        logger.info("There is no option which matches "+textOfOption);
+                    }
+                }
+            }
+        }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class PostPage extends ParentPageWithHeader{
 
-    @FindBy(xpath = ".//*[@class='alert alert-success text-center']']")
+    @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement successTextPostCreated;
 
     @FindBy(xpath = ".//a[@class='text-primary mr-2']")
