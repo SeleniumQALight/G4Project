@@ -110,7 +110,7 @@ public class LoginPage extends ParentPage {
 
     public boolean displayedMessageError(){
         try {
-            return driver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).getText().equalsIgnoreCase("error");
+            return driver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
 
         }catch (Exception e){
             return false;

@@ -12,7 +12,7 @@ public class ParrentPageWithHeader extends ParentPage{
         super(driver);
     }
 
-    public void clickOnCreatePostButton(){
-        clickOnElement(buttonCreatePost);
+    public CreatePostPage clickOnCreatePostButton(){
+        clickOnElement(buttonCreatePost); return new CreatePostPage(driver);
     }
 }

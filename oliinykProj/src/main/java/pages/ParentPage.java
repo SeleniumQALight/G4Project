@@ -6,20 +6,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver driver;
-
+    WebDriverWait webDriverWait10, webDriverWait15;
     public ParentPage(WebDriver driver) {
         this.driver = driver;
         //inicializiruem elementi na stranicah (izuchity PageFactory)
         PageFactory.initElements(driver, this);
+        webDriverWait10 = new WebDriverWait(driver, 10);
+        webDriverWait15 = new WebDriverWait(driver, 15);
     }
 
     protected void enterTextIntoElement(WebElement webElement, String text){
         try {
+            webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
             logger.info(text + " was entered");
@@ -33,9 +38,10 @@ public class ParentPage {
         Assert.fail("Can't work with element" + e);
     }
 
-    protected void clickOnElement(WebElement webElement){
+
    protected void clickOnElement(WebElement webElement){
         try{
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info("Element was clicked");
         }catch (Exception e){
@@ -94,10 +100,6 @@ public class ParentPage {
         }catch (Exception e){
            e.printStackTrace();
         }
-    }
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can't work with element" + e);
-        Assert.fail("Can't work with element" + e);
     }
 
 }
