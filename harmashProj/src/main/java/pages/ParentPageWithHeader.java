@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 public class ParentPageWithHeader extends ParentPage {
     @FindBy(xpath = ".//a[text()='Create Post']")
     private WebElement buttonCreatePost;
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement buttonMyProfile;
 
     public ParentPageWithHeader(WebDriver webDriver) {
         super(webDriver);
@@ -16,5 +18,10 @@ public class ParentPageWithHeader extends ParentPage {
 
         clockOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+
+    public MyProfilePage clickOnMyProfileButton() {
+        clockOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
     }
 }
