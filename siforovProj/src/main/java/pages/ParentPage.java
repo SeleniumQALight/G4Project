@@ -6,7 +6,9 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
 import java.util.Locale;
 
 
@@ -22,10 +24,14 @@ public class ParentPage {
 
     protected boolean elementIsVisible(WebElement webElement){
         try{
-            webElement.isDisplayed();
-            return true;
+            if(webElement.isDisplayed()){
+                logger.info("The element is displayed");
+                return true;
+            }
+            logger.info("Element is not displayed");
+            return false;
         }catch (Exception e){
-            printErrorAndStopTest(e);
+            logger.info("Element isn't displayed");
             return false;
         }
     }
@@ -64,5 +70,43 @@ public class ParentPage {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);
+    }
+
+    protected void selectTextInDD(WebElement dropDown, String text){
+        try{
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text+" was selected in DD");
+        }catch(Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUI(List<WebElement> selectOptionsList, String textOfOption){
+        try{
+            for (int i = 0; i < selectOptionsList.size(); i++) {
+                if (selectOptionsList.get(i).getText().equals(textOfOption)) {
+                    selectOptionsList.get(i).click();
+                    logger.info("The " + textOfOption + "has been clicked");
+                    break;
+                }else{
+                    if(i == selectOptionsList.size()-1){
+                        logger.info("There is no option which matches "+textOfOption);
+                    }
+                }
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectValueInDropDown(WebElement dropDown, String value){
+        try{
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value+" was selected in DD");
+        }catch(Exception e){
+            printErrorAndStopTest(e);
+        }
     }
 }

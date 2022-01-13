@@ -1,9 +1,10 @@
 package pajes;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage extends ParentPage {
+public class HomePage extends ParentPageWithHeader {
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -14,5 +15,10 @@ public class HomePage extends ParentPage {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public HomePage checkIsButtonSingOutDisplayed(){
+        Assert.assertTrue("Button SingOut is not diplayed", isButtonSingOutDisplayed());
+        return this;
     }
 }

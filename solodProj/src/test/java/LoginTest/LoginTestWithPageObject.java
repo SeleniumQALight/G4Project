@@ -27,6 +27,4 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Error Field is not Displayed", loginPage.isErrorFieldDisplayed());
 
     }
-
-
 }

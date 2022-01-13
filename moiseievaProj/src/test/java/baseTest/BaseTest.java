@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RegistrationPage;
@@ -18,6 +19,7 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected HomePage homePage;
     protected RegistrationPage registrationPage;
+    protected CreatePostPage createPostPage;
 
     @Before
     public void setUp(){
@@ -29,6 +31,7 @@ public class BaseTest {
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
         registrationPage = new RegistrationPage(webDriver);
+        createPostPage = new CreatePostPage(webDriver);
     }
 
     @After

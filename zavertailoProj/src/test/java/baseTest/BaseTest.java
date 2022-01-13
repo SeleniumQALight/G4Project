@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.CreatePostPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,6 +17,7 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass()); //логирование
    protected LoginPage loginPage; //объявили переменную
     protected HomePage homePage;
+    protected CreatePostPage createPostPage;
     @Before
     public  void setUp(){
         WebDriverManager.chromedriver().setup();
@@ -25,6 +27,7 @@ public class BaseTest {
         logger.info("Browser was opened");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        createPostPage = new CreatePostPage(webDriver);
 
     }
     @After
