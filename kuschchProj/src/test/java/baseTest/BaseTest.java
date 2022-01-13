@@ -12,31 +12,28 @@ import pages.LoginPage;
 
 import java.util.concurrent.TimeUnit;
 
-
 public class BaseTest {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-    protected LoginPage loginPage;
     protected HomePage homePage;
+    protected LoginPage loginPage;
     protected CreatePostPage createPostPage;
-    @Before // запущена перед каждой аннотацией Тест
-    public void setUp(){
-        WebDriverManager.chromedriver().setup(); // установка нужной версии
-        webDriver= new ChromeDriver(); //реализация интерфейса вебрайвера
+
+    @Before
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
+        webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-        logger.info("browser was open");
+        logger.info("Browser was opened");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
         createPostPage = new CreatePostPage(webDriver);
-
-
     }
-
-    @After // запущена после каждой аннотацией Тест
-    public void tearDown(){
+    @After
+    public void tesrDown() {
         webDriver.quit();
-        logger.info("browser was closed");
-
+        logger.info("Browser was closet");
     }
+
 }

@@ -21,4 +21,5 @@ public class HomePage  extends ParentPageWithHeader{
         Assert.assertTrue(" Button SignOut is not displayed", isButtonSingOutDisplayed());
         return this;
     }
+
 }

@@ -1,4 +1,4 @@
-package postsTests;
+package postsTest;
 
 import baseTest.BaseTest;
 import org.junit.Test;
@@ -12,13 +12,13 @@ public class CreatePostTest extends BaseTest {
                 .clickOnCreatePostButton();
         createPostPage
                 .checkIsRedirectToCreatePostPage()
-                .enterTextIntoTitleInput("G4-ostapiuk")
-                .enterTextIntoBodyInput("Post")
+                .enterTextIntoTitleInput("G4-kuschch")
+                .enterTextIntoBody("Body post")
 //                .selectTextInDropDownRole("Частное сообщение")
-                .selectValueInDropDownRole("One Person")
+                .selectValueDropdownRole("One Person")
                 .clickOnButtonSaveNewPost()
-                .checkIsRedirectedToPostPage()
-                .chechIsTextInAlert("New post successfully created.")
+                .checkIsRedirectToPostPage()
+                .checkTestInAlert("New post successfully created.")
         ;
     }
 }
