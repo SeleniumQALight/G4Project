@@ -4,7 +4,7 @@ import BaseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestWithPO extends BaseTest {
+public class TestWithPageObject extends BaseTest {
         @Test
         public void validLoginTest() {
             loginPage.openLoginPage();

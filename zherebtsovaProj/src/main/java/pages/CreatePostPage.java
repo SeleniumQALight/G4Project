@@ -1,12 +1,12 @@
 package pages;
-
-
+import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPageWithHeader {
+
     @FindBy(name = "title")
     private WebElement inputTitle;
 
@@ -15,6 +15,9 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     @FindBy(tagName = "select")
     private WebElement dropDownRole;
+
+    @FindBy(xpath = "//select[@name='select1']/option[@value='Group Message']")
+    private WebElement groupSelectorInDropDown;
 
     @FindBy(xpath = "//*[text() = 'Save New Post']")
     private WebElement buttonSaveNewPost;
@@ -47,13 +50,19 @@ public class CreatePostPage extends ParentPageWithHeader {
         selectValueInDropDown(dropDownRole, valueForSelect);
         return this;
     }
-    public PostPage clickOnButtonSaveNewPost () {
+
+   public CreatePostPage selectTextInDropDownByUI() {
+        clickOnElement(dropDownRole);
+        clickOnElement(groupSelectorInDropDown);
+        return this;
+    }
+    public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
-
-
 }
+
+
 
 
 
