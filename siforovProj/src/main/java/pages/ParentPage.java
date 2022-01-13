@@ -90,6 +90,24 @@ public class ParentPage {
         }
     }
 
+    //ClassWork
+    protected void findElementByTextWithinSpaceOfSimilar(List<WebElement> webElements, String postTitle){
+        try{
+            for (int i = 0; i < webElements.size(); i++) {
+                if (webElements.get(i).getText().equals(postTitle)) {
+                    logger.info("The " + postTitle + "has been clicked");
+                    break;
+                }else{
+                    if(i == webElements.size()-1){
+                        logger.info("There is no option which matches "+postTitle);
+                    }
+                }
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
     protected void selectTextInDropDownByUI(List<WebElement> selectOptionsList, String textOfOption){
         try{
             for (int i = 0; i < selectOptionsList.size(); i++) {
