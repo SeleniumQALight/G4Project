@@ -9,8 +9,7 @@ public class CreatePostTest extends BaseTest {
         loginPage
                 .loginWithValidCred()
                 .checkIsButtonSignOutDisplayed()
-                .clickOnCreatePostButton();
-        createPostPage
+                .clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInToTitleInput("G4-loboda")
                 .enterTextInToBodyInput("G4-loboda-body")
