@@ -48,6 +48,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPassWordIntoInputPassWord("");
         loginPage.clickOnButtonSignIn();
 
-        Assert.assertTrue("Button SignUpForOurApp is not displayed. Password not entered", loginPage.IsButtonErrorForOurAppDisplayed());
+        Assert.assertTrue("Button SignUpForOurApp is not displayed. Password not entered",
+                loginPage.IsButtonErrorForOurAppDisplayed());
     }
 }
