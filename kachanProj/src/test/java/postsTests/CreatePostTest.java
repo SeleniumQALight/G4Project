@@ -14,7 +14,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInToTitleInput("G4-Kachan")
                 .enterTextInToBodyInput("Body role")
-   //           .selectTextInDropDownRole("")
+                //           .selectTextInDropDownRole("")
                 .selectvalueInDropDownRole("One Person")
                 .clickOnButtonSaveNewPost()
                 .checkTextInAlter("New post successfully created.");
