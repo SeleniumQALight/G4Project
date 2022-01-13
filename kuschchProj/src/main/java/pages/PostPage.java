@@ -6,11 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class PostPage extends ParentPageWithHeader{
-
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
-    private WebElement successTextPostCreated;
+    private WebElement alertSucces;
 
-    @FindBy(xpath = ".//a[@class='text-primary mr-2']")
+    @FindBy(xpath = ".//a[@data-original-title='Edit']")
     private WebElement editButton;
 
     public PostPage(WebDriver webDriver) {
@@ -18,13 +17,13 @@ public class PostPage extends ParentPageWithHeader{
     }
 
     public PostPage checkIsRedirectToPostPage(){
-        Assert.assertTrue("The Edit button is not displayed", elementIsVisible(editButton));
+        waitChatTobeHide();
+        Assert.assertTrue("Edit Button is notDisplayed", isElementDisplayed(editButton));
         return this;
     }
 
-    public PostPage checkTextInAlert(String text){
-        Assert.assertEquals("Text in Alert ",text, successTextPostCreated.getText());
+    public PostPage checkTestInAlert(String text){
+        Assert.assertEquals("Text in Alert ", text, alertSucces.getText());
         return this;
     }
-
 }
