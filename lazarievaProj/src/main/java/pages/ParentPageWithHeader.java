@@ -14,8 +14,9 @@ public class ParentPageWithHeader extends ParentPage {
         super(webDriver);
     }
 
-    public void clickOnCreatePostButton(){
+    public CreatePostPage clickOnCreatePostButton(){
         clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
     }
 
 }

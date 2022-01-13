@@ -5,15 +5,22 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
+    WebDriverWait webDriverWait10;
+    WebDriverWait webDriverWait15;
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
+        webDriverWait10 = new WebDriverWait(webDriver, 10);
+        webDriverWait15 = new WebDriverWait(webDriver, 15);
     }
 
     protected void enterTextInToElement(WebElement webElement, String text) {
@@ -29,7 +36,7 @@ public class ParentPage {
 
     protected void clickOnElement(WebElement webElement) {
         try {
-            webElement.click();
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement)).click();
             logger.info(("WebElement clicked"));
         } catch (Exception e) {
             printErrorAndStopTest(e);
