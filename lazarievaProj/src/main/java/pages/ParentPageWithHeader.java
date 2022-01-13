@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 public class ParentPageWithHeader extends ParentPage {
     @FindBy(xpath = ".//a[@href ='/create-post']")
     private WebElement buttonCreatePost;
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private  WebElement buttonMyProfile;
 
 
     public ParentPageWithHeader(WebDriver webDriver) {
@@ -17,6 +19,12 @@ public class ParentPageWithHeader extends ParentPage {
     public CreatePostPage clickOnCreatePostButton(){
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+
+    public MyProfilePage clickOnMyProfile()
+    {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
     }
 
 }
