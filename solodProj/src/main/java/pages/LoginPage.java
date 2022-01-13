@@ -65,7 +65,7 @@ public class LoginPage extends ParentPageWithHeader {
 //        } catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-        clickElement(buttonSingIn);
+        clickOnElement(buttonSingIn);
     }
 
 //    private void printErrorAndStopTest(Exception e) {

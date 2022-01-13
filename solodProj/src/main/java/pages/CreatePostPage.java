@@ -52,7 +52,7 @@ public class CreatePostPage extends ParentPageWithHeader{
     }
 
     public PostPage clickOnButtonSavePost() {
-        clickElement(buttonSaveNewPost);
+        clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
 }
