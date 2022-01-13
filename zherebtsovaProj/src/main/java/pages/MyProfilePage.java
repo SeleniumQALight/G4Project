@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public class MyProfilePage extends ParentPageWithHeader{
-    public String postTitleLocator = ".//*[text()='test'='%s']"; //%s-чтоб подставлять значения
+    public String postTitleLocator = ".//*[text()='%s']"; //%s-чтоб подставлять значения
     public MyProfilePage(WebDriver webDriver){
         super(webDriver);
     }

@@ -16,7 +16,7 @@ public class CreatePostTest extends BaseTest {
 
         createPostPage
                 .checkIsRedirectToCreatePostPage()
-                .enterTextInToTitleInput("28-09-TomCat")
+                .enterTextInToTitleInput(title)
                 .enterTextInToBodyInput("28-09-TomCat")
                 //.selectTextInDropDownRole("Частное сообщение")
                 //.selectValueInDropDownRole("One Person")
