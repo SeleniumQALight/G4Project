@@ -82,13 +82,5 @@ public class ParentPage {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
-        //protected void selectTextInDropDownByUI(WebElement selectorInDropDown);{
-        //  try {
-        ///   Select select = new Select(selectorInDropDown);
-        //  select.selectorInDropDown(value);
-        //  logger.info(element + "was selected");
-        // } catch (Exception e) {
-       // printErrorAndStopTest(e);
-        //  }
     }
 }
