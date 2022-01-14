@@ -73,5 +73,14 @@ public class LoginPage extends ParentPage {
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
+
+    public boolean isButtonSingInDisplayed() {
+        try {
+           return buttonSingIn != null && buttonSingIn.getText().equals("Sign In");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
 
