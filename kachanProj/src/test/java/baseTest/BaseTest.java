@@ -6,9 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pajes.CreatePostPage;
-import pajes.HomePage;
-import pajes.LoginPage;
+import pages.CreatePostPage;
+import pages.HomePage;
+import pages.LoginPage;
 
 import java.util.concurrent.TimeUnit;
 
