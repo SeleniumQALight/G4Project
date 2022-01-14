@@ -18,6 +18,9 @@ public class CreatePostPage extends ParrentPageWithHeader{
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//option[@value='One Person']")
+    private WebElement valueOnePerson;
+
     public CreatePostPage(WebDriver driver) {
         super(driver);
     }
@@ -51,5 +54,11 @@ public class CreatePostPage extends ParrentPageWithHeader{
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(driver);
+    }
+
+    public CreatePostPage selectTextInDropDownByUI(){
+        clickOnElement(dropDownRole);
+        clickOnElement(valueOnePerson);
+        return this;
     }
 }

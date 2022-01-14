@@ -24,4 +24,19 @@ public class CreatePost extends BaseTest {
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title);
     }
+
+    @Test
+    public void createNewPostByUIDropdown(){
+        loginPage.logedInHomepage()
+                .checkIsButtonSingOutDisplayed()
+                .clickOnCreatePostButton();
+        createPostPage.checkRedirectToCreatePostPage()
+                .enterTextIntoTitleInput("G4-Oliinyk UI")
+                .enterTextIntoBodyInput("Test Auto UI")
+                //.selectTextInDropDownRole("Частное сообщение")
+                .selectTextInDropDownByUI()
+                .clickOnButtonSaveNewPost()
+                .checkIsRedirectToPostPage()
+                .checkTextInAlert("New post successfully created.");
+    }
 }
