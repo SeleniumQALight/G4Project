@@ -20,6 +20,9 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//select[@name='select1']")
+    private WebElement dropDownMenu;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -43,6 +46,11 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     public CreatePostPage selectTextInDropDownRole(String textForSelect) {
         selectTextInDropDown(dropDownRole, textForSelect);
+        return this;
+    }
+
+    public CreatePostPage selectTextInDropDownByUi(String textForSelect) {
+        selectTextInDropDownUi(dropDownMenu, textForSelect);
         return this;
     }
 
