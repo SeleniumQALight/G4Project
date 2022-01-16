@@ -23,6 +23,9 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//select[@name='select1']")
     private WebElement dropDownMenu;
 
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBox;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -62,5 +65,24 @@ public class CreatePostPage extends ParentPageWithHeader {
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
+    }
+
+    public CreatePostPage clickOnCheckBox() {
+        Assert.assertTrue("CheckBox is not displayed", checkBox.isDisplayed());
+        try {
+            if (checkBox.isSelected() == false) {
+                checkBox.click();
+            } else if (checkBox.isSelected() == true) {
+                System.out.println("CheckBox is selected already");
+            } else if (!checkBox.isSelected() == true) {
+                checkBox.click();
+            } else if (!checkBox.isSelected() == false) {
+                System.out.println("CheckBox is selected already");
+            }
+            logger.info("CheckBox is active");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+        return new CreatePostPage(webDriver);
     }
 }
