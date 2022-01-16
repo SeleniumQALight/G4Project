@@ -7,6 +7,7 @@ import org.junit.Test;
 public class CreatePostTest extends BaseTest {
    final String title = "G4-bondarenko" + Util.getDateAndTimeFormatted();
 
+
     @Test
     public  void createNewPost(){
 
@@ -20,7 +21,8 @@ public class CreatePostTest extends BaseTest {
                 .enterTextIntoTitleInput(title)
                 .enterTextIntoBodyInput("Body post")
    //             .selectTextInDropDownRole("Частное сообщение")
-                .selectValueInDropDownRole("One Person")
+                //.selectValueInDropDownRole("One Person")
+                .selectTextInDropDownRoleByUI()
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")

@@ -18,6 +18,10 @@ public class CreatePostPage extends ParentPage{
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//*[text()='Сообщение для группы']")
+    private WebElement valueForSelectDropDown;
+
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -47,6 +51,12 @@ public class CreatePostPage extends ParentPage{
       selectValueInDropDown(dropDownRole, valueForSelect);
         return this;
     }
+
+   public CreatePostPage selectTextInDropDownRoleByUI() {
+        selectTextInDropDownByUI(dropDownRole,valueForSelectDropDown);
+        return this;
+   }
+
 
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);

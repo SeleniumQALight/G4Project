@@ -79,6 +79,19 @@ public class ParentPage {
         }
     }
 
+    protected void selectTextInDropDownByUI(WebElement webElement, WebElement webElement1) {
+        try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            webElement.click();
+            logger.info(webElement + "Element was clicked");
+            webElement1.click();
+            logger.info(webElement1 + "Element was clicked");
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
     protected void waitChatToBeHidden(){
         //TODO wait chat
         try {
