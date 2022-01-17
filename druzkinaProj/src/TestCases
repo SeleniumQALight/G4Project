@@ -1,22 +1,51 @@
-TestCase1
-Login
-1 Перейти на сайт https://qa-complex-app-for-testing.herokuapp.com
-2 Выполнить проверку по наличию поля Username полне доступно для ввода
-3 Выполнить проверку по наличию поля Password полне доступно для ввода
-4 Выполнить проверку по наличию  кнопки Sign In
-5 Выполнить проверку тайтла
+Перейти по ссылке (https://qa-complex-app-for-testing.herokuapp.com/)
+1 Ввести "druz1" в поле ввода "Username"
+2 Ввести "g.druzkina@gmail" в поле "Email"
+3 Ввести "Qwerty123456" в поле ввода "Password"
+4 Нажать кнопку "Sign up for OurApp"
 
-ER:
-Поле Username  - есть
-PПоле assword -  есть
-Кнопка Sign In  - есть
-Тайтл совпадает
+Expected result: Отображается текст "Hello druz1, your feed is empty."
+
+TC1 Проверка неуспешного логина? пользователя нет
+1 В поле ввода "Username" - druz1
+2 В поле ввода "Password" - Qwerty123456
+3 Нажать кнопку "Sign in"
+
+ER -  появляется "Error".
+
+TC2 Проверка неуспешного логина
+
+1 В поле ввода "Username" - druz1222
+2 В поле ввода "Password" - Qwerty123456
+3 Нажать кнопку "Sign in"
+
+ER -  появляется "Invalid username / password"
 
 
-TestCase2
+TC3 Успешный логин
+1 В поле ввода "Username" - druz1
+2 В поле ввода "Password" - Qwerty123456
+3 Нажать кнопку "Sign in"
 
-1
-2
-3
+Expected result: Успешно залогинились
 
-ER
+TC4 После успешного логина вылогинится
+1 В поле ввода "Username" - druz1
+2 В поле ввода "Password" - Qwerty123456
+3 Нажать кнопку "Sign in"
+4 Проверить наличие кнопки "Sign Out"
+5 Нажать кнопку "Sign Out"
+6 Проверить наличие кнопки "Sign in"
+
+Expected result: Успешно разлогинит и перекинет на Login Page
+
+TC5 Create Post
+1 В поле ввода "Username" - druz1
+2 В поле ввода "Password" - Qwerty123456
+3 Нажать кнопку "Sign in"
+4 Нажать кнопку "Create Post"
+5 Ввести текст "NewTest" в поле "Title"
+6 Ввести "First test" в поле "Body Content"
+7 Нажать кнопку "Save New Post"
+
+Expected results: На экран выведется сообщение "New post successfully created."
