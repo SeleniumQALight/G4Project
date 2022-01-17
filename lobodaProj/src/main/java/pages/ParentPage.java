@@ -89,7 +89,7 @@ public class ParentPage {
             clickOnElement(dropDown);
             WebElement onePersonRow = webDriver.findElement(
                     By.xpath(String.format(row,text)));
-            onePersonRow.click();
+            clickOnElement(onePersonRow);
             logger.info(text + " was selected in DD");
         }catch (Exception e){
             printErrorAndStopTest(e);
@@ -114,6 +114,31 @@ public class ParentPage {
             printErrorAndStopTest(e);
         }
         return null;
+    }
+
+    protected void setStateForCheckbox(WebElement checkbox, String requiredState) {
+        boolean currentCheckboxState = checkbox.isSelected();
+        switch (requiredState){
+            case ("check"):
+                if (currentCheckboxState){
+                    logger.info("Checkbox is already checked");
+                }else {
+                    clickOnElement(checkbox);
+                    logger.info("Checkbox was checked");
+                }
+                break;
+            case ("uncheck"):
+                if (!currentCheckboxState){
+                    logger.info("Checkbox is already unchecked");
+                }else {
+                    clickOnElement(checkbox);
+                    logger.info("Checkbox was unchecked");
+                }
+                break;
+            default:
+                logger.info("requiredState is incorrect. currentCheckboxState = " + currentCheckboxState);
+                break;
+        }
     }
 
 }

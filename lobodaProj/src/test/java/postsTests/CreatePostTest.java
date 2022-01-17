@@ -16,6 +16,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInToTitleInput(title)
                 .enterTextInToBodyInput("G4-loboda-body")
+                .setStateForCheckboxUniquePost("check")
 //                .selectTextInDropDownRole("Частное сообщение")
 //                .selectValueInDropDownRole("One Person")
                 .selectTextByUIInDropDownRole("Частное сообщение")
