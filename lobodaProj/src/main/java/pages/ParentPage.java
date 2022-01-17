@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -78,6 +79,18 @@ public class ParentPage {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DD");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void selectTextInDropDownByUI(WebElement dropDown, String row, String text){
+        try {
+            clickOnElement(dropDown);
+            WebElement onePersonRow = webDriver.findElement(
+                    By.xpath(String.format(row,text)));
+            onePersonRow.click();
+            logger.info(text + " was selected in DD");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
