@@ -22,7 +22,7 @@ public class CreatePostTest extends BaseTest {
                 .enterTextIntoBodyInput("Body post")
    //             .selectTextInDropDownRole("Частное сообщение")
                 //.selectValueInDropDownRole("One Person")
-                .selectTextInDropDownRoleByUI()
+                 .selectTextInDropDownRoleByUI("Сообщение для группы")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")

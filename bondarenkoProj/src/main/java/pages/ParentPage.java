@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -10,10 +11,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+
 public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
     WebDriverWait webDriverWait10, webDriverWait15;
+
+    private String selectOptionLocator = ".//*[text()='%s']";
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -79,13 +84,15 @@ public class ParentPage {
         }
     }
 
-    protected void selectTextInDropDownByUI(WebElement webElement, WebElement webElement1) {
+
+    protected void selectTextInDropDownByUI(WebElement webElement, String text) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info(webElement + "Element was clicked");
-            webElement1.click();
-            logger.info(webElement1 + "Element was clicked");
+            WebElement optionForSelect = webDriver.findElement(By.xpath(String.format(selectOptionLocator, text)));
+            optionForSelect.click();
+            logger.info(text + " was chosen");
         }catch (Exception e) {
             printErrorAndStopTest(e);
         }
