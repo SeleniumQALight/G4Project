@@ -18,7 +18,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoTitleInput(title)
                 .enterTextIntoBodyInput("Body post")
-                .clickOnCheckBox()
+                .checkCheckbox("check")
 //                .selectTextInDropDownRole("Частное сообщение")
 //                .selectValueInDropDownRole("One Person")
                 .selectTextInDropDownByUi("Частное сообщение")

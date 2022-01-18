@@ -67,21 +67,38 @@ public class CreatePostPage extends ParentPageWithHeader {
         return new PostPage(webDriver);
     }
 
-    public CreatePostPage clickOnCheckBox() {
+//    public CreatePostPage clickOnCheckBox() {
+//        Assert.assertTrue("CheckBox is not displayed", checkBox.isDisplayed());
+//        try {
+//            if (checkBox.isSelected() == false) {
+//                checkBox.click();
+//            } else if (checkBox.isSelected() == true) {
+//                System.out.println("CheckBox is selected already");
+//            } else if (!checkBox.isSelected() == true) {
+//                checkBox.click();
+//            } else if (!checkBox.isSelected() == false) {
+//                System.out.println("CheckBox is selected already");
+//            }
+//            logger.info("CheckBox is active");
+//        } catch (Exception e) {
+//            printErrorAndStopTest(e);
+//        }
+//        return new CreatePostPage(webDriver);
+//    }
+
+    public CreatePostPage checkCheckbox(String checkBoxStatus) {
         Assert.assertTrue("CheckBox is not displayed", checkBox.isDisplayed());
-        try {
-            if (checkBox.isSelected() == false) {
-                checkBox.click();
-            } else if (checkBox.isSelected() == true) {
-                System.out.println("CheckBox is selected already");
-            } else if (!checkBox.isSelected() == true) {
-                checkBox.click();
-            } else if (!checkBox.isSelected() == false) {
-                System.out.println("CheckBox is selected already");
-            }
-            logger.info("CheckBox is active");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
+
+        if (checkBoxStatus.equals("check") && checkBox.isSelected()) {
+            logger.info("CheckBox was clicked already before, no need to select it one more time");
+        } else if (checkBoxStatus.equals("check") && !checkBox.isSelected()) {
+            checkBox.click();
+            logger.info("Checkbox wasn't clicked before that's why it was selected");
+        } else if (checkBoxStatus.equals("uncheck") && checkBox.isSelected()) {
+            checkBox.click();
+            logger.info("Checkbox was clicked already before that's why it was deselected");
+        } else if (checkBoxStatus.equals("uncheck") && !checkBox.isSelected()) {
+            logger.info("Checkbox wasn't clicked before and no need to click on it");
         }
         return new CreatePostPage(webDriver);
     }
