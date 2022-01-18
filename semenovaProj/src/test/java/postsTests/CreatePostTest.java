@@ -32,4 +32,26 @@ public class CreatePostTest extends BaseTest {
 
 
     }
+
+    @Test
+    public void selectInDropdown() {
+        loginPage
+                .loginWithValidCred()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnCreatePostButton()
+                .checkIsRedirectToCratePostPage()
+                .enterTextIntoTitleInput(title)
+                .enterTextIntoBodyInput("Body post")
+
+                .checkFieldSelectIsDisplayed()
+                .clickOnDropDownRole()
+                .selectTextInDropDownRoleByUi("Частное сообщение")
+                .clickOnTextOnePersonInDropDown()
+                .checkFieldCheckBoxIsDisplayed()
+                .clickOnCheckBox()
+
+
+        ;
+
+    }
 }

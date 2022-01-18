@@ -44,7 +44,7 @@ public class ParentPage {
         }
     }
 
-    protected boolean messageIsDisplayed(WebElement webElement) {
+    protected boolean isMessageDisplayed(WebElement webElement) {
         try {
             return webElement.isDisplayed();
         } catch (Exception e) {
@@ -85,6 +85,16 @@ public class ParentPage {
             select.selectByValue(value);
             logger.info(value + "was selected in DD");
 
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUI(WebElement dropDown, WebElement webElement) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByIndex(1);
+            logger.info(webElement + "was selected in DD");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }

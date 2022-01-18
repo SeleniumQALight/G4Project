@@ -2,20 +2,19 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSingIn;
+    private WebElement inputLoginSignIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPasswordSingIn;
+    private WebElement inputPasswordSignIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSingIn;
+    private WebElement buttonSignIn;
 
     @FindBy(xpath = ".//input[@name='username'and@placeholder='Pick a username']")
     private WebElement inputPickUsername;
@@ -54,24 +53,24 @@ public class LoginPage extends ParentPage {
 
     public void enterLoginIntoInputLogin(String login) {
 //        try {
-//            inputLoginSingIn.clear();
-//            inputLoginSingIn.sendKeys(login);
+//            inputLoginSignIn.clear();
+//            inputLoginSignIn.sendKeys(login);
 //            logger.info(login + " was inputted into Input Login");
 //        } catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-        enterTextIntoElement(inputLoginSingIn, login);
+        enterTextIntoElement(inputLoginSignIn, login);
     }
 
     public void enterPassWordIntoInputPassword(String password) {
 //        try {
-//            inputPasswordSingIn.clear();
-//            inputPasswordSingIn.sendKeys(password);
+//            inputPasswordSignIn.clear();
+//            inputPasswordSignIn.sendKeys(password);
 //            logger.info(password + " was inputted");
 //        } catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-        enterTextIntoElement(inputPasswordSingIn, password);
+        enterTextIntoElement(inputPasswordSignIn, password);
     }
 
     public void clickOnButtonSingIn() {
@@ -81,7 +80,7 @@ public class LoginPage extends ParentPage {
 //        }catch (Exception e){
 //            printErrorAndStopTest(e);
 //        }
-        clickOnEltment(buttonSingIn);
+        clickOnEltment(buttonSignIn);
     }
 
     public HomePage loginWithValidCred() {
@@ -110,19 +109,26 @@ public class LoginPage extends ParentPage {
 
     public boolean messageFieldPickUsernameDisplayed() {
 
-        return messageIsDisplayed(messageFieldPickUsername);
+        return isMessageDisplayed(messageFieldPickUsername);
     }
 
     public boolean messageFieldEmail() {
 
-        return messageIsDisplayed(messageFieldEmail);
+        return isMessageDisplayed(messageFieldEmail);
 
     }
 
     public boolean messageFieldCreatePassword() {
 
-        return messageIsDisplayed(messageFieldCreatePassword);
+        return isMessageDisplayed(messageFieldCreatePassword);
 
+    }
+
+    public LoginPage checkIsMessagesDisplayed() {
+        Assert.assertTrue("Message is not displayed", messageFieldPickUsernameDisplayed());
+        Assert.assertTrue("Message is not displayed", messageFieldEmail());
+        Assert.assertTrue("Message is not displayed", messageFieldCreatePassword());
+        return this;
     }
 
 }
