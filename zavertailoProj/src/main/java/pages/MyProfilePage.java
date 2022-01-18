@@ -16,7 +16,7 @@ public class MyProfilePage extends ParentPageWithHeader{
     public MyProfilePage checkPostWasCreated (String title){
         List<WebElement> postsList = webDriver.findElements(
                 By.xpath(String.format(postTitleLocator, title)));
-        Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
+        Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());// проверяет на равенство
         return this;
     }
 
