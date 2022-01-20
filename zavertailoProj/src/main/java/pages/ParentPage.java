@@ -2,17 +2,19 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.PageFactoryFinder;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 public class ParentPage {
+
+    @FindBy(xpath = ".//input[@type = 'checkbox']")
+    private WebElement inputCheckbox;
+
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
     WebDriverWait webDriverWait10, webDriverWait15;
@@ -71,6 +73,7 @@ public class ParentPage {
         }
     }
 
+
     protected void selectValueInDropDown (WebElement dropDown, String value){
         try {
             Select select = new Select(dropDown);//передать закрытый дробдаун
@@ -81,6 +84,21 @@ public class ParentPage {
         }
 
     }
+
+    public void setCheckboxValue(String value){
+        try {
+            boolean state = inputCheckbox.isSelected();
+            if (value.equals("check") && !state || value.equals("uncheck") && state){
+                clickOnElement(inputCheckbox);
+                logger.info(String.format("CheckBox was %sed", value));
+            } else {
+                logger.info(String.format("CheckBox is already %sed", value));
+            }
+        }catch (Exception e){
+             printErrorAndStopTest(e);
+        }
+    }
+
 
     protected void waitChatTobeHide(){
         //ToDO wait chat
