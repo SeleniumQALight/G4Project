@@ -1,9 +1,8 @@
 package registrationTests;
 
 import baseTest.BaseTest;
-import org.junit.Assert;
 import org.junit.Test;
-import pages.LoginPage;
+
 
 public class RegistrationTest extends BaseTest {
     final String userNameValidationText = "Username must be at least 3 characters.";
