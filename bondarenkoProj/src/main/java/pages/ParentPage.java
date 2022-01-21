@@ -19,6 +19,7 @@ public class ParentPage {
     WebDriverWait webDriverWait10, webDriverWait15;
 
     private String selectOptionLocator = ".//*[text()='%s']";
+    private String findCheckbox = ".//*[@type='checkbox'and@id='%s']";
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -98,6 +99,23 @@ public class ParentPage {
         }
     }
 
+protected void setValueInCheckbox(String necessaryCheckbox, String statusForCheckbox) {
+    try { WebElement checkbox = webDriver.findElement(By.xpath(String.format(findCheckbox, necessaryCheckbox)));
+        if (statusForCheckbox.equalsIgnoreCase("check") && !checkbox.isSelected()){
+            checkbox.click();
+            logger.info("Checkbox was checked");
+        } else if (statusForCheckbox.equalsIgnoreCase("check") && checkbox.isSelected()){
+            logger.info("Checkbox is already checked");
+        } else if (statusForCheckbox.equalsIgnoreCase("uncheck") && checkbox.isSelected()){
+            checkbox.click();
+            logger.info("Checkbox was unchecked");
+        } else if (statusForCheckbox.equalsIgnoreCase("uncheck") && !checkbox.isSelected()) {
+            logger.info("Checkbox is already unchecked");
+        }
+        } catch(Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
 
     protected void waitChatToBeHidden(){
         //TODO wait chat

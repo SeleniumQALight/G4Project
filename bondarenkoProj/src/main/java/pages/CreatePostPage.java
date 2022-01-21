@@ -53,7 +53,10 @@ public class CreatePostPage extends ParentPage{
         selectTextInDropDownByUI(dropDownRole,textForClick);
         return this;
    }
-
+public CreatePostPage checkUncheckCheckbox (String findCheckbox, String valueForCheckbox) {
+        setValueInCheckbox(findCheckbox, valueForCheckbox);
+        return this;
+}
 
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
