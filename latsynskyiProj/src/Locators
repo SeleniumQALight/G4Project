@@ -14,3 +14,6 @@
 13 (.//a[@href='/post/61cde274b471e80004075a9d/edit'])               Edit
 14 (.//button[@class='delete-post-button text-danger'])              Delete
 15 (.//button[@class='btn btn-primary'])                             Save Updates
+16.//div[text()='Username must be at least 3 characters.']          errormsg Username
+17.//div[text()='You must provide a valid email address.']          errormsg email
+18.//div[text()='Password must be at least 12 characters.']         errormsg Password
