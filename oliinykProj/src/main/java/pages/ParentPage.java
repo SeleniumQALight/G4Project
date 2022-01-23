@@ -102,4 +102,26 @@ public class ParentPage {
         }
     }
 
+    protected void checkBoxActions(String state, WebElement element) {
+        try {
+            if (state.equalsIgnoreCase("check") && element.isSelected()){
+                logger.info("Checkbox is checked");
+            }else if(state.equalsIgnoreCase("check") && !element.isSelected()){
+                element.click();
+                logger.info("Checkbox was unchecked but now it's checked");
+            }else if (state.equalsIgnoreCase("uncheck") && element.isSelected()){
+                element.click();
+                logger.info("Checkbox was checked but now it's unchecked");
+            }else if(state.equalsIgnoreCase("uncheck") && !element.isSelected()){
+                logger.info("Checkbox is unchecked");
+            }else {
+                Assert.fail("Entered value is incorrect. Please enter correct value (check or uncheck) and repeat test");
+            }
+
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+
+    }
+
 }
