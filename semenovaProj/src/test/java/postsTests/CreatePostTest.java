@@ -47,7 +47,9 @@ public class CreatePostTest extends BaseTest {
                 .clickOnDropDownRole()
                 .selectTextInDropDownRoleByUi("Частное сообщение")
                 .clickOnTextOnePersonInDropDown()
-                .checkFieldCheckBoxIsDisplayed()
+                .checkFieldCheckBoxIsDisplayed();
+        Util.waitABit(5);
+        createPostPage
                 .clickOnCheckBox()
 
 

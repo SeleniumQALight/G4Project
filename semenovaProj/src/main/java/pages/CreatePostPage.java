@@ -20,7 +20,9 @@ public class CreatePostPage extends ParentPageWithHeader {
     private WebElement buttonSaveNewPost;
 
     @FindBy(xpath = ".//*[text()='Частное сообщение']")
-    private WebElement textOnePersonInDropDown;
+    private WebElement textOnePerson;
+
+    private String textOnePersonInDropDown = ".//*[text()='%s']";
 
     @FindBy(xpath = ".//*[text()='Общедоступное']")
     private WebElement textGroupMessage;
@@ -61,7 +63,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public CreatePostPage selectTextInDropDownRoleByUi(String text) {
-        selectTextInDropDownByUI(dropDownRole,textOnePersonInDropDown );
+        selectTextInDropDownByUI(dropDownRole, textOnePersonInDropDown);
 
         return this;
     }
@@ -72,7 +74,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public CreatePostPage clickOnTextOnePersonInDropDown() {
-        clickOnEltment(textOnePersonInDropDown);
+        clickOnEltment(textOnePerson);
         return this;
     }
 
@@ -89,7 +91,7 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     public CreatePostPage clickOnCheckBox() {
 
-        clickOnEltment(checkBox);
+        isCheckBoxCondition(checkBox, "check");
         return this;
     }
 
