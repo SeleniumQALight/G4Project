@@ -89,16 +89,19 @@ public class CreatePostPage extends ParentPageWithHeader {
     public CreatePostPage checkCheckbox(String checkBoxStatus) {
         Assert.assertTrue("CheckBox is not displayed", checkBox.isDisplayed());
 
-        if (checkBoxStatus.equals("check") && checkBox.isSelected()) {
+        if (checkBoxStatus.toLowerCase().equals("check") && checkBox.isSelected()) {
             logger.info("CheckBox was clicked already before, no need to select it one more time");
-        } else if (checkBoxStatus.equals("check") && !checkBox.isSelected()) {
+        } else if (checkBoxStatus.toLowerCase().equals("check") && !checkBox.isSelected()) {
             checkBox.click();
             logger.info("Checkbox wasn't clicked before that's why it was selected");
-        } else if (checkBoxStatus.equals("uncheck") && checkBox.isSelected()) {
+        } else if (checkBoxStatus.toLowerCase().equals("uncheck") && checkBox.isSelected()) {
             checkBox.click();
             logger.info("Checkbox was clicked already before that's why it was deselected");
-        } else if (checkBoxStatus.equals("uncheck") && !checkBox.isSelected()) {
+        } else if (checkBoxStatus.toLowerCase().equals("uncheck") && !checkBox.isSelected()) {
             logger.info("Checkbox wasn't clicked before and no need to click on it");
+        } else if (!checkBoxStatus.toLowerCase().equals("check")  && !checkBoxStatus.toLowerCase().equals("uncheck")){
+            logger.info("Inappropriate value of checkbox");
+            throw new AssertionError("Value of checkbox doesn't equal to 'check' or 'uncheck' ");
         }
         return new CreatePostPage(webDriver);
     }
