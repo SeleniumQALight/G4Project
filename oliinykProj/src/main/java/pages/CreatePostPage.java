@@ -21,6 +21,9 @@ public class CreatePostPage extends ParrentPageWithHeader{
     @FindBy(xpath = ".//option[@value='One Person']")
     private WebElement valueOnePerson;
 
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBoxUnique;
+
     public CreatePostPage(WebDriver driver) {
         super(driver);
     }
@@ -59,6 +62,11 @@ public class CreatePostPage extends ParrentPageWithHeader{
     public CreatePostPage selectTextInDropDownByUI(){
         clickOnElement(dropDownRole);
         clickOnElement(valueOnePerson);
+        return this;
+    }
+
+    public CreatePostPage checkBoxActionsByState(String state){
+        checkBoxActions(state, checkBoxUnique);
         return this;
     }
 }

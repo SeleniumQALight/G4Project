@@ -15,6 +15,10 @@ public class CreatePostPage extends ParentPageWithHeader{
     private WebElement dropDownRole;
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+    @FindBy(xpath = "//*[@type='checkbox']")
+    private WebElement checkboxUniquePost;
+
+    private String onePersonRowDropDownRole = "//option[text() = '%s']";
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -47,8 +51,19 @@ public class CreatePostPage extends ParentPageWithHeader{
         return this;
     }
 
+    public CreatePostPage selectTextByUIInDropDownRole(String valueForSelect) {
+        selectTextInDropDownByUI(dropDownRole, onePersonRowDropDownRole,valueForSelect);
+        return this;
+    }
+
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
+
+    public CreatePostPage setStateForCheckboxUniquePost(String requiredState) {
+        setStateForCheckbox(checkboxUniquePost, requiredState);
+        return this;
+    }
+
 }
