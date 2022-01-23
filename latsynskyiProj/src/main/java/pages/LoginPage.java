@@ -19,6 +19,24 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath =".//div[text()='Invalid username / password']" )
     private WebElement errormsg;
 
+    @FindBy(xpath = ".//input[@name='username'and @id='username-register']")
+    private WebElement inputUsernameForRegistration;
+
+    @FindBy(xpath = ".//input[@name='email'and @id='email-register']")
+    private WebElement inputEmailForRegistration;
+
+    @FindBy(xpath = ".//input[@name='password'and @id='password-register']")
+    private WebElement inputPasswordForRegistration;
+
+    @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
+    private WebElement buttonSignUpForOurApp;
+
+    @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.']")
+    private WebElement errorMsgValidUsername;
+    @FindBy(xpath = ".//div[text()='You must provide a valid email address.']")
+    private WebElement errorMsgValidEmail;
+    @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
+    private WebElement errorMsgValidPassword;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -86,4 +104,48 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    public void enterUsernameForRegistration(String Username){
+enterTextInToElement(inputUsernameForRegistration,Username);
+    }
+    public void enterEmailForRegistration(String Email){
+        enterTextInToElement(inputEmailForRegistration,Email);
+    }
+    public void enterPasswordForRegistration(String Password){
+        enterTextInToElement(inputPasswordForRegistration,Password);
+    }
+    public void clickOnButtonSignUpForOurApp(){
+        clickOnElement(buttonSignUpForOurApp);
+    }
+
+    public boolean errormsgValidUsernameIsDisplayed() {
+        try{
+            return  errorMsgValidUsername.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean errormsgValidemailIsDisplayed() {
+        try{
+            return  errorMsgValidEmail.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean errormsgValidPasswordIsDisplayed() {
+        try{
+            return  errorMsgValidPassword.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public boolean isButtonSignUpForOurAppDisplayed() {
+        try{
+            return  buttonSignUpForOurApp.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
 }
+

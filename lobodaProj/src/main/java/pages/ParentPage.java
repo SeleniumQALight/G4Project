@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -83,6 +84,18 @@ public class ParentPage {
         }
     }
 
+    public void selectTextInDropDownByUI(WebElement dropDown, String row, String text){
+        try {
+            clickOnElement(dropDown);
+            WebElement onePersonRow = webDriver.findElement(
+                    By.xpath(String.format(row,text)));
+            clickOnElement(onePersonRow);
+            logger.info(text + " was selected in DD");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
     protected void waitChatToBeHide(){
         //TODO wait chat
         try {
@@ -101,6 +114,31 @@ public class ParentPage {
             printErrorAndStopTest(e);
         }
         return null;
+    }
+
+    protected void setStateForCheckbox(WebElement checkbox, String requiredState) {
+        boolean currentCheckboxState = checkbox.isSelected();
+        switch (requiredState){
+            case ("check"):
+                if (currentCheckboxState){
+                    logger.info("Checkbox is already checked");
+                }else {
+                    clickOnElement(checkbox);
+                    logger.info("Checkbox was checked");
+                }
+                break;
+            case ("uncheck"):
+                if (!currentCheckboxState){
+                    logger.info("Checkbox is already unchecked");
+                }else {
+                    clickOnElement(checkbox);
+                    logger.info("Checkbox was unchecked");
+                }
+                break;
+            default:
+                logger.info("requiredState is incorrect. currentCheckboxState = " + currentCheckboxState);
+                break;
+        }
     }
 
 }

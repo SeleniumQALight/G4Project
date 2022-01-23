@@ -9,7 +9,7 @@ public class CreatePostTest extends BaseTest {
     final String title = "G4-Nadia-" + Util.getDateAndTimeFormatted();
 
     @Test
-    public void createNewPost(){
+    public void createNewPost() {
         loginPage
                 .loginWithValidaCred()
                 .checkIsButtonSignOutDisplayed()
@@ -17,8 +17,10 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInToTitleInput(title)
                 .enterTextInToBodyInput("New post text")
-                //    .selectTextInToDropDownRole("Частное сообщение")
-                .selectValueInProdDownRole("One Person")
+                // .selectTextInToDropDownRole("Частное сообщение")
+                // .selectValueInProdDownRole("One Person")
+                .selectCheckbox()
+                .selectOptionByTextAtDropDown("Частное сообщение")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectPostPage()
                 .checkTextInAlert("New post successfully created.")
