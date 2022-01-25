@@ -5,7 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ParentPageWithHeader extends ParentPage {
+abstract public class ParentPageWithHeader extends ParentPage {
+    //public class ParentPageWithHeader extends ParentPage {
     @FindBy(xpath = ".//a[@href ='/create-post']")
     private WebElement buttonCreatePost;
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
