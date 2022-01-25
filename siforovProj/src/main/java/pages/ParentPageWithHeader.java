@@ -20,5 +20,10 @@ public class ParentPageWithHeader extends ParentPage{
         return new CreatePostPage(webDriver);
     }
 
+    public ProfilePage clickOnProfile(){
+        clickOnElement(buttonProfile);
+        return new ProfilePage(webDriver);
+    }
+
 
 }

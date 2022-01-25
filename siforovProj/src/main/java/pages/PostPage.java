@@ -27,9 +27,4 @@ public class PostPage extends ParentPageWithHeader{
         return this;
     }
 
-    public ProfilePage clickOnProfile(){
-        clickOnElement(buttonProfile);
-        return new ProfilePage(webDriver);
-    }
-
 }
