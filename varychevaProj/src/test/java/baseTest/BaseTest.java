@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.SignUpPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +16,7 @@ public class BaseTest {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
+    protected SignUpPage signUpPage;
     protected HomePage homePage;
 
     @Before
@@ -26,6 +28,7 @@ public class BaseTest {
         logger.info("Browser was opened");
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        signUpPage = new SignUpPage(webDriver);
     }
 
 

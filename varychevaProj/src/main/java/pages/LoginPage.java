@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,7 +32,6 @@ public class LoginPage extends ParentPage {
             fail("Can not open Login Page" + e);
         }
     }
-
 
     public void enterLoginIntoInputLogin(String login) {
         enterTextIntoElement(inputLoginSignIn, login);
