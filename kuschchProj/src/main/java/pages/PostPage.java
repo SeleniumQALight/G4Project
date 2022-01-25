@@ -16,8 +16,14 @@ public class PostPage extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    @Override
+    String getRalativeUrl() {
+        return "/post/";
+    }
+
     public PostPage checkIsRedirectToPostPage(){
         waitChatTobeHide();
+        checkUrlWithPattern();
         Assert.assertTrue("Edit Button is notDisplayed", isElementDisplayed(editButton));
         return this;
     }
