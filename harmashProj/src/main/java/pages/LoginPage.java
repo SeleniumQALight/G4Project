@@ -12,6 +12,12 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     @FindBy(xpath=".//input[@name='username' and @placeholder='Username']")
     private WebElement inputLoginSignIn;
     @FindBy(xpath = ".//input[@placeholder='Password']")
@@ -21,7 +27,7 @@ public class LoginPage extends ParentPage {
 
     public void openLoginPage() {
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
+            webDriver.get(baseUrl + "/");
             logger.info("Login page was opened");
 
 

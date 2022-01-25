@@ -15,12 +15,19 @@ public class CreatePostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
-    public CreatePostPage(WebDriver webDriver) {
+     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
+
     public CreatePostPage checkIsRedirectToCreatePostPage(){
         waitChatTobeHide();
+        checkUrl();
         Assert.assertTrue("Input Title is not displayed",
                 isElementDisplayed(inputTitle));
         return this;
