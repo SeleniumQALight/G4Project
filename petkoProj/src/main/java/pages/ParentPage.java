@@ -60,27 +60,47 @@ public class ParentPage {
         }
     }
 
-    protected void selectTextInDropDown(WebElement dropDown, String text){
-        try{
+    protected void selectTextInDropDown(WebElement dropDown, String text) {
+        try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DD");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void selectValueInDropDown(WebElement dropDown, String value){
-        try{
+    protected void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + "was selected in DD");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void waitChatToBeHide(){
+    protected void checkBoxActions(String state, WebElement webElement) {
+        try {
+            if (state.equalsIgnoreCase("check") && webElement.isSelected()) {
+                logger.info("Checkbox has already checked");
+            } else if (state.equalsIgnoreCase("check") && !webElement.isSelected()) {
+                webElement.click();
+                logger.info("The state was changed from uncheck to check");
+            } else if (state.equalsIgnoreCase("uncheck") && webElement.isSelected()) {
+                webElement.click();
+                logger.info("The state was changed from check to uncheck");
+            } else if (state.equalsIgnoreCase("uncheck") && !webElement.isSelected()) {
+                logger.info("Checkbox has already unchecked");
+            } else {
+                Assert.fail("You are inputted incorrect state. Please use 'check' or 'uncheck'");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void waitChatToBeHide() {
         //TODO wait chat
         try {
             Thread.sleep(1000);

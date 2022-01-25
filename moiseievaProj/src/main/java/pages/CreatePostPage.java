@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 public class CreatePostPage extends ParentPageWithHeader {
 
     @FindBy(name = "title")
@@ -18,6 +19,11 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSavePost;
+
+    @FindBy(xpath = "//*[@type='checkbox']")
+    private WebElement checkbox;
+
+    private String oneOptionDropDownRole = "//option[text() = '%s']";
 
 
     public CreatePostPage(WebDriver webDriver) {
@@ -54,4 +60,16 @@ public class CreatePostPage extends ParentPageWithHeader {
         clickOnElement(buttonSavePost);
         return new PostPage(webDriver);
     }
+
+    public CreatePostPage selectOptionByTextAtDropDown(String selectText) {
+        selectTextInDropDownByUI(dropDownRole, oneOptionDropDownRole, selectText);
+        return this;
+    }
+
+    public CreatePostPage selectCheckbox() {
+        setCheckboxCondition(checkbox, "check");
+        return this;
+    }
+
+
 }

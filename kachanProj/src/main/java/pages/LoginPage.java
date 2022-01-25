@@ -16,6 +16,27 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSingIn;
 
+    @FindBy(xpath = ".//input[ @placeholder ='Pick a username']")
+    private WebElement inputLoginSignUp;
+
+    @FindBy(xpath = ".//input[@name = 'email']")
+    private WebElement inputEmailSignUp;
+
+    @FindBy(xpath = ".//input[ @placeholder = 'Create a password']")
+    private WebElement inputPasswordSignUp;
+
+    @FindBy(xpath = ".//button[ @type = 'submit']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[contains(text(), 'Username must be at least 3 characters.') ]")
+    private WebElement usernameValidationMessage;
+
+    @FindBy(xpath = ".//div[contains(text(), 'You must provide a valid email address.') ]")
+    private WebElement emailValidationMessage;
+
+    @FindBy(xpath = ".//div[contains(text(), 'Password must be at least 12 characters.') ]")
+    private WebElement passwordValidationMessage;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -73,5 +94,39 @@ public class LoginPage extends ParentPage {
         clickOnButtonSingIn();
         return new HomePage(webDriver);
     }
+
+    public boolean isButtonSingInDisplayed() {
+        try {
+           return buttonSingIn != null && buttonSingIn.getText().equals("Sign In");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void enterLoginIntoRegistrationForm(String login) {
+        enterTextInToElement(inputLoginSignUp, login);
+    }
+
+    public void enterEmailIntoRegistrationForm(String email) {
+        enterTextInToElement(inputEmailSignUp, email);
+    }
+
+    public void enterPasswordIntoRegistrationForm(String password) {
+        enterTextInToElement(inputPasswordSignUp, password);
+    }
+
+    public void clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
+    }
+
+    public boolean checkValidationFormsDisplayed() {
+        boolean isUsernameErrorMessageDisplayed = isElementDisplayed(usernameValidationMessage);
+        boolean isEmailErrorMessageDisplayed = isElementDisplayed(emailValidationMessage);
+        boolean isPasswordErrorMessageDisplayed = isElementDisplayed(passwordValidationMessage);
+
+        return isUsernameErrorMessageDisplayed && isEmailErrorMessageDisplayed && isPasswordErrorMessageDisplayed;
+    }
+
+
 }
 

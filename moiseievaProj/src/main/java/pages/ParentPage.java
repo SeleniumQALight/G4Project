@@ -2,12 +2,14 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
@@ -73,7 +75,7 @@ public class ParentPage {
     }
 
     protected void selectTextInDropDown(WebElement dropDown, String text) {
-        try{
+        try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DD");
@@ -83,7 +85,7 @@ public class ParentPage {
     }
 
     protected void selectValueInProdDown(WebElement dropDown, String value) {
-        try{
+        try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DD");
@@ -92,7 +94,46 @@ public class ParentPage {
         }
     }
 
-    protected void waitChatToBeHide(){
+    protected void selectTextInDropDownByUI(WebElement dropDown, String option, String text) {
+        try {
+            clickOnElement(dropDown);
+            WebElement onePersonalOption = webDriver.findElement(By.xpath(String.format(option, text)));
+            onePersonalOption.click();
+            logger.info(text + " was selected at DropDown menu");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckboxCondition (WebElement element, String checkboxCondition) {
+        boolean currentElementCondition = element.isSelected();
+        if(checkboxCondition == "check" || checkboxCondition == "uncheck"){
+        switch (checkboxCondition){
+            case ("check"):
+                if (currentElementCondition){
+                    logger.info("Checkbox condition is correct");
+                }else {
+                    clickOnElement(element);
+                    logger.info("Checkbox condition was changed on condition - "  + checkboxCondition);
+                }
+                break;
+            case ("uncheck"):
+                if (!currentElementCondition){
+                    logger.info("Checkbox condition is correct");
+                }else {
+                    clickOnElement(element);
+                    logger.info("Checkbox condition was changed on condition - " + checkboxCondition);
+                }
+                break;
+        }
+    }
+        else {
+            logger.error("Wrong 'checkboxCondition' - " + checkboxCondition +". Should be: 'check' or 'uncheck'");
+            Assert.fail("Wrong 'checkboxCondition' - " + checkboxCondition +". Should be: 'check' or 'uncheck'");
+        }
+    }
+
+    protected void waitChatToBeHide() {
         //TODO wait chat
         try {
             Thread.sleep(1000);
