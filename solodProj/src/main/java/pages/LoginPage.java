@@ -18,6 +18,29 @@ public class LoginPage extends ParentPageWithHeader {
 
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSingIn;
+/////////////////////////////////////////////HW3
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignupForOurApp;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private  WebElement inputUserNameForOurApp;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private  WebElement inputEmailRegisterForOurApp;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordRegisterForOurApp;
+
+    @FindBy(xpath = ".//*[contains(text(),'Username must be at least 3 characters.')]")
+    private WebElement errorUserNameForOurApp;
+
+    @FindBy(xpath = ".//*[contains(text(),'You must provide a valid email address.')]")
+    private WebElement errorEmailForOurApp;
+
+    @FindBy(xpath = ".//*[contains(text(),'Password must be at least 12 characters.')]")
+    private WebElement errorPasswordForOurApp;
+
+
 
 
     public LoginPage(WebDriver webDriver) {
@@ -65,7 +88,7 @@ public class LoginPage extends ParentPageWithHeader {
 //        } catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-        clickElement(buttonSingIn);
+        clickOnElement(buttonSingIn);
     }
 
 //    private void printErrorAndStopTest(Exception e) {
@@ -95,6 +118,47 @@ public class LoginPage extends ParentPageWithHeader {
             return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
         }catch (Exception e){
             return false;
+        }
+    }
+
+    public void enterUserNameForOurApp(String username){
+        enterTextInToElement(inputUserNameForOurApp,username);
+    }
+    public void enterEmailForOurApp(String email){
+        enterTextInToElement(inputEmailRegisterForOurApp,email);
+    }
+    public void enterPasswordForOurApp(String password){
+        enterTextInToElement(inputPasswordRegisterForOurApp,password);
+    }
+    public void clickButtonSignupForOurApp(){
+        clickOnElement(buttonSignupForOurApp);
+    }
+
+    public void enterInvalidDataForOurApp(){
+        openLoginPage();
+        enterUserNameForOurApp("tr");
+        waitOneSecForValidationTextUsername();
+        enterEmailForOurApp("test.com");
+        enterPasswordForOurApp("123");
+        clickButtonSignupForOurApp();
+
+
+    }
+    public boolean isValidationTextUsernameDisplayed(){
+        return isElementDisplayed(errorUserNameForOurApp);
+    }
+    public boolean isValidationTextEmailDisplayed(){
+        return  isElementDisplayed(errorEmailForOurApp);
+    }
+    public boolean isValidationTextPasswordDisplayed(){
+        return isElementDisplayed(errorPasswordForOurApp);
+    }
+    protected void waitOneSecForValidationTextUsername(){
+        //TODO wait chat
+        try {
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
         }
     }
 
