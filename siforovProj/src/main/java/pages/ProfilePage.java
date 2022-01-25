@@ -21,6 +21,11 @@ public class ProfilePage extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/profile/";
+    }
+
     //homework1
     public boolean postTabIsVisible(){
         return elementIsVisible(postsTab);
@@ -29,6 +34,19 @@ public class ProfilePage extends ParentPageWithHeader{
     public ProfilePage checkPostWasCreated(String title) {
         List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of posts with title "+title, 1,postsList.size());
+        return this;
+    }
+
+    public ProfilePage checkIsRedirectToProfilePage() {
+        waitChatToBeHide();
+        checkUrlWithPattern();
+        return this;
+    }
+
+    public ProfilePage deletePostWithTitleWhilePresent(String title) {
+        List<WebElement> webElementList = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
+
+        //TODO
         return this;
     }
 }

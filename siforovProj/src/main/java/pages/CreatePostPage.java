@@ -31,7 +31,14 @@ public class CreatePostPage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
+        waitChatToBeHide();
+        checkUrl();
         Assert.assertTrue("The Create Post page is not reached", elementIsVisible(titleInput));
         return this;
     }
