@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,6 +26,11 @@ public class RegistrationPage extends ParentPage {
 
     public RegistrationPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/";
     }
 
     public void enterNameIntoInputRegistration(String name) {

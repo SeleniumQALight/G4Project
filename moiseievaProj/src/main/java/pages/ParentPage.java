@@ -10,17 +10,34 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.hamcrest.CoreMatchers.containsString;
 
-public class ParentPage {
+
+abstract public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
     WebDriverWait webDriverWait10, webDriverWait15;
+    protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
         webDriverWait10 = new WebDriverWait(webDriver, 10);
         webDriverWait15 = new WebDriverWait(webDriver, 15);
+    }
+
+    abstract String getRelativeUrl();
+
+    protected void checkUrl() {
+        Assert.assertEquals("Invalid page",
+                            baseUrl + getRelativeUrl(),
+                                    webDriver.getCurrentUrl());
+    }
+
+    protected void checkUrlWithPattern() {
+        Assert.assertThat("Invalid page",
+                                webDriver.getCurrentUrl(),
+                                containsString(baseUrl+getRelativeUrl()));
     }
 
     protected void enterTextToElement(WebElement element, String text) {
@@ -105,40 +122,36 @@ public class ParentPage {
         }
     }
 
-    protected void setCheckboxCondition (WebElement element, String checkboxCondition) {
+    protected void setCheckboxCondition(WebElement element, String checkboxCondition) {
         boolean currentElementCondition = element.isSelected();
-        if(checkboxCondition == "check" || checkboxCondition == "uncheck"){
-        switch (checkboxCondition){
-            case ("check"):
-                if (currentElementCondition){
-                    logger.info("Checkbox condition is correct");
-                }else {
-                    clickOnElement(element);
-                    logger.info("Checkbox condition was changed on condition - "  + checkboxCondition);
-                }
-                break;
-            case ("uncheck"):
-                if (!currentElementCondition){
-                    logger.info("Checkbox condition is correct");
-                }else {
-                    clickOnElement(element);
-                    logger.info("Checkbox condition was changed on condition - " + checkboxCondition);
-                }
-                break;
-        }
-    }
-        else {
-            logger.error("Wrong 'checkboxCondition' - " + checkboxCondition +". Should be: 'check' or 'uncheck'");
-            Assert.fail("Wrong 'checkboxCondition' - " + checkboxCondition +". Should be: 'check' or 'uncheck'");
+        if (checkboxCondition == "check" || checkboxCondition == "uncheck") {
+            switch (checkboxCondition) {
+                case ("check"):
+                    if (currentElementCondition) {
+                        logger.info("Checkbox condition is correct");
+                    } else {
+                        clickOnElement(element);
+                        logger.info("Checkbox condition was changed on condition - " + checkboxCondition);
+                    }
+                    break;
+                case ("uncheck"):
+                    if (!currentElementCondition) {
+                        logger.info("Checkbox condition is correct");
+                    } else {
+                        clickOnElement(element);
+                        logger.info("Checkbox condition was changed on condition - " + checkboxCondition);
+                    }
+                    break;
+            }
+        } else {
+            logger.error("Wrong 'checkboxCondition' - " + checkboxCondition + ". Should be: 'check' or 'uncheck'");
+            Assert.fail("Wrong 'checkboxCondition' - " + checkboxCondition + ". Should be: 'check' or 'uncheck'");
         }
     }
 
     protected void waitChatToBeHide() {
-        //TODO wait chat
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        webDriverWait10
+                .withMessage("Chat is displayed")
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='chat-wrapper']")));
     }
 }
