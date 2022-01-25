@@ -73,14 +73,14 @@ protected void selectValueDropDown(WebElement dropDown,String value){
 protected void waitChatToBeHide(){
         //TODO wait chat
     try {
-        Thread.sleep(1000);
+        Thread.sleep(3000);
     }catch (InterruptedException e){
         e.printStackTrace();
     }
 }
 
 
-    private void printErrorAndStopTest(Exception e) {
+    void printErrorAndStopTest(Exception e) {
         logger.error(" Can not work with element " + e);
         Assert.fail(" Can not work with element " + e);
     }

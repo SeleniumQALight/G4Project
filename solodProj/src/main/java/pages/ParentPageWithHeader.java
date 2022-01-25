@@ -8,16 +8,20 @@ public class ParentPageWithHeader extends ParentPage{
     @FindBy(xpath = ".//a[text()='Create Post']")
     private WebElement buttonCreatePost;
 
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement buttonMyProfile;
+
     public ParentPageWithHeader(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void clickOnCreatePostButton(){
+    public CreatePostPage clickOnCreatePostButton(){
         clickElement(buttonCreatePost);
-
-
+        return new CreatePostPage(webDriver);
     }
-
-//    public ParentPageWithHeader checkIsButtonSignOutDisplayed() {
+//    public MyProfilePage clickOnMyProfileButton(){
+//        clickElement(MyProfilePage);
+//        return new MyProfilePage(webDriver);
 //    }
+
 }
