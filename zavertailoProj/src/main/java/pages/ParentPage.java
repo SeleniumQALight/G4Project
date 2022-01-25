@@ -63,6 +63,7 @@ public class ParentPage {
         }
     }
 
+
     protected void selectTextInDropDown(WebElement dropDown, String text){
         try {
             Select select = new Select(dropDown);//передать закрытый дробдаун

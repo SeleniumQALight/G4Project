@@ -19,7 +19,7 @@ public class CreatePostTest extends BaseTest {
                 .entrTextInToTitleInput(title)
                 .enterTextInBodyInput("BodyText")
                // .selectTextInDropDownRole("Частное сообщение")
-                .selectTextInDropDownByUI(textDropDown)
+                .selectTextInDropDownByUI()
                 //.selectValueInDropDown("One Person")
                 .setCheckboxValueCreatePost("uncheck")
                 .clickOnButtonSaveNewPost()
