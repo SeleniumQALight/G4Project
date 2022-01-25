@@ -7,7 +7,7 @@ import org.junit.Test;
 public class CreatePostTest extends BaseTest {
 
     final String title = "G4-Anna" + Util.getDateAndTimeFormatted();
-
+    private String textOnePersonInDropDown = ".//*[text()='%s']";
     @Test
     public void createNewPost() {
 
@@ -45,7 +45,7 @@ public class CreatePostTest extends BaseTest {
 
                 .checkFieldSelectIsDisplayed()
                 .clickOnDropDownRole()
-                .selectTextInDropDownRoleByUi("Частное сообщение")
+                .selectTextInDropDownRoleByUi(textOnePersonInDropDown)
                 .clickOnTextOnePersonInDropDown()
                 .checkFieldCheckBoxIsDisplayed();
         Util.waitABit(5);

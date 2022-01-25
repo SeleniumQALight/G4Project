@@ -22,7 +22,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//*[text()='Частное сообщение']")
     private WebElement textOnePerson;
 
-    private String textOnePersonInDropDown = ".//*[text()='%s']";
+
 
     @FindBy(xpath = ".//*[text()='Общедоступное']")
     private WebElement textGroupMessage;
@@ -63,7 +63,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public CreatePostPage selectTextInDropDownRoleByUi(String text) {
-        selectTextInDropDownByUI(dropDownRole, textOnePersonInDropDown);
+        selectTextInDropDownByUI(dropDownRole, text);
 
         return this;
     }
