@@ -48,9 +48,9 @@ public class HomePage extends ParentPageWithHeader {
     }
 
     //homework1
-    public HomePage clickOnProfileLink(){
+    public ProfilePage clickOnProfileLink(){
         clickOnElement(profileLink);
-        return new HomePage(webDriver);
+        return new ProfilePage(webDriver);
     }
 
     //homework1
