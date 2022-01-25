@@ -15,12 +15,26 @@ public class HomePage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public boolean isButtonSignOutDisplayed(){
         return isElementDisplayed(buttonSignOut);
     }
 
     public HomePage checkIsButtonSignOutDisplayed(){
         Assert.assertTrue("Button SignOut is not displayed",isButtonSignOutDisplayed());
+        return this;
+    }
+
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if(!isButtonSignOutDisplayed()){
+            loginPage.loginWithValidCred();
+        }
         return this;
     }
 }
