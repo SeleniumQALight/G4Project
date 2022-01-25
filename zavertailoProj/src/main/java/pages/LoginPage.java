@@ -42,9 +42,14 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/"); //открыть урл
+            webDriver.get(baseUrl + "/"); //открыть урл
             logger.info("Login page was opened");// сообщение в логе о открытии страницы в браузере
 
         } catch (Exception e) {
