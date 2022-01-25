@@ -1,5 +1,4 @@
 package pages;
-import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,13 +21,22 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(xpath = "//*[text() = 'Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private WebElement Checkbox;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
     }
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         Assert.assertTrue("input Title in not found", isElementDisplayed(inputTitle));
         return this;
+
     }
 
     public CreatePostPage enterTextInToTitleInput(String text) {
@@ -51,16 +59,24 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-   public CreatePostPage selectTextInDropDownByUI() {
+    public CreatePostPage selectTextInDropDownByUI() {
         clickOnElement(dropDownRole);
         clickOnElement(groupSelectorInDropDown);
         return this;
     }
+
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
+
+    public CreatePostPage selectValueInCheckBox() {
+        clickOnElement(Checkbox);
+        return this;
+    }
 }
+
+
 
 
 
