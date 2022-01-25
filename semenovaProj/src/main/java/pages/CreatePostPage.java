@@ -89,9 +89,9 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public CreatePostPage clickOnCheckBox() {
+    public CreatePostPage clickOnCheckBox(String text) {
 
-        isCheckBoxCondition(checkBox, "check");
+        isCheckBoxCondition(checkBox, text);
         return this;
     }
 

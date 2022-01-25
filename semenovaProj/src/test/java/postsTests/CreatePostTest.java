@@ -50,7 +50,7 @@ public class CreatePostTest extends BaseTest {
                 .checkFieldCheckBoxIsDisplayed();
         Util.waitABit(5);
         createPostPage
-                .clickOnCheckBox()
+                .clickOnCheckBox("check")
 
 
         ;
