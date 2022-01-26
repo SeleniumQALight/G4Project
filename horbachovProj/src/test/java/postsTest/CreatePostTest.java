@@ -2,6 +2,7 @@ package postsTest;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
@@ -11,7 +12,7 @@ public class CreatePostTest extends BaseTest {
 
         loginPage
                 .loginWithValidCred()
-                .checkIsbuttonSignOutDisplayed()
+                .checkIsButtonSignOutDisplayed()
                 .clickOnCreatePostButton();
         createPostPage
                 .checkIsRedirectToCreatePostPage()
@@ -25,6 +26,17 @@ public class CreatePostTest extends BaseTest {
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title);
 
+
+    }
+
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitleWhilePresent(title);
 
     }
 }
