@@ -13,6 +13,12 @@ public class MyProfilePage extends ParentPageWithHeader{
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    String getRelativeUrl() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkPostWasCreated (String title){
         List<WebElement> postsList = webDriver.findElements(
                 By.xpath(String.format(postTitleLocator, title)));
@@ -20,4 +26,19 @@ public class MyProfilePage extends ParentPageWithHeader{
         return this;
     }
 
+    public MyProfilePage checkIsRedirectToMyProfilePage() {
+        checkUrlWithPattern();
+        waitChatTobeHide();
+        return  this;
+    }
+
+    public MyProfilePage deletePostWithTitleWilePresent(String title) {
+        List<WebElement> listOfPost = webDriver.findElements(
+                By.xpath(String.format(postTitleLocator, title))
+        );
+        //TODO
+
+        return this;
+
+    }
 }
