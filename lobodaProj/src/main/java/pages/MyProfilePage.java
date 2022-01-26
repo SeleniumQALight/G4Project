@@ -21,4 +21,23 @@ public class MyProfilePage extends ParentPageWithHeader{
         Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
         return this;
     }
+
+    @Override
+    String getRelativeUrl() {
+        return "/profile/";
+    }
+
+    public MyProfilePage checkIsRedirectToMyProfilePage() {
+        checkUrlWithPattern();
+        waitChatToBeHide();
+        return this;
+    }
+
+    public MyProfilePage deletePostWithTitleWhilePresent(String title) {
+        List<WebElement> listOfPosts = webDriver.findElements(
+                By.xpath(String.format(postTitleLocator, title))
+        );
+        //TODO
+        return this;
+    }
 }
