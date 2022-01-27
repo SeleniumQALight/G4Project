@@ -10,8 +10,7 @@ public class CreatePostTest extends BaseTest {
 
     @Test
     public void createNewPost() {
-
-
+        
         loginPage
                 .loginWithValidCred()
                 .checkIsButtonSignOutDisplayed()
@@ -26,11 +25,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfile()
-                .checkPostWasCreated(title)
-
-
-        ;
-
+                .checkPostWasCreated(title);
 
     }
     @After
