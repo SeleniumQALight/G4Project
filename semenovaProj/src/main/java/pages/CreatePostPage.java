@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//input[@type='checkbox']")
     private WebElement checkBox;
 
+    private String textOnePersonInDropDown = ".//*[text()='%s']";
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -69,7 +71,8 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public CreatePostPage selectTextInDropDownRoleByUi(String text) {
-        selectTextInDropDownByUI(dropDownRole, text);
+        clickOnEltment(dropDownRole);
+        clickOnEltment(webDriver.findElement(By.xpath(String.format(textOnePersonInDropDown, text))));
 
         return this;
     }

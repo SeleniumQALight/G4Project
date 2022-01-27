@@ -17,7 +17,7 @@ public class MyProfilePage extends ParentPageWithHeader {
 
     @Override
     String getRelativeUrl() {
-        return "/profile/\n";
+        return "/profile/";
     }
 
     public MyProfilePage checkPostWasCreated(String title) {

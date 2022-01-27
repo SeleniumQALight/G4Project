@@ -106,15 +106,7 @@ abstract public class ParentPage {
         }
     }
 
-    protected void selectTextInDropDownByUI(WebElement dropDown, String text) {
-        try {
-            Select select = new Select(dropDown);
-            select.selectByIndex(1);
-            logger.info(text + " was selected in DD");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
+
 
     protected void isCheckBoxCondition(WebElement checkBox, String condition) {
         try {
