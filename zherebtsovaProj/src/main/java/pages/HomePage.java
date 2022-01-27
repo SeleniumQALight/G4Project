@@ -31,7 +31,7 @@ public class HomePage extends ParentPageWithHeader{
     public HomePage openHomePage(){
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
-        if (!isButtonSignOutDisplayed()){
+        if (!isButtonSignOutDisplayed()){ // ! если кнопка не показана
             loginPage.loginWithValidCred();
         }
         return this;
