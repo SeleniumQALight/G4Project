@@ -22,4 +22,23 @@ public class MyProfilePage extends ParentPageWithHeader{
     }
 
 
+
+    @Override
+    String getRelativeUrl() {
+        return "/profile/";
+    }
+
+    public MyProfilePage checkIsRedirectToMyProfilePage() {
+        checkUrlWithPattern();
+        waitChatTobeHide();
+        return this;
+    }
+
+    public MyProfilePage deletePostWithTitleWhilePresent(String title) {
+        List<WebElement> listOfPost = webDriver.findElements(
+                By.xpath(String.format(postTitleLocator,title))
+                                                            );
+        //TODO
+        return this;
+    }
 }

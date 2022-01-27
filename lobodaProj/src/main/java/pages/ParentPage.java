@@ -10,11 +10,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.hamcrest.CoreMatchers.containsString;
 
-public class ParentPage {
+
+public abstract class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
     WebDriverWait webDriverWait10, webDriverWait15;
+    protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
 
     public ParentPage(WebDriver webDriver){
         this.webDriver = webDriver;
@@ -23,6 +26,21 @@ public class ParentPage {
         webDriverWait15 = new WebDriverWait(webDriver, 15);
 
     }
+
+    abstract String getRelativeUrl();
+
+    protected void checkUrl(){
+        Assert.assertEquals("Invalid page"
+                , baseUrl + getRelativeUrl()
+                , webDriver.getCurrentUrl());
+    }
+
+    protected void checkUrlWithPattern(){
+        Assert.assertThat("Invalid page"
+                , webDriver.getCurrentUrl()
+                , containsString(baseUrl + getRelativeUrl()));
+    }
+
     protected void enterTextInToElement(WebElement webElement, String text){
         try {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
@@ -97,12 +115,9 @@ public class ParentPage {
     }
 
     protected void waitChatToBeHide(){
-        //TODO wait chat
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        webDriverWait10
+                .withMessage("Chat is not closed")
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
 
     protected String getTextFromElement(WebElement webElement){

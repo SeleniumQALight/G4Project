@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ParentPage {
+import static org.hamcrest.CoreMatchers.containsString;
+
+abstract public class ParentPage {
 
     @FindBy(xpath = ".//input[@type = 'checkbox']")
     private WebElement inputCheckbox;
@@ -18,12 +21,28 @@ public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
     WebDriverWait webDriverWait10, webDriverWait15;
+
+    protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
 //alt + insert и создать конструктор
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //проиницилизровать елементы описанне через FindBy
         webDriverWait10 = new WebDriverWait(webDriver,10);
         webDriverWait15 = new WebDriverWait(webDriver,15);
+    }
+    abstract String getRelativeUrl();//каждая страниуа должна его реализовать - возвращать url
+
+    //метод для проверки урла
+    protected  void checkUrl(){
+        Assert.assertEquals("Invalid page"
+                , baseUrl + getRelativeUrl()
+                , webDriver.getCurrentUrl() );
+    }
+//метод для проверки урла частичного содержания
+    protected void checkUrlWithPattern(){
+        Assert.assertThat("Invalid page"
+                , webDriver.getCurrentUrl()
+                , containsString(baseUrl + getRelativeUrl()));
     }
 
     protected void enterTextInToElement(WebElement webElement, String text) { //метод для чистки и ввода текста в елементы
@@ -100,14 +119,20 @@ public class ParentPage {
         }
     }
 
+//
+//    protected void waitChatTobeHide(){
+//        //ToDO wait chat
+//        try {
+//            Thread.sleep(1000); //свернуть все и подождать в милисекундах alt + entr
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     protected void waitChatTobeHide(){
-        //ToDO wait chat
-        try {
-            Thread.sleep(1000); //свернуть все и подождать в милисекундах alt + entr
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        webDriverWait10
+                .withMessage("Chat is not closed ") //сообщение если после ожидание не произошло ожидаемое действие
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));// проверка на исчезновение чата
     }
 
     private void printErrorAndStopTest(Exception e) {

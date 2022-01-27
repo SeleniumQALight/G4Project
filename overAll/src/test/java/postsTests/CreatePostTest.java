@@ -1,5 +1,6 @@
 package postsTests;
 
+import org.junit.After;
 import org.junit.Test;
 
 import baseTest.BaseTest;
@@ -27,5 +28,16 @@ public class CreatePostTest extends BaseTest {
                 .clickOnMyProfileButton()
               .checkPostWasCreated(title)
         ;
+    }
+
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+              .checkIsButtonSignOutDisplayed()
+                .clickOnMyProfileButton()
+              .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitleWhilePresent(title);
+
     }
 }

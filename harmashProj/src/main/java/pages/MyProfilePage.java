@@ -7,16 +7,35 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class MyProfilePage extends ParentPageWithHeader{
-    private String postTitleLocator= ".//*[text()='%s']";
+public class MyProfilePage extends ParentPageWithHeader {
+    private String postTitleLocator = ".//*[text()='%s']";
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkPostWasCreated(String title) {
-        List<WebElement> postsList  = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
-        Assert.assertEquals("Number of posts with title " + title,1,postsList.size());
+        List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
+        Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
         return this;
+    }
+
+    public MyProfilePage checkIsRedirectToMyProfilePage() {
+        checkUrlWithPattern();
+        waitChatTobeHide();
+        return this;
+    }
+
+    public MyProfilePage deletePostWithTitleWhilePresent(String title) {
+        List<WebElement> listOfPost = webDriver.findElements(
+                By.xpath(String.format(postTitleLocator, title)));
+        return this;
+
+        //TODO
     }
 }

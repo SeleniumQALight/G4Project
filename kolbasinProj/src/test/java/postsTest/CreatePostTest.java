@@ -2,6 +2,7 @@ package postsTest;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
@@ -18,7 +19,7 @@ public class CreatePostTest extends BaseTest {
         createPostPage
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInToTitleInput(title)
-                .enterTextInToBodyInput("jfjfh")
+                .enterTextInToBodyInput("asdasdasd")
 //                .selectTextInDropDownRole("Частное сообщение ")
                 .selectValueInDropDownRole("One Person")
                 .clickOnButtonSaveNewPost()
@@ -26,8 +27,16 @@ public class CreatePostTest extends BaseTest {
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title)
-
         ;
+    }
 
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+                .checkIsButtonSingOutDisplayed()
+                .clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitleWhilePresent(title);
     }
 }

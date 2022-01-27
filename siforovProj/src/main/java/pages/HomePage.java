@@ -1,6 +1,5 @@
 package pages;
 
-import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,6 +27,11 @@ public class HomePage extends ParentPageWithHeader {
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/";
     }
 
     public boolean isButtonSignOutDisplayed() {
@@ -68,5 +72,14 @@ public class HomePage extends ParentPageWithHeader {
 
     public boolean checkUserName(){
         return compareElementTextWithExpectedText(currentUserName);
+    }
+
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if(!isButtonSignOutDisplayed()){
+            loginPage.loginWithValidCredentials();
+        }
+        return this;
     }
 }
