@@ -41,4 +41,27 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToMyProfilePage()
                 .deletePostWithTitleWhilePresent(title);
     }
+
+    @Test
+    public void selectInDropdown() {
+        loginPage
+                .loginWithValidCred()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnCreatePostButton()
+                .checkIsRedirectToCratePostPage()
+                .enterTextIntoTitleInput(title)
+                .enterTextIntoBodyInput("Body post")
+
+                .checkFieldSelectIsDisplayed()
+                .clickOnDropDownRole()
+                .selectTextInDropDownRoleByUi("Частное сообщение")
+                .checkFieldCheckBoxIsDisplayed();
+        Util.waitABit(5);
+        createPostPage
+                .clickOnCheckBox("check")
+
+
+        ;
+
+    }
 }

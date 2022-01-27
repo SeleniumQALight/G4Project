@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,18 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//*[text()='Частное сообщение']")
+    private WebElement textOnePerson;
+
+
+
+    @FindBy(xpath = ".//*[text()='Общедоступное']")
+    private WebElement textGroupMessage;
+
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBox;
+
+    private String textOnePersonInDropDown = ".//*[text()='%s']";
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -47,13 +60,47 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public CreatePostPage selectTextInDropDownRole(String textForSelect) {
-        selectTextInDropDown(dropDownRole, textForSelect);
-        return this;
-    }
+    //   public CreatePostPage selectTextInDropDownRole(String textForSelect) {
+    //      selectTextInDropDown(dropDownRole, textForSelect);
+    //      return this;
+    //  }
 
     public CreatePostPage selectValueInDropDownRole(String valueForSelect) {
         selectValueInDropDown(dropDownRole, valueForSelect);
+        return this;
+    }
+
+    public CreatePostPage selectTextInDropDownRoleByUi(String text) {
+        clickOnEltment(dropDownRole);
+        clickOnEltment(webDriver.findElement(By.xpath(String.format(textOnePersonInDropDown, text))));
+
+        return this;
+    }
+
+    public CreatePostPage clickOnDropDownRole() {
+        clickOnEltment(dropDownRole);
+        return this;
+    }
+
+    public CreatePostPage clickOnTextOnePersonInDropDown() {
+        clickOnEltment(textOnePerson);
+        return this;
+    }
+
+    public CreatePostPage checkFieldSelectIsDisplayed() {
+
+        Assert.assertTrue("Select is not displayed", isElementDisplayed(dropDownRole));
+        return this;
+    }
+
+    public CreatePostPage checkFieldCheckBoxIsDisplayed() {
+        Assert.assertTrue("Checkbox is not displayed", isElementDisplayed(checkBox));
+        return this;
+    }
+
+    public CreatePostPage clickOnCheckBox(String text) {
+
+        isCheckBoxCondition(checkBox, text);
         return this;
     }
 
