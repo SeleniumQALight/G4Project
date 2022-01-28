@@ -25,10 +25,7 @@ public class CreatePostTest extends BaseTest {
                 .checkTextInAlter("New post successfully created.")
                 .clickOfMyProfileButton()
                 .checkPostWasCreated(title)
-
         ;
-
-
     }
     @After
     public void deletePost(){
