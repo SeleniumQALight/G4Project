@@ -11,6 +11,9 @@ import java.util.List;
 public class MyProfilePage extends ParrentPageWithHeader{
     private String postTitleLocator = ".//*[text()='%s']";
 
+    @FindBy(xpath = ".//*[text()='Post successfully deleted']")
+    private WebElement PostDeleteMessage;
+
     public MyProfilePage(WebDriver driver) {
         super(driver);
     }
@@ -27,14 +30,28 @@ public class MyProfilePage extends ParrentPageWithHeader{
     }
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        checkUrl();
+        checkUrlWithPattern();
         waitChatToBeHide();
         return this;
     }
 
     public MyProfilePage deletePostWithTitleWhilePresent(String title) {
         List<WebElement> listOfPosts = driver.findElements(By.xpath(String.format(postTitleLocator, title)));
-        //TODO add logic to delete posts
+        int counter = 0;
+        while (!listOfPosts.isEmpty() && counter < 10){
+            clickOnElement(driver.findElement(By.xpath(String.format(postTitleLocator, title))));
+            new PostPage(driver).checkIsRedirectToPostPage().clickOnDeleteButton()
+                    .checkPostDeleteMessagePresent();
+            listOfPosts = driver.findElements(By.xpath(String.format(postTitleLocator, title)));
+            counter++;
+        }
+
+        logger.info("All posts with title" + title + " was deleted ");
+        return this;
+    }
+
+    private MyProfilePage checkPostDeleteMessagePresent() {
+        Assert.assertTrue("Element is not present", isElementDisplayed(PostDeleteMessage));
         return this;
     }
 }
