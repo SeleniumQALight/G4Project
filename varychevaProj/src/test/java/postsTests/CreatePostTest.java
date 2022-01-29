@@ -10,5 +10,14 @@ public class CreatePostTest extends BaseTest {
         loginPage
                 .loginWithValidCred()
                 .checkIsButtonSignOutDisplayed();
+        createPostPage
+                .checkIsRedirectToCreatePostPage()
+                .enterTextInToTitleInput("Test Title 12345")
+                .enterTextInToBodyInput("Body post")
+//                .selectTextInDropDownRole("Частное сообщение")
+                .selectValueInDropDownRole("One Person")
+                .clickOnButtonSaveNewPost()
+                .checkIsRedirectToPostPage()
+                .checkTextInAlert("New post successfully created.");
     }
 }
