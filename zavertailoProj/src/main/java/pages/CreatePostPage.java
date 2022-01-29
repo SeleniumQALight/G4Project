@@ -46,7 +46,7 @@ public class CreatePostPage extends ParentPageWithHeader{
         return this;
     }
 
-    public CreatePostPage entrTextInToTitleInput(String text) {
+    public CreatePostPage entreTextInToTitleInput(String text) {
         enterTextInToElement(inputTitle, text);
         return this;
     }

@@ -42,7 +42,8 @@ public class MyProfilePage extends ParentPageWithHeader{
 
         int counter = 0;
         while (!listOfPost.isEmpty() && counter<10){                //цыкл пока не пустой
-            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
+//            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
+            clickOnPost(title);
             new PostPage(webDriver)// перейти на постпейдж
                     .checkIsRedirectToPostPage()// проверка страницы на которой мы
                     .clickOnDeleteButton()
@@ -59,5 +60,10 @@ public class MyProfilePage extends ParentPageWithHeader{
     private MyProfilePage checkIsSuccessDeletePostMessagePresent() {
         Assert.assertTrue("Element is not present",isElementDispleid(SuccessDeletePostMessage));
         return  this;
+    }
+
+    public PostPage clickOnPost(String title) {
+        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
+        return new PostPage(webDriver);
     }
 }

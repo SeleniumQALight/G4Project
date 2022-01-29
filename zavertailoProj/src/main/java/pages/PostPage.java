@@ -1,9 +1,12 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
@@ -14,6 +17,8 @@ public class PostPage extends ParentPageWithHeader{
 
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement buttonDelete;
+
+    private String nameTitle = ".//*[text()='%s']"; //%s- подставляем значения
 
 
     public PostPage(WebDriver webDriver) {
@@ -41,5 +46,17 @@ public class PostPage extends ParentPageWithHeader{
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkOpenedPost(String title) {
+        waitChatTobeHide();
+        checkUrlWithPattern();
+        isElementDispleid(webDriver.findElement(By.xpath(String.format(nameTitle, title))));
+        return this;
+    }
+
+    public PostPage clickOnEdit() {
+        clickOnElement(editButton);
+        return this;
     }
 }
