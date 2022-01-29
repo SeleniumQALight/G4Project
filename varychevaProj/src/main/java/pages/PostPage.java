@@ -20,6 +20,7 @@ public class PostPage extends ParentPageWithHeader {
 
     public PostPage checkIsRedirectToPostPage() {
         waitChatTobeHide();
+        checkUrlWithPattern();
         assertTrue("Edit Button is not Displayed."
                 , isElementDisplayed(editButton));
         return this;
@@ -30,5 +31,8 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
-
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
+    }
 }

@@ -26,8 +26,9 @@ public class CreatePostPage extends ParentPageWithHeader {
         super(webDriver);
     }
 
-    public CreatePostPage checkIsRedirectToCreatePostPage(){
+    public CreatePostPage checkIsRedirectToCreatePostPage() {
         waitChatTobeHide();
+        checkUrl();
         assertTrue("InputTitle is not displayed"
                 , isElementDisplayed(inputTitle));
         return this;
@@ -58,13 +59,18 @@ public class CreatePostPage extends ParentPageWithHeader {
         return new PostPage(webDriver);
     }
 
-    public CreatePostPage selectRoleInDropdownByText(String text){
+    public CreatePostPage selectRoleInDropdownByText(String text) {
         selectTextInDropDownByUI(dropDownRole, text);
-        return  this;
+        return this;
     }
 
     public CreatePostPage setCheckboxValue(String value) {
         setCheckbox(inputCheckbox, value);
         return this;
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
     }
 }
