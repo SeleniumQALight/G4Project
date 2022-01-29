@@ -19,7 +19,7 @@ public class MyProfilePage extends ParentPageWithHeader{
         super(webDriver);
     }
 
-    public MyProfilePage checkPostWasCreated(String title) {
+    public MyProfilePage checkPostIsPresentOnMyProfilePage(String title) {
         List<WebElement> postsList = webDriver.findElements(
                 By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
@@ -61,5 +61,10 @@ public class MyProfilePage extends ParentPageWithHeader{
         Assert.assertTrue("Element is not present", isElementDisplayed(successDeletedPostMessage));
 
         return this;
+    }
+
+    public PostPage openPostDetails(String title) {
+        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,title))));
+        return new PostPage(webDriver);
     }
 }
