@@ -5,12 +5,13 @@ import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
-public class CreatePostTest extends BaseTest {
+public class EditPost extends BaseTest {
 
     final String title = "G4-Nadia-" + Util.getDateAndTimeFormatted();
+    final String editTitle = title + "-was_edit";
 
     @Test
-    public void createNewPost() {
+    public void editPost(){
         loginPage
                 .loginWithValidaCred()
                 .checkIsButtonSignOutDisplayed()
@@ -18,16 +19,18 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInToTitleInput(title)
                 .enterTextInToBodyInput("New post text")
-                // .selectTextInToDropDownRole("Частное сообщение")
-                // .selectValueInProdDownRole("One Person")
-                .selectCheckbox()
                 .selectOptionByTextAtDropDown("Частное сообщение")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectPostPage()
                 .checkTextInAlert("New post successfully created.")
+                .clickOnEditButton()
+                .checkIsRedirectToEditPostPage()
+                .enterTextInToTitleInput(editTitle)
+                .clickOnButtonUpdateSavePost()
+                .checkTextInAlert("Post successfully updated.")
                 .clickOnMyProfileButton()
-                .checkIsPostTitleCorrect(title)
-        ;
+                .checkIsPostTitleCorrect(editTitle)
+                ;
     }
 
     @After
@@ -37,7 +40,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsButtonSignOutDisplayed()
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .deletePostWithTitleWhilePresent(title)
-                ;
+                .deletePostWithTitleWhilePresent(editTitle)
+        ;
     }
 }
