@@ -1,9 +1,11 @@
 package postsTests;
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
+    final String title = "G4-daryna" + Util.getDateAndTimeFormatted();
 
     @Test
     public void createNewPost() {
@@ -13,12 +15,14 @@ public class CreatePostTest extends BaseTest {
                 .clickOnCreatePostButton();
         createPostPage
                 .checkIsRedirectToCreatePostPage()
-                .enterTextInToTitleInput("Test Title 12345")
+                .enterTextInToTitleInput(title)
                 .enterTextInToBodyInput("Body post")
 //                .selectTextInDropDownRole("Частное сообщение")
                 .selectValueInDropDownRole("One Person")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
-                .checkTextInAlert("New post successfully created.");
+                .checkTextInAlert("New post successfully created.")
+                .clickOnMyProfileButton()
+                .checkPostWasCreated(title);
     }
 }
