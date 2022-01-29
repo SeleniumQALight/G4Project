@@ -1,6 +1,7 @@
 package pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -84,6 +85,34 @@ public class ParentPage {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    protected void selectTextInDropDownByUI(WebElement dropdown, String text) {
+        try {
+            clickOnElement(dropdown);
+            WebElement optionElement = webDriver.findElement(By.xpath(String.format(".//option[text()='%s']", text)));
+            clickOnElement(optionElement);
+            logger.info(String.format("Option with text: '%s' was selected", text));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckbox(WebElement checkbox, String value) {
+        try {
+            boolean state = checkbox.isSelected();
+            if (value.equals("check") && !state) {
+                clickOnElement(checkbox);
+                logger.info("Checkbox was checked");
+            } else if (value.equals("uncheck") && state) {
+                clickOnElement(checkbox);
+                logger.info("Checkbox was uncheck");
+            } else {
+                logger.info(String.format("State of checkbox is already '%s'", value));
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
         }
     }
 
