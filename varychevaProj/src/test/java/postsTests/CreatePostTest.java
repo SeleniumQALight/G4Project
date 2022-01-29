@@ -9,7 +9,8 @@ public class CreatePostTest extends BaseTest {
     public void createNewPost() {
         loginPage
                 .loginWithValidCred()
-                .checkIsButtonSignOutDisplayed();
+                .checkIsButtonSignOutDisplayed()
+                .clickOnCreatePostButton();
         createPostPage
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInToTitleInput("Test Title 12345")
