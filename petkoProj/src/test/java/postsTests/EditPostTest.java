@@ -38,7 +38,7 @@ public class EditPostTest extends BaseTest {
     }
 
     @After
-    public void deletePost(){
+    public void deletePostAfterEditing(){
         homePage
                 .openHomePage()
                 .checkIsButtonSignOutDisplayed()
