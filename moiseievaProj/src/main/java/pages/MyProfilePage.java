@@ -24,7 +24,7 @@ public class MyProfilePage extends ParentPageWithHeader {
         return "/profile/";
     }
 
-    public MyProfilePage checkPostWasCreated(String title) {
+    public MyProfilePage checkIsPostTitleCorrect(String title) {
         List<WebElement> postsList = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
         return this;
@@ -57,4 +57,5 @@ public class MyProfilePage extends ParentPageWithHeader {
         Assert.assertTrue("Element is not present", isElementDisplayed(successDeletePostMessage));
         return this;
     }
+
 }
