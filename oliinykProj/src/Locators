@@ -1,0 +1,36 @@
+Main page locators
+
+1. Username registration field: .//input[@id='username-register']
+2. Email registration field: .//input[@id='email-register']
+3. "Create a password" field: .//input[@id='password-register']
+4. Button "Sign up for OurApp": .//button[text()='Sign up for OurApp']
+5. Header "Username": .//input[@name='username' and @placeholder='Username']
+6. Header "Password": .//input[@placeholder='Password']
+7. "Sign in" button: .//button[text()='Sign In']
+
+Home page locators
+1. Username in the header: .//span[@class='text-white mr-2']
+2. Create Post button: .//a[text()='Create Post']
+3. Sing Out button: .//button[text()='Sign Out']
+4. "My Profile" icon: .//a[@class='mr-2']//img
+
+Create Post page locators
+1. "Title" field: .//input[@id='post-title']
+2. "Body Content" field: .//textarea[@id='post-body']
+3. Check-box "This is a unique post": .//input[contains(@id,'UniquePost')]
+4. Dropdown "Select value": .//select[@id='select1']
+5. "Chastnoe soobschenie" in dropdown: .//select//option[@value='One Person']
+6. "Save New Post" button: .//button[text()='Save New Post']
+
+Post page locators
+1. Message : .//div[text()='New post successfully created.']
+2. Entered title text: .//div[@class='d-flex justify-content-between']//h2
+3. Posted by: .//a[text()='(username)'] ---> username here is the login of user that made post
+4. "Note" message: .//div[@class='body-content']//u
+5. Entered text: .//div[4]//p --- (bad practice, but for my understanding for this moment there is no other way)))
+6. Trash icon: .//button[@class='delete-post-button text-danger']
+
+My Profile page
+1. First post: .//div[@class='list-group']/a[1]
+2. Message: .//div[@class='alert alert-success text-center']
+3. Count of posts: .//a[contains(text(),'Posts:')]

@@ -1,0 +1,27 @@
+1 Login page
+Footer items = .//footer [@class='border-top text-center small text-muted py-3']
+
+2 Login page
+Header title = .//a[@href='/' and @class='text-white'],
+
+3 Login page
+Username field in header = .//input[@name='username' and @placeholder='Username'],
+Password field in header = .//input[@name='password' and @placeholder='Password'],
+Sigh in button = //button[@class='btn btn-primary btn-sm'],
+Title of Greater text = //h2,
+Greater text = //p[@class='lead text-muted'],
+Username = //span [@class='text-white mr-2'],
+Button create post = //p[@class='lead text-muted'],
+Sign out button = //button[@class='btn btn-sm btn-secondary'],
+My profile button = //img[@data-toggle='tooltip'],
+Chat button = //span[@class='text-white mr-2 header-chat-icon'],
+Search button = //a[@href='#']
+
+4 Login page
+Username field = Password field = .//input[@id="username-register"]
+E-mail field = .//input[@id="email-register"],
+Password field = .//input[@id="email-register"]
+Login button = .//button[@type='submit']
+
+5 Login page
+Error message = //div[@class='alert alert-danger text-center']

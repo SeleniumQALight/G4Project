@@ -25,4 +25,11 @@ public class LoginTestWithPageObject extends BaseTest {
 
         assertTrue("Sing in button is not displayed", loginPage.isButtonSignInDisplayed());
     }
+
+    @Test
+    public void signUpValidationMessages() {
+        loginPage.openLoginPage();
+        loginPage.singUpWithInvalidData("tr", "123", "test.com")
+                .checkErrorMessages();
+    }
 }
