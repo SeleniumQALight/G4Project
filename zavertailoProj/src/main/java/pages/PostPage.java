@@ -71,12 +71,7 @@ public class PostPage extends ParentPageWithHeader{
         return this;
     }
 
-    public PostPage clickOnTitle() {
-        clickOnElement(titleInput);
-        return this;
-    }
-
-    public PostPage cleanerTitleInPost (String titleNew) {
+    public PostPage enterTitleInPost(String titleNew) {
         enterTextInToElement(titleInput, titleNew);
         return this;
     }

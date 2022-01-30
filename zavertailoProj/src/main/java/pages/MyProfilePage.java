@@ -23,7 +23,7 @@ public class MyProfilePage extends ParentPageWithHeader{
         return "/profile/";
     }
 
-    public MyProfilePage checkPostWasCreated (String title){
+    public MyProfilePage checkPostIsInListOfPosts(String title){
         List<WebElement> postsList = webDriver.findElements(
                 By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
@@ -67,10 +67,4 @@ public class MyProfilePage extends ParentPageWithHeader{
         return new PostPage(webDriver);
     }
 
-    public MyProfilePage checkPostWasUpdates(String titleNew) {
-        List<WebElement> postsList = webDriver.findElements(
-                By.xpath(String.format(postTitleLocator, titleNew)));
-        Assert.assertEquals("Number of posts with title " + titleNew, 1, postsList.size());
-        return this;
-    }
 }
