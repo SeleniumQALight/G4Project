@@ -25,12 +25,12 @@ public class EditPostPage extends ParentPageWithHeader{
 
     @Override
     String getRelativeUrl() {
-        return "/edit";
+        return "/post/";
     }
 
     public EditPostPage checkIsRedirectToEditPostPage(){
         waitChatToBeHide();
-//        checkUrlWithPattern();
+        checkUrlWithPattern();
         Assert.assertTrue("Button 'Save updates' is not displayed", isElementDisplayed(buttonSaveUpdates));
         return this;
     }
