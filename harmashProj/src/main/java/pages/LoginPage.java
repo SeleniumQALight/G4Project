@@ -1,13 +1,20 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
+
+    private String listErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -18,12 +25,24 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
-    @FindBy(xpath=".//input[@name='username' and @placeholder='Username']")
+    @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputLoginSignIn;
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassWordSignIn;
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSignIn;
+
+    @FindBy(id = "username-register")
+    private WebElement inputLoginRegistration;
+
+    @FindBy(id = "email-register")
+    private WebElement inputEmailRegistration;
+
+    @FindBy(id = "password-register")
+    private WebElement inputPassWordRegistration;
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfErrors;
 
     public void openLoginPage() {
         try {
@@ -45,18 +64,18 @@ public class LoginPage extends ParentPage {
 //        } catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-        enterTextInToElement(inputLoginSignIn,login);
+        enterTextInToElement(inputLoginSignIn, login);
     }
 
     public void enterPasswordIntoInputPassWord(String passWord) {
-        enterTextInToElement(inputPassWordSignIn,passWord);
+        enterTextInToElement(inputPassWordSignIn, passWord);
     }
 
     public void clickOnButtonSignIn() {
         clockOnElement(buttonSignIn);
     }
 
-    public HomePage loginWithValidCred(){
+    public HomePage loginWithValidCred() {
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassWord(TestData.VALID_PASS);
@@ -66,4 +85,41 @@ public class LoginPage extends ParentPage {
     }
 
 
+    public LoginPage enterLoginRegistration(String login) {
+        enterTextInToElement(inputLoginRegistration, login);
+
+        return this;
+
+    }
+
+    public LoginPage enterEmailRegistration(String email) {
+        enterTextInToElement(inputEmailRegistration, email);
+        return this;
+    }
+
+    public LoginPage enterPasswordRegistration(String password) {
+        enterTextInToElement(inputPassWordRegistration, password);
+        return this;
+    }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        String[] expectedErrorsArray = expectedErrors.split(";");
+        webDriverWait10.withMessage("Numbers of messages ")
+                .until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorsLocator), expectedErrorsArray.length));
+
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for(WebElement element: listOfErrors){
+            actualTextFromErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).isIn(actualTextFromErrors);
+
+        }
+
+        softAssertions.assertAll();
+
+        return this;
+    }
 }

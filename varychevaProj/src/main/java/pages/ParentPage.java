@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
@@ -35,8 +35,20 @@ public class ParentPage {
         }
     }
 
+    protected String getTextFromElement(WebElement webElement) {
+        try {
+            String text = webElement.getText();
+            logger.info("Text from Element: " + text);
+            return text;
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+        return null;
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
         fail("Can not work with element" + e);
     }
+
 }

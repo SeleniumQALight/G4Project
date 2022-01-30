@@ -5,12 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']" )
     private WebElement alertSuccess;
 
     @FindBy(xpath = ".//a[@data-original-title='Edit']")
     private WebElement editButton;
+
+    @FindBy(xpath = ".//button[@data-original-title='Delete']" )
+    private WebElement buttonDelete;
 
     public PostPage(WebDriver webDriver){
         super (webDriver);
@@ -30,5 +34,10 @@ public class PostPage extends ParentPageWithHeader{
     public PostPage checkTextInAlter(String text){
         Assert.assertEquals("Text in Alert",text,alertSuccess.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }

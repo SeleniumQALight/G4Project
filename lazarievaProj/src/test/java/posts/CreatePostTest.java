@@ -3,14 +3,15 @@ package posts;
 import baseTest.BaseTest;
 import libs.Util;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
+import org.testng.annotations.AfterTest;
 
 public class CreatePostTest extends BaseTest {
     final String title = "G4-Marigold " + Util.getDateAndTimeFormatted();
 
     @Test
     public void createNewPost() {
-
 
         loginPage
                 .loginWithValidCred()
@@ -26,11 +27,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfile()
-                .checkPostWasCreated(title)
-
-
-        ;
-
+                .checkPostWasCreated(title);
 
     }
     @After
@@ -40,7 +37,6 @@ public class CreatePostTest extends BaseTest {
                 .checkIsButtonSignOutDisplayed()
                 .clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
-                .deletePostWithTitleWhilePresent(title)
-                ;
+                .deletePostWithTitleWhilePresent(title);
     }
 }
