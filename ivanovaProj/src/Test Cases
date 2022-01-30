@@ -1,0 +1,70 @@
+Test Case 1
+Summary: Create New User
+STR:
+1.Open https://qa-complex-app-for-testing.herokuapp.com/
+2. Enter the test1 data in the USERNAME field
+3. Enter test.ki36@gmail .com in the Email field
+4. Enter Qwertyasdzxc as a password in the Password field
+5. Submit form
+Expected Result:
+1. test1 is displayed as username
+2. Hello test1, your feed is empty
+3. Sign out button is available
+
+Test Case 2:
+Sign In
+1. Open https://qa-complex-app-for-testing.herokuapp.com/
+2. Enter "qaauto" in Username field
+3. Enter "123456qwerty" in password field
+4. Click in sign In button
+Expected result:
+1. Sign out button is available
+2. qaauto is displayed as username
+
+Test Case 3:
+Log OUT
+Pre Condition:
+1. Log in to the system
+
+Step To Reproduce:
+2. Click on Sign Out
+
+Expected Result:
+Sign In button is displayed
+
+Test Case 4
+Create Post
+Pre Condition:
+1. Log in to the system
+
+Step To Reproduce:
+1. Click on Create Post button
+2.Enter Test in the title of the post
+3.Type Test-Test in the body of the post
+4.Set the checkbox "This is a unique message"
+5. Save New Post
+
+Expected Result:
+post titled "test" appears first on a user's profile
+
+Test Case 5
+Delete Post with title Test
+Pre Condition:
+1. Log in to the system
+Step To Reproduce:
+1.Open Profile Page
+2.Select  post with title Test
+3. click the delete button In the post that opens
+
+Expected result:
+A post with the title Test is not displayed on the page
+
+
+
+
+
+
+
+
+
+

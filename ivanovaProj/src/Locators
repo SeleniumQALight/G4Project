@@ -1,0 +1,45 @@
+Login Page
+LoginPage. Sigh In Form
+inputfield.username = .//*[@id='username5']
+inputfieldPassword .//input[@placeholder='Password']
+button.Sign In .//button[@class='btn btn-primary btn-sm']
+
+LoginPage. Sign Up form
+inputfield.newUsername .//input[@id='username-register']
+inputfield.email       .//input[@id='email-register']
+inputfield.password    .//input[@id='password-register']
+button.SignUp .//button[@type='submit']
+
+LoginPage. Alert Message
+Allert1.inputfield.newUsername  .//div[text()='Username must be at least 3 characters.']
+allert2.inputfield.email        .//div[text()='You must provide a valid email address.']
+Allert3.inputfield.email        .//div[text()='Password must be at least 12 characters.']
+Allert2.inputfield.newUsername .//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']
+
+
+HomePage
+MyProfile.button .//a[@class='mr-2']
+Create Post.button .//a[@class='btn btn-sm btn-success mr-2']
+button.SignOut  .//button[@class='btn btn-sm btn-secondary']
+
+Create Post
+
+inputField for Title .//input[@id='post-title']
+inputField for Body .//textarea[@id='post-body']
+save.button  .//button[@class='btn btn-primary']
+
+MyProfilePage
+tab.Posts  .//a[contains(text(),'Posts')]
+tab.followers .//a[contains(text(),'Followers')]
+tab.following .//a[contains(text(),'Following')]
+
+
+Post View:
+button.EditPost .//*[@class='svg-inline--fa fa-edit fa-w-18']
+button.DeletePost .//button[@class='delete-post-button text-danger']
+inputField for Title .//input[@id='post-title']
+inputField for Body .//textarea[@id='post-body']
+button.SaveUpdates .//button[@class='btn btn-primary']
+Alert.AboutSuccessUpdate  .//div[text()='Post successfully updated.']
+
+
