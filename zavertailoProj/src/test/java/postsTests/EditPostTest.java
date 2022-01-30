@@ -18,7 +18,7 @@ public class EditPostTest extends BaseTest {
                 .clickOnCreatePostButton();
         createPostPage
                 .checkIsRedirectToCreatePostPage()
-                .entreTextInToTitleInput(title)
+                .enterTextInToTitleInput(title)
                 .enterTextInBodyInput(body)
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()

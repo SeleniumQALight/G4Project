@@ -17,7 +17,7 @@ public class CreatePostTest extends BaseTest {
                 .clickOnCreatePostButton();
         createPostPage
                 .checkIsRedirectToCreatePostPage()
-                .entreTextInToTitleInput(title)
+                .enterTextInToTitleInput(title)
                 .enterTextInBodyInput("BodyText")
                // .selectTextInDropDownRole("Частное сообщение")
                 .selectTextInDropDownByUI()
