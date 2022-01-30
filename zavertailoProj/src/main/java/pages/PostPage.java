@@ -20,6 +20,12 @@ public class PostPage extends ParentPageWithHeader{
 
     private String nameTitle = ".//*[text()='%s']"; //%s- подставляем значения
 
+    @FindBy(xpath = ".//*[@class = 'btn btn-primary']")
+    private WebElement buttonSaveUpdates;
+
+    @FindBy(xpath = ".//*[@name= 'title']")
+    private WebElement titleInput;
+
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -57,6 +63,26 @@ public class PostPage extends ParentPageWithHeader{
 
     public PostPage clickOnEdit() {
         clickOnElement(editButton);
+        return this;
+    }
+
+    public PostPage checkIsButtonSaveUpdates() {
+        isElementDispleid(buttonSaveUpdates);
+        return this;
+    }
+
+    public PostPage clickOnTitle() {
+        clickOnElement(titleInput);
+        return this;
+    }
+
+    public PostPage cleanerTitleInPost (String titleNew) {
+        enterTextInToElement(titleInput, titleNew);
+        return this;
+    }
+
+    public PostPage clickOnSaveUpdates() {
+        clickOnElement(buttonSaveUpdates);
         return this;
     }
 }

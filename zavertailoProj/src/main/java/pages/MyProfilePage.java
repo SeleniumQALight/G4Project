@@ -66,4 +66,11 @@ public class MyProfilePage extends ParentPageWithHeader{
         clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
         return new PostPage(webDriver);
     }
+
+    public MyProfilePage checkPostWasUpdates(String titleNew) {
+        List<WebElement> postsList = webDriver.findElements(
+                By.xpath(String.format(postTitleLocator, titleNew)));
+        Assert.assertEquals("Number of posts with title " + titleNew, 1, postsList.size());
+        return this;
+    }
 }

@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class EditPostTest extends BaseTest {
     final String title = "Text156 " + Util.getDateAndTimeFormatted();
+    final String titleNew = title + " NEW30";
     final String body = "BodyText";
 
     @Test
@@ -27,6 +28,13 @@ public class EditPostTest extends BaseTest {
                 .clickOnPost(title)
                 .checkOpenedPost(title)
                 .clickOnEdit()
+                .checkIsButtonSaveUpdates()
+                .clickOnTitle()
+                .cleanerTitleInPost(titleNew)
+                .clickOnSaveUpdates()
+                .checkTextInAlert("Post successfully updated.")
+                .clickOnMyProfileButton()
+                .checkPostWasUpdates(titleNew)
         ;
     }
 
@@ -37,7 +45,7 @@ public class EditPostTest extends BaseTest {
                 .checkIsButtonSignOutDisplayed()
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .deletePostWithTitleWilePresent(title)
+                .deletePostWithTitleWilePresent(titleNew)
         ;
 
     }
