@@ -1,9 +1,11 @@
 package pages;
 
 import org.junit.Assert;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 
 public class PostPage extends ParentPageWithHeader {
 
@@ -16,6 +18,12 @@ public class PostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement buttonDelete;
+
+    @FindBy(xpath = ".//*[@class='btn btn-primary']")
+    private WebElement saveUpdates;
+
+    @FindBy(name = "title")
+    private WebElement inputTitle;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -42,5 +50,30 @@ public class PostPage extends ParentPageWithHeader {
     public MyProfilePage clickOnDeleteButton() {
         clickOnEltment(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage clickOnEditButton() {
+        clickOnEltment(editButton);
+        return this;
+    }
+
+    public boolean isButtonSaveUpdatesDisplayed() {
+        try {
+            return saveUpdates.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public PostPage clickOnSaveUpdates() {
+        isButtonSaveUpdatesDisplayed();
+        clickOnEltment(saveUpdates);
+        waitChatTobeHide();
+        return this;
+    }
+
+    public PostPage changeTitlePost(String changeTitle) {
+        enterTextIntoElement(inputTitle, changeTitle);
+        return this;
     }
 }

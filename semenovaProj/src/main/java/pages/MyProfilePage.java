@@ -30,6 +30,10 @@ public class MyProfilePage extends ParentPageWithHeader {
         Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
         return this;
     }
+    public PostPage enterToPost (String title){
+        clickOnEltment(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
+        return new PostPage(webDriver);
+    }
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkUrlWithPattern();
