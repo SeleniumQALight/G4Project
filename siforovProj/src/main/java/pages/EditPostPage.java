@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class EditPostPage extends ParentPage{
+public class EditPostPage extends ParentPageWithHeader{
 
     @FindBy(id = "post-title")
     private WebElement titleInput;
@@ -39,14 +39,19 @@ public class EditPostPage extends ParentPage{
         return this;
     }
 
-    public EditPostPage clearTitleAndUpdateItWithNewValue() {
+    public EditPostPage clearTitleAndUpdateItWithNewValue(String titleValue) {
         titleInput.clear();
-        enterTextIntoElement(titleInput, TestData.VALID_POST_TITLE_AFTER_UPDATE);
+        enterTextIntoElement(titleInput, titleValue);
         return this;
     }
 
     public EditPostPage clickOnSaveUpdatesButton(){
         clickOnElement(saveUpdateButton);
+        return this;
+    }
+
+    public EditPostPage checkIfUpdateSuccessTextDisplayed(){
+        Assert.assertTrue("The success message is not displayed after post updating",elementIsVisible(postUpdatedSuccessText));
         return this;
     }
 

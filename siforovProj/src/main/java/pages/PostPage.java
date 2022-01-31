@@ -19,6 +19,11 @@ public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//input[@name='title']")
     private WebElement titleInput;
 
+    @FindBy(xpath = ".//*[@class='d-flex justify-content-between']/h2")
+    private WebElement postName;
+
+    private String tmpPostName;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -45,7 +50,12 @@ public class PostPage extends ParentPageWithHeader{
         return new ProfilePage(webDriver);
     }
 
+    private void getPostText(){
+        tmpPostName=postName.getText();
+    }
+
     public EditPostPage clickOnEditButton() {
+        getPostText();
         clickOnElement(editButton);
         return new EditPostPage(webDriver);
     }

@@ -1,6 +1,8 @@
 package LoginTest;
 
 import baseTest.BaseTest;
+import libs.TestData;
+import org.junit.After;
 import org.junit.Test;
 
 public class EditPostTest extends BaseTest {
@@ -12,9 +14,28 @@ public class EditPostTest extends BaseTest {
                 .loginWithValidCredentials()
                 .clickOnProfileLink()
                 .checkIsRedirectToProfilePage()
-                .clickOnAnyAvailablePost()
+                .clickOnAvailablePost()
                 .clickOnEditButton()
-                .checkIsRedirectedToEditPage()
-                .clearTitleAndUpdateItWithNewValue();
+            //    .checkIsRedirectedToEditPage()
+                .clearTitleAndUpdateItWithNewValue(TestData.VALID_POST_TITLE_AFTER_UPDATE)
+                .clickOnSaveUpdatesButton()
+                .checkIfUpdateSuccessTextDisplayed()
+                .clickOnProfile()
+                .checkIfUpdatedPostDisplayedInThePostsList();
     }
+
+    @After
+    public void recoverPost(){
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnProfileLink()
+                .checkIsRedirectToProfilePage()
+                .clickOnEditedPost()
+                .clickOnEditButton()
+                .clearTitleAndUpdateItWithNewValue(TestData.VALID_POST_TITLE_AFTER_UPDATE);
+
+
+    }
+
 }
