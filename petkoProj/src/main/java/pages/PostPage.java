@@ -16,6 +16,9 @@ public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement buttonDelete;
 
+    @FindBy(tagName = "h2")
+    private WebElement textOfPostTitle;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -41,4 +44,15 @@ public class PostPage extends ParentPageWithHeader{
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+
+    public EditPostPage clickOnEditButton(){
+        clickOnElement(buttonEdit);
+        return new EditPostPage(webDriver);
+    }
+
+    public PostPage checkTextInTitle(String text){
+        Assert.assertEquals("Text in title",text,textOfPostTitle.getText());
+        return this;
+    }
+
 }
