@@ -134,4 +134,11 @@ abstract public class ParentPage {
 
     }
 
+    protected void addTextToElement(WebElement element, String text){
+        webDriverWait10.until(ExpectedConditions.visibilityOf(element));
+        logger.info(element.getAttribute("value") + " (title before update)");
+        element.sendKeys(text);
+        logger.info(element.getAttribute("value") + " (title after update)");
+    }
+
 }
