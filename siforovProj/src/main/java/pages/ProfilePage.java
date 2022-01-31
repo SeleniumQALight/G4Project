@@ -20,6 +20,9 @@ public class ProfilePage extends ParentPageWithHeader{
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private WebElement deletePostSuccessText;
 
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -67,5 +70,13 @@ public class ProfilePage extends ParentPageWithHeader{
     private ProfilePage checkIsSuccessDeletedPostMessagePresent() {
         Assert.assertTrue("Element isn't present", elementIsVisible(deletePostSuccessText));
         return this;
+    }
+
+    public PostPage clickOnAnyAvailablePost() {
+        if(postsList.size()>0) {
+           postTitle = postsList.get(0).getText();
+           postsList.get(0).click();
+        }
+        return new PostPage(webDriver);
     }
 }

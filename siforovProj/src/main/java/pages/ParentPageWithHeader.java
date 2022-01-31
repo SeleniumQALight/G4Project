@@ -11,6 +11,8 @@ abstract public class ParentPageWithHeader extends ParentPage{
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     protected WebElement buttonProfile;
 
+    protected String postTitle = "";
+
     public ParentPageWithHeader(WebDriver webDriver) {
         super(webDriver);
     }
