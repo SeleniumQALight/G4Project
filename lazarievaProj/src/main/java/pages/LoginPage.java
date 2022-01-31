@@ -1,10 +1,17 @@
 package pages;
 
+
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     //Sign IN
@@ -37,6 +44,11 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.']")
     private WebElement validationUserPasswordMessage;
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfErrors;
+
+    private String listErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
     public LoginPage(WebDriver webDriver) {
@@ -92,16 +104,19 @@ public class LoginPage extends ParentPage {
         return isElementDisplayed(buttonSignUPForOurApp);
     }
 
-    public void enterUserNameInTheSignUpForm(String userName) {
+    public LoginPage enterUserNameInTheSignUpForm(String userName) {
         enterTextInToElement(inputUserNameInSignUpForm, userName);
+        return this;
     }
 
-    public void enterUserEmailInTheSignUpForm(String userEmail) {
+    public LoginPage enterUserEmailInTheSignUpForm(String userEmail) {
         enterTextInToElement(inputEmailInSignUpForm, userEmail);
+        return this;
     }
 
-    public void enterUserPasswordInTheSignUpForm(String userPassword) {
+    public LoginPage enterUserPasswordInTheSignUpForm(String userPassword) {
         enterTextInToElement(inputUserPassWordInSignUpForm, userPassword);
+        return this;
     }
 
     public void clickOnButtonSignUpForOurApp() {
@@ -129,6 +144,29 @@ public class LoginPage extends ParentPage {
     public boolean isValidationUserPasswordMessageDisplayed() {
         return isElementDisplayed(validationUserPasswordMessage);
 
+    }
+
+    public LoginPage checkErrorMessages(String expectedErrors) {
+        //depends on the amount of the errors -1.2.3
+        String[] expectedErrorsArray = expectedErrors.split(";");
+        webDriverWait10.withMessage("Number of messages");
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorsLocator), expectedErrorsArray.length));
+
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element : listOfErrors) {
+            actualTextFromErrors.add(element.getText());
+
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).isIn(actualTextFromErrors);
+        }
+
+        //assertAll - verifying all messages!
+        softAssertions.assertAll();
+
+        return this;
     }
 }
 

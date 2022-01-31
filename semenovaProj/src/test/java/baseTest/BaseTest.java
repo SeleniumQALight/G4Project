@@ -15,9 +15,10 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-   protected LoginPage loginPage;
-   protected HomePage homePage;
-protected CreatePostPage createPostPage;
+    protected LoginPage loginPage;
+    protected HomePage homePage;
+    protected CreatePostPage createPostPage;
+
     @Before
     public void setUp() {
         WebDriverManager.chromedriver().setup();

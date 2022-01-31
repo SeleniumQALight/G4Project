@@ -60,7 +60,7 @@ abstract public class ParentPage {
         }
     }
 
-    protected boolean messageIsDisplayed(WebElement webElement) {
+    protected boolean isMessageDisplayed(WebElement webElement) {
         try {
             return webElement.isDisplayed();
         } catch (Exception e) {
@@ -104,6 +104,31 @@ abstract public class ParentPage {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+
+
+    protected void isCheckBoxCondition(WebElement checkBox, String condition) {
+        try {
+            if (condition.equalsIgnoreCase("check") & checkBox.isSelected()) {
+                logger.info("CheckBox is check ");
+            } else if (condition.equalsIgnoreCase("check") & !checkBox.isSelected()) {
+                clickOnEltment(checkBox);
+                logger.info("CheckBox was checked");
+            } else if (condition.equalsIgnoreCase("uncheck") & checkBox.isSelected()) {
+                clickOnEltment(checkBox);
+                logger.info("CheckBox must be uncheck");
+            } else if (condition.equalsIgnoreCase("uncheck") & !checkBox.isSelected()) {
+                logger.info("CheckBox uncheck");
+            } else {
+                logger.info("State is not selected");
+                Assert.assertTrue("State is not selected", checkBox.isSelected());
+            }
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+
     }
 
     protected void waitChatTobeHide() {

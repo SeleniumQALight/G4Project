@@ -11,17 +11,37 @@ public class PostPage extends ParentPageWithHeader{
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement alertSuccess;
+    @FindBy(xpath = ".//button[@data-original-title='Delete']")
+
+            private WebElement buttonDelete;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
+        WaitChatToBeHide();
+        checkUrlWithPattern();
         Assert.assertTrue("Edit Button is not Displayed", isElementDisplayed(editButton));
+
     return this;
     }
+
 
     public PostPage checkTextInAlert(String text){
         Assert.assertEquals("Text in Alert",text, alertSuccess.getText());
         return this;
     }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+
+    }
 }
+

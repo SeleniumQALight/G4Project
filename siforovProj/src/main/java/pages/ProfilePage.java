@@ -17,6 +17,9 @@ public class ProfilePage extends ParentPageWithHeader{
     @FindBy(xpath = ".//*[@class='list-group']/a")
     private List<WebElement> postsInTheProfile;
 
+    @FindBy(xpath = ".//*[text()='Post successfully deleted']")
+    private WebElement deletePostSuccessText;
+
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -46,7 +49,23 @@ public class ProfilePage extends ParentPageWithHeader{
     public ProfilePage deletePostWithTitleWhilePresent(String title) {
         List<WebElement> webElementList = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
 
-        //TODO
+        int counter = 0;
+        while(!webElementList.isEmpty() && counter < 20){
+            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,title))));
+            new PostPage(webDriver)
+                    .checkIsRedirectToPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsSuccessDeletedPostMessagePresent();
+            logger.info("Post was deleted");
+            webElementList = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
+            counter++;
+        }
+        logger.info("All posts were deleted with title "+title);
+        return this;
+    }
+
+    private ProfilePage checkIsSuccessDeletedPostMessagePresent() {
+        Assert.assertTrue("Element isn't present", elementIsVisible(deletePostSuccessText));
         return this;
     }
 }

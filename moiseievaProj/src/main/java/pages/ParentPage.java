@@ -69,10 +69,10 @@ abstract public class ParentPage {
     protected void checkTextFromElement(String text, WebElement element) {
         try {
             Assert.assertEquals(text, element.getText());
-            logger.info("Error text '" + text + "' is correct");
+            logger.info("Text '" + text + "' is correct");
         } catch (Exception e) {
-            logger.error("Error text '" + text + "' is not correct" + e);
-            Assert.fail("Error text '" + text + "' is not correct" + e);
+            logger.error("Text '" + text + "' is not correct" + e);
+            Assert.fail("Text '" + text + "' is not correct" + e);
         }
     }
 

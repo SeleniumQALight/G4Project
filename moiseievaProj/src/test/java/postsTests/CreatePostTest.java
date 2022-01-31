@@ -26,7 +26,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
-                .checkPostWasCreated(title)
+                .checkIsPostTitleCorrect(title)
         ;
     }
 
