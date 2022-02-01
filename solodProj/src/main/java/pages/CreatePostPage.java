@@ -83,17 +83,17 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public CreatePostPage checkBoxCondition(String checkBox) {
-        Assert.assertTrue("Чекбокс не отображается",checkBoxElement.isDisplayed());
+        Assert.assertTrue(" Checkbox not showing ",checkBoxElement.isDisplayed());
         if (checkBox.equals("check") && checkBoxElement.isSelected()) {
-            logger.info(" Чекбокс нажат и его ненужно нажимать ");
+            logger.info(" The checkbox is pressed and it is unnecessary to press it ");
         } else if (checkBox.equals("check") && !checkBoxElement.isSelected()) {
             checkBoxElement.click();
-            logger.info(" Чекбокс нажат ");
+            logger.info(" he checkbox is pressed ");
         } else if (checkBox.equals("uncheck") && checkBoxElement.isSelected()) {//чек бокс уже нажат и нужно его отжать
             checkBoxElement.click();
-            logger.info("чек бокс уже нажат и нужно его отжать");
+            logger.info(" the checkbox is already pressed and you need to depress it ");
         } else if (checkBox.equals("uncheck") && !checkBoxElement.isSelected()) {//чек бок нажат и ненужно его нажимать
-            logger.info("чек бок нажат и ненужно его нажимать");
+            logger.info(" the check side is pressed and it is unnecessary to press it ");
         }
         return new CreatePostPage(webDriver);
     }
