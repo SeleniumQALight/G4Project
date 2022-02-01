@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ParentPageWithHeader extends ParentPage{
+abstract public class ParentPageWithHeader extends ParentPage{
     @FindBy(xpath = ".//a[text()='Create Post']")
     private WebElement buttonCreatePost;
 
@@ -15,13 +15,18 @@ public class ParentPageWithHeader extends ParentPage{
         super(webDriver);
     }
 
-    public CreatePostPage clickOnCreatePostButton(){
-        clickElement(buttonCreatePost);
-        return new CreatePostPage(webDriver);
-    }
-//    public MyProfilePage clickOnMyProfileButton(){
-//        clickElement(MyProfilePage);
-//        return new MyProfilePage(webDriver);
-//    }
 
+
+    public CreatePostPage clickOnCreatePostButton(){
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
+
+    }
+    public MyProfilePage clickOnMyProfileButton(){
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+    }
+
+//    public ParentPageWithHeader checkIsButtonSignOutDisplayed() {
+//    }
 }

@@ -13,11 +13,22 @@ public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//a[@class='text-primary mr-2']")
     private WebElement editButton;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement deletePostButton;
+
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
+    }
+
     public PostPage checkIsRedirectToPostPage(){
+        waitChatToBeHide();
+        checkUrlWithPattern();
         Assert.assertTrue("The Edit button is not displayed", elementIsVisible(editButton));
         return this;
     }
@@ -27,4 +38,8 @@ public class PostPage extends ParentPageWithHeader{
         return this;
     }
 
+    public ProfilePage clickOnDeleteButton() {
+        clickOnElement(deletePostButton);
+        return new ProfilePage(webDriver);
+    }
 }

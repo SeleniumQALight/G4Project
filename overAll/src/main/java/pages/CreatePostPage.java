@@ -23,8 +23,14 @@ public class CreatePostPage extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage(){
         waitChatTobeHide();
+        checkUrl();
         Assert.assertTrue("InputTitle is not displayed"
                 , isElementDisplayed(inputTitle));
         return this;

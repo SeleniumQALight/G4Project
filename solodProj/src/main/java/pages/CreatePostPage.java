@@ -31,8 +31,12 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
 
-    public CreatePostPage checkIsRedirectToCreatePostPage() {
+@Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }    public CreatePostPage checkIsRedirectToCreatePostPage() {
         //waitChatToBeHide();
+        checkUrl();
         Assert.assertTrue("InputTitle is not displayed"
                 , isElementDisplayed(inputTitle));
         return this;
@@ -100,7 +104,7 @@ public class CreatePostPage extends ParentPageWithHeader {
 
 
     public PostPage clickOnButtonSavePost() {
-        clickElement(buttonSaveNewPost);
+        clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
 

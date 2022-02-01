@@ -1,11 +1,16 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage { //alt + entr создать конструктор
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
@@ -29,22 +34,33 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
     @FindBy(xpath = ".//button[@type ='submit']")
     private WebElement ButtonSignUpForOurApp;
 
-    @FindBy(xpath = ".//div[contains(text(), 'Username must be at least 3 characters.')]")
+    @FindBy(id = "username-register")
     private WebElement divInUsername;
 
-    @FindBy(xpath = ".//div[contains(text(), 'You must provide a valid email address.')]")
+    @FindBy(id = "email-register")
     private WebElement divInEmail;
 
-    @FindBy(xpath = ".//div[contains(text(), 'Password must be at least 12 characters.')]")
+    @FindBy(id = "password-register")
     private WebElement divInPassword;
+
+    @FindBy(xpath = " .//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']") //работать со списками в локаторах
+    private List<WebElement> listOfErrors;
+
+
+    private String listErrorsLocator =" .//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/"); //открыть урл
+            webDriver.get(baseUrl + "/"); //открыть урл
             logger.info("Login page was opened");// сообщение в логе о открытии страницы в браузере
 
         } catch (Exception e) {
@@ -87,16 +103,36 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
 
     }
 
-    public void enterLoginInputIntoUserNameRegiste(String login) {
+    public LoginPage enterLoginInputIntoUserNameRegiste(String login) {
         enterTextInToElement(inputUserNameRegiste, login);
+        return this;
     }
 
-    public void enterEmailIntoInputEmail(String email) {
+    public LoginPage enterEmailIntoInputEmail(String email) {
         enterTextInToElement(inputEmailRegister, email);
+        return this;
     }
 
-    public void enterPassWordIntoInputPassWordRegister(String pasword) {
+    public LoginPage enterPassWordIntoInputPassWordRegister(String pasword) {
         enterTextInToElement(inputPassWordRegister, pasword);
+        return this;
+    }
+
+    public LoginPage checkErrorMessages(String expectedErrors) { //сравнение списка ошибок
+        String[] expectedErrorsArray = expectedErrors.split(";"); //split разделяет -- ожидаемый результат
+        webDriverWait10
+                .withMessage("Number of messages")
+                .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsLocator),expectedErrorsArray.length));//ожидание пока не придет к-во елементов указаных
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element:listOfErrors) {actualTextFromErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions(); //срабатывает если явно указать
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
+
+        return this;
     }
 
     public void clickOnButtonSignUpForOurApp() {
@@ -154,5 +190,6 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
     public boolean isDivTextErrorPasswordDisplayed() {
         return  isElementDispleid(divInPassword);
     }
+
 
 }
