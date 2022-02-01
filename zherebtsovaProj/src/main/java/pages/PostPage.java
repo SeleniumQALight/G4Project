@@ -14,8 +14,7 @@ public class PostPage extends ParentPageWithHeader{
     private WebElement alertSuccess;
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement buttonDelete;
-    @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
-    private WebElement alertUpdate;
+
 
 
     public PostPage(WebDriver webDriver) {

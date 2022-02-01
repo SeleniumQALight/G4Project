@@ -25,13 +25,16 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = "//input[@type='checkbox']")
     private WebElement Checkbox;
-
+    @FindBy (xpath = "//a[@href='/post/61f934c09ad2e40004060d79/edit']")
+    private WebElement editButton;
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement alertUpdate;
 
     @FindBy(xpath = "//button[@class='btn btn-primary']")
     private WebElement saveUpdateButton;
 
+    @FindBy(xpath = ".//*[text()='%s']")
+    public WebElement postTitleLocator;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -83,13 +86,14 @@ public class CreatePostPage extends ParentPageWithHeader {
         clickOnElement(Checkbox);
         return this;
     }
-
-
-    public CreatePostPage clickOnOldTitle(title) {
-        webDriver.findElement(By.name(title));
+    public CreatePostPage clickOnOldTitle(String title){
+     clickOnElement(webDriver.findElement(By.xpath(String.format(String.valueOf(postTitleLocator),title))));
         return this;
     }
-
+    public CreatePostPage clickOnEdit(){
+        clickOnElement(editButton);
+        return this;
+    }
 
     public CreatePostPage enterNewTextInToTitleInput(String title) {
         inputTitle.clear();
@@ -97,8 +101,6 @@ public class CreatePostPage extends ParentPageWithHeader {
         logger.info("The title has value " + title);
         return this;
     }
-
-
     public CreatePostPage clickOnSaveUpdatesButton() {
         clickOnElement(saveUpdateButton);
         logger.info("The Save Updates button was clicked");
@@ -109,7 +111,9 @@ public class CreatePostPage extends ParentPageWithHeader {
         Assert.assertEquals("Text in Alert", text, alertUpdate.getText());
         return this;
     }
-}
+
+    }
+
 
 
 
