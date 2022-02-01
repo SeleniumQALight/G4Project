@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CheckValidationMessage extends BaseTest {
+    String expectedErrors ="Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters.";
 
     @Test
     public void checkMassage(){
@@ -18,6 +19,17 @@ public class CheckValidationMessage extends BaseTest {
         Assert.assertTrue("Massage is not SHOW-'Password must be at least 12 characters.' "
                 ,loginPage.isValidationTextPasswordDisplayed());
 
+
+    }
+
+    @Test
+    public void registrationErrors(){
+        loginPage.openLoginPage();
+        loginPage
+                .enterUserNameForOurApp("tr")
+                .enterEmailForOurApp("qqq")
+                .enterPasswordForOurApp("345")
+                .checkErrorsMessages(expectedErrors);
 
     }
 
