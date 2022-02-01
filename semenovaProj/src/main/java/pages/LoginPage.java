@@ -159,7 +159,7 @@ public class LoginPage extends ParentPage {
                         By.xpath(listErrorsLocator), expectedErrorsArray.length));
         Assert.assertEquals("", expectedErrorsArray.length, listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
-        for (WebElement element: listOfErrors){
+        for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());
         }
         SoftAssertions softAssertions = new SoftAssertions();
