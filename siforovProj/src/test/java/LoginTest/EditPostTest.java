@@ -7,7 +7,7 @@ import org.junit.Test;
 import pages.ParentPageWithHeader;
 
 public class EditPostTest extends BaseTest {
-
+//Homework wit EditPost
     @Test
     public void editPostSuccessTest(){
         loginPage.openLoginPage();
@@ -36,8 +36,6 @@ public class EditPostTest extends BaseTest {
                 .clickOnEditButton()
                 .clearTitleAndUpdateItWithNewValue(ParentPageWithHeader.postTitle)
                 .clickOnSaveUpdatesButton();
-
-
     }
 
 }
