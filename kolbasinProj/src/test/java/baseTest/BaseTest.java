@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.CreatePostPage;
@@ -20,6 +22,7 @@ public class BaseTest {
     protected CreatePostPage createPostPage;
     @Before
     public void setUp(){   // pre-condition
+        logger.info("================ " + testName.getMethodName() + " was started ================");
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();  //ChromeDriver реализация интерфейса WebDriver
         webDriver.manage().window().maximize();
@@ -34,5 +37,9 @@ public class BaseTest {
     public void tearDown(){  // post-condition
         webDriver.quit();  // этот метод полностью закрывает браузер
         logger.info("Browser was closed");
+        logger.info("================ " + testName.getMethodName() + " was ended ================\n");
     }
+
+    @Rule
+    public TestName testName = new TestName();
 }
