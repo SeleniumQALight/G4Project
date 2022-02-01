@@ -8,6 +8,7 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -24,8 +25,11 @@ public class BaseTest {
     @Before //будет запущена перед каждой аннотацией
     public void setUp() {
         logger.info("--- "+testName.getMethodName()+" was started ---");
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();//реализация интерфейса
+        webDriver=initDriver();
+//        WebDriverManager.chromedriver().setup();
+//        webDriver = new ChromeDriver();//реализация интерфейса
+//        WebDriverManager.firefoxdriver().setup();
+//        webDriver = new FirefoxDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         logger.info("Browser was opened");
@@ -46,5 +50,16 @@ public class BaseTest {
     @Rule
     public TestName testName=new TestName();
 
+    private WebDriver initDriver(){
+        String browser = System.getProperty("browser");
+        if ((browser==null)||browser.equalsIgnoreCase("chrome")){
+            WebDriverManager.chromedriver().setup();
+            webDriver = new ChromeDriver();
+        }else if (browser.equalsIgnoreCase("firefox")){
+            WebDriverManager.firefoxdriver().setup();
+            webDriver = new FirefoxDriver();
+        }
+        return  webDriver;
+    }
 
 }
