@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,8 +13,10 @@ public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement alertSuccess;
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
+    private WebElement buttonDelete;
+    @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
+    private WebElement alertUpdate;
 
-            private WebElement buttonDelete;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -37,6 +40,7 @@ public class PostPage extends ParentPageWithHeader{
         Assert.assertEquals("Text in Alert",text, alertSuccess.getText());
         return this;
     }
+
 
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);

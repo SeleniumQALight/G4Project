@@ -1,5 +1,6 @@
 package pages;
 
+
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -9,8 +10,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class LoginPage extends ParentPage {
 
@@ -20,6 +23,8 @@ public class LoginPage extends ParentPage {
     private WebElement inputPasswordSignIn;
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSingIn;
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSingUp;
     @FindBy(id = "username-register")
     private WebElement inputLoginRegistration;
     @FindBy(id = "email-register")
@@ -59,6 +64,11 @@ public class LoginPage extends ParentPage {
 
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSingIn);
+    }
+
+    public LoginPage clickOnButtonSignUp() {
+                clickOnElement(buttonSingUp);
+        return this;
     }
 
 
