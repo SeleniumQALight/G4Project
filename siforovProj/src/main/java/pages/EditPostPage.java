@@ -42,11 +42,13 @@ public class EditPostPage extends ParentPageWithHeader{
     public EditPostPage clearTitleAndUpdateItWithNewValue(String titleValue) {
         titleInput.clear();
         enterTextIntoElement(titleInput, titleValue);
+        logger.info("The title has value "+titleValue);
         return this;
     }
 
     public EditPostPage clickOnSaveUpdatesButton(){
         clickOnElement(saveUpdateButton);
+        logger.info("The Save Updates button has been clicked");
         return this;
     }
 

@@ -4,6 +4,7 @@ import baseTest.BaseTest;
 import libs.TestData;
 import org.junit.After;
 import org.junit.Test;
+import pages.ParentPageWithHeader;
 
 public class EditPostTest extends BaseTest {
 
@@ -33,7 +34,8 @@ public class EditPostTest extends BaseTest {
                 .checkIsRedirectToProfilePage()
                 .clickOnEditedPost()
                 .clickOnEditButton()
-                .clearTitleAndUpdateItWithNewValue(TestData.VALID_POST_TITLE_AFTER_UPDATE);
+                .clearTitleAndUpdateItWithNewValue(ParentPageWithHeader.postTitle)
+                .clickOnSaveUpdatesButton();
 
 
     }
