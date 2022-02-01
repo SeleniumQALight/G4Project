@@ -21,6 +21,7 @@ public class CreatePostsTests extends BaseTest {
                 .enterTextInToBodyInput("Body post")
                 //.selectTextInDropDownRole("Частное сообщение")
                 .selectValueInDropDownRole("One Person")
+                .statusOfTheCHeckBox("check")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectPostPage()
                 .checkTextInAlert("New post successfully created.")

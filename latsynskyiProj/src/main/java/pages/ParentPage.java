@@ -109,4 +109,27 @@ protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
         logger.error("Can not work with element"+ e);
         Assert.fail("Can not work with element"+ e);
     }
-}
+
+    protected void checkBoxcheckUncheck (WebElement  checkBox ,String  checkBoxState ){
+        boolean currentState = checkBox.isSelected();
+        switch (checkBoxState){
+            case("check"):
+                if (currentState) {
+                    logger.info("current state is check");
+                }else {clickOnElement(checkBox);
+                    logger.info("checkBox is clicked and have status check ");}
+                break;
+
+                case ("uncheck"):
+                if (currentState) {
+                    logger.info("current state is uncheck");
+                }else {clickOnElement(checkBox);
+                    logger.info("checkBox is clicked and have status uncheck");}
+                break;
+            default:clickOnElement(checkBox);
+            logger.info("checkBox is clicked");
+                }
+        }
+
+    }
+
