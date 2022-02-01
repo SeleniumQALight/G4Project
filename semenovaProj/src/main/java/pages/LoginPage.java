@@ -157,6 +157,7 @@ public class LoginPage extends ParentPage {
                 .withMessage("Numbers of messages ")
                 .until(ExpectedConditions.numberOfElementsToBe(
                         By.xpath(listErrorsLocator), expectedErrorsArray.length));
+        Assert.assertEquals("", expectedErrorsArray.length, listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element: listOfErrors){
             actualTextFromErrors.add(element.getText());
