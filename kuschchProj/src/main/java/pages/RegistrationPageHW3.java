@@ -1,6 +1,5 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,9 +15,9 @@ public class RegistrationPageHW3 extends ParentPage {
     @FindBy(xpath = ".//div[text()='Username must be at least 3 characters.' and @class =  'alert alert-danger small liveValidateMessage liveValidateMessage--visible'] ")
     private WebElement invalidMassageUsername;
     @FindBy(xpath = ".//div[text()='You must provide a valid email address.' and @class =  'alert alert-danger small liveValidateMessage liveValidateMessage--visible'] ")
-    private WebElement invalidMassageEmail;
+    private WebElement invalidMessageEmail;
     @FindBy(xpath = ".//div[text()='Password must be at least 12 characters.' and @class = 'alert alert-danger small liveValidateMessage liveValidateMessage--visible'] ")
-    private WebElement invalidMassagePassword;
+    private WebElement invalidMessagePassword;
     @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
     private WebElement buttonSingOurApp;
 
@@ -36,33 +35,37 @@ public class RegistrationPageHW3 extends ParentPage {
         return new RegistrationPageHW3(webDriver);
     }
 
+
+
     public RegistrationPageHW3 checkIsInputUsernameRegisterDisplayed() {
-        Assert.assertTrue("-----------------------Input username register is not displayed", isElementDisplayed(inputUsernameRegister));
+        //Assert.assertTrue("-----------------------Input username register is not displayed", isElementDisplayed(inputUsernameRegister));
+        checkIsElementDisplayed("Input username register is not displayed",inputUsernameRegister);
         return this;
     }
-
     public RegistrationPageHW3 checkIsInputEmailRegisterDisplayed() {
-        Assert.assertTrue("Input email register is not displayed", isElementDisplayed(inputEmailRegister));
+        //Assert.assertTrue("Input email register is not displayed", isElementDisplayed(inputEmailRegister));
+        checkIsElementDisplayed("Input email register is not displayed",inputEmailRegister);
         return this;
     }
-
     public RegistrationPageHW3 checkIsInputPasswordRegisterDisplayed() {
-        Assert.assertTrue("Input password register is not displayed", isElementDisplayed(inputPasswordRegister));
+        //Assert.assertTrue("Input password register is not displayed", isElementDisplayed(inputPasswordRegister));
+        checkIsElementDisplayed("Input password register is not displayed",inputPasswordRegister);
         return this;
     }
 
     public RegistrationPageHW3 checkIsInvalidMassageUsernameDisplayed() {
-        Assert.assertTrue("Invalid massage username is not displayed", isElementDisplayed(invalidMassageUsername));
+        //Assert.assertTrue("Invalid massage username is not displayed", isElementDisplayed(invalidMassageUsername));
+        checkIsElementDisplayed("Invalid message username is not displayed",invalidMassageUsername);
         return this;
     }
-
     public RegistrationPageHW3 checkIsInvalidMassageEmailDisplayed() {
-        Assert.assertTrue("Invalid massage email is not displayed", isElementDisplayed(invalidMassageEmail));
+        //Assert.assertTrue("Invalid massage email is not displayed", isElementDisplayed(invalidMassageEmail));
+        checkIsElementDisplayed("Invalid massage email is not displayed",invalidMessageEmail);
         return this;
     }
-
     public RegistrationPageHW3 checkIsInvalidMassagePasswordDisplayed() {
-        Assert.assertTrue("Invalid massage password is not displayed", isElementDisplayed(invalidMassagePassword));
+        //Assert.assertTrue("Invalid massage password is not displayed", isElementDisplayed(invalidMassagePassword));
+        checkIsElementDisplayed("Invalid massage password is not displayed",invalidMessagePassword);
         return this;
     }
 
@@ -70,12 +73,10 @@ public class RegistrationPageHW3 extends ParentPage {
         enterTextIntoElement(inputUsernameRegister, text);
         return this;
     }
-
     public RegistrationPageHW3 enterTextIntoEmailRegisterInput(String text) {
         enterTextIntoElement(inputEmailRegister, text);
         return this;
     }
-
     public RegistrationPageHW3 enterTextIntoPasswordRegisterInput(String text) {
         enterTextIntoElement(inputPasswordRegister, text);
         return this;

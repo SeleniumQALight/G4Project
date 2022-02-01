@@ -105,4 +105,8 @@ abstract public class ParentPage {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+    protected void checkIsElementDisplayed(String message, WebElement webElement){
+        Assert.assertTrue(message, isElementDisplayed(webElement));
+    }
 }

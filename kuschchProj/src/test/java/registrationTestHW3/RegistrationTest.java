@@ -22,7 +22,7 @@ public class RegistrationTest extends BaseTest {
                 .clickOnButtonSingOurApp()
                 .checkIsInvalidMassageEmailDisplayed()
                 .checkIsInvalidMassagePasswordDisplayed()
-                .checkIsInputUsernameRegisterDisplayed();
+                .checkIsInvalidMassageUsernameDisplayed();
 
     }
 }
