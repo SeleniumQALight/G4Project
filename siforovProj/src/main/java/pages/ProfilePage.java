@@ -45,13 +45,13 @@ public class ProfilePage extends ParentPageWithHeader{
         checkUrlWithPattern();
         return this;
     }
-
+    // Added safe clickOnElement method
     public ProfilePage deletePostWithTitleWhilePresent(String title) {
         List<WebElement> webElementList = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
 
         int counter = 0;
         while(!webElementList.isEmpty() && counter < 20){
-            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,title))));
+            clickOnElement(String.format(postTitleLocator,title));
             new PostPage(webDriver)
                     .checkIsRedirectToPostPage()
                     .clickOnDeleteButton()
