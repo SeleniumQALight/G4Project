@@ -15,6 +15,15 @@ public class PostPage extends ParrentPageWithHeader{
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement deleteButton;
 
+    @FindBy(id = "post-title")
+    private WebElement postTitleField;
+
+    @FindBy(xpath = ".//button[@class='btn btn-primary']")
+    private WebElement saveUpdateButton;
+
+    @FindBy(xpath = ".//div[text()='Post successfully updated.']")
+    protected WebElement updatePostMessage;
+
     public PostPage(WebDriver driver) {
         super(driver);
     }
@@ -39,5 +48,25 @@ public class PostPage extends ParrentPageWithHeader{
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(deleteButton);
         return new MyProfilePage(driver);
+    }
+
+    public PostPage clickOnEditButton(){
+        clickOnElement(editButton);
+        return this;
+    }
+
+    public PostPage editPostTitle(String text){
+        addTextToElement(postTitleField, text);
+        return  this;
+    }
+
+    public PostPage clickSaveUpdateButton() {
+        clickOnElement(saveUpdateButton);
+        return this;
+    }
+
+    public PostPage checkTextWasAdded() {
+        Assert.assertTrue("There is no message for succesful updating post", updatePostMessage.isDisplayed());
+        return this;
     }
 }
