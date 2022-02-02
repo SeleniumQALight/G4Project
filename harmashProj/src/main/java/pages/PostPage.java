@@ -37,7 +37,7 @@ public class PostPage extends ParentPageWithHeader {
     }
 
     public MyProfilePage clickOnDeleteButton() {
-        clockOnElement(buttonDelete);
+        clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
 }
