@@ -16,6 +16,9 @@ public class CreatePostPage extends ParentPageWithHeader {
     private WebElement dropDownRole;
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+    @FindBy(id = "”UniquePost”")
+    private WebElement checkboxUniquePost;
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -61,6 +64,15 @@ public class CreatePostPage extends ParentPageWithHeader {
         dropDownRole.click();
         WebElement secondValue = dropDownRole.findElement(By.xpath(".//*[text()='" + valueForSelect + "']"));
         secondValue.click();
+        return this;
+    }
+
+    public CreatePostPage toggleCheckbox(String checkBoxStatus) {
+        if (checkboxUniquePost.isSelected() && !checkBoxStatus.equals("check") ||
+                !checkboxUniquePost.isSelected() && checkBoxStatus.equals("check")) {
+            checkboxUniquePost.click();
+        }
+        logger.info("Checkbox is " + checkBoxStatus + "ed");
         return this;
     }
 
