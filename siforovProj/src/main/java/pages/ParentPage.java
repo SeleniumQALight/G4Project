@@ -89,7 +89,6 @@ abstract public class ParentPage {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
-
     }
 
     protected boolean compareElementTextWithExpectedText(WebElement webElement) {
