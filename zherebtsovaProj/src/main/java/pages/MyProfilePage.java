@@ -10,9 +10,8 @@ import java.util.List;
 
 public class MyProfilePage extends ParentPageWithHeader {
     public String postTitleLocator = ".//*[text()='%s']"; //%s-чтоб подставлять значения
-    @FindBy (xpath = ".//*[text()='Post successfully deleted']" )
+    @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private WebElement successDeletedPostMessage;
-
 
 
     public MyProfilePage(WebDriver webDriver) {
@@ -39,7 +38,7 @@ public class MyProfilePage extends ParentPageWithHeader {
 
     public MyProfilePage deletePostWithTitleWhilePresent(String title) {
         List<WebElement> listOfPost = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
-       int counter = 0;
+        int counter = 0;
         while (!listOfPost.isEmpty() && counter < 10) { //выполняется пока не станет пустой список
             clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
             new PostPage(webDriver)
@@ -60,6 +59,7 @@ public class MyProfilePage extends ParentPageWithHeader {
     }
 
 }
+
 
 
 

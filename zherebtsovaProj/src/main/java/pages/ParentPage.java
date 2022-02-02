@@ -24,18 +24,21 @@ abstract public class ParentPage {
         webDriverWait10 = new WebDriverWait(webDriver, 10);
         webDriverWait15 = new WebDriverWait(webDriver, 15);
     }
+
     abstract String getRelativeUrl();
 
-    protected void CheckUrl(){
+    protected void CheckUrl() {
         Assert.assertEquals("Invalid page"
-                ,baseUrl + getRelativeUrl()
-                ,webDriver.getCurrentUrl());
+                , baseUrl + getRelativeUrl()
+                , webDriver.getCurrentUrl());
     }
-protected void checkUrlWithPattern(){
+
+    protected void checkUrlWithPattern() {
         Assert.assertThat("Invalid page"
-                ,webDriver.getCurrentUrl()
-                ,containsString(baseUrl+ getRelativeUrl()));
-}
+                , webDriver.getCurrentUrl()
+                , containsString(baseUrl + getRelativeUrl()));
+    }
+
     protected void enterTextInToElement(WebElement webElement, String text) {
         try {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
@@ -96,9 +99,11 @@ protected void checkUrlWithPattern(){
             printErrorAndStopTest(e);
         }
     }
-    protected void WaitChatToBeHide (){
+
+    protected void WaitChatToBeHide() {
         webDriverWait10
                 .withMessage("Chat not closed")
                 .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
 }
+
