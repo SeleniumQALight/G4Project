@@ -14,6 +14,9 @@ public class MyProfilePage extends ParrentPageWithHeader{
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private WebElement PostDeleteMessage;
 
+    @FindBy(xpath = ".//div[@class='list-group']//a[1]")
+    private WebElement firstPost;
+
     public MyProfilePage(WebDriver driver) {
         super(driver);
     }
@@ -53,5 +56,16 @@ public class MyProfilePage extends ParrentPageWithHeader{
     private MyProfilePage checkPostDeleteMessagePresent() {
         Assert.assertTrue("Element is not present", isElementDisplayed(PostDeleteMessage));
         return this;
+    }
+
+    public MyProfilePage checkUserHasPost() {
+        Assert.assertTrue("Got no post", isElementDisplayed(firstPost));
+        return this;
+    }
+
+    public PostPage openFirstPostInBlock() {
+        clickOnElement(firstPost);
+        logger.info("post was opened");
+        return new PostPage(driver);
     }
 }

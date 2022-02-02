@@ -162,6 +162,7 @@ public class LoginPage extends ParentPage {
         String[] expectedErrorsAray = expectedErrors.split(";");
         webDriverWait10.withMessage("Numbers of message(s) ")
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsLocator), expectedErrorsAray.length));
+        Assert.assertEquals("", expectedErrorsAray.length, listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element: listOfErrors) {
             actualTextFromErrors.add(element.getText());
