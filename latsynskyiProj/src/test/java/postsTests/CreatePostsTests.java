@@ -39,6 +39,7 @@ public class CreatePostsTests extends BaseTest {
                 .checkIsRedirectToMyProfilePage()
                 .deletePostWithTitleWhilePresent(title);
 
+
 }
 }
 
