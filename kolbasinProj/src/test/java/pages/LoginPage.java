@@ -119,6 +119,7 @@ public class LoginPage extends ParentPage{
                 .until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorsLocator), expectedErrorsArray.length
         ));
+        Assert.assertEquals("", expectedErrorsArray.length, listOfErrors.size());
 
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element: listOfErrors) {
@@ -127,7 +128,7 @@ public class LoginPage extends ParentPage{
         SoftAssertions softAssertions = new SoftAssertions();
 
         for (int i = 0; i < expectedErrorsArray.length; i++) {
-            softAssertions.assertThat(expectedErrorsArray[i].isIn(actualTextFromErrors));
+            softAssertions.assertThat(expectedErrorsArray[i]).isIn(actualTextFromErrors);
         }
 
         softAssertions.assertAll();
