@@ -2,7 +2,10 @@ package posts;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
+import org.testng.annotations.AfterTest;
 
 public class CreatePostTest extends BaseTest {
     final String title = "G4-Marigold " + Util.getDateAndTimeFormatted();
@@ -10,12 +13,10 @@ public class CreatePostTest extends BaseTest {
     @Test
     public void createNewPost() {
 
-
         loginPage
                 .loginWithValidCred()
                 .checkIsButtonSignOutDisplayed()
                 .clickOnCreatePostButton()
-                //;
                 // createPostPage
                 .checkIsRedirectedToCreatePostPage()
                 .enterTextinToTitleInput(title)
@@ -26,10 +27,16 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfile()
-                .checkPostWasCreated(title)
+                .checkPostWasCreated(title);
 
-        ;
-
-
+    }
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitleWhilePresent(title);
     }
 }

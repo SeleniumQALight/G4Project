@@ -9,6 +9,11 @@ public class HomePage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    String getRalativeUrl() {
+        return "/";
+    }
+
     public boolean isButtonSingOutDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
@@ -19,6 +24,15 @@ public class HomePage extends ParentPageWithHeader {
 
     public HomePage checkIsButtonSingOutDisplayed(){
         Assert.assertTrue("Button SingOut is not diplayed", isButtonSingOutDisplayed());
+        return this;
+    }
+
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!isButtonSingOutDisplayed()){
+            loginPage.loginWithValidCred();
+        }
         return this;
     }
 }

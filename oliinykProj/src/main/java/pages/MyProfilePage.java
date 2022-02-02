@@ -11,6 +11,12 @@ import java.util.List;
 public class MyProfilePage extends ParrentPageWithHeader{
     private String postTitleLocator = ".//*[text()='%s']";
 
+    @FindBy(xpath = ".//*[text()='Post successfully deleted']")
+    private WebElement PostDeleteMessage;
+
+    @FindBy(xpath = ".//div[@class='list-group']//a[1]")
+    private WebElement firstPost;
+
     public MyProfilePage(WebDriver driver) {
         super(driver);
     }
@@ -19,5 +25,47 @@ public class MyProfilePage extends ParrentPageWithHeader{
         List<WebElement> postsList = driver.findElements(By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of post with title " + title, 1, postsList.size());
         return this;
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/profile/";
+    }
+
+    public MyProfilePage checkIsRedirectToMyProfilePage() {
+        checkUrlWithPattern();
+        waitChatToBeHide();
+        return this;
+    }
+
+    public MyProfilePage deletePostWithTitleWhilePresent(String title) {
+        List<WebElement> listOfPosts = driver.findElements(By.xpath(String.format(postTitleLocator, title)));
+        int counter = 0;
+        while (!listOfPosts.isEmpty() && counter < 10){
+            clickOnElement(driver.findElement(By.xpath(String.format(postTitleLocator, title))));
+            new PostPage(driver).checkIsRedirectToPostPage().clickOnDeleteButton()
+                    .checkPostDeleteMessagePresent();
+            listOfPosts = driver.findElements(By.xpath(String.format(postTitleLocator, title)));
+            counter++;
+        }
+
+        logger.info("All posts with title" + title + " was deleted ");
+        return this;
+    }
+
+    private MyProfilePage checkPostDeleteMessagePresent() {
+        Assert.assertTrue("Element is not present", isElementDisplayed(PostDeleteMessage));
+        return this;
+    }
+
+    public MyProfilePage checkUserHasPost() {
+        Assert.assertTrue("Got no post", isElementDisplayed(firstPost));
+        return this;
+    }
+
+    public PostPage openFirstPostInBlock() {
+        clickOnElement(firstPost);
+        logger.info("post was opened");
+        return new PostPage(driver);
     }
 }

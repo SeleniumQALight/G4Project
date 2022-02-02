@@ -18,12 +18,19 @@ public class CreatePostPage extends ParentPage{
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage(){
         waitChatToBeHidden();
+        checkUrl();
         Assert.assertTrue("Input Title is not displayed", isElementDisplayed(inputTitle));
         return this;
     }
@@ -47,6 +54,15 @@ public class CreatePostPage extends ParentPage{
       selectValueInDropDown(dropDownRole, valueForSelect);
         return this;
     }
+
+   public CreatePostPage selectTextInDropDownRoleByUI(String textForClick) {
+        selectTextInDropDownByUI(dropDownRole,textForClick);
+        return this;
+   }
+public CreatePostPage checkUncheckCheckbox (String findCheckbox, String valueForCheckbox) {
+        setValueInCheckbox(findCheckbox, valueForCheckbox);
+        return this;
+}
 
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);

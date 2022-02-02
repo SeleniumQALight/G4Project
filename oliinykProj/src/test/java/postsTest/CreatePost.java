@@ -2,6 +2,7 @@ package postsTest;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 
@@ -23,6 +24,15 @@ public class CreatePost extends BaseTest {
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title);
+    }
+
+    @After
+    public void deleteCreatedPost(){
+        homePage.openHomePage()
+                .checkIsButtonSingOutDisplayed()
+                .clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitleWhilePresent(title);
     }
 
     @Test

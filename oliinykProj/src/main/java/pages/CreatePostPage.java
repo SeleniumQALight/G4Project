@@ -21,12 +21,21 @@ public class CreatePostPage extends ParrentPageWithHeader{
     @FindBy(xpath = ".//option[@value='One Person']")
     private WebElement valueOnePerson;
 
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBoxUnique;
+
     public CreatePostPage(WebDriver driver) {
         super(driver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkRedirectToCreatePostPage(){
         waitChatToBeHide();
+        checkUrl();
         Assert.assertTrue("Input 'Title' isn't displayed", isElementDisplayed(inputTitle));
         return this;
     }
@@ -59,6 +68,11 @@ public class CreatePostPage extends ParrentPageWithHeader{
     public CreatePostPage selectTextInDropDownByUI(){
         clickOnElement(dropDownRole);
         clickOnElement(valueOnePerson);
+        return this;
+    }
+
+    public CreatePostPage checkBoxActionsByState(String state){
+        checkBoxActions(state, checkBoxUnique);
         return this;
     }
 }

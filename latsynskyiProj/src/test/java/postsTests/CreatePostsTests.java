@@ -2,12 +2,14 @@ package postsTests;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostsTests extends BaseTest {
+    final String title = "G4-Latsynskyi" + Util.getDateAndTimeFormatted();
     @Test
-    public void createNewPost(){
-       final String title = "G4-Latsynskyi" + Util.getDateAndTimeFormatted();
+    public void createNewPost() {
+
 
       loginPage
               .loginWithValidCred()
@@ -28,5 +30,15 @@ public class CreatePostsTests extends BaseTest {
       ;
 
     }
+@After
+    public void deletePostP(){
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitleWhilePresent(title);
 
 }
+}
+

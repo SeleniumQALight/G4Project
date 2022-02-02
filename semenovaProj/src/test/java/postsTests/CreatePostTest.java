@@ -2,6 +2,7 @@ package postsTests;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
@@ -29,7 +30,38 @@ public class CreatePostTest extends BaseTest {
 
 
         ;
+    }
 
+    @After
+    public void deletePost() {
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitleWhilePresent(title);
+    }
+
+    @Test
+    public void selectInDropdown() {
+        loginPage
+                .loginWithValidCred()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnCreatePostButton()
+                .checkIsRedirectToCratePostPage()
+                .enterTextIntoTitleInput(title)
+                .enterTextIntoBodyInput("Body post")
+
+                .checkFieldSelectIsDisplayed()
+                .clickOnDropDownRole()
+                .selectTextInDropDownRoleByUi("Частное сообщение")
+                .checkFieldCheckBoxIsDisplayed();
+        Util.waitABit(5);
+        createPostPage
+                .clickOnCheckBox("check")
+
+
+        ;
 
     }
 }

@@ -1,10 +1,16 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
 
@@ -38,15 +44,24 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//div[text() = 'Password must be at least 12 characters.']")
     private WebElement errorSignUpPasswordValidation;
 
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfErrors;
+
+    private String listErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage(){
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
+            webDriver.get(baseUrl + "/");
             logger.info("Login page was opened");
         }catch (Exception e){
             logger.error("Can not open Login Page" + e);
@@ -69,16 +84,39 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputPasswordSignIn, password);
     }
 
-    public void enterSignUpLogin(String login){
+    public LoginPage enterLoginRegistration(String login){
         enterTextInToElement(inputLoginSignUp, login);
+        return this;
     }
 
-    public void enterSignUpEmail(String email){
+    public LoginPage enterEmailRegistration(String email){
         enterTextInToElement(inputEmailSignUp, email);
+        return this;
     }
 
-    public void enterSignUpPassword(String password){
+    public LoginPage enterPasswordRegistration(String password){
         enterTextInToElement(inputPasswordSignUp, password);
+        return this;
+    }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        String[] expectedErrorsArray = expectedErrors.split(";");
+        webDriverWait10.withMessage("Numbers of messages ")
+                        .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsLocator),expectedErrorsArray.length));
+        Assert.assertEquals("", expectedErrorsArray.length, listOfErrors.size());
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element:listOfErrors) {
+            actualTextFromErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (int i = 0; i == expectedErrors.length(); i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).isIn(actualTextFromErrors);
+        }
+
+        softAssertions.assertAll();
+        return this;
     }
 
     public void clickOnButtonSignIn(){
