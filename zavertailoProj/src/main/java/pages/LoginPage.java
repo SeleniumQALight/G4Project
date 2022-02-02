@@ -123,6 +123,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         webDriverWait10
                 .withMessage("Number of messages")
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsLocator),expectedErrorsArray.length));//ожидание пока не придет к-во елементов указаных
+        Assert.assertEquals("",expectedErrorsArray.length,listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element:listOfErrors) {actualTextFromErrors.add(element.getText());
         }

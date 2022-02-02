@@ -21,8 +21,9 @@ public class CreatePostTest  extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInToTitleInput(title)
                 .enterTextInToBodyInput("Body post")
-               //.selectTextInDropDownRole("Частное сообщение");
-                .selectValueInDropDownRole("One Person")
+                .checkBoxCondition("check")//check\ uncheck
+                .selectTextInDropDownRole("Общедоступное")// Общедоступное \ Частное сообщение \Сообщение для группы
+                //.selectValueInDropDownRole("One Person")
                 .clickOnButtonSavePost()
                 .checkIsRedirectToPostPage()
                 .checkIsTextInAlert("New post successfully created.")
@@ -41,4 +42,12 @@ public class CreatePostTest  extends BaseTest {
 
     }
 
-}
+
+
+
+
+    }
+
+
+
+

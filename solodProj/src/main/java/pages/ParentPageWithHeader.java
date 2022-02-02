@@ -9,11 +9,12 @@ abstract public class ParentPageWithHeader extends ParentPage{
     private WebElement buttonCreatePost;
 
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
-    private  WebElement buttonMyProfile;
+    private WebElement buttonMyProfile;
 
     public ParentPageWithHeader(WebDriver webDriver) {
         super(webDriver);
     }
+
 
 
     public CreatePostPage clickOnCreatePostButton(){
@@ -26,5 +27,6 @@ abstract public class ParentPageWithHeader extends ParentPage{
         return new MyProfilePage(webDriver);
     }
 
-
+//    public ParentPageWithHeader checkIsButtonSignOutDisplayed() {
+//    }
 }

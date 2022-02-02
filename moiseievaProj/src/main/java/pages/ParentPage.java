@@ -2,13 +2,14 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.containsString;
 
@@ -69,10 +70,10 @@ abstract public class ParentPage {
     protected void checkTextFromElement(String text, WebElement element) {
         try {
             Assert.assertEquals(text, element.getText());
-            logger.info("Error text '" + text + "' is correct");
+            logger.info("Text '" + text + "' is correct");
         } catch (Exception e) {
-            logger.error("Error text '" + text + "' is not correct" + e);
-            Assert.fail("Error text '" + text + "' is not correct" + e);
+            logger.error("Text '" + text + "' is not correct" + e);
+            Assert.fail("Text '" + text + "' is not correct" + e);
         }
     }
 
@@ -153,5 +154,24 @@ abstract public class ParentPage {
         webDriverWait10
                 .withMessage("Chat is displayed")
                 .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='chat-wrapper']")));
+    }
+
+    public void usersPressesKeyEnterTime(int numberOfTimes) {
+        Actions actions = new Actions(webDriver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(Keys.ENTER).build().perform();
+        }
+    }
+    public void usersPressesKeyTabTime(int numberOfTimes) {
+        Actions actions = new Actions(webDriver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(Keys.TAB).build().perform();
+        }
+    }
+
+    public void userOpensNewTab() {
+        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(1));
     }
 }

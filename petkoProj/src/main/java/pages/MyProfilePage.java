@@ -61,4 +61,9 @@ private String postTitleLocator = ".//*[text()='%s']";
         logger.info("All posts were deleted with title " + title);
         return this;
     }
+
+    public PostPage clickOnPostName(String postTitle){
+        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,postTitle))));
+        return new PostPage(webDriver);
+    }
 }
