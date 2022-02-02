@@ -4,8 +4,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.CreatePostPage;
@@ -20,8 +24,10 @@ public class BaseTest {
     protected CreatePostPage createPostPage;
     @Before
     public  void setUp(){
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
+        logger.info("-------- " + testName.getMethodName()+" was started -----------");
+        //WebDriverManager.chromedriver().setup();
+        //webDriver = new ChromeDriver();
+        webDriver = initDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         logger.info("Browser was opened");
@@ -34,6 +40,44 @@ public class BaseTest {
     public void tearDown(){
         webDriver.quit();//закрыть браузер
         logger.info("Browser was closed");
+        logger.info("--------- " + testName.getMethodName() + " was ended ---------" );
 
     }
+
+    @Rule
+    public TestName testName = new TestName();
+
+    private WebDriver initDriver(){
+        String browser = System.getProperty("browser");
+        if ((browser == null)  || browser.equalsIgnoreCase("chrome")){
+            WebDriverManager.chromedriver().setup();
+            webDriver =  new ChromeDriver();
+        }else if (browser.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            webDriver = new FirefoxDriver();
+        }else if ("ie".equalsIgnoreCase(browser)) {
+                //WebDriverManager.iedriver().setup();
+                // in most cases 32bit version is needed
+                WebDriverManager.iedriver().arch32().setup();
+                return new InternetExplorerDriver();
+            }
+
+
+            return webDriver;
+
+    }
+
+//    private WebDriver initDriver(){
+//        String browser = System.getProperty("browser");
+//        if ((browser == null)  || browser.equalsIgnoreCase("firefox")){
+//            WebDriverManager.firefoxdriver().setup();
+//            webDriver = new FirefoxDriver();
+//
+//        }else if (browser.equalsIgnoreCase("chrome")) {
+//            WebDriverManager.chromedriver().setup();
+//            webDriver =  new ChromeDriver();
+//        }
+//        return webDriver;
+//
+//    }
 }
