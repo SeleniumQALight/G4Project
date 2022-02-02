@@ -123,7 +123,7 @@ public class LoginPage extends ParentPageWithHeader {
 
 
 
-    private void printErrorAndStopTest(Exception e) {
+    public void printErrorAndStopTest(Exception e) {
         logger.error("CanT work with element"+ e);
         Assert.fail("CanT work with element"+ e);
     }

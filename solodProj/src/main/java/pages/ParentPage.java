@@ -125,7 +125,7 @@ abstract public class ParentPage {
 
 
 
-    private void printErrorAndStopTest(Exception e) {
+    void printErrorAndStopTest(Exception e) {
         logger.error(" Can not work with element " + e);
         Assert.fail(" Can not work with element " + e);
     }
