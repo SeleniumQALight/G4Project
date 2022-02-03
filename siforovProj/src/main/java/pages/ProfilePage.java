@@ -24,6 +24,9 @@ public class ProfilePage extends ParentPageWithHeader {
     @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']/strong")
     private List<WebElement> postsList;
 
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private WebElement somePost;
+
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -74,9 +77,11 @@ public class ProfilePage extends ParentPageWithHeader {
     }
 
     public PostPage clickOnAvailablePost() {
-        if (postsList.size() > 0) {
-            postTitle = postsList.get(0).getText();
-            postsList.get(0).click();
+
+        if(elementIsVisible(somePost)) {
+            postTitle = somePost.getText();
+            somePost.click();
+            return new PostPage(webDriver);
         }
         return new PostPage(webDriver);
     }
@@ -93,13 +98,7 @@ public class ProfilePage extends ParentPageWithHeader {
     }
 
     public PostPage clickOnEditedPost() {
-        List<WebElement> postsList = webDriver.findElements(By.xpath(".//a[@class='list-group-item list-group-item-action']"));
-        for (WebElement element : postsList) {
-            if (element.getText().contains(TestData.VALID_POST_TITLE_AFTER_UPDATE)) {
-                element.click();
-                return new PostPage(webDriver);
-            }
-        }
+        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,TestData.VALID_POST_TITLE_AFTER_UPDATE))));
         return new PostPage(webDriver);
     }
 }

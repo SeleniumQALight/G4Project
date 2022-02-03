@@ -50,12 +50,7 @@ public class PostPage extends ParentPageWithHeader{
         return new ProfilePage(webDriver);
     }
 
-    private void getPostText(){
-        tmpPostName=postName.getText();
-    }
-
     public EditPostPage clickOnEditButton() {
-        getPostText();
         clickOnElement(editButton);
         return new EditPostPage(webDriver);
     }
