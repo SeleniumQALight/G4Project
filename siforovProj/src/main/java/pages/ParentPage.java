@@ -83,9 +83,7 @@ abstract public class ParentPage {
     protected void clickOnElement(String formattedLocator){
         try{
             WebElement element = webDriver.findElement(By.xpath(formattedLocator));
-            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
-            element.click();
-            logger.info("Element was clicked");
+            clickOnElement(element);
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
