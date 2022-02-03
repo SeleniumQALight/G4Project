@@ -2,9 +2,15 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.assertj.core.api.SoftAssertions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
@@ -39,6 +45,11 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//div[contains(text(), 'Password must be at least 12 characters.')]")
     private WebElement errorPasswordSignup;
+
+    private String listErrorsLocator=".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfErrors;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -137,5 +148,24 @@ public class LoginPage extends ParentPage {
         enterPasswordIntoInputPasswordSignUp("123");
         clickOnButtonSignUp();
         return new LoginPage(webDriver);
+    }
+
+    public  LoginPage checkErrorsMessages(String expectedErrors){
+        String[] expectedErrorsArray = expectedErrors.split(";");
+        webDriverWait10.withMessage(" Numbers of messages ").until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorsLocator),expectedErrorsArray.length
+        ));
+        ArrayList<String> actualTextFromErrors =new ArrayList<>();
+        for (WebElement element:listOfErrors) {
+            actualTextFromErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).isIn(actualTextFromErrors);
+        }
+
+        softAssertions.assertAll();
+        return this;
     }
 }

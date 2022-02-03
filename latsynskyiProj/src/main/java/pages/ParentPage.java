@@ -130,4 +130,19 @@ protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
         logger.error("Can not work with element"+ e);
         Assert.fail("Can not work with element"+ e);
     }
+
+    protected void selectTextInDropDownByUI(WebElement dropDown,String elementInSelect,String text){
+        try{
+            clickOnElement(dropDown);
+          WebElement listOptions = webDriver.findElement(By.xpath(String.format( elementInSelect,text)));
+            logger.info(listOptions);
+            clickOnElement(listOptions);
+            logger.info(text+"  was selected in drop down");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
 }
+//
+}
+
+
