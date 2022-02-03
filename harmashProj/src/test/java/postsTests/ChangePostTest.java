@@ -5,12 +5,12 @@ import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
-public class CreatePostTest extends BaseTest {
-    final String title = "G4-faina " + Util.getDateAndTimeFormatted();
+public class ChangePostTest extends BaseTest {
+    final String title = "G4-faina-HW6 " + Util.getDateAndTimeFormatted();
 
 
     @Test
-    public void createNewPost(){
+    public void createNewPost() {
         loginPage
                 .loginWithValidCred()
                 .checkIsButtonSignOutDisplayed()
@@ -19,19 +19,21 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoTitleInput(title)
                 .enterTextIntoBodyInput("Body text")
-//                .selectTextInDropDownRole("")
+                .selectTextInDropDownByUI("Сообщение для группы")
+                .toggleCheckbox("check")
                 .selectValueInDropDownRole("One Person")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title)
+                .editPostWithTitle(title)
         ;
 
     }
 
     @After
-    public void deletePost(){
+    public void deletePost() {
         homePage
                 .openHomePage()
                 .checkIsButtonSignOutDisplayed()
@@ -41,3 +43,4 @@ public class CreatePostTest extends BaseTest {
     }
 
 }
+
