@@ -19,7 +19,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     private WebElement buttonSaveNewPost;
     @FindBy(xpath = ".//input[@type='checkbox']")
     private WebElement checkBox;
-    private String elementInSelect = ".//*[text()='%s']";
+    private  String elementInSelect = ".//*[text()='%s']";
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
