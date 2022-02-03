@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.StringContains;
 import org.junit.Assert;
@@ -18,14 +20,15 @@ abstract public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver driver;
     WebDriverWait webDriverWait10, webDriverWait15;
-    protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    protected String baseUrl = configProperties.base_url();
 
     public ParentPage(WebDriver driver) {
         this.driver = driver;
         //inicializiruem elementi na stranicah (izuchity PageFactory)
         PageFactory.initElements(driver, this);
-        webDriverWait10 = new WebDriverWait(driver, 10);
-        webDriverWait15 = new WebDriverWait(driver, 15);
+        webDriverWait10 = new WebDriverWait(driver, configProperties.TIME_FOR_DFFAULT_WAIT());
+        webDriverWait15 = new WebDriverWait(driver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
     }
 
     abstract String getRelativeUrl();
