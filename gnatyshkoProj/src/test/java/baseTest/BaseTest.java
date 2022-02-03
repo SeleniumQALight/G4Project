@@ -10,6 +10,7 @@ import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
@@ -23,6 +24,8 @@ public class BaseTest {
     @Before
     public void setUp() {
         WebDriverManager.chromedriver().setup();
+//        File fileFF = new File("./src/drivers/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", fileFF.getAbsolutePath());
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
