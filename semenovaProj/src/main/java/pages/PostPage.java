@@ -57,16 +57,9 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public boolean isButtonSaveUpdatesDisplayed() {
-        try {
-            return saveUpdates.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
     public PostPage clickOnSaveUpdates() {
-        isButtonSaveUpdatesDisplayed();
+        isElementDisplayed(saveUpdates);
         clickOnEltment(saveUpdates);
         waitChatTobeHide();
         return this;
