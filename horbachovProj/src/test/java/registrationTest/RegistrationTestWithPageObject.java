@@ -3,15 +3,22 @@ package registrationTest;
 import baseTest.BaseTest;
 import org.junit.Test;
 
+@RunWith(JUnitParamsRunner.class)
 public class RegistrationTestWithPageObject extends BaseTest {
-    String expectedErrors = "Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters.";
+//    String expectedErrors = "Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters.";
     @Test
-    public void registrationErrors(){
+    @Parameters({
+            "tr,qqq,345,Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters."
+            ,"tr,test@qqqq.com,123456qwerty,Username must be at least 3 characters.;You must provide a valid email address."
+            ,"tr,test,123456qwerty,Username must be at least 3 characters.;You must provide a valid email address."
+    })
+    @TestCaseName("registrationErrors : login = {0}, email = {1}, password = {2}")
+    public void registrationErrors(String login, String email, String password, String expectedErrors){
         loginPage.openLoginPage();
         loginPage
-                .enterLoginRegistration("tr")
-                .enterEmailRegistration("qqq")
-                .enterPasswordRegistration("345")
-                .checkErrorsMessages(expectedErrors);
+                .enterLoginRegistration(login)
+                .enterEmailRegistration(email
+                .enterPasswordRegistration(password)
+                .checkErrorsMessages(expectedErrors));
     }
 }
