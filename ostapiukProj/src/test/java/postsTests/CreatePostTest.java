@@ -2,7 +2,9 @@ package postsTests;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
+import pages.HomePage;
 
 public class CreatePostTest extends BaseTest {
     final String title = "G4-ostapiuk " + Util.getDateAndTimeFormatted();
@@ -25,6 +27,17 @@ public class CreatePostTest extends BaseTest {
                 .chechIsTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title)
+        ;
+    }
+
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+                .checkIsButtonSignOutDisplayed()
+                .clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitleWhilePresent(title)
         ;
     }
 }
