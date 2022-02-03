@@ -33,7 +33,10 @@ public class ChangePostTest extends BaseTest {
                 .clickOnEditButton()
                 .changeTitlePost(changeTitle)
                 .clickOnSaveUpdates()
-                .checkTextInAlert("Post successfully updated.");
+                .checkTextInAlert("Post successfully updated.")
+                .clickOnMyProfileButton()
+                .checkPostWasCreated(changeTitle);
+
     }
 
     @After
