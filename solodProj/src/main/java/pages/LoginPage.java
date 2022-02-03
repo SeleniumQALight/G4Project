@@ -123,7 +123,7 @@ public class LoginPage extends ParentPageWithHeader {
 
 
 
-    private void printErrorAndStopTest(Exception e) {
+    public void printErrorAndStopTest(Exception e) {
         logger.error("CanT work with element"+ e);
         Assert.fail("CanT work with element"+ e);
     }
@@ -186,6 +186,9 @@ public class LoginPage extends ParentPageWithHeader {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10.withMessage(" Number of messages ").until(ExpectedConditions.numberOfElementsToBe
                 (By.xpath(listErrorsLocator),expectedErrorsArray.length));
+
+
+        Assert.assertEquals("",expectedErrorsArray.length,listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element: listOfErrors){
             actualTextFromErrors.add(element.getText());

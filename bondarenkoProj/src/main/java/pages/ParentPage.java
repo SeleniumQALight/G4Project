@@ -2,14 +2,15 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.containsString;
 
@@ -133,6 +134,27 @@ protected void setValueInCheckbox(String necessaryCheckbox, String statusForChec
     protected void waitChatToBeHidden(){
       webDriverWait10.withMessage("Chat is not closed").until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
+
+    public void usersPressesKeyEnterTime(int numberOfTimes) {
+        Actions actions = new Actions(webDriver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(Keys.ENTER).build().perform();
+        }
+    }
+    public void usersPressesKeyTabTime(int numberOfTimes) {
+        Actions actions = new Actions(webDriver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(Keys.TAB).build().perform();
+        }
+
+    }
+
+    public void userOpensNewTab() {
+        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(1));
+    }
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
