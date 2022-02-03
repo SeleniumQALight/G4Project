@@ -31,7 +31,7 @@ public class MyProfilePage extends ParentPageWithHeader {
         return this;
     }
     public PostPage enterToPost (String title){
-        clickOnEltment(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
+        clickOnElement(String.format(postTitleLocator, title));
         return new PostPage(webDriver);
     }
 

@@ -35,8 +35,9 @@ public class ChangePostTest extends BaseTest {
                 .clickOnSaveUpdates()
                 .checkTextInAlert("Post successfully updated.");
     }
+
     @After
-    public void deleteChangePost(){
+    public void deleteChangePost() {
         homePage
                 .openHomePage()
                 .checkIsButtonSignOutDisplayed()
