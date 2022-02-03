@@ -1,15 +1,13 @@
 package postsTests;
 
-import baseTest.BaseTest;
 import libs.Util;
-import org.junit.After;
 import org.junit.Test;
 
-public class CreatePostTest extends BaseTest {
-    final String title = "G4-loboda " + Util.getDateAndTimeFormatted();
+public class CreatePostTest extends BasePostTest {
 
     @Test
     public void createNewPost(){
+        title = "G4-loboda " + Util.getDateAndTimeFormatted();
         loginPage
                 .loginWithValidCred()
                 .checkIsButtonSignOutDisplayed()
@@ -25,18 +23,8 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
-                .checkPostWasCreated(title)
+                .checkPostIsPresentOnMyProfilePage(title)
         ;
 
-    }
-
-    @After
-    public void deletePost(){
-        homePage
-                .openHomePage()
-                .checkIsButtonSignOutDisplayed()
-                .clickOnMyProfileButton()
-                .checkIsRedirectToMyProfilePage()
-                .deletePostWithTitleWhilePresent(title);
     }
 }

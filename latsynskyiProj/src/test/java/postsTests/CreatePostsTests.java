@@ -20,7 +20,8 @@ public class CreatePostsTests extends BaseTest {
                 .enterTextInToTitleInput(title)
                 .enterTextInToBodyInput("Body post")
                 //.selectTextInDropDownRole("Частное сообщение")
-                .selectValueInDropDownRole("One Person")
+                //.selectValueInDropDownRole("One Person")
+                .selectValueInDropDownRoleByUi("Частное сообщение")
                 .statusOfTheCHeckBox("check")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectPostPage()
@@ -39,6 +40,7 @@ public class CreatePostsTests extends BaseTest {
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostWithTitleWhilePresent(title);
+
 
 }
 }

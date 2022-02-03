@@ -3,13 +3,15 @@ package pages;
 import org.apache.log4j.Logger;
 import org.hamcrest.core.StringContains;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+
 import static org.hamcrest.CoreMatchers.containsString;
 
 abstract public class ParentPage {
@@ -45,6 +47,26 @@ abstract public class ParentPage {
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
+    }
+
+    public void usersPressesKeyEnterTime(int numberOfTimes) {
+        Actions actions = new Actions(driver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(Keys.ENTER).build().perform();
+        }
+    }
+    public void usersPressesKeyTabTime(int numberOfTimes) {
+        Actions actions = new Actions(driver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(Keys.TAB).build().perform();
+        }
+
+    }
+
+    public void userOpensNewTab() {
+        ((JavascriptExecutor)driver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
     }
 
     void printErrorAndStopTest(Exception e) {
@@ -132,6 +154,13 @@ abstract public class ParentPage {
             printErrorAndStopTest(e);
         }
 
+    }
+
+    protected void addTextToElement(WebElement element, String text){
+        webDriverWait10.until(ExpectedConditions.visibilityOf(element));
+        logger.info(element.getAttribute("value") + " (title before update)");
+        element.sendKeys(text);
+        logger.info(element.getAttribute("value") + " (title after update)");
     }
 
 }
