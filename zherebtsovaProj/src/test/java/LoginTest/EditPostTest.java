@@ -29,7 +29,7 @@ public class EditPostTest extends BaseTest {
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title);
         createPostPage
-                .clickOnOldTitle(title)
+                .clickOnOldTitle()
                 .clickOnEdit()
                 .enterNewTextInToTitleInput(newTitle)
                 .clickOnSaveUpdatesButton()

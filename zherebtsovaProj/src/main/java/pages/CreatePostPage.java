@@ -25,7 +25,7 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = "//input[@type='checkbox']")
     private WebElement Checkbox;
-    @FindBy (xpath = "//a[@href='/post/61f934c09ad2e40004060d79/edit']")
+    @FindBy (xpath = ".//a[@data-original-title='Edit']")
     private WebElement editButton;
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement alertUpdate;
@@ -86,10 +86,12 @@ public class CreatePostPage extends ParentPageWithHeader {
         clickOnElement(Checkbox);
         return this;
     }
-    public CreatePostPage clickOnOldTitle(String title){
-     clickOnElement(webDriver.findElement(By.xpath(String.format(String.valueOf(postTitleLocator),title))));
+    private void clickOnOldTitle(){
+            clickOnElement(By.xpath(String.format(String.valueOf(postTitleLocator))));
         return this;
     }
+
+
     public CreatePostPage clickOnEdit(){
         clickOnElement(editButton);
         return this;
