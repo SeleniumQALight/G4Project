@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
@@ -37,7 +38,18 @@ public class PostPage extends ParentPageWithHeader {
     }
 
     public MyProfilePage clickOnDeleteButton() {
-        clockOnElement(buttonDelete);
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+    }
+
+    public MyProfilePage clickOnEditButton() {
+        clickOnElement(editButton);
+        return new MyProfilePage(webDriver);
+    }
+
+    public MyProfilePage enterTextInToElementEdit(WebElement webElement, String text) {
+        webElement.sendKeys(text);
+        logger.info(text + " was inputted");
         return new MyProfilePage(webDriver);
     }
 }

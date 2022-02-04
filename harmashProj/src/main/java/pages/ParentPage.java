@@ -52,7 +52,7 @@ abstract public class ParentPage {
         }
     }
 
-    protected void clockOnElement(WebElement webElement) {
+    protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();

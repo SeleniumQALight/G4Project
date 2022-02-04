@@ -72,7 +72,7 @@ public class LoginPage extends ParentPage {
     }
 
     public void clickOnButtonSignIn() {
-        clockOnElement(buttonSignIn);
+        clickOnElement(buttonSignIn);
     }
 
     public HomePage loginWithValidCred() {

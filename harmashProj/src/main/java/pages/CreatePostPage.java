@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,8 @@ public class CreatePostPage extends ParentPageWithHeader{
     private WebElement dropDownRole;
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+    @FindBy(id = "”UniquePost”")
+    private WebElement checkboxUniquePost;
 
      public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -52,8 +55,24 @@ public class CreatePostPage extends ParentPageWithHeader{
         return this;
     }
 
+    public CreatePostPage selectTextInDropDownByUI(String valueForSelect) {
+        dropDownRole.click();
+        WebElement secondValue = dropDownRole.findElement(By.xpath(".//*[text()='" + valueForSelect + "']"));
+        secondValue.click();
+        return this;
+    }
+
+    public CreatePostPage toggleCheckbox(String checkBoxStatus) {
+        if (checkboxUniquePost.isSelected() && !checkBoxStatus.equals("check") ||
+                !checkboxUniquePost.isSelected() && checkBoxStatus.equals("check")) {
+            checkboxUniquePost.click();
+        }
+        logger.info("Checkbox is " + checkBoxStatus + "ed");
+        return this;
+    }
+
     public PostPage clickOnButtonSaveNewPost() {
-        clockOnElement(buttonSaveNewPost);
+        clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
 }
