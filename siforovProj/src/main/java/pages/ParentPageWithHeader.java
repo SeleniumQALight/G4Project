@@ -1,5 +1,6 @@
 package pages;
 
+import libs.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,4 +28,13 @@ abstract public class ParentPageWithHeader extends ParentPage{
         return new ProfilePage(webDriver);
     }
 
+    public void createPost(){
+        clickOnCreatePostButton()
+                .checkIsRedirectToCreatePostPage()
+                .enterTextIntoTitleInput(TestData.VALID_POST_TITLE)
+                .enterTextIntoBody(TestData.VALID_TEXT)
+                .selectValueInDDUsingList("One Person")
+                .clickOnSaveNewPostButton()
+                .clickOnProfile();
+    }
 }

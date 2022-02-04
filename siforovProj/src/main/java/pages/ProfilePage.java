@@ -82,6 +82,10 @@ public class ProfilePage extends ParentPageWithHeader {
             postTitle = somePost.getText();
             somePost.click();
             return new PostPage(webDriver);
+        }else{
+            createPost();
+            postTitle = somePost.getText();
+            somePost.click();
         }
         return new PostPage(webDriver);
     }
