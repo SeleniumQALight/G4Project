@@ -1,8 +1,14 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.util.Map;
+
+import static pages.ParentPage.*;
 
 public class LoginTestWithPageObject extends BaseTest {
 
@@ -11,6 +17,16 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.openLoginPage();
         loginPage.enterLoginIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputLogin("123456qwerty");
+        loginPage.clickOnButtonSignIn();
+        Assert.assertTrue("Button Sign Out is displayed", homePage.isButtonSignOutDisplayed());
+    }
+
+    @Test
+    public void validLoginExcelTest() throws IOException {
+        Map<String, String> dataFromValidLogin = ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
+        loginPage.openLoginPage();
+        loginPage.enterLoginIntoInputLogin(dataFromValidLogin.get("login"));
+        loginPage.enterPasswordIntoInputLogin(dataFromValidLogin.get("pass"));
         loginPage.clickOnButtonSignIn();
         Assert.assertTrue("Button Sign Out is displayed", homePage.isButtonSignOutDisplayed());
     }
