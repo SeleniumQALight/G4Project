@@ -35,7 +35,6 @@ public class CreatePostTest extends BaseTest {
                 .clickOnProfileLink()
                 .checkIsRedirectToProfilePage()
                 .deletePostWithTitleWhilePresent(title);
-
     }
 
     //Homework 4 (Custom select)
