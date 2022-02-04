@@ -1,12 +1,11 @@
 package pages;
 
-import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends ParentPage {
+public class HomePage extends ParentPageWithHeader {
 
     @FindBy(xpath = ".//button[text()='Sign Out']")
     private WebElement signOutButton;
@@ -30,6 +29,11 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public boolean isButtonSignOutDisplayed() {
         try {
             return signOutButton.isDisplayed();
@@ -48,9 +52,9 @@ public class HomePage extends ParentPage {
     }
 
     //homework1
-    public HomePage clickOnProfileLink(){
+    public ProfilePage clickOnProfileLink(){
         clickOnElement(profileLink);
-        return new HomePage(webDriver);
+        return new ProfilePage(webDriver);
     }
 
     //homework1
@@ -68,5 +72,14 @@ public class HomePage extends ParentPage {
 
     public boolean checkUserName(){
         return compareElementTextWithExpectedText(currentUserName);
+    }
+
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if(!isButtonSignOutDisplayed()){
+            loginPage.loginWithValidCredentials();
+        }
+        return this;
     }
 }

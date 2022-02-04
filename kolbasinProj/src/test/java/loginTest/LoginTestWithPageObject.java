@@ -15,5 +15,4 @@ public class LoginTestWithPageObject extends BaseTest {
     Assert.assertTrue("Button SingOut is not displayed"  // отработает только тогда, когда появится кнопка
             , homePage.isButtonSignOutDisplayed());
     }
-
 }

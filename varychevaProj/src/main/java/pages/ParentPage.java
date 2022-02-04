@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
@@ -41,6 +41,17 @@ public class ParentPage {
         } catch (Exception ex) {
             printErrorAndStopTest(ex);
         }
+    }
+
+    protected String getTextFromElement(WebElement webElement) {
+        try {
+            String text = webElement.getText();
+            logger.info("Text from Element: " + text);
+            return text;
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+        return null;
     }
 
     protected boolean isElementDisplayed(WebElement webElement) {
@@ -91,4 +102,5 @@ public class ParentPage {
         logger.error("Can not work with element" + e);
         fail("Can not work with element" + e);
     }
+
 }
