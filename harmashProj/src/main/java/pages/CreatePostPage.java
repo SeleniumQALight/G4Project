@@ -66,7 +66,7 @@ public class CreatePostPage extends ParentPageWithHeader {
         secondValue.click();
         return this;
     }
-
+//HW5
     public CreatePostPage toggleCheckbox(String checkBoxStatus) {
         if (checkboxUniquePost.isSelected() && !checkBoxStatus.equals("check") ||
                 !checkboxUniquePost.isSelected() && checkBoxStatus.equals("check")) {
