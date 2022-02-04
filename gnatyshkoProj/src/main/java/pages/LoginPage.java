@@ -1,10 +1,16 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
@@ -16,16 +22,47 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
-    @FindBy(xpath = ".//div[text()='Error']")
-    private WebElement messageError;
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement messageErrorSignIn;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUsernameSignUp;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement inputEmailSignUp;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement inputPasswordSignUp;
+
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
+
+    @FindBy(xpath = ".//div[contains(text(), 'Username must be at least 3 characters.')]")
+    private WebElement errorUsernameSignup;
+
+    @FindBy(xpath = ".//div[contains(text(), 'You must provide a valid email address.')]")
+    private WebElement errorEmailSignup;
+
+    @FindBy(xpath = ".//div[contains(text(), 'Password must be at least 12 characters.')]")
+    private WebElement errorPasswordSignup;
+
+    private String listErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfErrors;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
+            webDriver.get(baseUrl + "/");
             logger.info("LoginPage was open");
         } catch (Exception e) {
             logger.error("Cannot open LoginPage " + e);
@@ -42,30 +79,98 @@ public class LoginPage extends ParentPage {
 //            printErrorAndStopTest(e);
 //        }
         enterTextIntoElement(inputLoginSignIn, login);
-
     }
 
     public void enterLoginIntoInputPassword(String password) {
         enterTextIntoElement(inputPasswordSignIn, password);
     }
 
+    public LoginPage enterUsernameIntoInputUsernameSignUp(String username) {
+        enterTextIntoElement(inputUsernameSignUp, username);
+        return this;
+    }
+
+    public LoginPage enterEmailIntoInputEmailSignUp(String email) {
+        enterTextIntoElement(inputEmailSignUp, email);
+        return this;
+    }
+
+    public LoginPage enterPasswordIntoInputPasswordSignUp(String password) {
+        enterTextIntoElement(inputPasswordSignUp, password);
+        return this;
+    }
+
     public void clickOnButtonSignIn() {
-      clickOnElement(buttonSignIn);
+        clickOnElement(buttonSignIn);
     }
 
-    public boolean isErrorMessageDisplayed() {
-        try {
-            return messageError.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+    public void clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
     }
 
-    public HomePage loginWithValidCredentials(){
+    public LoginPage checkIsErrorMessageSignInDisplayed() {
+        Assert.assertTrue("Error about invalid Username is not displayed", isElementDisplayed(messageErrorSignIn));
+        return this;
+    }
+
+    public LoginPage checkIsErrorUsernameSignupDisplayed() {
+        Assert.assertTrue("Error about invalid Username is not displayed", isElementDisplayed(errorUsernameSignup));
+        return this;
+    }
+
+    public LoginPage checkIsErrorEmailSignupDisplayed() {
+        Assert.assertTrue("Error about invalid Email is not displayed", isElementDisplayed(errorEmailSignup));
+        return this;
+    }
+
+    public LoginPage checkIsErrorPasswordSignupDisplayed() {
+        Assert.assertTrue("Error about invalid Password is not displayed", isElementDisplayed(errorPasswordSignup));
+        return this;
+    }
+
+    public HomePage loginWithValidCredentials() {
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
         enterLoginIntoInputPassword(TestData.VALID_PASS);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage loginWithInvalidCredentials() {
+        openLoginPage();
+        enterLoginIntoInputLogin("qa");
+        enterLoginIntoInputPassword("123456qwerty");
+        clickOnButtonSignIn();
+        return new LoginPage(webDriver);
+    }
+
+    public LoginPage signUpWithInvalidCredentials() {
+        openLoginPage();
+        enterUsernameIntoInputUsernameSignUp("tr");
+        enterEmailIntoInputEmailSignUp("test.com");
+        enterPasswordIntoInputPasswordSignUp("123");
+        clickOnButtonSignUp();
+        return new LoginPage(webDriver);
+    }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        String[] expectedErrorsArray = expectedErrors.split(";");
+        webDriverWait10.withMessage(" Numbers of messages ").until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorsLocator), expectedErrorsArray.length
+        ));
+
+        Assert.assertEquals("", expectedErrorsArray.length, listOfErrors.size());
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element : listOfErrors) {
+            actualTextFromErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).isIn(actualTextFromErrors);
+        }
+
+        softAssertions.assertAll();
+        return this;
     }
 }

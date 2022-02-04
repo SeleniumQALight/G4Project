@@ -4,9 +4,14 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage extends ParentPage{
+public class HomePage extends ParentPageWithHeader{
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/";
     }
 
     public boolean isButtonSignOutDisplayed(){
@@ -19,6 +24,15 @@ public class HomePage extends ParentPage{
 
     public HomePage checkIsButtonSignOutDisplayed(){
         Assert.assertTrue("Button Sign Out is not displayed", isButtonSignOutDisplayed());
+        return this;
+    }
+
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!isButtonSignOutDisplayed()){
+            loginPage.loginWithValidaCred();
+        }
         return this;
     }
 }
