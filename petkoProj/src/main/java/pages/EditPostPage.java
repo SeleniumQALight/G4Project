@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class EditPostPage extends ParentPageWithHeader{
 
-    @FindBy(xpath = ".//button[text()='Save Updates']")
+        @FindBy(xpath = ".//button[text()='Save Updates']")
     private WebElement buttonSaveUpdates;
 
     @FindBy(name = "title")

@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import javax.xml.xpath.XPath;
 import java.util.List;
 
 public class MyProfilePage extends ParentPageWithHeader{
@@ -29,6 +28,20 @@ public class MyProfilePage extends ParentPageWithHeader{
         Assert.assertEquals("Number of posts with title " + title, 1, postList.size());
         return this;
     }
+    public boolean checkUpdatedPost(String xpathLocator) {
+        try {
+            WebElement webElement =  webDriver.findElement(By.xpath(xpathLocator));
+            if(webElement.isDisplayed()){
+            logger.info("---Updated post is displayed. Passed!!!!---");
+                return true;}
+
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+        return false;
+    }
+
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkUrlWithPattern();
@@ -58,5 +71,10 @@ public class MyProfilePage extends ParentPageWithHeader{
     private MyProfilePage checkIsSuccessDeletedPostMessagePresent() {
         Assert.assertTrue("Element is not present", isElementDisplayed(successDeletedPostMessage));
         return this;
+    }
+
+    public PostPage openMyLastPost(String xpathLocator) {
+        clickOnElement(xpathLocator);
+        return new PostPage(webDriver);
     }
 }
