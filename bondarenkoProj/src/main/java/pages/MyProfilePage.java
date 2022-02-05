@@ -54,6 +54,13 @@ public class MyProfilePage extends ParentPageWithHeader{
         return this;
     }
 
+    public PostPage clickOnPostTitle (String title) {
+        clickOnElementIfLocatorIsFound(title);
+        return new PostPage (webDriver);
+    }
+
+
+
     private MyProfilePage checkIsSuccessfulDeletedPostMessagePresent() {
         Assert.assertTrue("Element is not present", isElementDisplayed(successfulDeletedPostMessage));
         return this;
