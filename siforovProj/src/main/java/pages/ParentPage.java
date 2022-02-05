@@ -82,6 +82,15 @@ abstract public class ParentPage {
             printErrorAndStopTest(e);
         }
     }
+    // added extra method for a safe click on element
+    protected void clickOnElement(String formattedLocator){
+        try{
+            WebElement element = webDriver.findElement(By.xpath(formattedLocator));
+            clickOnElement(element);
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 
     protected boolean compareElementTextWithExpectedText(WebElement webElement) {
         try {
