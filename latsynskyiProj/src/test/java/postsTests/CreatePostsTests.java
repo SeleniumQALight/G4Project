@@ -11,23 +11,23 @@ public class CreatePostsTests extends BaseTest {
     public void createNewPost() {
 
 
-        loginPage
-                .loginWithValidCred()
-                .checkIsButtonSignOutDisplayed()
-                .clickOnCreatePostButton();
-        createPostPage
-                .checkIsRedirectToCreatePostPage()
-                .enterTextInToTitleInput(title)
-                .enterTextInToBodyInput("Body post")
-                //.selectTextInDropDownRole("Частное сообщение")
-                .selectValueInDropDownRole("One Person")
-                .clickOnButtonSaveNewPost()
-                .checkIsRedirectPostPage()
-                .checkTextInAlert("New post successfully created.")
-                .clickOnMyProfileButton()
-                .checkPostWasCreated(title)
-        ;
-
+      loginPage
+              .loginWithValidCred()
+              .checkIsButtonSignOutDisplayed()
+              .clickOnCreatePostButton();
+      createPostPage
+              .checkIsRedirectToCreatePostPage()
+              .enterTextInToTitleInput(title)
+              .enterTextInToBodyInput("Body post")
+              //.selectTextInDropDownRole("Частное сообщение")
+              //.selectValueInDropDownRole("One Person")
+              .selectValueInDropDownRoleByUi("Частное сообщение")
+              .clickOnButtonSaveNewPost()
+              .checkIsRedirectPostPage()
+              .checkTextInAlert("New post successfully created.")
+              .clickOnMyProfileButton()
+              .checkPostWasCreated(title)
+      ;
 
     }
 @After
@@ -38,6 +38,7 @@ public class CreatePostsTests extends BaseTest {
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostWithTitleWhilePresent(title);
+
 
 }
 }
