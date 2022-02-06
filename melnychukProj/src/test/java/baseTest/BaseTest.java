@@ -13,6 +13,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.PostPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +24,7 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected HomePage homePage;
     protected CreatePostPage createPostPage;
+    protected PostPage postPage;
     @Before // запущена перед каждой аннотацией Тест
     public void setUp(){
         logger.info("----"+testName.getMethodName()+"was started---");

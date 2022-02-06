@@ -11,6 +11,12 @@ public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//a[@data-original-title='Edit']")
     private WebElement editButton;
 
+    @FindBy(name="title")
+    private WebElement inputTitle;
+
+    @FindBy(xpath = ".//*[@class='btn btn-primary']")
+    private  WebElement saveUpdatesButton;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -30,4 +36,19 @@ public class PostPage extends ParentPageWithHeader{
         Assert.assertEquals("Text in Alert ", text, alertSuccess.getText()); ;
         return this;
      }
+
+    public PostPage clickOnEditButtonInThePost() {
+        clickOnElement(editButton);
+        return this;
+    }
+    public PostPage enterTextInToTitleInputEdit(String text) {
+        enterTextInToElement(inputTitle, text);
+        return this;
+    }
+    public PostPage clickOnSaveUpdatesButton(){
+        clickOnElement(saveUpdatesButton);
+        return this;
+    }
+
+
 }
