@@ -16,6 +16,8 @@ public class CreatePostPage extends  ParentPageWithHeader {
     @FindBy(xpath =".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -51,6 +53,11 @@ public class CreatePostPage extends  ParentPageWithHeader {
     public CreatePostPage selectValueInDropDownRole(String valueForSelect) {
 selectValueInDropDown(dropdownRole, valueForSelect);
     return this;
+    }
+
+    public CreatePostPage selectTextInDropDownByUI(String valueForDropDown){
+        selectTextInDropDown(dropdownRole, valueForDropDown);
+        return this;
     }
 
     public PostPage clickOnButtonSaveNewPost() {

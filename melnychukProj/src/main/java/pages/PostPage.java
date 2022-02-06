@@ -10,6 +10,8 @@ public class PostPage extends ParentPageWithHeader{
     private WebElement alertSuccess;
     @FindBy(xpath = ".//a[@data-original-title='Edit']")
     private WebElement editButton;
+    @FindBy(xpath = ".//*[contains(text(),' One Person')]")
+    private WebElement noteText;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -30,4 +32,9 @@ public class PostPage extends ParentPageWithHeader{
         Assert.assertEquals("Text in Alert ", text, alertSuccess.getText()); ;
         return this;
      }
+
+    public PostPage checkNoteTextForDropdownValue(String text) {
+        Assert.assertEquals("Note text", text,noteText.getText() );
+        return this;
+    }
 }
