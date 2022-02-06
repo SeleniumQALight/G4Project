@@ -63,7 +63,16 @@ abstract public class ParentPage {
             printErrorAndStopTest(e);
         }
     }
+    protected void clickOnElement(String xpathLocator) {
+        try {
+           WebElement webElement = webDriver.findElement(By.xpath(xpathLocator));
+                    clickOnEltment(webElement);
 
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+
+    }
     protected boolean isMessageDisplayed(WebElement webElement) {
         try {
             return webElement.isDisplayed();
