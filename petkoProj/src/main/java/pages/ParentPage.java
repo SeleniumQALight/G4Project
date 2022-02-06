@@ -1,6 +1,8 @@
 package pages;
 
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -19,14 +21,16 @@ abstract public class ParentPage {
 
     WebDriver webDriver;
 
-    WebDriverWait webDriverWait10, webDriverWait15;
-    protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
+    WebDriverWait webDriverWait5, webDriverWait15;
+
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    protected String baseUrl = configProperties.base_url();
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
-        webDriverWait10 = new WebDriverWait(webDriver, 10);
-        webDriverWait15 = new WebDriverWait(webDriver, 15);
+        webDriverWait5 = new WebDriverWait(webDriver, configProperties.TIME_FOR_DEFAULT_WAIT());
+        webDriverWait15 = new WebDriverWait(webDriver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
     }
 
     abstract String getRelativeUrl();
@@ -56,7 +60,7 @@ abstract public class ParentPage {
 
     protected void clickOnElement(WebElement webElement) {
         try {
-            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            webDriverWait5.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info("Element was clicked");
         } catch (Exception e) {
@@ -120,7 +124,7 @@ abstract public class ParentPage {
     }
 
     protected void waitChatToBeHide() {
-        webDriverWait10
+        webDriverWait5
                 .withMessage("Chat is not closed")
                 .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }

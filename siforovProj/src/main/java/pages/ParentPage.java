@@ -1,6 +1,8 @@
 package pages;
 
+import libs.ConfigProperties;
 import libs.TestData;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -21,14 +23,15 @@ abstract public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
     WebDriverWait webDriverWait10, webDriverWait15;
-    protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    protected String baseUrl = configProperties.base_url();
 
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
-        webDriverWait10 = new WebDriverWait(webDriver, 10);
-        webDriverWait15 = new WebDriverWait(webDriver, 15);
+        webDriverWait10 = new WebDriverWait(webDriver, configProperties.TIME_FOR_DFFAULT_WAIT());
+        webDriverWait15 = new WebDriverWait(webDriver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
     }
 
     protected void checkUrl() {
@@ -75,6 +78,15 @@ abstract public class ParentPage {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info("Element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    // added extra method for a safe click on element
+    protected void clickOnElement(String formattedLocator){
+        try{
+            WebElement element = webDriver.findElement(By.xpath(formattedLocator));
+            clickOnElement(element);
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }

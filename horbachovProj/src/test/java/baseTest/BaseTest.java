@@ -38,7 +38,7 @@ public class BaseTest {
     public void tearDown(){
         webDriver.quit();
         logger.info("Browser was closed");
-        logger.info("-------"+testName.getMethodName()+"was ended -------");
+        logger.info("-------"+testName.getMethodName()+"was ended -------\n");
     }
     @Rule
     public TestName testName = new TestName();

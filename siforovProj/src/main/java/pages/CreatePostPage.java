@@ -53,8 +53,14 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public CreatePostPage markCheckbox() {
+    //Homework with checkbox
+    public CreatePostPage markCheckbox(boolean condition) {
+        System.out.println(createPostCheckBox.isSelected());
+        if(createPostCheckBox.isSelected() == condition) {
+            logger.info("The check-box matches you request already");
+        }
         clickOnElement(createPostCheckBox);
+        logger.info("Check-box has been clicked");
         return this;
     }
 
