@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -57,9 +58,26 @@ public class PostPage extends ParentPageWithHeader{
         return this;
     }
 
-    public void saveUpdatesAndGoToMyProfilePage() {
+    public PostPage saveUpdates() {
         clickOnElement(saveUpdatesButton);
+        return this;
+
+    }
+    public PostPage checkMessageAfterUpdate(){
+        try {
+            alertSuccess.isDisplayed();
+            logger.info("Post successfully updated. - message has been displayed ");
+        } catch (Exception e) {
+
+            printErrorAndStopTest(e);
+        }
+        return this;
+    }
+    public void clickMyProfileButton(){
         clickOnElement(buttonMyProfile);
 
     }
+
+
+
 }

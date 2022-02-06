@@ -8,8 +8,9 @@ import org.junit.Test;
 public class UpdatePostTest extends BaseTest {
     final String title = "G4-horbachov" + Util.getDateAndTimeFormatted();
     String newTitle = title + " Update";
+
     @Test
-    public void createNewPost(){
+    public void createNewPost() {
 
         loginPage
                 .loginWithValidCred()
@@ -19,7 +20,7 @@ public class UpdatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoTitleInput(title)
                 .enterTextIntoBodyInput("Body post")
- //               .selectTextInDropDownRole("Частное сообщение")
+                //               .selectTextInDropDownRole("Частное сообщение")
                 .selectValueInDropDownRole("One Person")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
@@ -27,25 +28,26 @@ public class UpdatePostTest extends BaseTest {
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title);
         myProfilePage
-                .openMyLastPost(".//*[strong='" + title + "']");
+                .openMyLastPost(title);
         postPage.clickOnPostEditButton();
         postPage.changePostTitle(newTitle)
-                .saveUpdatesAndGoToMyProfilePage();
+                .saveUpdates()
+                .checkMessageAfterUpdate()
+                .clickMyProfileButton();
+
+
         myProfilePage.checkUpdatedPost(".//*[strong='" + newTitle + "']");
-
-
-
 
 
     }
 
-   @After
-    public void deletePost(){
+    @After
+    public void deletePost() {
         homePage
-               .openHomePage()
+                .openHomePage()
                 .checkIsButtonSignOutDisplayed()
-               .clickOnMyProfileButton()
-               .checkIsRedirectToMyProfilePage()
+                .clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
                 .deletePostWithTitleWhilePresent(newTitle);
 
     }

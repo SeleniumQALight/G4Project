@@ -12,8 +12,11 @@ public class MyProfilePage extends ParentPageWithHeader{
 
     private String postTitleLocator = ".//*[text()='%s']";
 
+
     @FindBy (xpath=".//*[text()='Post successfully deleted']")
     private WebElement successDeletedPostMessage;
+
+
 
     public MyProfilePage(WebDriver webDriver) {super(webDriver);
     }
@@ -31,12 +34,9 @@ public class MyProfilePage extends ParentPageWithHeader{
     public boolean checkUpdatedPost(String xpathLocator) {
         try {
             WebElement webElement =  webDriver.findElement(By.xpath(xpathLocator));
-            if(webElement.isDisplayed()){
+            isElementDisplayed(webElement);
             logger.info("---Updated post is displayed. Passed!!!!---");
-                return true;}
-
-
-        } catch (Exception e) {
+            }  catch (Exception e) {
             printErrorAndStopTest(e);
         }
         return false;
@@ -73,8 +73,9 @@ public class MyProfilePage extends ParentPageWithHeader{
         return this;
     }
 
-    public PostPage openMyLastPost(String xpathLocator) {
-        clickOnElement(xpathLocator);
+    public PostPage openMyLastPost(String title) {
+        String xpath = String.format(postTitleLocator, title);
+        clickOnElement(xpath);
         return new PostPage(webDriver);
     }
 }
