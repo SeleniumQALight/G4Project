@@ -25,14 +25,14 @@ public class UpdatePostTitleTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
-                .checkPostWasCreated(title)
+                .checkPostIsInList(title)
                 .clickOnPostTitle(title)
                 .clickOnEditButton()
                 .enterTextIntoTitleInput(updatedTitle)
                 .clickOnSaveUpdatesButton()
                 .checkTextInAlert("Post successfully updated.")
                 .clickOnMyProfileButton()
-                .checkPostWasCreated(updatedTitle);
+                .checkPostIsInList(updatedTitle);
     }
 
    @After

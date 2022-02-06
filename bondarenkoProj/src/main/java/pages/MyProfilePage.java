@@ -23,7 +23,8 @@ public class MyProfilePage extends ParentPageWithHeader{
         return "/profile/";
     }
 
-    public MyProfilePage checkPostWasCreated(String title) {
+
+    public MyProfilePage checkPostIsInList(String title) {
         List<WebElement> postList = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of posts with title " + title, 1, postList.size());
         return this;
@@ -55,7 +56,7 @@ public class MyProfilePage extends ParentPageWithHeader{
     }
 
     public PostPage clickOnPostTitle (String title) {
-        clickOnElementIfLocatorIsFound(title);
+        clickOnElement(title);
         return new PostPage (webDriver);
     }
 
