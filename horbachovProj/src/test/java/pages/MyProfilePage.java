@@ -31,9 +31,10 @@ public class MyProfilePage extends ParentPageWithHeader{
         Assert.assertEquals("Number of posts with title " + title, 1, postList.size());
         return this;
     }
-    public boolean checkUpdatedPost(String xpathLocator) {
+    public boolean checkUpdatedPost(String newTitle) {
         try {
-            WebElement webElement =  webDriver.findElement(By.xpath(xpathLocator));
+            String xpath = String.format(postTitleLocator, newTitle);
+            WebElement webElement =  webDriver.findElement(By.xpath(xpath));
             isElementDisplayed(webElement);
             logger.info("---Updated post is displayed. Passed!!!!---");
             }  catch (Exception e) {

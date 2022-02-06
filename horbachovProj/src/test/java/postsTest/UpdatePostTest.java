@@ -36,7 +36,7 @@ public class UpdatePostTest extends BaseTest {
                 .clickMyProfileButton();
 
 
-        myProfilePage.checkUpdatedPost(".//*[strong='" + newTitle + "']");
+        myProfilePage.checkUpdatedPost(newTitle);
 
 
     }
