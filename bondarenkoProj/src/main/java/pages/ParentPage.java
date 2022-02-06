@@ -64,12 +64,9 @@ abstract public class ParentPage {
     }
 
     protected void clickOnElement (String xpathLocator) {
-        WebElement webElement = webDriver.findElement(By.xpath(String.format(selectOptionLocator, xpathLocator)));
-        try{
-            if (webElement.isDisplayed())
-            {
-                clickOnElement(webElement);
-            }
+
+        try {WebElement webElement = webDriver.findElement(By.xpath(xpathLocator));
+            clickOnElement(webElement);
         } catch (Exception e) {
             logger.info("Element was not found");
         }

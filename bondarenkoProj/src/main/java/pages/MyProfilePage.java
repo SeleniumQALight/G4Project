@@ -56,7 +56,7 @@ public class MyProfilePage extends ParentPageWithHeader{
     }
 
     public PostPage clickOnPostTitle (String title) {
-        clickOnElement(title);
+        clickOnElement(String.format(postTitleLocator, title));
         return new PostPage (webDriver);
     }
 
