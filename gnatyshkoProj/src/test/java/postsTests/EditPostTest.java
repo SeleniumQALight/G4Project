@@ -25,18 +25,15 @@ public class EditPostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
-                .checkPostWasCreated(title)
-                .clickOnCreatedPost(title);
-        postPage
+                .checkPostIsInList(title)
+                .clickOnCreatedPost(title)
                 .checkIsRedirectToPostPage()
                 .clickEditPost()
-                ;
-        editPostPage
                 .editPostTitle(editedTitle)
                 .clickOnButtonSaveEditedPost()
                 .checkTextInAlert("Post successfully updated.")
                 .clickOnMyProfileButton()
-                .checkPostWasEdited(editedTitle)
+                .checkPostIsInList(editedTitle)
                 ;
     }
 

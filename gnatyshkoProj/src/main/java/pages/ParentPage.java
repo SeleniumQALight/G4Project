@@ -85,7 +85,7 @@ abstract public class ParentPage {
         }
     }
 
-    protected void clickOnPostElement(String xpathLocator){
+    protected void clickOnElement(String xpathLocator){
         WebElement webElement = null;
         try {
             webElement = webDriver.findElement(By.xpath(xpathLocator));

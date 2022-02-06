@@ -47,9 +47,9 @@ public class PostPage extends ParentPageWithHeader {
         return new MyProfilePage(webDriver);
     }
 
-    public PostPage clickEditPost() {
+    public EditPostPage clickEditPost() {
         clickOnElement(editButton);
-        return new PostPage(webDriver);
+        return new EditPostPage(webDriver);
     }
 
 

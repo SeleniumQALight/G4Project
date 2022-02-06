@@ -18,20 +18,12 @@ public class MyProfilePage extends ParentPageWithHeader {
         super(webDriver);
     }
 
-    public MyProfilePage checkPostWasCreated(String title) {
+    public MyProfilePage checkPostIsInList (String title) {
         List<WebElement> postsList = webDriver.findElements(
                 By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
         return this;
     }
-
-    public MyProfilePage checkPostWasEdited(String title) {
-        List<WebElement> postsList = webDriver.findElements(
-                By.xpath(String.format(postTitleLocator, title)));
-        Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
-        return this;
-    }
-
 
     @Override
     String getRelativeUrl() {
@@ -70,7 +62,7 @@ public class MyProfilePage extends ParentPageWithHeader {
     }
 
     public PostPage clickOnCreatedPost(String title) {
-        clickOnPostElement(String.format(postTitleLocator, title));
+        clickOnElement(String.format(postTitleLocator, title));
         return new PostPage(webDriver);
     }
 }
