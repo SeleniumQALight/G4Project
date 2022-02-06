@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PostPage extends ParentPageWithHeader{
+public class PostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement alertSuccess;
@@ -16,6 +16,9 @@ public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
+    @FindBy(xpath = ".//input[@id='post-title']")
+    private WebElement postTitle;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -25,15 +28,15 @@ public class PostPage extends ParentPageWithHeader{
         return "/post/";
     }
 
-    public PostPage checkIsRedirectToPostPage(){
+    public PostPage checkIsRedirectToPostPage() {
         waitChatToBeHide();
         checkUrlWithPattern();
         Assert.assertTrue("Edit Button is not displayed"
-        , isElementDisplayed(editButton));
+                , isElementDisplayed(editButton));
         return this;
     }
 
-    public PostPage checkTextInAlert(String text){
+    public PostPage checkTextInAlert(String text) {
         Assert.assertEquals("Text in Alert ", text, alertSuccess.getText());
         return this;
 
@@ -43,5 +46,11 @@ public class PostPage extends ParentPageWithHeader{
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+
+    public PostPage clickEditPost() {
+        clickOnElement(editButton);
+        return new PostPage(webDriver);
+    }
+
 
 }

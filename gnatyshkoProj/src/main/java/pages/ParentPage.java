@@ -85,6 +85,18 @@ abstract public class ParentPage {
         }
     }
 
+    protected void clickOnPostElement(String xpathLocator){
+        WebElement webElement = null;
+        try {
+            webElement = webDriver.findElement(By.xpath(xpathLocator));
+            logger.info("Element was found");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+        clickOnElement(webElement);
+    }
+
+
     protected void selectTextInDropDown(WebElement dropDown, String text) {
         try {
             Select select = new Select(dropDown);
