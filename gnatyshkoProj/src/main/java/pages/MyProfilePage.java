@@ -8,17 +8,17 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class MyProfilePage extends ParentPageWithHeader{
+public class MyProfilePage extends ParentPageWithHeader {
     private String postTitleLocator = ".//*[text()='%s']";
 
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
-    private WebElement succsesDeletedPostMesage;
+    private WebElement successDeletedPostMesage;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public MyProfilePage checkPostWasCreated(String title) {
+    public MyProfilePage checkPostIsInList (String title) {
         List<WebElement> postsList = webDriver.findElements(
                 By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
@@ -42,22 +42,27 @@ public class MyProfilePage extends ParentPageWithHeader{
                         By.xpath(String.format(postTitleLocator, title))
                 );
         int counter = 0;
-        while(!listOfPost.isEmpty()&& counter<100){
-            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,title))));
+        while (!listOfPost.isEmpty() && counter < 100) {
+            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
             new PostPage(webDriver)
                     .checkIsRedirectToPostPage()
                     .clickOnDeleteButton()
                     .checkIsSuccessDeletedPostMessegePresent();
             logger.info("Post was deleted");
-            listOfPost = webDriver.findElements(By.xpath(String.format(postTitleLocator,title)));
+            listOfPost = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
             counter++;
         }
-        logger.info("All post was deleted with title"+ title);
+        logger.info("All post was deleted with title" + title);
         return this;
     }
 
     private MyProfilePage checkIsSuccessDeletedPostMessegePresent() {
-        Assert.assertTrue("Element is not present",isElementDisplayed(succsesDeletedPostMesage));
+        Assert.assertTrue("Element is not present", isElementDisplayed(successDeletedPostMesage));
         return this;
+    }
+
+    public PostPage clickOnCreatedPost(String title) {
+        clickOnElement(String.format(postTitleLocator, title));
+        return new PostPage(webDriver);
     }
 }
