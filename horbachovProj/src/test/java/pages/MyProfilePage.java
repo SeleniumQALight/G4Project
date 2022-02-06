@@ -35,8 +35,10 @@ public class MyProfilePage extends ParentPageWithHeader{
         try {
             String xpath = String.format(postTitleLocator, newTitle);
             WebElement webElement =  webDriver.findElement(By.xpath(xpath));
-            isElementDisplayed(webElement);
+           if(isElementDisplayed(webElement)) {
             logger.info("---Updated post is displayed. Passed!!!!---");
+            return true;
+           }
             }  catch (Exception e) {
             printErrorAndStopTest(e);
         }
