@@ -46,13 +46,13 @@ abstract public class ParentPage {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted");
+            logger.info(text + " was inputted");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void clockOnElement(WebElement webElement) {
+    protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
