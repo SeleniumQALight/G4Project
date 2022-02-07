@@ -17,7 +17,7 @@ public class CreatePostTest extends BaseTest {
                 .clickOnCreatePostButton();
         createPostPage
                 .checkIsRedirectToCreatePostPage()
-                .entrTextInToTitleInput(title)
+                .enterTextInToTitleInput(title)
                 .enterTextInBodyInput("BodyText")
                // .selectTextInDropDownRole("Частное сообщение")
                 .selectTextInDropDownByUI()
@@ -27,7 +27,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
-                .checkPostWasCreated(title)
+                .checkPostIsInListOfPosts(title)
         ;
 
     }

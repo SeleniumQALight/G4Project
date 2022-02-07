@@ -19,6 +19,9 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//input[@type = 'checkbox']")
+    private WebElement inputCheckbox;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -53,5 +56,15 @@ public class CreatePostPage extends ParentPageWithHeader {
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
+    }
+
+    public CreatePostPage selectRoleInDropdownByText(String text){
+        selectTextInDropDownByUI(dropDownRole, text);
+        return  this;
+    }
+
+    public CreatePostPage setCheckboxValue(String value) {
+        setCheckbox(inputCheckbox, value);
+        return this;
     }
 }
