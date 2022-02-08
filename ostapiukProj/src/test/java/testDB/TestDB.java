@@ -22,7 +22,12 @@ public class TestDB {
     }
     @Test
     public void testDataFromDataBase() throws SQLException {
-        List<Map<String, String>> dataFromSeleniumTable = mysqlDataBase.selectTableAsMap("select * from seleniumTable where login = 'G2Taras1'");
-        System.out.println(dataFromSeleniumTable);
+        List<Map<String, String>> dataFromSeleniumTable = mysqlDataBase.selectTableAsMap("select * from seleniumTable where login = 'G4-AOstapiuk'");
+        System.out.println(dataFromSeleniumTable.get(0).get("passWord"));
+
+//        System.out.println(mysqlDataBase.selectTableAsMap("select * from seleniumTable where login = 'G4-AOstapiuk'"));
+//        int numberOfRows = mysqlDataBase.changeTable("insert into seleniumTable values(383, 'G4-AOstapiuk', 'piupiu')");
+//        System.out.println(mysqlDataBase.selectTableAsMap("select * from seleniumTable where login = 'G4-AOstapiuk'')"));
+//        System.out.println(numberOfRows);
     }
 }
