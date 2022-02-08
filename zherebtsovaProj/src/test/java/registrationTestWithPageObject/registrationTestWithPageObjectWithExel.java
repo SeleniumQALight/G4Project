@@ -1,6 +1,6 @@
 package registrationTestWithPageObject;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
 import libs.SpreadsheetData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
