@@ -86,10 +86,10 @@ public class CreatePostPage extends ParentPageWithHeader {
         clickOnElement(Checkbox);
         return this;
     }
-    private void clickOnOldTitle(){
-            clickOnElement(By.xpath(String.format(String.valueOf(postTitleLocator))));
-        return this;
-    }
+    ///private void clickOnOldTitle(){
+      //      clickOnElement(By.xpath(String.format(String.valueOf(postTitleLocator))));
+       // return this;
+   // }
 
 
     public CreatePostPage clickOnEdit(){

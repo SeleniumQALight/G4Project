@@ -28,14 +28,14 @@ public class EditPostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title);
-        createPostPage
-                .clickOnOldTitle()
-                .clickOnEdit()
-                .enterNewTextInToTitleInput(newTitle)
-                .clickOnSaveUpdatesButton()
-                .checkTextInUpdateAlert("Post successfully updated.")
-                .clickOnMyProfileButton()
-                .checkPostWasCreated(newTitle);
+        //createPostPage
+               // .clickOnOldTitle()
+               // .clickOnEdit()
+               // .enterNewTextInToTitleInput(newTitle)
+               // .clickOnSaveUpdatesButton()
+              //  .checkTextInUpdateAlert("Post successfully updated.")
+               // .clickOnMyProfileButton()
+               // .checkPostWasCreated(newTitle);
 
     }
 
