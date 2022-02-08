@@ -9,6 +9,7 @@ public class TestData {
     public final static String VALID_EMAIL = "roman"+(new Date().getTime())+"@gmail.com";
     public final static String VALID_SIGN_UP_PASSWORD = "RomanSiforov1988";
     public final static String VALID_POST_TITLE = "Siforov G4 UPD";
+    public final static String VALID_POST_TITLE_AFTER_UPDATE = "Edited " +Util.getDateAndTimeFormatted();
     public final static String VALID_TEXT = "Abrahadabra test QA Auto";
 
 
