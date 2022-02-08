@@ -1,5 +1,6 @@
 package pages;
 
+import libs.Util;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,8 @@ public class MyProfilePage extends ParentPageWithHeader {
     private String postTitleLocator = ".//*[text()='%s']";
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private WebElement successDeletedPostMessage;
+    @FindBy(name = "title")
+    private WebElement inputTitle;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -38,7 +41,7 @@ public class MyProfilePage extends ParentPageWithHeader {
         List<WebElement> listOfPost = webDriver.findElements(
                 By.xpath(String.format(postTitleLocator, title)));
         int counter = 0;
-        while (!listOfPost.isEmpty() && counter <10) {
+        while (!listOfPost.isEmpty() && counter < 10) {
             clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
             new PostPage(webDriver)
                     .checkIsRedirectToPostPage()
@@ -53,6 +56,30 @@ public class MyProfilePage extends ParentPageWithHeader {
         logger.info("All posts were deleted with title " + title);
         return this;
 
+    }
+
+    public MyProfilePage editPostWithTitle(String title) {
+        WebElement editablePost = webDriver.findElement(
+                By.xpath(String.format(postTitleLocator, title)));
+        editablePost.click();
+        new PostPage(webDriver)
+                .checkIsRedirectToPostPage()
+                .clickOnEditButton()
+                .enterTextInToElementEdit(inputTitle, "EDIT")
+                .clickOnButtonSaveNewPost()
+        ;
+
+
+
+        logger.info("Post with title '" + title + "' was edited");
+        Util.waitABit(5);
+        return this;
+    }
+
+    private CreatePostPage enterTextInToElementEdit(WebElement inputTitle, String edit) {
+        inputTitle.sendKeys(edit);
+        logger.info(edit + " was inputted");
+        return new CreatePostPage(webDriver);
     }
 
     private MyProfilePage checkIsSuccessDeletedPostMessagePresent() {

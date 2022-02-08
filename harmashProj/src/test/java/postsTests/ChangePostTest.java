@@ -5,8 +5,8 @@ import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
-public class CreatePostTest extends BaseTest {
-    final String title = "G4-faina " + Util.getDateAndTimeFormatted();
+public class ChangePostTest extends BaseTest {
+    final String title = "G4-faina-HW6 " + Util.getDateAndTimeFormatted();
 
 
     @Test
@@ -20,7 +20,6 @@ public class CreatePostTest extends BaseTest {
                 .enterTextIntoTitleInput(title)
                 .enterTextIntoBodyInput("Body text")
                 .selectTextInDropDownByUI("Сообщение для группы")
-//                .selectTextInDropDownByUI("Частное сообщение")
                 .toggleCheckbox("check")
                 .selectValueInDropDownRole("One Person")
                 .clickOnButtonSaveNewPost()
@@ -28,6 +27,7 @@ public class CreatePostTest extends BaseTest {
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title)
+                .editPostWithTitle(title)
         ;
 
     }
@@ -43,3 +43,4 @@ public class CreatePostTest extends BaseTest {
     }
 
 }
+
