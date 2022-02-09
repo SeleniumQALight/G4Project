@@ -1,6 +1,6 @@
 package LoginTest;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;

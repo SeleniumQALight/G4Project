@@ -1,8 +1,7 @@
 package LoginTest;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
 import libs.Util;
-import org.junit.After;
 import org.junit.Test;
 
 
