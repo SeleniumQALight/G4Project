@@ -4,6 +4,7 @@ import baseTest.BaseTest;
 import categories.SmokeTestFilter;
 import libs.ExcelDriver;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -28,6 +29,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    @Ignore
 
     public void validLoginTestWithExel() throws IOException {
         Map<String, String> dataForValidLogin = ExcelDriver.getData(configProperties.DATA_FILE(),
