@@ -3,11 +3,13 @@ package loginTest;
 import baseTest.BaseTest;
 import categories.SmokeTestFilter;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+//    @Ignore
     @Category(SmokeTestFilter.class)
     public void validLoginTest(){
     loginPage.openLoginPage();
