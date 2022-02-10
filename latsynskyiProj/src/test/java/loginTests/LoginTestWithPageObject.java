@@ -4,6 +4,7 @@ import baseTest.BaseTest;
 import categories.SmokeTestFilter;
 import libs.ExcelDriver;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -16,6 +17,7 @@ import static pages.ParentPage.configProperties;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Ignore
     @Category(SmokeTestFilter.class)
     public void validLoginTest() {
         loginPage.openLoginPage();
