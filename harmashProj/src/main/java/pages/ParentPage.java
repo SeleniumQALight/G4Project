@@ -1,6 +1,8 @@
 package pages;
 
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -18,13 +20,14 @@ abstract public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
     WebDriverWait webDriverWait10, webDriverWait15;
-    protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    protected String baseUrl = configProperties.base_url();
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
-        webDriverWait10 = new WebDriverWait(webDriver, 10);
-        webDriverWait15 = new WebDriverWait(webDriver, 15);
+        webDriverWait10 = new WebDriverWait(webDriver, configProperties.TIME_FOR_DFFAULT_WAIT());
+        webDriverWait15 = new WebDriverWait(webDriver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
     }
 
     abstract String getRelativeUrl();
@@ -46,13 +49,13 @@ abstract public class ParentPage {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted");
+            logger.info(text + " was inputted");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void clockOnElement(WebElement webElement) {
+    protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
