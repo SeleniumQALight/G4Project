@@ -1,8 +1,10 @@
 package RegistrTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import libs.SpreadsheetData;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
