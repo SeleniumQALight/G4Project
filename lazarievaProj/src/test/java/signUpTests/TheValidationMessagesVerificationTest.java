@@ -1,14 +1,17 @@
 package signUpTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class TheValidationMessagesVerificationTest extends BaseTest {
 //    @Test
 //    public void verifyTheValidationMessagesDisplayed() {
@@ -25,6 +28,8 @@ public class TheValidationMessagesVerificationTest extends BaseTest {
 
    // String expectedErrors = "Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters.";
     @Test
+    // на даний тест можна додати @Categories.IncludeCategory(SmokeSuitWithCategories.class)
+    // тільки на цілий клас!!! @Categories.IncludeCategory(SmokeSuitWithCategories.class)
     @Parameters({
             "tr,qqq,345,Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters."
             ,"tr,test@qqqq.com,123456qwerty,Username must be at least 3 characters."
