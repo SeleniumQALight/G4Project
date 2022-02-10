@@ -1,28 +1,32 @@
 package registrationTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class RegistrationTestWithPageObject extends BaseTest {
-    //    @Test
-//    public void unValidRegistration() {
-//        loginPage.openLoginPage();
-//        loginPage.enterLoginRegistration("tr");
-//        loginPage.enterEmailRegistration("test.com");
-//        loginPage.enterCreatePasswordRegistration("123");
-//        loginPage.clickOnButtonSignUpForOurApp();
-//        loginPage.checkIsMessagesDisplayed();
-//        Assert.assertFalse("Go to page HomePage", homePage.isButtonSignOutDisplayed());
-//
-//    }
+    @Test
+    public void unValidRegistration() {
+        loginPage.openLoginPage();
+        loginPage.enterLoginRegistration("tr");
+        loginPage.enterEmailRegistration("test.com");
+        loginPage.enterCreatePasswordRegistration("123");
+        loginPage.clickOnButtonSignUpForOurApp();
+        loginPage.checkIsMessagesDisplayed();
+        Assert.assertFalse("Go to page HomePage", homePage.isButtonSignOutDisplayed());
+
+    }
+
     String expectedErrors = "Username must be at least 3 characters.;" +
             "You must provide a valid email address.;" +
             "Password must be at least 12 characters.";
