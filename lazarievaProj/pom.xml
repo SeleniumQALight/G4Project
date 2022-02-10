@@ -48,12 +48,7 @@
       <artifactId>assertj-core</artifactId>
       <version>3.13.2</version>
     </dependency>
-      <dependency>
-          <groupId>org.testng</groupId>
-          <artifactId>testng</artifactId>
-          <version>RELEASE</version>
-          <scope>test</scope>
-      </dependency>
+
     <dependency>
       <groupId>pl.pragmatists</groupId>
       <artifactId>JUnitParams</artifactId>
