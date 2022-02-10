@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -26,6 +27,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 , homePage.isButtonSignOutDisplayed());
     }
     @Test
+    @Ignore
     public void validLoginTestWithExcel() throws IOException {
         Map<String,String> dataForValidLogin = ExcelDriver.getData(configProperties.DATA_FILE(),"validLogOn");
         loginPage.openLoginPage();
