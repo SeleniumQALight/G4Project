@@ -8,8 +8,9 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
+//@Category(SmokeTestFilter.class)
 public class registrationTestWithPageObject extends BaseTest {
-    @Category(smokeTestFilter.class)
+
     String expectedErrors = " Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters.";
     @Parameters({
             "tr,qqq,345,Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters."
