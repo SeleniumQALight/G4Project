@@ -1,5 +1,6 @@
 package pages;
 
+
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +18,15 @@ import java.util.List;
 public class LoginPage extends ParentPage {
     //postoyanno ispolyzuemie elementi
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSingIn;
+    @Name("Input Login")
+    private TextInput inputLoginSingIn;
 
     @FindBy(xpath = ".//input[@type= 'password' and @placeholder='Password']")
-    private WebElement inputPasswordSingIn;
+    //@Name("Input Password")
+    private TextInput inputPasswordSingIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement clickButtonSingIn;
+    private TextInput clickButtonSingIn;
 
     @FindBy(xpath = ".//input[@id='username-register']")
     private WebElement inputLoginSignUp;
