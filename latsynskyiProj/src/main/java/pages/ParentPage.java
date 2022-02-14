@@ -142,7 +142,7 @@ protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
                 break;
 
                 case ("uncheck"):
-                if (currentState) {
+                if (!currentState) {
                     logger.info("current state is uncheck");
                 }else {clickOnElement(checkBox);
                     logger.info("checkBox is clicked and have status uncheck");}
