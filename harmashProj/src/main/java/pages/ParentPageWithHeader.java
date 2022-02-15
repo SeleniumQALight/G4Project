@@ -17,12 +17,12 @@ abstract public class ParentPageWithHeader extends ParentPage {
 
     public CreatePostPage clickOnCreatePostButton() {
 
-        clockOnElement(buttonCreatePost);
+        clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
 
     public MyProfilePage clickOnMyProfileButton() {
-        clockOnElement(buttonMyProfile);
+        clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
 }

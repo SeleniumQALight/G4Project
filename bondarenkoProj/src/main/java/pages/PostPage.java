@@ -40,4 +40,11 @@ public class PostPage extends ParentPageWithHeader{
         clickOnElement(buttonDelete);
         return  new MyProfilePage(webDriver);
     }
+
+    public CreatePostPage clickOnEditButton() {
+        clickOnElement(editButton);
+        return new CreatePostPage(webDriver);
+
+    }
+
 }

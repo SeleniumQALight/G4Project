@@ -40,4 +40,9 @@ return this;
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+    public MyProfilePage clickOnEditButton() {
+        clickOnElement(editButton);
+        logger.info("EditButton was clicked");
+        return new MyProfilePage(webDriver);
+    }
 }

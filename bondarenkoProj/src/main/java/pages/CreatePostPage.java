@@ -18,6 +18,10 @@ public class CreatePostPage extends ParentPage{
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//*[@class='btn btn-primary']" )
+    private WebElement saveUpdatesButton;
+
+    private String postTitleLocator = ".//*[text()='%s']";
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -68,4 +72,10 @@ public CreatePostPage checkUncheckCheckbox (String findCheckbox, String valueFor
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
+
+    public PostPage clickOnSaveUpdatesButton(){
+        clickOnElement(saveUpdatesButton);
+        return new PostPage (webDriver);
+    }
+
 }

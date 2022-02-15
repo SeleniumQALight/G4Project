@@ -3,9 +3,7 @@ package posts;
 import baseTest.BaseTest;
 import libs.Util;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Test;
-import org.testng.annotations.AfterTest;
 
 public class CreatePostTest extends BaseTest {
     final String title = "G4-Marigold " + Util.getDateAndTimeFormatted();
