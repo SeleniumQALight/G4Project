@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -62,6 +63,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + "/");
@@ -72,6 +74,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try {
 //            inputLoginSignIn.clear();
@@ -83,6 +86,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputLoginSignIn, login);
     }
 
+    @Step
     public void enterPassWordIntoInputPassword(String password) {
 //        try {
 //            inputPasswordSignIn.clear();
@@ -94,6 +98,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputPasswordSignIn, password);
     }
 
+    @Step
     public void clickOnButtonSingIn() {
 //        try {
 //            buttonSingIn.click();
@@ -104,6 +109,7 @@ public class LoginPage extends ParentPage {
         clickOnEltment(buttonSignIn);
     }
 
+    @Step
     public HomePage loginWithValidCred() {
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -112,21 +118,25 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterLoginRegistration(String username) {
         enterTextIntoElement(inputUsernameRegistration, username);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegistration(String email) {
         enterTextIntoElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterCreatePasswordRegistration(String createPassword) {
         enterTextIntoElement(inputCreatePasswordRegistration, createPassword);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignUpForOurApp() {
         clickOnEltment(buttonSignUpForOurApp);
     }
@@ -148,6 +158,7 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
     public LoginPage checkIsMessagesDisplayed() {
         Assert.assertTrue("Message is not displayed", messageFieldPickUsernameDisplayed());
         Assert.assertTrue("Message is not displayed", messageFieldEmail());
@@ -155,6 +166,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage checkErrorMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10
