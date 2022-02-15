@@ -86,10 +86,21 @@ abstract public class ParentPage {
         }
     }
 
+    protected void clickOnElement(String xpathLocator) {
+        try {
+          WebElement webElement =  webDriver.findElement(By.xpath(xpathLocator));
+          clickOnElement(webElement);
+            logger.info("Element was clicked");
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     protected boolean isElementDisplayed(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
-            if(state){
+            if (state) {
                 logger.info("Element is displayed");
             } else {
                 logger.info("Element is not displayed");
@@ -102,7 +113,7 @@ abstract public class ParentPage {
         }
     }
 
-    protected void selectTextInDropDown(WebElement dropDown, String text){
+    protected void selectTextInDropDown(WebElement dropDown, String text) {
         try {
 
             Select select = new Select(dropDown);
@@ -113,7 +124,7 @@ abstract public class ParentPage {
         }
     }
 
-    protected void selectValueInDropDown(WebElement dropDown, String value){
+    protected void selectValueInDropDown(WebElement dropDown, String value) {
         try {
 
             Select select = new Select(dropDown);
@@ -124,10 +135,10 @@ abstract public class ParentPage {
         }
     }
 
-    protected void waitChatToBeHide(){
-       webDriverWait10
-               .withMessage("Chat is not closed")
-               .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
+    protected void waitChatToBeHide() {
+        webDriverWait10
+                .withMessage("Chat is not closed")
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));
     }
 
     public void usersPressesKeyEnterTime(int numberOfTimes) {
@@ -136,6 +147,7 @@ abstract public class ParentPage {
             actions.sendKeys(Keys.ENTER).build().perform();
         }
     }
+
     public void usersPressesKeyTabTime(int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {
@@ -151,10 +163,16 @@ abstract public class ParentPage {
     }
 
 
-        private void printErrorAndStopTest (Exception e){
-            logger.error("Cannot work with element " + e);
-            Assert.fail("Cannot work with element " + e);
-        }
+    public void printErrorAndStopTest(Exception e) {
+        logger.error("Cannot work with element " + e);
+        Assert.fail("Cannot work with element " + e);
     }
+
+
+
+
+
+
+}
 
 

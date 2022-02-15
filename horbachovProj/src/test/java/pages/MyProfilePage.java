@@ -6,15 +6,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import javax.xml.xpath.XPath;
 import java.util.List;
 
 public class MyProfilePage extends ParentPageWithHeader{
 
     private String postTitleLocator = ".//*[text()='%s']";
 
+
     @FindBy (xpath=".//*[text()='Post successfully deleted']")
     private WebElement successDeletedPostMessage;
+
+
 
     public MyProfilePage(WebDriver webDriver) {super(webDriver);
     }
@@ -29,6 +31,20 @@ public class MyProfilePage extends ParentPageWithHeader{
         Assert.assertEquals("Number of posts with title " + title, 1, postList.size());
         return this;
     }
+    public boolean checkUpdatedPost(String newTitle) {
+        try {
+            String xpath = String.format(postTitleLocator, newTitle);
+            WebElement webElement =  webDriver.findElement(By.xpath(xpath));
+           if(isElementDisplayed(webElement)) {
+            logger.info("---Updated post is displayed. Passed!!!!---");
+            return true;
+           }
+            }  catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+        return false;
+    }
+
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkUrlWithPattern();
@@ -58,5 +74,11 @@ public class MyProfilePage extends ParentPageWithHeader{
     private MyProfilePage checkIsSuccessDeletedPostMessagePresent() {
         Assert.assertTrue("Element is not present", isElementDisplayed(successDeletedPostMessage));
         return this;
+    }
+
+    public PostPage openMyLastPost(String title) {
+        String xpath = String.format(postTitleLocator, title);
+        clickOnElement(xpath);
+        return new PostPage(webDriver);
     }
 }
