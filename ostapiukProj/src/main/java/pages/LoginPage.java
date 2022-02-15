@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -52,6 +53,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try{
             webDriver.get(baseUrl + "/");
@@ -62,6 +64,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSignIn.clear();
@@ -73,14 +76,17 @@ public class LoginPage extends ParentPage{
         enterTextIntoElement(inputLoginSignIn, login);
     }
 
+    @Step
     public void enterPassWordIntoPassWord(String passWord) {
         enterTextIntoElement(inputPassWordSignIn, passWord);
     }
 
+    @Step
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -89,21 +95,25 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterLoginRegistration(String login) {
         enterTextIntoElement(inputLoginRegistration, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegistration(String email) {
         enterTextIntoElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPassWordRegistration(String password) {
         enterTextIntoElement(inputPassWordRegistration, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10.withMessage("Number of messages ")
