@@ -48,12 +48,7 @@
       <artifactId>assertj-core</artifactId>
       <version>3.13.2</version>
     </dependency>
-      <dependency>
-          <groupId>org.testng</groupId>
-          <artifactId>testng</artifactId>
-          <version>RELEASE</version>
-          <scope>test</scope>
-      </dependency>
+
     <dependency>
       <groupId>pl.pragmatists</groupId>
       <artifactId>JUnitParams</artifactId>
@@ -80,6 +75,11 @@
       <version>5.1.18</version>
     </dependency>
 
+    <dependency>
+      <groupId>ru.yandex.qatools.htmlelements</groupId>
+      <artifactId>htmlelements-java</artifactId>
+      <version>1.20.0</version> <!-- 1.18+ is SELENIUM 3.5.1+ compatible -->
+    </dependency>
 
   </dependencies>
 
