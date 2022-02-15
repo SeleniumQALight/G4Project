@@ -1,9 +1,12 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import libs.ExcelDriver;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.util.Map;
@@ -13,6 +16,8 @@ import static pages.ParentPage.*;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
+    // @Ignore
+    @Category(SmokeTestFilter.class)
     public void validLoginTest(){
         loginPage.openLoginPage();
         loginPage.enterLoginIntoInputLogin("qaauto");
