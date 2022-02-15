@@ -10,6 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.htmlelements.element.TypifiedElement;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,13 @@ abstract public class ParentPage {
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
+        //PageFactory.initElements(webDriver, this);
+
+        PageFactory.initElements(
+                new HtmlElementDecorator(
+                        new HtmlElementLocatorFactory(webDriver))
+                , this);
+
         webDriverWait10 = new WebDriverWait(webDriver, configProperties.TIME_FOR_DFFAULT_WAIT());
         webDriverWait15 = new WebDriverWait(webDriver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
     }
@@ -54,10 +63,18 @@ abstract public class ParentPage {
         try {
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted");
+            logger.info(text + " was inputted" + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    private String getElementName(WebElement webElement) {
+        String elementName = "";
+        if (webElement instanceof TypifiedElement) {
+            elementName = " '" + ((TypifiedElement) webElement).getName() + "' ";
+        }
+        return elementName;
     }
 
     protected boolean isElementDisplayed(WebElement webElement) {
@@ -79,18 +96,18 @@ abstract public class ParentPage {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(getElementName(webElement) + "Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void clickOnElement(String xpathLocator){
+    protected void clickOnElement(String xpathLocator) {
         WebElement webElement = null;
         try {
             webElement = webDriver.findElement(By.xpath(xpathLocator));
             logger.info("Element was found");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
         clickOnElement(webElement);
