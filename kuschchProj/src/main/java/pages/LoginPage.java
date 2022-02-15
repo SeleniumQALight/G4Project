@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -43,6 +44,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try{
             webDriver.get(baseUrl + "/");
@@ -54,6 +56,7 @@ public class LoginPage extends ParentPage{
 
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSingIn.clear();
@@ -65,6 +68,7 @@ public class LoginPage extends ParentPage{
         enterTextIntoElement(inputLoginSingIn, login);
     }
 
+    @Step
     public void enterPassWordIntoInputPassWord(String passWord){
 //        try {
 //            inputPassWordSingIn.clear();
@@ -76,6 +80,7 @@ public class LoginPage extends ParentPage{
         enterTextIntoElement(inputPassWordSingIn, passWord);
     }
 
+    @Step
     public void clickOnButtonSingIn(){
 //        try{
 //            buttonSingIn.click();
@@ -86,11 +91,13 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSingIn);
     }
 
+    @Step
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" +e);
         Assert.fail("Can not work with element" + e);
     }
 
+    @Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -99,6 +106,7 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
+    @Step
     public boolean errorMessageMainPage() {
         try {
             return webDriver.findElement(By.xpath(".//div[@Class = 'alert alert-danger text-center']")).isDisplayed();
@@ -107,21 +115,25 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public LoginPage enterLoginRegistration(String login) {
         enterTextIntoElement(inputLoginRegistration, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegisstration(String email) {
         enterTextIntoElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordRegistration(String password) {
         enterTextIntoElement(inputPasswordRegistration, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10.withMessage("Numbers of messages ")
