@@ -8,12 +8,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage  extends ParentPage{
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+ //   @Name("Input Login")
+  //  private TextInput inputLoginSignIn;
     private WebElement inputLoginSignIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")

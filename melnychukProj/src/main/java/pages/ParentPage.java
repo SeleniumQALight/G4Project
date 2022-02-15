@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 import java.util.ArrayList;
 
@@ -28,7 +30,13 @@ public static ConfigProperties configProperties =
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
+       PageFactory.initElements(webDriver, this);
+     /*
+       PageFactory.initElements(
+                new HtmlElementDecorator(
+                        new HtmlElementLocatorFactory(webDriver))
+                ,this);
+        */
         //webDriverWait10= new WebDriverWait(webDriver, 10);
        // webDriverWait15=  new WebDriverWait(webDriver, 15);
         webDriverWait10= new WebDriverWait(webDriver, configProperties.TIME_FOR_DFFAULT_WAIT());
