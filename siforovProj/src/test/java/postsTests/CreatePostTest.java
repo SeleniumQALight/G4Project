@@ -18,6 +18,7 @@ public class CreatePostTest extends BaseTest {
                     .checkIsRedirectToCreatePostPage()
                     .enterTextIntoTitleInput(title)
                     .enterTextIntoBody(TestData.VALID_TEXT)
+                    .markCheckbox(true)
 //                    .selectTextInDropDownCreatePost("Частное сообщение")
                     .selectValueInDropDownRole("One Person")
                     .clickOnSaveNewPostButton()
@@ -35,7 +36,6 @@ public class CreatePostTest extends BaseTest {
                 .clickOnProfileLink()
                 .checkIsRedirectToProfilePage()
                 .deletePostWithTitleWhilePresent(title);
-
     }
 
     //Homework 4 (Custom select)

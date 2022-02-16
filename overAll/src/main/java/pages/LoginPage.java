@@ -12,16 +12,20 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import libs.TestData;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSingIn;
+    @Name("Input Login")
+    private TextInput inputLoginSingIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassWordSingIn;
+    private TextInput inputPassWordSingIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSingIn;
+    private Button buttonSingIn;
 
     @FindBy(id = "username-register")
     private WebElement inputLoginRegistration;

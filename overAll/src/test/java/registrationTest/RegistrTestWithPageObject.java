@@ -1,14 +1,17 @@
 package registrationTest;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class RegistrTestWithPageObject extends BaseTest {
     // String expectedErrors = "Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters.";
     @Test
@@ -26,4 +29,6 @@ public class RegistrTestWithPageObject extends BaseTest {
                 .enterPassWordRegistration(passWord)
                 .checkErrorsMessages(expectedErrors);
     }
+
+
 }

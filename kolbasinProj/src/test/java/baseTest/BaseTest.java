@@ -31,7 +31,7 @@ public class BaseTest {
     protected CreatePostPage createPostPage;
     @Before
     public void setUp(){   // pre-condition
-        logger.info("================ " + testName.getMethodName() + " was started ================");
+        logger.info("\n================ " + testName.getMethodName() + " was started ================");
         webDriver = initDriver();  //ChromeDriver реализация интерфейса WebDriver
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
@@ -45,7 +45,7 @@ public class BaseTest {
     public void tearDown(){  // post-condition
 //        webDriver.quit();  // этот метод полностью закрывает браузер
 //        logger.info("Browser was closed");
-        logger.info("================ " + testName.getMethodName() + " was ended ================\n");
+        logger.info("\n================ " + testName.getMethodName() + " was ended ================\n");
     }
 
     @Rule

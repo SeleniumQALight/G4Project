@@ -1,15 +1,25 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
+import java.io.IOException;
+import java.util.Map;
+
+import static pages.ParentPage.configProperties;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
-    public void validLogin(){
+    @Category(SmokeTestFilter.class)
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
         loginPage.openLoginPage();
-        loginPage.enterLoginIntoInputLogin("qaauto");
-        loginPage.enterPasswordIntoInputPassword("123456qwerty");
+        loginPage.enterLoginIntoInputLogin(dataForValidLogin.get("login"));
+        loginPage.enterPasswordIntoInputPassword(dataForValidLogin.get("pass"));
         loginPage.clickOnSignIn();
 
         Assert.assertTrue("Button Sign Out went for vacation", homePage.isDispayedButtonSignOut());
