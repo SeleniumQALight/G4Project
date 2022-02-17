@@ -1,20 +1,29 @@
 package LoginTest;
 
 import BaseTest.BaseTest;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import category.SmokeTestFilter;
+import io.qameta.allure.*;
 import libs.ExcelDriver;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
-import pages.ParentPage;
 import org.junit.experimental.categories.Category;
+import pages.ParentPage;
 import java.io.IOException;
 import java.util.Map;
 @Epic("Allure examples")
 @Feature("Junit 4 support")
+
 public class TestWithPageObject extends BaseTest {
-        @Test
-        //@Category(SmokeTestFilter.class)
+    @Description("Some test description")
+    @Link("https://example.org")
+    @Link(name="allure", type="mylink")
+    @Issue("123")
+    @Issue("432")
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    @Story("Base support BBD")
+        @Category(SmokeTestFilter.class)
         public void validLoginTest() {
             loginPage.openLoginPage();
             loginPage.enterLoginIntoInputLogin("qaauto");
