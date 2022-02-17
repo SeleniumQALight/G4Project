@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -60,7 +61,7 @@ public class LoginPage extends ParentPage{
     String getRelativeUrl() {
         return "/";
     }
-
+@Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl +"/");
@@ -70,7 +71,7 @@ public class LoginPage extends ParentPage{
             Assert.fail("Can not open Login Page"+e);
         }
         }
-
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSingIn.clear();
@@ -82,7 +83,7 @@ public class LoginPage extends ParentPage{
 //        }
         enterTextInToElement(inputLoginSingIn,login);
     }
-
+    @Step
     public void enterPassWordIntoInputPassWord(String passWord) {
 //        try {
 //            inputPassWordSingIn.clear();
@@ -93,7 +94,7 @@ public class LoginPage extends ParentPage{
 //            printErrorAndStopTest(e);
 //        }
         enterTextInToElement(inputPassWordSingIn,passWord);
-    }
+    }@Step
     public void clickOnButtonSingIn(){
 //        try{
 //            ButtonSingIn.click();
@@ -104,18 +105,18 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSingIn);
     }
 
-
+    @Step
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element"+e);
         Assert.fail("Can not work with element"+e);
-    }
+    }@Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
         enterPassWordIntoInputPassWord(TestData.VALID_PASS);
         clickOnButtonSingIn();
           return new HomePage(webDriver);
-    }
+    }@Step
     public boolean errormsgIsDisplayed (){
         try{
             return  errormsg.isDisplayed();
