@@ -23,7 +23,8 @@ public class MyProfilePage extends ParentPageWithHeader{
         return "/profile/";
     }
 
-    public MyProfilePage checkPostWasCreated(String title) {
+
+    public MyProfilePage checkPostIsInList(String title) {
         List<WebElement> postList = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of posts with title " + title, 1, postList.size());
         return this;
@@ -53,6 +54,13 @@ public class MyProfilePage extends ParentPageWithHeader{
         logger.info("All posts were deleted with title " + title);
         return this;
     }
+
+    public PostPage clickOnPostTitle (String title) {
+        clickOnElement(String.format(postTitleLocator, title));
+        return new PostPage (webDriver);
+    }
+
+
 
     private MyProfilePage checkIsSuccessfulDeletedPostMessagePresent() {
         Assert.assertTrue("Element is not present", isElementDisplayed(successfulDeletedPostMessage));

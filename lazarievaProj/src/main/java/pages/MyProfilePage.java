@@ -52,6 +52,7 @@ public class MyProfilePage extends ParentPageWithHeader {
             logger.info("Post was deleted");
             // провіряємо чи умова актуальна
             listOfPosts = webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
+            counter++;
 
         }
         logger.info("All posts were deleted with " + title);

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,19 +9,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage { //alt + entr создать конструктор
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSingIn; //объект с вебелементом (объект с адрессом с которым можем выполнять указаные действия - почислить , нажать, провеить наличие)
+    @Name("Input Login")
+    private TextInput  inputLoginSingIn; //объект с вебелементом (объект с адрессом с которым можем выполнять указаные действия - почислить , нажать, провеить наличие)
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassWordSingIn;
+    private TextInput inputPassWordSingIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSingIn;
+    private Button buttonSingIn;
 
     @FindBy(xpath = ".//input[@id='username-register']")
     private WebElement inputUserNameRegiste;
@@ -58,6 +63,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + "/"); //открыть урл
@@ -69,6 +75,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try {
 //            inputLoginSingIn.clear();
@@ -80,6 +87,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         enterTextInToElement(inputLoginSingIn, login);
     }
 
+    @Step
     public void enterPassWordIntoInputPassWord(String passWord) {
 //        try {
 //            inputPassWordSingIn.clear();
@@ -91,6 +99,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         enterTextInToElement(inputPassWordSingIn, passWord);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
 //        try {
 //            buttonSingIn.click();
@@ -103,21 +112,25 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
 
     }
 
+    @Step
     public LoginPage enterLoginInputIntoUserNameRegiste(String login) {
         enterTextInToElement(inputUserNameRegiste, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailIntoInputEmail(String email) {
         enterTextInToElement(inputEmailRegister, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPassWordIntoInputPassWordRegister(String pasword) {
         enterTextInToElement(inputPassWordRegister, pasword);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorMessages(String expectedErrors) { //сравнение списка ошибок
         String[] expectedErrorsArray = expectedErrors.split(";"); //split разделяет -- ожидаемый результат
         webDriverWait10
@@ -136,6 +149,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         return this;
     }
 
+    @Step
     public void clickOnButtonSignUpForOurApp() {
         clickOnElement(ButtonSignUpForOurApp);
 
@@ -147,6 +161,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
 //   }
 
 
+    @Step
     public HomePage loginWithValidCred() {
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -155,6 +170,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         return new HomePage(webDriver);
     }
 
+    @Step
     public boolean IsButtonSignUpForOurAppDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//button[@type='submit']")).isDisplayed();
@@ -163,6 +179,7 @@ public class LoginPage extends ParentPage { //alt + entr создать конс
         }
     }
 
+    @Step
     public boolean IsButtonErrorForOurAppDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//*[text()='Error']")).isDisplayed();

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,17 +9,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage{
+//    @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+//    private WebElement inputLoginSignIn;
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSignIn;
+    @Name("Input login")
+    private TextInput inputLoginSignIn;
+
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassWordSignIn;
+    private TextInput inputPassWordSignIn;
+
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSignIn;
+    private Button buttonSignIn;
 
     @FindBy(id = "username-register")
     private WebElement inputLoginRegistration;
@@ -44,6 +53,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try{
             webDriver.get(baseUrl + "/");
@@ -54,6 +64,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSignIn.clear();
@@ -65,14 +76,17 @@ public class LoginPage extends ParentPage{
         enterTextIntoElement(inputLoginSignIn, login);
     }
 
+    @Step
     public void enterPassWordIntoPassWord(String passWord) {
         enterTextIntoElement(inputPassWordSignIn, passWord);
     }
 
+    @Step
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -81,21 +95,25 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterLoginRegistration(String login) {
         enterTextIntoElement(inputLoginRegistration, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegistration(String email) {
         enterTextIntoElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPassWordRegistration(String password) {
         enterTextIntoElement(inputPassWordRegistration, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10.withMessage("Number of messages ")

@@ -1,6 +1,6 @@
 package LoginTest;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
 import category.SmokeTestFilter;
 import io.qameta.allure.*;
 import libs.ExcelDriver;

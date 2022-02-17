@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,14 @@ public class PostPage extends ParentPageWithHeader{
 
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement buttonDelete;
+    @FindBy(xpath = ".//a[contains(@href,'edit')]")
+    private WebElement postEditButton;
+    @FindBy(xpath = ".//input[@id='post-title']")
+    private WebElement title;
+    @FindBy(xpath = ".//button[text()='Save Updates']")
+    private WebElement saveUpdatesButton;
+    @FindBy(xpath = ".//*[@data-original-title='My Profile']")
+    private WebElement buttonMyProfile;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -39,4 +48,36 @@ public class PostPage extends ParentPageWithHeader{
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+
+    public void clickOnPostEditButton() {
+        clickOnElement(postEditButton);
+    }
+
+    public PostPage changePostTitle(String newTitle) {
+        enterTextIntoElement(title, newTitle);
+        return this;
+    }
+
+    public PostPage saveUpdates() {
+        clickOnElement(saveUpdatesButton);
+        return this;
+
+    }
+    public PostPage checkMessageAfterUpdate(){
+        try {
+            alertSuccess.isDisplayed();
+            logger.info("Post successfully updated. - message has been displayed ");
+        } catch (Exception e) {
+
+            printErrorAndStopTest(e);
+        }
+        return this;
+    }
+    public void clickMyProfileButton(){
+        clickOnElement(buttonMyProfile);
+
+    }
+
+
+
 }

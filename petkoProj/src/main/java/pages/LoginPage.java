@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,6 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +19,14 @@ import java.util.List;
 public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSignIn;
+    @Name("Input login")
+    private TextInput inputLoginSignIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPasswordSignIn;
+    private TextInput inputPasswordSignIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSignIn;
+    private Button buttonSignIn;
 
     @FindBy(xpath = ".//input[@id = 'username-register']")
     private WebElement inputLoginSignUp;
@@ -59,6 +64,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try {
             webDriver.get(baseUrl + "/");
@@ -69,6 +75,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSignIn.clear();
@@ -80,25 +87,30 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputLoginSignIn, login);
     }
 
+    @Step
     public void enterPassWordIntoInputPassWord(String password){
         enterTextInToElement(inputPasswordSignIn, password);
     }
 
+    @Step
     public LoginPage enterLoginRegistration(String login){
         enterTextInToElement(inputLoginSignUp, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegistration(String email){
         enterTextInToElement(inputEmailSignUp, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordRegistration(String password){
         enterTextInToElement(inputPasswordSignUp, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait5.withMessage("Numbers of messages ")
@@ -119,14 +131,17 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public void clickOnButtonSignUp(){
         clickOnElement(buttonSignUp);
     }
 
+    @Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -135,6 +150,7 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public boolean isButtonSignInDisplayed(){
         return isElementDisplayed(buttonSignIn);
     }

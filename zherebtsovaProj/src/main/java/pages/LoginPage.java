@@ -10,6 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 
 import java.util.ArrayList;
@@ -19,11 +22,13 @@ import java.util.List;
 public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSingIn;
+   @Name("Input Login")
+    private TextInput inputLoginSingIn;
+
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPasswordSignIn;
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSingIn;
+    private Button buttonSingIn;
     @FindBy(xpath = ".//button[@type='submit']")
     private WebElement buttonSingUp;
     @FindBy(id = "username-register")

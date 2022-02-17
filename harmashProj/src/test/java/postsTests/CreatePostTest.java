@@ -28,7 +28,6 @@ public class CreatePostTest extends BaseTest {
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title)
-
         ;
 
     }

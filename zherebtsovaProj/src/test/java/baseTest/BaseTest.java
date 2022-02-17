@@ -1,5 +1,4 @@
-package BaseTest;
-import LoginTest.CreatePostTest;
+package baseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;

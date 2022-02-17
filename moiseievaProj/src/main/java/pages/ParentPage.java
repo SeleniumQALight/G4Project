@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.ConfigProperties;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
@@ -10,6 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.htmlelements.element.TypifiedElement;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 import java.util.ArrayList;
 
@@ -25,7 +29,10 @@ abstract public class ParentPage {
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
+    //    PageFactory.initElements(webDriver, this);
+        PageFactory.initElements( new HtmlElementDecorator(                     // for yandex
+                        new HtmlElementLocatorFactory(webDriver)),this);
+
         webDriverWait10 = new WebDriverWait(webDriver, configProperties.TIME_FOR_DFFAULT_WAIT());
         webDriverWait15 = new WebDriverWait(webDriver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
     }
@@ -49,17 +56,25 @@ abstract public class ParentPage {
             webDriverWait15.until(ExpectedConditions.visibilityOf(element));
             element.clear();
             element.sendKeys(text);
-            logger.info(text + " was inputted ");
+            logger.info(text + " was inputted " + getElementName(element));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    private String getElementName(WebElement element) {
+        String elementName = "";
+        if (element instanceof TypifiedElement){
+            elementName = " '" + ((TypifiedElement) element).getName() + "' ";
+        }
+        return elementName;
     }
 
     protected void clickOnElement(WebElement element) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info(getElementName(element) + " element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -177,4 +192,5 @@ abstract public class ParentPage {
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
 }

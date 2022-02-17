@@ -1,6 +1,7 @@
 package pages;
 
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -9,6 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.security.spec.ECField;
 import java.util.ArrayList;
@@ -18,13 +22,14 @@ import java.util.List;
 public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSignIn;
+    @Name("Input Login")
+    private TextInput inputLoginSingIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPasswordSignIn;
+    private TextInput inputPasswordSingIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSignIn;
+    private Button buttonSingIn;
 
     @FindBy(id = "username-register")
     private WebElement inputLoginRegistration;
@@ -51,6 +56,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + "/");
@@ -60,7 +66,7 @@ public class LoginPage extends ParentPage {
             Assert.fail("Cannot open Login Page" + e);
         }
     }
-
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try {
 //            inputLoginSignIn.clear();
@@ -69,8 +75,9 @@ public class LoginPage extends ParentPage {
 //    } catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-        enterTextIntoElement(inputLoginSignIn, login);
+        enterTextIntoElement(inputLoginSingIn, login);
 }
+    @Step
 public void enterPasswordIntoInputPassword(String password){
 //        try {
 //            inputPasswordSignIn.clear();
@@ -80,9 +87,10 @@ public void enterPasswordIntoInputPassword(String password){
 //} catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-    enterTextIntoElement(inputPasswordSignIn, password);
+    enterTextIntoElement(inputPasswordSingIn, password);
 }
 
+    @Step
 public void clickOnButtonSignIn() {
 //    try {
 //        buttonSignIn.click();
@@ -90,7 +98,7 @@ public void clickOnButtonSignIn() {
 //    } catch (Exception e) {
 //        printErrorAndStopTest(e);
 //    }
-    clickOnElement(buttonSignIn);
+    clickOnElement(buttonSingIn);
 }
 
 public HomePage loginWithValidCred(){

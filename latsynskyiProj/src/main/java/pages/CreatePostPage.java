@@ -5,19 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreatePostPage extends ParentPageWithHeader{
+public class CreatePostPage extends ParentPageWithHeader {
     //.//input[@name='title']
-    @FindBy(name="title")
+    @FindBy(name = "title")
     private WebElement inputTitle;
 
-    @FindBy(id="post-body")
+    @FindBy(id = "post-body")
     private WebElement inputBody;
 
     @FindBy(tagName = "select")
     private WebElement dropDownRole;
     @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
-    private String elementInSelect = ".//*[text()='%s']";
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBox;
+    private  String elementInSelect = ".//*[text()='%s']";
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -28,31 +30,31 @@ public class CreatePostPage extends ParentPageWithHeader{
         return "/create-post";
     }
 
-    public CreatePostPage checkIsRedirectToCreatePostPage(){
+    public CreatePostPage checkIsRedirectToCreatePostPage() {
         waitChatTobeHide();
         checkUrl();
-    Assert.assertTrue("Input title is not displayed"
-            ,isElementDisplayed(inputTitle));
+        Assert.assertTrue("Input title is not displayed"
+                , isElementDisplayed(inputTitle));
         return this;
-}
+    }
 
     public CreatePostPage enterTextInToTitleInput(String text) {
-        enterTextInToElement(inputTitle,text);
+        enterTextInToElement(inputTitle, text);
         return this;
     }
 
     public CreatePostPage enterTextInToBodyInput(String text) {
-        enterTextInToElement(inputBody,text);
+        enterTextInToElement(inputBody, text);
         return this;
     }
 
     public CreatePostPage selectTextInDropDownRole(String textForSelect) {
-        selectTextInDropDown(dropDownRole,textForSelect);
+        selectTextInDropDown(dropDownRole, textForSelect);
         return this;
     }
 
     public CreatePostPage selectValueInDropDownRole(String valueForSelect) {
-        selectValueInDropDown(dropDownRole,valueForSelect);
+        selectValueInDropDown(dropDownRole, valueForSelect);
         return this;
     }
     public CreatePostPage selectValueInDropDownRoleByUi(String valueForSelectUI) {
@@ -61,7 +63,12 @@ public class CreatePostPage extends ParentPageWithHeader{
     }
 
     public PostPage clickOnButtonSaveNewPost() {
-    clickOnElement(buttonSaveNewPost);
-    return new PostPage(webDriver);
+        clickOnElement(buttonSaveNewPost);
+        return new PostPage(webDriver);
+    }
+
+    public CreatePostPage statusOfTheCHeckBox(String state) {
+        checkBoxcheckUncheck(checkBox, state);
+        return this;
     }
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,19 +9,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")  // объявление элемента
-    private WebElement inputLoginSingIn;  //обязательно указывать тип элемента, название
+    @Name("Input Login")
+    private TextInput inputLoginSingIn;  //обязательно указывать тип элемента, название
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassWordSingIn;
+    @Name("Input Password")
+    private TextInput inputPassWordSingIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSingIn;
+    private Button buttonSingIn;
 
     @FindBy(id = "username-register")
     private WebElement inputLoginRegistration;
@@ -46,6 +52,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try{
             webDriver.get(baseUrl + "/");
@@ -56,6 +63,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{                                           // вынесли в ParentPage
 //            inputLoginSingIn.clear();
@@ -68,6 +76,7 @@ public class LoginPage extends ParentPage{
         enterTextInToElement(inputLoginSingIn, login);
     }
 
+    @Step
     public void enterPassWordIntoInputPassWord(String passWord){
 //        try {                                           // вынесли в ParentPage
 //            inputPassWord.clear();
@@ -79,6 +88,7 @@ public class LoginPage extends ParentPage{
         enterTextInToElement(inputPassWordSingIn, passWord);
     }
 
+    @Step
     public void clickOnButtonSignIn(){
 //        try {                                           // вынесли в ParentPage
 //            buttonSingIn.click();
@@ -89,6 +99,7 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSingIn);
     }
 
+    @Step
     public HomePage loginWithValidCred(){   // переход на HomePage из логина
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -97,21 +108,25 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterLoginRegistration(String login) {
         enterTextInToElement(inputLoginRegistration, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegistration(String email) {
         enterTextInToElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPassWordRegistration(String password) {
         enterTextInToElement(inputPassWordRegistration, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10

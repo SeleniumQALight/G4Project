@@ -1,6 +1,8 @@
 package pages;
 
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -9,6 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.htmlelements.element.TypifiedElement;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 import java.util.ArrayList;
 
@@ -18,13 +23,18 @@ abstract public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
     WebDriverWait webDriverWait10, webDriverWait15;
-    protected String baseUrl = "https://qa-complex-app-for-testing.herokuapp.com";
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    protected String baseUrl = configProperties.base_url();
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-        webDriverWait10 = new WebDriverWait(webDriver, 10);
-        webDriverWait15 = new WebDriverWait(webDriver, 15);
+//        PageFactory.initElements(webDriver, this);
+        PageFactory.initElements(
+                new HtmlElementDecorator(
+                        new HtmlElementLocatorFactory(webDriver))
+                ,this);
+        webDriverWait10 = new WebDriverWait(webDriver, configProperties.TIME_FOR_DFFAULT_WAIT());
+        webDriverWait15 = new WebDriverWait(webDriver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
     }
 
     abstract String getRelativeUrl();
@@ -46,10 +56,19 @@ abstract public class ParentPage {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted");
+            logger.info(text + " was inputted " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    private String getElementName(WebElement webElement) {
+        String elementName = "";
+        if(webElement instanceof TypifiedElement){
+            elementName =" '" + ((TypifiedElement) webElement).getName() +"' ";
+        }
+        return elementName;
+
     }
 
     protected void clickOnElement(WebElement webElement) {

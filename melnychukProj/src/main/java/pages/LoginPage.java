@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,12 +9,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage  extends ParentPage{
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+ //   @Name("Input Login")
+  //  private TextInput inputLoginSignIn;
     private WebElement inputLoginSignIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
@@ -68,7 +73,7 @@ public class LoginPage  extends ParentPage{
         return "/";
     }
 
-
+@Step
     public  void openLoginPage(){
         try{
             webDriver.get(baseUrl + "/");
@@ -80,6 +85,7 @@ public class LoginPage  extends ParentPage{
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSignIn.clear();
@@ -91,11 +97,14 @@ public class LoginPage  extends ParentPage{
 //        }
         enterTextInToElement(inputLoginSignIn, login);
     }
+
+    @Step
     public void enterPasswordIntoInputPassword(String passWord){
 
         enterTextInToElement(inputPassWordSingIn, passWord);
     }
 
+    @Step
     public void clickOnButtonSignIn(){
 //        try{
 //           buttonSingIn.click();
@@ -105,6 +114,8 @@ public class LoginPage  extends ParentPage{
 //        }
         clickOnElement(buttonSingIn);
     }
+
+    @Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -114,49 +125,63 @@ public class LoginPage  extends ParentPage{
 }
 
 
+    @Step
     public void enterLoginForRegistration(String regLogin) {
         enterTextInToElement(registrationLogin, regLogin);
     }
 
+    @Step
     public void enterEmailForRegistration(String regMail) {
         enterTextInToElement(registrationMail, regMail);
     }
 
+    @Step
     public void enterPasswordForRegistration(String regPass) {
         enterTextInToElement(registrationPassword,regPass);
     }
+
+    @Step
     public void clickOnSignUpButton() {
         clickOnElement(signUpButton);
     }
 
+    @Step
     public LoginPage checkTextInValidationUsername(String text){
         Assert.assertEquals("Text in username Validation Message ", text, usernameValidationMes.getText()); ;
         return this;
     }
+
+    @Step
     public LoginPage checkTextInValidationMail(String text1){
         Assert.assertEquals("Text in Mail Validation Message ", text1, mailValidationMes.getText()); ;
         return this;
     }
+
+    @Step
     public LoginPage checkTextInValidationPassword(String text){
         Assert.assertEquals("Text in Password Validation Message ", text,passwordValidationMes.getText());
     return this;
     }
 
+    @Step
     public LoginPage enterLoginRegistration(String login) {
         enterTextInToElement(inputLoginRegistration, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegistration(String email) {
         enterTextInToElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPassWordRegistration(String password) {
         enterTextInToElement(inputPassWordRegistration, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10.withMessage("Numbers of messages")

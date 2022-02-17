@@ -11,6 +11,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.htmlelements.element.TextInput;
+import ru.yandex.qatools.htmlelements.element.TypifiedElement;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 import java.util.ArrayList;
 
@@ -31,7 +35,12 @@ abstract public class ParentPage {
 //alt + insert и создать конструктор
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this); //проиницилизровать елементы описанне через FindBy
+        //PageFactory.initElements(webDriver, this); //проиницилизровать елементы описанне через FindBy
+        PageFactory.initElements(
+                new HtmlElementDecorator(
+                        new HtmlElementLocatorFactory(webDriver))
+                ,this);
+
         webDriverWait10 = new WebDriverWait(webDriver,configProperties.TIME_FOR_DFFAULT_WAIT());//получем таймаут с проперти
         webDriverWait15 = new WebDriverWait(webDriver,configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());//получем таймаут с проперти
     }
@@ -55,13 +64,21 @@ abstract public class ParentPage {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted ");
+            logger.info(text + " was inputted " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-   protected boolean isElementDispleid(WebElement webElement) {
+    private String getElementName(WebElement webElement) {
+        String elementName = "";
+        if (webElement instanceof TextInput){
+            elementName = " '" + ((TypifiedElement) webElement).getName() + "' ";
+        }
+        return elementName;
+    }
+
+    protected boolean isElementDispleid(WebElement webElement) {
        try{
            boolean state = webElement.isDisplayed(); // нет елемента
            if (state){
@@ -81,7 +98,7 @@ abstract public class ParentPage {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(getElementName(webElement) + " Element was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
