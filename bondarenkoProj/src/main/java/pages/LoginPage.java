@@ -1,5 +1,7 @@
 package pages;
 
+
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,19 +10,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSignIn;
+    @Name("Input Login")
+    private TextInput inputLoginSignIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassWordSignIn;
+    private TextInput inputPassWordSignIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSignIn;
+    private Button buttonSignIn;
 
     @FindBy(xpath = ".//*[@id='username-register']")
     private WebElement inputUsernameSignUp;
@@ -56,7 +62,7 @@ public class LoginPage extends ParentPage {
     String getRelativeUrl() {
         return "/";
     }
-
+@Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + "/");
@@ -67,7 +73,7 @@ public class LoginPage extends ParentPage {
         }
 
     }
-
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSignIn.clear();
@@ -79,6 +85,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputLoginSignIn, login);
     }
 
+    @Step
     public void enterPasswordIntoInputPassword(String passWord) {
 //        try{
 //            inputPassWordSignIn.clear();
@@ -90,6 +97,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputPassWordSignIn, passWord);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
 //        try {
 //            buttonSignIn.click();
@@ -100,6 +108,7 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage loginWithValidCred() {
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -108,20 +117,22 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public void enterUsernameIntoInputUsernameSignUp(String username) {
         enterTextIntoElement(inputUsernameSignUp, username);
     }
 
-
+    @Step
     public void enterEmailIntoInputEmailSignUp(String email) {
         enterTextIntoElement(inputEmailSignUp, email);
-
     }
 
+    @Step
     public void enterPasswordIntoInputPasswordSignUp(String password) {
         enterTextIntoElement(inputPasswordSignUp, password);
     }
 
+    @Step
     public void clickOnButtonSignUpForOurApp() {
         clickOnElement(buttonSignUpForOutApp);
     }
@@ -164,30 +175,36 @@ public class LoginPage extends ParentPage {
  //       Assert.assertTrue("Message for Password field is not displayed", isMessageForPasswordSignUpFieldDisplayed());
 //        return this;
 //    }
-
+    @Step
     public boolean isMessageForUsernameSignUpFieldDisplayed(){
         return isMessageForFieldDisplayed(messageForUsernameSignUpField);
     }
    public LoginPage checkIsMessageForUsernameSignUpFieldDisplayed(){
       Assert.assertTrue("Message for Username field is not displayed", isMessageForUsernameSignUpFieldDisplayed());
       return this;}
-
+    @Step
     public boolean isMessageForEmailSignUpFieldDisplayed(){
         return isMessageForFieldDisplayed(messageForEmailSignUpField);
     }
+
+    @Step
     public LoginPage checkIsMessageForEmailSignUpFieldDisplayed(){
       Assert.assertTrue("Message for Email field is not displayed", isMessageForEmailSignUpFieldDisplayed());
       return this;
    }
 
+    @Step
     public boolean isMessageForPasswordSignUpFieldDisplayed(){
         return isMessageForFieldDisplayed(messageForPasswordSignUpFiled);
     }
+
+    @Step
    public LoginPage checkIsMessageForPasswordSignUpFieldDisplayed(){
       Assert.assertTrue("Message for Password field is not displayed", isMessageForPasswordSignUpFieldDisplayed());
       return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10.withMessage("Numbers of messages").until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsLocator), expectedErrorsArray.length));
