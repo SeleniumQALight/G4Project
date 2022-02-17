@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +15,7 @@ public class HomePage extends ParentPageWithHeader {
     String getRelativeUrl() {
         return "/";
     }
-
+@Step
     public boolean isButtonSignOutDisplayed(){
         try{
 
@@ -25,12 +26,13 @@ public class HomePage extends ParentPageWithHeader {
             return false;
         }
     }
+    @Step
     public HomePage checkIsButtonSignOutDisplayed(){
         Assert.assertTrue("Button SignOut is not displayed", isButtonSignOutDisplayed());
         return this;
     }
 
-
+    @Step
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
