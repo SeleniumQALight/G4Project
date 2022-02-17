@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -63,6 +64,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try {
             webDriver.get(baseUrl + "/");
@@ -73,6 +75,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSignIn.clear();
@@ -84,25 +87,30 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputLoginSignIn, login);
     }
 
+    @Step
     public void enterPassWordIntoInputPassWord(String password){
         enterTextInToElement(inputPasswordSignIn, password);
     }
 
+    @Step
     public LoginPage enterLoginRegistration(String login){
         enterTextInToElement(inputLoginSignUp, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegistration(String email){
         enterTextInToElement(inputEmailSignUp, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordRegistration(String password){
         enterTextInToElement(inputPasswordSignUp, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait5.withMessage("Numbers of messages ")
@@ -123,14 +131,17 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public void clickOnButtonSignUp(){
         clickOnElement(buttonSignUp);
     }
 
+    @Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -139,6 +150,7 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public boolean isButtonSignInDisplayed(){
         return isElementDisplayed(buttonSignIn);
     }
