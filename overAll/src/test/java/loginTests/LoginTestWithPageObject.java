@@ -36,7 +36,7 @@ public class LoginTestWithPageObject extends BaseTest {
     public void validLoginTest(){
         loginPage.openLoginPage();
         loginPage.enterLoginIntoInputLogin("qaaut");
-        loginPage.enterPassWordIntoInputPassWord("123456qwerty");
+        loginPage.enterPassWordIntoInputPassWord("123456qwerty")
         loginPage.clickOnButtonSingIn();
 
         checkER("Button SignOut is not displayed"
