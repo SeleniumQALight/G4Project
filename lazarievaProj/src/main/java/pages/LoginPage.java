@@ -1,6 +1,7 @@
 package pages;
 
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -64,6 +65,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get("https://qa-complex-app-for-testing.herokuapp.com/");
@@ -76,6 +78,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try {
 //            inputLoginSignIn.clear();
@@ -88,14 +91,17 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputLoginSignIn, login);
     }
 
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextInToElement(inputPasswordSignIn, password);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage loginWithValidCred() {
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -104,29 +110,35 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public boolean verifyIfTheSignUPButtonIsDisplayed() {
         return isElementDisplayed(buttonSignUPForOurApp);
     }
 
+    @Step
     public LoginPage enterUserNameInTheSignUpForm(String userName) {
         enterTextInToElement(inputUserNameInSignUpForm, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterUserEmailInTheSignUpForm(String userEmail) {
         enterTextInToElement(inputEmailInSignUpForm, userEmail);
         return this;
     }
 
+    @Step
     public LoginPage enterUserPasswordInTheSignUpForm(String userPassword) {
         enterTextInToElement(inputUserPassWordInSignUpForm, userPassword);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignUpForOurApp() {
         clickOnElement(buttonSignUPForOurApp);
     }
 
+    @Step
     public LoginPage enterInvalidDataInTheSignUpForm() {
         enterUserNameInTheSignUpForm("tr");
         enterUserEmailInTheSignUpForm("test.com");
@@ -135,21 +147,25 @@ public class LoginPage extends ParentPage {
         return new LoginPage(webDriver);
     }
 
+    @Step
     public boolean isValidationUserNameMessageDisplayed() {
         return isElementDisplayed(validationUserNameMessage);
 
     }
 
+    @Step
     public boolean isValidationUserEmailMessageDisplayed() {
         return isElementDisplayed(validationUserEmailMessage);
 
     }
 
+    @Step
     public boolean isValidationUserPasswordMessageDisplayed() {
         return isElementDisplayed(validationUserPasswordMessage);
 
     }
 
+    @Step
     public LoginPage checkErrorMessages(String expectedErrors) {
         //depends on the amount of the errors -1.2.3
         String[] expectedErrorsArray = expectedErrors.split(";");

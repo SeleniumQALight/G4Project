@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.ConfigProperties;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
@@ -191,4 +192,5 @@ abstract public class ParentPage {
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
 }

@@ -1,6 +1,7 @@
 package pages;
 
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -64,6 +65,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try {
             driver.get(baseUrl +  "/");
@@ -74,6 +76,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try {
 //            inputLoginSingIn.clear();
@@ -84,6 +87,8 @@ public class LoginPage extends ParentPage {
 //        }
         enterTextIntoElement(inputLoginSingIn, login);
     }
+
+    @Step
     public void enterPasswordIntoInputPassword(String pass){
 //        try {
 //            inputPasswordSingIn.clear();
@@ -95,6 +100,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputPasswordSingIn,pass);
     }
 
+    @Step
     public void clickOnSignIn(){
 //        try {
 //            clickButtonSingIn.click();
@@ -105,6 +111,7 @@ public class LoginPage extends ParentPage {
         clickOnElement(clickButtonSingIn);
     }
 
+    @Step
     public HomePage logedInHomepage(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -113,24 +120,30 @@ public class LoginPage extends ParentPage {
         return new  HomePage(driver);
     }
 
+    @Step
     public LoginPage enterLoginSignUp(String login) {
         enterTextIntoElement(inputLoginSignUp, login);
         return this;
     }
 
+    @Step
     public LoginPage enterMailSignUp(String mail){
         enterTextIntoElement(inputMailSignUP, mail);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordSignUp(String pass){
         enterTextIntoElement(inputPassSignUp, pass);
         return this;
     }
+
+    @Step
     public void clickOnSignUp(){
         clickOnElement(buttonSignUp);
     }
 
+    @Step
     public boolean displayedMessageError(){
         try {
             return driver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
@@ -140,6 +153,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public boolean buttonSingUpIsDisplayed(){
         try {
             return driver.findElement(By.xpath(".//button[@type='submit']")).isDisplayed();
@@ -148,21 +162,26 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public LoginPage checkErrorTextSignUpLogin(){
         Assert.assertTrue("Message on login field isn't displayed", checkErrorText(errorTextLoginSignUp));
         return this;
     }
 
+    @Step
     public LoginPage checkErrorTextSignUpMail(){
         Assert.assertTrue("Message on email field isn't displayed", checkErrorText(errorTextMailSignUp));
         return this;
     }
 
+    @Step
     public LoginPage checkErrorTextSignUpPass(){
         Assert.assertTrue("Message on password field isn't displayed", checkErrorText(errorTextPassSignUp));
         return this;
         }
 
+
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsAray = expectedErrors.split(";");
         webDriverWait10.withMessage("Numbers of message(s) ")

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -75,6 +76,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try {
             webDriver.get(baseUrl + "/");
@@ -86,18 +88,22 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
         enterTextInToElement(inputLoginSignIn, login);
     }
 
+    @Step
     public void enterPassWordIntoInputPassWord(String passWord) {
         enterTextInToElement(inputPassWordSignIn, passWord);
     }
 
+    @Step
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public boolean isButtonSignInDisplayed(){
         try {
             return buttonSignIn.isDisplayed();
@@ -106,6 +112,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public boolean isErrorAlertDisplayed(){
         try {
             return errorAlert.isDisplayed();
@@ -114,6 +121,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -122,22 +130,27 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
+    @Step
     public void enterLoginIntoInputLoginSignUp(String login) {
         enterTextInToElement(inputLoginSignUp, login);
     }
 
+    @Step
     public void enterPassWordIntoInputPassWordSignUp(String passWord) {
         enterTextInToElement(inputPassWordSignUp, passWord);
     }
 
+    @Step
     public void enterEmailIntoInputEmailSignUp(String email) {
         enterTextInToElement(inputEmailSignUp, email);
     }
 
+    @Step
     public void clickOnButtonSignUp(){
         clickOnElement(buttonSignUp);
     }
 
+    @Step
     public boolean isTextInAlertInvalidLoginCorrect() {
         try {
             return getTextFromElement(alertInvalidLogin).equals("Username must be at least 3 characters.");
@@ -146,6 +159,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public boolean isTextInAlertInvalidEmailCorrect() {
         try {
             return getTextFromElement(alertInvalidEmail).equals("You must provide a valid email address.");
@@ -154,6 +168,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public boolean isTextInAlertInvalidPassWordCorrect() {
         try {
             return getTextFromElement(alertInvalidPassWord).equals("Password must be at least 12 characters.");
@@ -162,21 +177,25 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public LoginPage enterLoginRegistration(String login) {
         enterTextInToElement(inputLoginRegistration, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegistration(String email) {
         enterTextInToElement(inputEmailRegistration,email);
         return this;
     }
 
+    @Step
     public LoginPage enterPassWordRegistration(String passWord) {
         enterTextInToElement(inputPassWordRegistration, passWord);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMesseges(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10.withMessage("Numbers of messages")

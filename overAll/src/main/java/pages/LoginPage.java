@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
@@ -50,6 +51,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try{
             webDriver.get(baseUrl + "/");
@@ -59,7 +61,7 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open Login Page" + e);
         }
     }
-
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSingIn.clear();
@@ -71,15 +73,15 @@ public class LoginPage extends ParentPage {
 
         enterTextInToElement(inputLoginSingIn, login);
     }
-
+    @Step
     public void enterPassWordIntoInputPassWord(String passWord){
         enterTextInToElement(inputPassWordSingIn, passWord);
     }
-
+    @Step
     public void clickOnButtonSingIn(){
         clickOnElement(buttonSingIn);
     }
-
+    @Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -88,22 +90,22 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-
+    @Step
     public LoginPage enterLoginRegistration(String login) {
         enterTextInToElement(inputLoginRegistration, login);
         return this;
     }
-
+    @Step
     public LoginPage enterEmailRegistration(String email) {
         enterTextInToElement(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterPassWordRegistration(String password) {
         enterTextInToElement(inputPassWordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWait10.withMessage("Numbers of messages ")

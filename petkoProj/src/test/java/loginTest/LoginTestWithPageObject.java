@@ -2,6 +2,7 @@ package loginTest;
 
 import baseTest.BaseTest;
 import categories.SmokeTestFilter;
+import io.qameta.allure.*;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -14,9 +15,18 @@ import java.util.Map;
 
 import static pages.ParentPage.configProperties;
 
+@Epic("Allure examples")  //for meta info for tests
+@Feature("Junit 4 support") //for meta info for tests
 public class LoginTestWithPageObject extends BaseTest {
 
+    @Description("Some detailed test description")  //meta info for test
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
     @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
     @Category(SmokeTestFilter.class)
     public void validLoginTest(){
         loginPage.openLoginPage();
@@ -24,7 +34,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPassWordIntoInputPassWord("123456qwerty");
         loginPage.clickOnButtonSignIn();
 
-        Assert.assertTrue("Button Sign Out is not displayed", homePage.isButtonSignOutDisplayed());
+        checkExpectedResult("Button Sign Out is not displayed", homePage.isButtonSignOutDisplayed());
 
 
     }

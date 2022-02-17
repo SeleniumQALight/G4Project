@@ -10,7 +10,6 @@ public class CreatePostTest  extends BaseTest{
     @Test
     public  void createNewPost(){
 
-
         loginPage.loginWithValidCred()
                 .checkIsButtonSignOutDisplayed()
                 .clickOnCreatePostButton();

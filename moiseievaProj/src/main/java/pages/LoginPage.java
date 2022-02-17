@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -50,7 +51,7 @@ public class LoginPage extends ParentPage {
 
 
 
-
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + "/");
@@ -60,7 +61,7 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open Login Page " + e);
         }
     }
-
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try {
 //            inputLoginSignIn.clear();
@@ -71,11 +72,11 @@ public class LoginPage extends ParentPage {
 //        }
         enterTextToElement(inputLoginSignIn, login);
     }
-
+    @Step
     public void enterPasswordIntoInputLogin(String password) {
         enterTextToElement(inputPasswordSignIn, password);
     }
-
+    @Step
     public void clickOnButtonSignIn() {
 //        try {
 //            buttonSignIn.click();
@@ -86,7 +87,7 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
-
+    @Step
     public boolean isButtonSignInDisplayed() {
         try {
             return webDriver.findElement(By.xpath("//header//button")).isDisplayed();
@@ -94,7 +95,7 @@ public class LoginPage extends ParentPage {
             return false;
         }
     }
-
+    @Step
     public String getTextFromAllert() {
         try {
             return webDriver.findElement(By.xpath("//div[@class='alert alert-danger text-center']")).getText();
@@ -102,7 +103,7 @@ public class LoginPage extends ParentPage {
             return "Text was not found";
         }
     }
-
+    @Step
     public HomePage loginWithValidaCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -110,21 +111,22 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+    @Step
     public LoginPage enterLoginRegistration(String login){
         enterTextToElement(inputLoginRegistration, login);
         return this;
     }
-
+    @Step
     public LoginPage enterEmailRegistration(String email) {
         enterTextToElement(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterPassWordRegistration(String pass) {
         enterTextToElement(inputPassWordRegistration, pass);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String expErrors) {
         String[] expectedErrorsArray = expErrors.split(";");
         webDriverWait10
