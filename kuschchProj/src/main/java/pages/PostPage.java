@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class PostPage extends ParentPageWithHeader{
+
     @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
     private WebElement alertSucces;
-
     @FindBy(xpath = ".//a[@data-original-title='Edit']")
     private WebElement editButton;
 
