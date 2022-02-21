@@ -1,4 +1,6 @@
 package pages;
+
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -7,6 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +19,14 @@ import java.util.List;
 public class LoginPage extends ParentPage{
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSingIn;
+    @Name("Input Login")
+    private TextInput inputLoginSingIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassWordSingIn;
+    private TextInput inputPassWordSingIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSingIn;
+    private Button buttonSingIn;
 
     @FindBy(xpath =".//div[text()='Invalid username / password']" )
     private WebElement errormsg;
@@ -55,7 +61,7 @@ public class LoginPage extends ParentPage{
     String getRelativeUrl() {
         return "/";
     }
-
+@Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl +"/");
@@ -65,7 +71,7 @@ public class LoginPage extends ParentPage{
             Assert.fail("Can not open Login Page"+e);
         }
         }
-
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try{
 //            inputLoginSingIn.clear();
@@ -77,7 +83,7 @@ public class LoginPage extends ParentPage{
 //        }
         enterTextInToElement(inputLoginSingIn,login);
     }
-
+    @Step
     public void enterPassWordIntoInputPassWord(String passWord) {
 //        try {
 //            inputPassWordSingIn.clear();
@@ -88,7 +94,7 @@ public class LoginPage extends ParentPage{
 //            printErrorAndStopTest(e);
 //        }
         enterTextInToElement(inputPassWordSingIn,passWord);
-    }
+    }@Step
     public void clickOnButtonSingIn(){
 //        try{
 //            ButtonSingIn.click();
@@ -99,18 +105,18 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSingIn);
     }
 
-
+    @Step
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element"+e);
         Assert.fail("Can not work with element"+e);
-    }
+    }@Step
     public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
         enterPassWordIntoInputPassWord(TestData.VALID_PASS);
         clickOnButtonSingIn();
           return new HomePage(webDriver);
-    }
+    }@Step
     public boolean errormsgIsDisplayed (){
         try{
             return  errormsg.isDisplayed();
@@ -167,7 +173,8 @@ public  LoginPage checkErrorsMessages(String expectedErrors){
         webDriverWait10.withMessage(" Numbers of messages ").until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorsLocator),expectedErrorsArray.length
                                                                        ));
-    ArrayList<String> actualTextFromErrors =new ArrayList<>();
+    Assert.assertEquals("",expectedErrorsArray.length,listOfErrors.size());
+        ArrayList<String> actualTextFromErrors =new ArrayList<>();
     for (WebElement element:listOfErrors) {
         actualTextFromErrors.add(element.getText());
     }

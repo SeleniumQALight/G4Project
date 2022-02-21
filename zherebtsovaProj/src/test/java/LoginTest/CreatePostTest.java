@@ -1,14 +1,19 @@
 package LoginTest;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
 import libs.Util;
-import org.junit.After;
 import org.junit.Test;
+import org.junit.experimental.categories.Categories;
+import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
-import java.awt.*;
 
 public class CreatePostTest extends BaseTest {
     final String title = "G4-Zherebtsova" + Util.getDateAndTimeFormatted();
+    final String newTitle = "New valid Title 123!@#$^";
+
 
 
     @Test
@@ -32,18 +37,5 @@ public class CreatePostTest extends BaseTest {
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title);
     }
-
-
-        @After
-        public void deletePost(){
-            homePage
-                    .openHomePage()
-            .checkIsButtonSignOutDisplayed()
-                    .clickOnMyProfileButton()
-                    .checkIsRedirectToMyProfilePage()
-                    .deletePostWithTitleWhilePresent(title);
-
-
-
         }
-  }
+

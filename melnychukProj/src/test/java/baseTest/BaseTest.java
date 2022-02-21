@@ -1,11 +1,21 @@
 package baseTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
 import org.apache.log4j.Logger;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -19,10 +29,14 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected HomePage homePage;
     protected CreatePostPage createPostPage;
+
     @Before // запущена перед каждой аннотацией Тест
-    public void setUp(){
-        WebDriverManager.chromedriver().setup(); // установка нужной версии
-        webDriver= new ChromeDriver(); //реализация интерфейса вебрайвера
+    public void setUp() {
+        logger.info("----" + testName.getMethodName() + "was started---");
+        webDriver = initDriver();
+        // вінесли в отдельній метод
+        //   WebDriverManager.chromedriver().setup(); // установка нужной версии
+        //  webDriver= new ChromeDriver(); //реализация интерфейса вебрайвера
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         logger.info("browser was open");
@@ -34,9 +48,66 @@ public class BaseTest {
     }
 
     @After // запущена после каждой аннотацией Тест
-    public void tearDown(){
-        webDriver.quit();
-        logger.info("browser was closed");
-
+    public void tearDown() {
+        //    webDriver.quit();
+        //    logger.info("browser was closed");
+        logger.info("----");
     }
+
+    @Rule
+    public TestName testName = new TestName();
+
+    private WebDriver initDriver() {
+        String browser = System.getProperty("browser");
+        if ((browser == null) || browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            webDriver = new ChromeDriver();
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            webDriver = new FirefoxDriver();
+        } else if ("ie".equalsIgnoreCase(browser)) {
+            //WebDriverManager.iedriver().setup();
+            // in most cases 32bit version is needed
+            WebDriverManager.iedriver().arch32().setup();
+            return new InternetExplorerDriver();
+        }
+        return webDriver;
+    }
+
+    public void checkExpectedResult(String message, boolean actualResult) {
+        Assert.assertTrue(message, actualResult);
+    }
+
+    @Rule
+    public TestWatcher watchman = new TestWatcher() {
+        @Override
+        protected void failed(Throwable e, Description description) {
+            screenshot();
+        }
+
+        @Attachment(value = "Page screenshot", type = "image/png")
+        public byte[] saveScreenshot(byte[] screenShot) {
+            return screenShot;
+        }
+
+        public void screenshot() {
+            if (webDriver == null) {
+                logger.info("Driver for screenshot not found");
+                return;
+            }
+            saveScreenshot(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES));
+        }
+
+        @Override
+        protected void finished(Description description) {
+            logger.info(String.format("Finished test: %s::%s", description.getClassName(), description.getMethodName()));
+            try {
+                webDriver.quit();
+                logger.info("Browser was closed");
+            } catch (Exception e) {
+                logger.error(e);
+            }
+        }
+    };
+
 }

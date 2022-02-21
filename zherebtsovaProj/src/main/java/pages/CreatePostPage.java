@@ -1,10 +1,12 @@
 package pages;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPageWithHeader {
+
 
     @FindBy(name = "title")
     private WebElement inputTitle;
@@ -23,6 +25,16 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = "//input[@type='checkbox']")
     private WebElement Checkbox;
+    @FindBy (xpath = ".//a[@data-original-title='Edit']")
+    private WebElement editButton;
+    @FindBy(xpath = ".//*[@class='alert alert-success text-center']")
+    private WebElement alertUpdate;
+
+    @FindBy(xpath = "//button[@class='btn btn-primary']")
+    private WebElement saveUpdateButton;
+
+    @FindBy(xpath = ".//*[text()='%s']")
+    public WebElement postTitleLocator;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -74,7 +86,38 @@ public class CreatePostPage extends ParentPageWithHeader {
         clickOnElement(Checkbox);
         return this;
     }
-}
+    ///private void clickOnOldTitle(){
+      //      clickOnElement(By.xpath(String.format(String.valueOf(postTitleLocator))));
+       // return this;
+   // }
+
+
+    public CreatePostPage clickOnEdit(){
+        clickOnElement(editButton);
+        return this;
+    }
+
+    public CreatePostPage enterNewTextInToTitleInput(String title) {
+        inputTitle.clear();
+        enterTextInToElement(inputTitle, title);
+        logger.info("The title has value " + title);
+        return this;
+    }
+    public CreatePostPage clickOnSaveUpdatesButton() {
+        clickOnElement(saveUpdateButton);
+        logger.info("The Save Updates button was clicked");
+        return this;
+    }
+
+    public CreatePostPage checkTextInUpdateAlert(String text) {
+        Assert.assertEquals("Text in Alert", text, alertUpdate.getText());
+        return this;
+    }
+
+    }
+
+
+
 
 
 

@@ -1,5 +1,7 @@
 package pages;
 
+
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,18 +10,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSingIn;
+   @Name("Input Login")
+    private TextInput inputLoginSingIn;
+
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPasswordSignIn;
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSingIn;
+    private Button buttonSingIn;
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSingUp;
     @FindBy(id = "username-register")
     private WebElement inputLoginRegistration;
     @FindBy(id = "email-register")
@@ -39,7 +50,7 @@ public class LoginPage extends ParentPage {
     String getRelativeUrl() {
         return "/";
     }
-
+@Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + "/");
@@ -49,19 +60,25 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open Login Page" + e);
         }
     }
+    @Step
     public void enterLoginIntoInputLogin(String login) {
         enterTextInToElement(inputLoginSingIn, login);
     }
-
+    @Step
     public void enterPassWordIntoInputPassWord(String passWord) {
         enterTextInToElement(inputPasswordSignIn, passWord);
     }
-
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSingIn);
     }
+    @Step
+    public LoginPage clickOnButtonSignUp() {
+                clickOnElement(buttonSingUp);
+        return this;
+    }
 
-
+    @Step
     public boolean isErrorFieldDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();

@@ -23,7 +23,7 @@ public class MyProfilePage extends ParentPageWithHeader{
         return "/profile/";
     }
 
-    public MyProfilePage checkPostWasCreated (String title){
+    public MyProfilePage checkPostIsInListOfPosts(String title){
         List<WebElement> postsList = webDriver.findElements(
                 By.xpath(String.format(postTitleLocator, title)));
         Assert.assertEquals("Number of posts with title " + title, 1, postsList.size());
@@ -42,7 +42,8 @@ public class MyProfilePage extends ParentPageWithHeader{
 
         int counter = 0;
         while (!listOfPost.isEmpty() && counter<10){                //цыкл пока не пустой
-            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
+//            clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
+            clickOnPost(title);
             new PostPage(webDriver)// перейти на постпейдж
                     .checkIsRedirectToPostPage()// проверка страницы на которой мы
                     .clickOnDeleteButton()
@@ -60,4 +61,10 @@ public class MyProfilePage extends ParentPageWithHeader{
         Assert.assertTrue("Element is not present",isElementDispleid(SuccessDeletePostMessage));
         return  this;
     }
+
+    public PostPage clickOnPost(String title) {
+        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
+        return new PostPage(webDriver);
+    }
+
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,16 +9,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSingIn;
+    @Name("Input login")
+    private TextInput inputLoginSingIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPasswordSingIn;
+    private Button inputPasswordSingIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
     private WebElement buttonSingIn;
@@ -67,6 +72,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + "/");
@@ -78,6 +84,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
 //        try {
 //            inputLoginSingIn.clear();
@@ -89,6 +96,7 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputLoginSingIn, login);
     }
 
+    @Step
     public void enterPassWordIntoInputPassWord(String passWord) {
 //        try{
 //            inputPasswordSingIn.clear();
@@ -100,6 +108,7 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputPasswordSingIn, passWord);
     }
 
+    @Step
     public void clickOnButtonSingIn() {
 //        try {
 //            buttonSingIn.click();
@@ -115,6 +124,7 @@ public class LoginPage extends ParentPage {
 //        Assert.fail("Can not work with element"+ e);
 //
 //    }
+    @Step
     public HomePage loginWithValidCred() {
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -123,6 +133,7 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public boolean isButtonSingInDisplayed() {
         try {
             return buttonSingIn != null && buttonSingIn.getText().equals("Sign In");
@@ -131,22 +142,27 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterLoginIntoRegistrationForm(String login) {
         enterTextInToElement(inputLoginSignUp, login);
     }
 
+    @Step
     public void enterEmailIntoRegistrationForm(String email) {
         enterTextInToElement(inputEmailSignUp, email);
     }
 
+    @Step
     public void enterPasswordIntoRegistrationForm(String password) {
         enterTextInToElement(inputPasswordSignUp, password);
     }
 
+    @Step
     public void clickOnButtonSignUp() {
         clickOnElement(buttonSignUp);
     }
 
+    @Step
     public boolean checkValidationFormsDisplayed() {
         boolean isUsernameErrorMessageDisplayed = isElementDisplayed(usernameValidationMessage);
         boolean isEmailErrorMessageDisplayed = isElementDisplayed(emailValidationMessage);
@@ -155,26 +171,30 @@ public class LoginPage extends ParentPage {
         return isUsernameErrorMessageDisplayed && isEmailErrorMessageDisplayed && isPasswordErrorMessageDisplayed;
     }
 
-
+    @Step
     public LoginPage enterLoginRegistration(String login) {
         enterTextInToElement(inputLoginRegistration, login);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailRegistration(String email) {
         enterTextInToElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordRegistration(String password) {
         enterTextInToElement(inputPassWordRegistration, password);
         return this;
     }
 
+    @Step
     public LoginPage cheackErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(";");
         webDriverWaite10.withMessage("Number of messages")
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsLocator), expectedErrorsArray.length));
+        Assert.assertEquals("", expectedErrorsArray.length, listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());

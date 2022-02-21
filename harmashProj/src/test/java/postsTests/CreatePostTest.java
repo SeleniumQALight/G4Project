@@ -10,7 +10,7 @@ public class CreatePostTest extends BaseTest {
 
 
     @Test
-    public void createNewPost(){
+    public void createNewPost() {
         loginPage
                 .loginWithValidCred()
                 .checkIsButtonSignOutDisplayed()
@@ -19,20 +19,21 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoTitleInput(title)
                 .enterTextIntoBodyInput("Body text")
-//                .selectTextInDropDownRole("")
+                .selectTextInDropDownByUI("Сообщение для группы")
+//                .selectTextInDropDownByUI("Частное сообщение")
+                .toggleCheckbox("check")
                 .selectValueInDropDownRole("One Person")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
                 .checkTextInAlert("New post successfully created.")
                 .clickOnMyProfileButton()
                 .checkPostWasCreated(title)
-
         ;
 
     }
 
     @After
-    public void deletePost(){
+    public void deletePost() {
         homePage
                 .openHomePage()
                 .checkIsButtonSignOutDisplayed()
