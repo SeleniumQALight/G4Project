@@ -20,7 +20,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.RegistrationPageHW3;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,7 +29,6 @@ public class BaseTest {
     protected HomePage homePage;
     protected LoginPage loginPage;
     protected CreatePostPage createPostPage;
-    protected RegistrationPageHW3 registrationPageHW3;
 
     @Before
     public void setUp() {
@@ -44,7 +42,6 @@ public class BaseTest {
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
         createPostPage = new CreatePostPage(webDriver);
-        registrationPageHW3 = new RegistrationPageHW3(webDriver);
     }
     @After
     public void tesrDown() {

@@ -9,8 +9,7 @@ public class RegistrationTest extends BaseTest {
     public void notValidRegistration() {
 
         loginPage.openLoginPage();
-
-        registrationPageHW3
+        loginPage
                 .checkIsInputUsernameRegisterDisplayed()
                 .checkIsInputEmailRegisterDisplayed()
                 .checkIsInputPasswordRegisterDisplayed()
