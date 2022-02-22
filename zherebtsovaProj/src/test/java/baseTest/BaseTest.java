@@ -43,10 +43,10 @@ public class BaseTest {
 
     @After
     public void tearDown() {
-//        webDriver.quit();
-//        logger.info("Browser is closed");
-//        logger.info("____" + testName.getMethodName() + "was ended____\n");
-//        logger.info("");
+       webDriver.quit();
+       logger.info("Browser is closed");
+      logger.info("____" + testName.getMethodName() + "was ended____\n");
+      logger.info("");
     }
 
     @Rule
