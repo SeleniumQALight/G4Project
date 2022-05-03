@@ -3,7 +3,6 @@ package suites;
 import LoginTest.LoginTestWithPageObject;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import pages.CreatePostPage;
 import postsTests.CreatePostTest;
 import registrationTests.RegistrationTestsSecondVersion;
 
