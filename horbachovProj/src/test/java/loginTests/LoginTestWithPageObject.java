@@ -31,7 +31,7 @@ public class LoginTestWithPageObject extends BaseTest {
     @Category(SmokeTestFilter.class)
     public void validLoginTest(){
         loginPage.openLoginPage();
-        loginPage.enterLoginIntoInputLogin("qaauto1");
+        loginPage.enterLoginIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnButtonSignIn();
 
