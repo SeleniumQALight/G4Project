@@ -1,6 +1,5 @@
 package pages;
 
-import io.qameta.allure.Step;
 import libs.ConfigProperties;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
@@ -25,7 +24,7 @@ abstract public class ParentPage {
     WebDriver webDriver;
     WebDriverWait webDriverWait10, webDriverWait15;
     public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
-    protected String baseUrl = configProperties.base_url();
+    protected String baseUrl;
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -35,6 +34,7 @@ abstract public class ParentPage {
 
         webDriverWait10 = new WebDriverWait(webDriver, configProperties.TIME_FOR_DFFAULT_WAIT());
         webDriverWait15 = new WebDriverWait(webDriver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
+        baseUrl = configProperties.base_url().replace("[env]", System.getProperty("env", "qa"));
     }
 
     abstract String getRelativeUrl();
