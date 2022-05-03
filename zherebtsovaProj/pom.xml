@@ -172,7 +172,7 @@
     </plugins>
     <resources>
         <resource>
-    <directory>src/main/java/resources</directory>
+    <directory>src/main/java/pages/resources</directory>
     </resource>
     <resource>
     <directory>src</directory>
