@@ -21,6 +21,5 @@ public class ApiTests {
         .then()
                 .statusCode(200)
                 .log().all();
-
     }
 }
