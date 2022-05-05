@@ -27,7 +27,7 @@ abstract public class ParentPage {
     WebDriverWait webDriverWait5, webDriverWait15;
 
     public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
-    protected String baseUrl = configProperties.base_url();
+    protected String baseUrl;
 
     public ParentPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -37,6 +37,7 @@ abstract public class ParentPage {
 
         webDriverWait5 = new WebDriverWait(webDriver, configProperties.TIME_FOR_DEFAULT_WAIT());
         webDriverWait15 = new WebDriverWait(webDriver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
+        baseUrl = configProperties.base_url().replace("[env]", "qa" );
     }
 
     abstract String getRelativeUrl();

@@ -36,6 +36,7 @@ abstract public class ParentPage {
                 ,this);
         webDriverWait10 = new WebDriverWait(driver, configProperties.TIME_FOR_DFFAULT_WAIT());
         webDriverWait15 = new WebDriverWait(driver, configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
+        baseUrl = configProperties.base_url().replace("[env]", System.getProperty("env", "qa"));
     }
 
     abstract String getRelativeUrl();

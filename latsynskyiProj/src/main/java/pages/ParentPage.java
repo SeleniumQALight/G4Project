@@ -38,6 +38,7 @@ public static ConfigProperties configProperties = ConfigFactory.create(ConfigPro
                 ,this);
         webDriverWait10 = new WebDriverWait(webDriver,configProperties.TIME_FOR_DFFAULT_WAIT());
         webDriverWait15 = new WebDriverWait(webDriver,configProperties.TIME_FOR_EXPLICIT_WAIT_LOW());
+    baseUrl = configProperties.base_url().replace("[env]",System.getProperty("env","qa"));
     }
     abstract String getRelativeUrl();
 

@@ -55,7 +55,7 @@ public class LoginPage extends ParentPage {
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + "/");
-            logger.info("Login Page was opened");
+            logger.info("Login Page was opened: " + baseUrl);
         } catch (Exception e) {
             logger.error("Can not open Login Page " + e);
             Assert.fail("Can not open Login Page " + e);
