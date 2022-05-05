@@ -1,10 +1,12 @@
 package postsTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import libs.TestData;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class CreatePostTest extends BaseTest {
     final String title = "RomanSiforov G4 "+ Util.getDateAndTimeFormatted();
@@ -40,6 +42,7 @@ public class CreatePostTest extends BaseTest {
 
     //Homework 4 (Custom select)
     @Test
+    @Category(SmokeTestFilter.class)
     public void createNewPostUsingCustomSelect(){
         loginPage
                 .loginWithValidCredentials()

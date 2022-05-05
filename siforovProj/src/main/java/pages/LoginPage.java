@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -8,19 +9,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputLoginSignIn;
+    @Name("Login field")
+    private TextInput inputLoginSignIn;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPasswordSignIn;
+    @Name("Password field")
+    private TextInput inputPasswordSignIn;
 
     @FindBy(xpath = ".//button[text()='Sign In']")
-    private WebElement buttonSignIn;
+    @Name("Sign in")
+    private Button buttonSignIn;
 
     @FindBy(xpath = ".//input[@id='username-register']")
     private WebElement inputUserNameSignUpForm;
@@ -59,6 +66,7 @@ public class LoginPage extends ParentPage {
     }
 
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl + "/");
@@ -69,33 +77,40 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterLoginIntoInputLogin(String login) {
         enterTextIntoElement(inputLoginSignIn, login);
     }
 
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextIntoElement(inputPasswordSignIn, password);
     }
 
+    @Step
     public void clickOnButton() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public LoginPage enterUsernameIntoInputUsernameSignUpForm(String username){
         enterTextIntoElement(inputUserNameSignUpForm, username);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailIntiEmailInputSignUpForm(String email){
         enterTextIntoElement(inputEmailSignUpForm, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordIntoPasswordInputSignUpForm(String password){
         enterTextIntoElement(inputPasswordSignUpForm, password);
         return this;
     }
 
+    @Step
     public void clickOnSignUpButton(){
         clickOnElement(buttonSignUp);
     }
@@ -120,6 +135,7 @@ public class LoginPage extends ParentPage {
         return elementIsVisible(buttonSignIn);
     }
 
+    @Step
     public HomePage loginWithValidCredentials(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
