@@ -18,6 +18,19 @@ public class PostDTO {
     @SerializedName("isVisitorOwner")
     Boolean isVisitorOwner;
 
+    public PostDTO(String title, String body, String select1, AuthorDTO author, Boolean isVisitorOwner) {
+        this.title = title;
+        this.body = body;
+        this.select1 = select1;
+        this.author = author;
+        this.isVisitorOwner = isVisitorOwner;
+    }
+
+    public PostDTO(){
+
+    }
+
+
     public String get_id() {
         return _id;
     }

@@ -4,6 +4,14 @@ public class AuthorDTO {
     String username;
     String avatar;
 
+    public AuthorDTO(String username) {
+        this.username = username;
+    }
+
+    public AuthorDTO(){
+
+    }
+
     public String getUsername() {
         return username;
     }
