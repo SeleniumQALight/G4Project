@@ -1,6 +1,7 @@
 package apiTests;
 
 import api.PrivateBankEndpoints;
+import api.PrivateCurrencyCourseDTO;
 import io.restassured.http.ContentType;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
