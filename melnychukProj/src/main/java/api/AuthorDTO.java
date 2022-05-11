@@ -1,5 +1,8 @@
 package api;
 
+import lombok.Data;
+
+
 public class AuthorDTO {
     String username;
     String avatar;
