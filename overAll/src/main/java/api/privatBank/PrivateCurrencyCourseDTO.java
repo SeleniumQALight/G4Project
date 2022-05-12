@@ -1,26 +1,26 @@
-package api;
+package api.privatBank;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PBExchangeRateDTO {
-
+public class PrivateCurrencyCourseDTO {
     @SerializedName("ccy")
     String ccy;
+
     @SerializedName("base_ccy")
     String base_ccy;
+
     @SerializedName("buy")
     String buy;
+
     @SerializedName("sale")
     String sale;
 
-    public PBExchangeRateDTO(String ccy, String base_ccy, String buy, String sale) {
+    public PrivateCurrencyCourseDTO(String ccy, String base_ccy) {
         this.ccy = ccy;
         this.base_ccy = base_ccy;
-        this.buy = buy;
-        this.sale = sale;
     }
 
-    public PBExchangeRateDTO(){
+    public PrivateCurrencyCourseDTO(){
 
     }
 
@@ -58,7 +58,7 @@ public class PBExchangeRateDTO {
 
     @Override
     public String toString() {
-        return "PBExchangeRateDTO{" +
+        return "PrivateCurrencyCourseDTO{" +
                 "ccy='" + ccy + '\'' +
                 ", base_ccy='" + base_ccy + '\'' +
                 ", buy='" + buy + '\'' +
