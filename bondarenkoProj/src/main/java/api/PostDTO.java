@@ -1,6 +1,14 @@
 package api;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Builder
 
 public class PostDTO {
     @SerializedName("_id")
@@ -18,7 +26,7 @@ public class PostDTO {
     @SerializedName("isVisitorOwner")
     Boolean isVisitorOwner;
 
-    public PostDTO(String title, String body, String select1, AuthorDTO author, Boolean isVisitorOwner) {
+   /* public PostDTO(String title, String body, String select1, AuthorDTO author, Boolean isVisitorOwner) {
         this.title = title;
         this.body = body;
         this.select1 = select1;
@@ -97,5 +105,5 @@ public class PostDTO {
                 ", author=" + author +
                 ", isVisitorOwner=" + isVisitorOwner +
                 '}';
-    }
+    }*/
 }
