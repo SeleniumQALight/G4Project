@@ -80,6 +80,7 @@ public static ConfigProperties configProperties =
         }
     }
 
+
     protected  boolean isElementDisplayed(WebElement webElement){
        try{
            boolean state = webElement.isDisplayed();

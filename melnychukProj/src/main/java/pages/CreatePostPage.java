@@ -5,16 +5,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreatePostPage extends  ParentPageWithHeader {
+public class CreatePostPage extends ParentPageWithHeader {
 
-    @FindBy(name="title")
+    @FindBy(name = "title")
     private WebElement inputTitle;
-    @FindBy(id="post-body")
+    @FindBy(id = "post-body")
     private WebElement inputBody;
-    @FindBy(tagName="select")
+    @FindBy(tagName = "select")
     private WebElement dropdownRole;
-    @FindBy(xpath =".//*[text()='Save New Post']")
+    @FindBy(xpath = ".//*[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+
+    @FindBy(xpath = ".//*[@type='checkbox']")
+    private WebElement checkbox;
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -49,12 +53,39 @@ public class CreatePostPage extends  ParentPageWithHeader {
 
 
     public CreatePostPage selectValueInDropDownRole(String valueForSelect) {
-selectValueInDropDown(dropdownRole, valueForSelect);
-    return this;
+        selectValueInDropDown(dropdownRole, valueForSelect);
+        return this;
+    }
+
+    public CreatePostPage selectTextInDropDownByUI(String valueForDropDown) {
+        selectTextInDropDown(dropdownRole, valueForDropDown);
+        return this;
+    }
+
+    /*
+    разработать метод установки нужного состояния в чекбокс
+- метод должен принимать на вход стринговое состояние (check or uncheck)
+- в зависимости от исходного состояния чекбокса и необходимого состояния
+    кликать и выводить сообщение в лог, или не кликать и просто выводить сообщение.
+
+ */
+    public CreatePostPage checkBoxCondition(String value) {
+        if (value == "uncheck") {
+            logger.info("checkbox is not selected");
+            clickOnElement(checkbox);
+            logger.info("after click - checkbox is selected");
+        } else if (value == "check") {
+            logger.info("value check< so check box is selected");
+        } else {
+            logger.info(" wrong value for checkbox");
+        }
+
+        return this;
     }
 
     public PostPage clickOnButtonSaveNewPost() {
         clickOnElement(buttonSaveNewPost);
-        return  new PostPage(webDriver);
+        return new PostPage(webDriver);
     }
+
 }

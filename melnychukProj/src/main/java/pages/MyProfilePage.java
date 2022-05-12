@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
@@ -12,6 +13,9 @@ public class MyProfilePage extends  ParentPageWithHeader {
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @FindBy(xpath =".//*[text()='G4-OlhaM 02-06']")
+    private WebElement postWithTitle;
 
     @Override
     String getRelativeUrl() {
@@ -39,5 +43,10 @@ public class MyProfilePage extends  ParentPageWithHeader {
          By.xpath(String.format(postTiteLocator,title)));
  //TODO
         return this;
+    }
+
+    public PostPage clickOnCreatedPost() {
+  clickOnElement(postWithTitle);
+        return  new PostPage(webDriver);
     }
 }
