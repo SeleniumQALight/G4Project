@@ -1,7 +1,7 @@
 package apiTests;
 
-import api.PBEndPoints;
-import api.PBExchangeRateDTO;
+import api.privatBank.PBEndPoints;
+import api.privatBank.PBExchangeRateDTO;
 import io.restassured.http.ContentType;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -15,6 +15,9 @@ public class PBExchangeApiTests {
     public void getCurrencyRate() {
         PBExchangeRateDTO[] responseBody = given()
                 .contentType(ContentType.JSON)
+                .param("exchange")
+                .param("json")
+                .param("coursid", 11)
                 .log().all()
                 .when()
                 .get(PBEndPoints.EXCHANGE_RATE)
