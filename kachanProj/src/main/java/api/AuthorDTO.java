@@ -1,9 +1,20 @@
 package api;
 
+
+import lombok.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Builder
+
 public class AuthorDTO {
     String username;
     String avatar;
 
+/*
     public AuthorDTO(String username) {
         this.username = username;
     }
@@ -11,6 +22,7 @@ public class AuthorDTO {
     public AuthorDTO(){
 
     }
+
 
     public String getUsername() {
         return username;
@@ -28,6 +40,7 @@ public class AuthorDTO {
         this.avatar = avatar;
     }
 
+
     @Override
     public String toString() {
         return "AuthorDTO{" +
@@ -35,4 +48,6 @@ public class AuthorDTO {
                 ", avatar='" + avatar + '\'' +
                 '}';
     }
+
+ */
 }
