@@ -18,7 +18,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiTests {
-    final String USER_NAME = "autoapi";
+    final String USER_NAME = "serge";
     Logger logger = Logger.getLogger(getClass());
 
     @Test
