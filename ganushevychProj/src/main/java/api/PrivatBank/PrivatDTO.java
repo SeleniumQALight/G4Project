@@ -1,4 +1,4 @@
-package api;
+package api.PrivatBank;
 
 import com.google.gson.annotations.SerializedName;
 
