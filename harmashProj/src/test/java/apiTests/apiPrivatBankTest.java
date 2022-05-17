@@ -1,8 +1,8 @@
 package apiTests;
 
 
-import api.CurrencyPrivatDTO;
-import api.EndPointsPrivatBank;
+import api.PrivatBank.CurrencyPrivatDTO;
+import api.PrivatBank.EndPointsPrivatBank;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -18,17 +18,21 @@ public class apiPrivatBankTest {
 
     @Test
     public void getAllCurrency() {
-        CurrencyPrivatDTO[] responseBody = given()
-                .contentType(ContentType.JSON)
-                .log().all()
-                .when()
-                .get(EndPointsPrivatBank.EXCHANGE_CURRENCY)
-                .then()
-                .statusCode(200)
-                .log().all()
-                .extract()
-                .response()
-                .as(CurrencyPrivatDTO[].class);
+        CurrencyPrivatDTO[] responseBody =
+                given()
+                        .contentType(ContentType.JSON)
+                        .param("exchange")
+                        .param("json")
+                        .param("coursid", 11)
+                        .log().all()
+                        .when()
+                        .get(EndPointsPrivatBank.EXCHANGE_CURRENCY)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract()
+                        .response()
+                        .as(CurrencyPrivatDTO[].class);
         logger.info("Number of currencies is " + responseBody.length);
         logger.info("Currency title is " + responseBody[0].getCcy());
 
@@ -50,10 +54,14 @@ public class apiPrivatBankTest {
         logger.info("All currencies - " + allAvailableCurrencies);
 
         CurrencyPrivatDTO[] expectedCurrencyPrivatDTO = {
-                new CurrencyPrivatDTO("USD", "UAH", "29.25490", "32.05128"),
-                new CurrencyPrivatDTO("EUR", "UAH", "30.86100", "33.78378"),
-                new CurrencyPrivatDTO("RUR", "UAH", "0.32000", "0.35001"),
-                new CurrencyPrivatDTO("BTC", "USD", "29727.0595", "32856.2237")
+                CurrencyPrivatDTO.builder().ccy("USD").base_ccy("UAH")
+                        .build(),
+                CurrencyPrivatDTO.builder().ccy("EUR").base_ccy("UAH")
+                        .build(),
+                CurrencyPrivatDTO.builder().ccy("RUR").base_ccy("UAH")
+                        .build(),
+                CurrencyPrivatDTO.builder().ccy("BTC").base_ccy("USD")
+                        .build()
 
 
         };
@@ -65,7 +73,25 @@ public class apiPrivatBankTest {
 
         }
         softAssertions.assertAll();
+    }
 
+    @Test
+    public void getAllCurrencyNegative() {
+        String actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .param("exchange")
+                        .param("json")
+                        .param("coursid", "notValidCourseId")
+                        .log().all()
+                        .when()
+                        .get(EndPointsPrivatBank.EXCHANGE_CURRENCY)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().asString();
+        Assert.assertEquals("Message in response", "invalid request", actualResponse
+                .replace("<error>", "").replace("</error>", ""));
     }
 
 
