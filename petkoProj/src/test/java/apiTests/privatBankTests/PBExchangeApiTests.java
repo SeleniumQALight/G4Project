@@ -1,4 +1,4 @@
-package apiTests;
+package apiTests.privatBankTests;
 
 import api.privatBank.PBEndPoints;
 import api.privatBank.PBExchangeRateDTO;
