@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PBExchangeApiTests {
 
@@ -44,5 +45,21 @@ public class PBExchangeApiTests {
         }
 
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void validExchangeRateSchema(){
+        given()
+                .contentType(ContentType.JSON)
+                .param("exchange")
+                .param("json")
+                .param("coursid", 11)
+                .log().all()
+        .when()
+                .get(PBEndPoints.EXCHANGE_RATE)
+        .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("responsePB.json"));
     }
 }
