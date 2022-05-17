@@ -1,6 +1,8 @@
 package apiTests;
 
+import api.AuthorDTO;
 import api.Endpoints;
+import api.PostDTO;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -36,8 +38,8 @@ public class ApiTests {
                         .as(PostDTO[].class);
 
         logger.info("Number of messages is " + responseBody.length);
-        logger.info("Post name is " + responseBody[0].title);
-        logger.info("Username " + responseBody[0].author.username);
+        logger.info("Post name is " + responseBody[0].getTitle());
+        logger.info("Username " + responseBody[0].getAuthor().getUsername());
 
         for (int i = 0; i < responseBody.length; i++) {
             Assert.assertEquals("Username ", USER_NAME, responseBody[i].getAuthor().getUsername());
