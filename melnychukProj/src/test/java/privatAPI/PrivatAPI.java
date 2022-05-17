@@ -1,12 +1,16 @@
 package privatAPI;
 
+import api.EndPoints;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+import api.privatAPI.PrivatDTO;
+import api.privatAPI.PrivatEndpoints;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 
 public class PrivatAPI {
@@ -53,7 +57,6 @@ public class PrivatAPI {
         }
 
         softAssertions.assertAll();
-
 
     }
 
