@@ -8,8 +8,8 @@ import registrationTest.RegistrationTestWithPageObject;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        LoginTestWithPageObject.class,
         RegistrationTestWithPageObject.class,
+        LoginTestWithPageObject.class,
         ApiTests.class
 })
 
