@@ -3,6 +3,7 @@ package apiTests;
 import api.AuthorDTO;
 import api.Endpoints;
 import api.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -27,6 +28,7 @@ public class ApiTests {
                 given()
                         .contentType(ContentType.JSON)
                         .accept(ContentType.JSON)
+                        .filter(new AllureRestAssured())
                         .log().all()
                 .when()
                         .get(Endpoints.POST_BY_USER, USER_NAME)
@@ -47,7 +49,7 @@ public class ApiTests {
 
         PostDTO[] expectedPostDTO = {
 //                new PostDTO("test", "test", "All Users", new AuthorDTO("romansiforov"), false)
-                PostDTO.builder().title("test").body("test").select1("All Users")
+                PostDTO.builder().title("New Post Api").body("Some test body for the post").select1("One Person")
                         .author(AuthorDTO.builder().username("romansiforov").build())
                         .isVisitorOwner(false)
                         .build()
