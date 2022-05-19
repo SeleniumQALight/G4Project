@@ -2,7 +2,8 @@ package apiTests;
 
 import api.EndPoints;
 
-import api.PrivatDTO;
+import api.PrivatBank.PrivatDTO;
+import api.PrivatBank.PrivatEndPoints;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -10,17 +11,21 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class ApiPrivatTests {
+public class ApiPrivatBankTests {
     Logger logger = Logger.getLogger(getClass());
 
     @Test
     public void getPrivatPosts() {
         PrivatDTO[] responseBody = given()
                 .contentType(ContentType.JSON)
+                .param("exchange")
+                .param("json")
+                .param("coursid", 11)
                 .log().all()
                 .when()
-                .get(EndPoints.privatUrl)
+                .get(PrivatEndPoints.EXCHANGE_COURSE)
                 .then()
                 .statusCode(200)
                 .log().all()
@@ -45,5 +50,21 @@ public class ApiPrivatTests {
                     "buy", "sale");
         }
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void getPrivatPostsBySchema(){
+        given()
+                .contentType(ContentType.JSON)
+                .param("exchange")
+                .param("json")
+                .param("coursid", 11)
+                .log().all()
+                .when()
+                .get(PrivatEndPoints.EXCHANGE_COURSE)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("privatBankResponse.json"));
     }
 }
