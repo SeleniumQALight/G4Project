@@ -1,4 +1,4 @@
-package api;
+package api.privat;
 
 public interface EndPointsPrivatBank {
     String baseUrlPrivat = "https://api.privatbank.ua";

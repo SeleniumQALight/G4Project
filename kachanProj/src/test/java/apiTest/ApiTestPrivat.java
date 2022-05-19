@@ -1,7 +1,7 @@
 package apiTest;
 
-import api.EndPointsPrivatBank;
-import api.PrivatBankDTO;
+import api.privat.EndPointsPrivatBank;
+import api.privat.PrivatBankDTO;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiTestPrivat {
 
@@ -45,6 +46,19 @@ public class ApiTestPrivat {
 
         }
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void getCurrencyBySchema() {
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPointsPrivatBank.CURRENCY_EXCHANGE)
+                .then()
+                .statusCode(200)
+                .log().all()
+               .assertThat().body(matchesJsonSchemaInClasspath("responsePrivat.json"));
     }
 
 }
