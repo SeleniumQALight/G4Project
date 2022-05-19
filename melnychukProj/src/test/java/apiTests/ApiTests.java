@@ -10,7 +10,6 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.jws.soap.SOAPBinding;
 
 import java.util.List;
 import java.util.Map;
