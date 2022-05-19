@@ -64,7 +64,7 @@ public class LoginPage  extends ParentPage{
     @FindBy(xpath =".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrors;
 
-    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')] ")
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
     private WebElement alertInCenter;
 
 
@@ -81,12 +81,13 @@ public class LoginPage  extends ParentPage{
 @Step
     public  void openLoginPage(){
         try{
+            logger.info("base url: " + baseUrl);
             webDriver.get(baseUrl + "/");
             logger.info("Login page was open");
 
         }catch ( Exception e){
-            logger.error("Cannot open Login Page" + e);
-            Assert.fail("Cannot open Login Page" + e);
+            logger.error("Cannot open Login Page " + e);
+            Assert.fail("Cannot open Login Page " + e);
         }
     }
 
