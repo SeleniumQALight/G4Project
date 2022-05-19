@@ -1,4 +1,4 @@
-package privatAPI;
+package api.privatAPI;
 
 import com.google.gson.annotations.SerializedName;
 
