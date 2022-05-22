@@ -70,6 +70,11 @@ public class LoginPage_StepDefinition {
         loginPage.clickOnButtonSignUp();
     }
 
+    @Then("^User sees errors messages '(.*)'$")
+    public void user_sees_errors_messages_errors(String errors){
+        loginPage.checkErrorsMessages(errors);
+    }
+
 
 
 
