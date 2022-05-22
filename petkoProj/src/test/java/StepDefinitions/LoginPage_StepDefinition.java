@@ -33,6 +33,41 @@ public class LoginPage_StepDefinition {
     @Then("^User sees alert message with text '(.*)'$")
     public void user_sees_alert_message_with_text_Invalid_username_password(String message){
         loginPage.checkAlertMessageText(message);
+
+    }
+    @When("^User enters '(.*)' into 'Login' input in registration form on 'Login' page$")
+    public void user_enters_t_into_Login_input_in_registration_form_on_Login_page(String username){
+        loginPage.enterLoginRegistration(username);
+    }
+
+    @Then("^User sees alert message for login '(.*)'$")
+    public void user_sees_alert_message_for_login_Username_must_be_at_least_characters(String error) {
+        loginPage.checkAlertRegistrationUsernameMessage(error);
+    }
+
+    @When("^User enters '(.*)' into 'Email' input in registration form on 'Login' page$")
+    public void user_enters_test_into_Email_input_in_registration_form_on_Login_page(String email){
+        loginPage.enterEmailRegistration(email);
+    }
+
+    @Then("^User sees alert message for email '(.*)'$")
+    public void user_sees_alert_message_for_email_You_must_provide_a_valid_email_address(String error){
+        loginPage.checkAlertRegistrationEmailMessage(error);
+    }
+
+    @When("^User enters '(.*)' into 'Password' input in registration form on 'Login' page$")
+    public void user_enters_qwerty_into_Password_input_in_registration_form_on_Login_page(String password){
+        loginPage.enterPasswordRegistration(password);
+    }
+
+    @Then("^User sees alert message for password '(.*)'$")
+    public void user_sees_alert_message_for_password_Password_must_be_at_least_characters(String error){
+        loginPage.checkAlertRegistrationPassMessage(error);
+    }
+
+    @When("^User click on the 'Sign Up' button$")
+    public void user_click_on_the_Sign_Up_button(){
+        loginPage.clickOnButtonSignUp();
     }
 
 
