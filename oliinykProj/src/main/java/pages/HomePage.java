@@ -16,7 +16,7 @@ public class HomePage extends ParrentPageWithHeader{
     }
 
     @Step
-    public boolean isDispayedButtonSignOut(){
+    public boolean isDisplayedButtonSignOut(){
         try {
             return driver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
         }catch (Exception e){
@@ -26,7 +26,7 @@ public class HomePage extends ParrentPageWithHeader{
 
     @Step
     public HomePage checkIsButtonSingOutDisplayed(){
-        Assert.assertTrue("Button Sing Out is not displayed", isDispayedButtonSignOut());
+        Assert.assertTrue("Button Sing Out is not displayed", isDisplayedButtonSignOut());
         return this;
     }
 
@@ -34,9 +34,10 @@ public class HomePage extends ParrentPageWithHeader{
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.openLoginPage();
-        if (!isDispayedButtonSignOut()){
+        if (!isDisplayedButtonSignOut()){
             loginPage.logedInHomepage();
         }
         return this;
     }
+
 }
