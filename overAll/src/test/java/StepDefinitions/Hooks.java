@@ -5,17 +5,16 @@ import cucumber.api.java.Before;
 import libs.DriverHelper;
 
 public class Hooks {
-
     DriverHelper driverHelper = new DriverHelper();
 
     @Before
-    public void setUp(){
+    public void setUp() {
         driverHelper.createDriver();
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         driverHelper.closeDriver();
-
     }
+
 }
