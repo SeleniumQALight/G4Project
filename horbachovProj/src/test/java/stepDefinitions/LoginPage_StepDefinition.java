@@ -4,10 +4,12 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libs.DriverHelper;
+import pages.HomePage;
 import pages.LoginPage;
 
 public class LoginPage_StepDefinition {
     private LoginPage loginPage = new LoginPage(DriverHelper.getWebDriver());
+    private HomePage homePage = new HomePage(DriverHelper.getWebDriver());
 
     @Given("^User opens 'Login' page$")
     public void user_opens_Login_page() {
@@ -34,6 +36,11 @@ public class LoginPage_StepDefinition {
         @Then("^User sees alert message with text '(.*)'$")
         public void user_sees_alert_message_with_text_Invalid_username_password(String message) {
         loginPage.checkAlertMessageText(message);
+            }
+
+        @Then("^User sees 'Sign Out' button$")
+        public void user_sees_sign_out_button(){
+        homePage.isButtonSignOutDisplayed();
 
         }
 
