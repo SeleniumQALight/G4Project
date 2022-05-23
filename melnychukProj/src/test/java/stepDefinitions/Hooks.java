@@ -1,7 +1,8 @@
 package StepDefinitions;
 
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import io.cucumber.java.After;
+
 import libs.DriverHelper;
 
 
@@ -16,7 +17,9 @@ public class Hooks {
 
     @After
     public void tearDown(){
+
         driverHelper.closeDriver();
+
 
     }
 

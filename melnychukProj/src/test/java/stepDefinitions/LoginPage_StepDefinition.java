@@ -11,7 +11,7 @@ public class LoginPage_StepDefinition {
     private LoginPage loginPage = new LoginPage(DriverHelper.getWebDriver());
 
     @Given("^User opens 'Login' page$")
-    public void user_opens_Login_page() throws Throwable {
+    public void user_opens_Login_page()  {
         loginPage.openLoginPage();
     }
 
