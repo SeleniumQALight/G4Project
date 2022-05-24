@@ -12,6 +12,7 @@ public class DriverHelper {
     private static WebDriver webDriver;
 
     public void createDriver (){
+      initDriver();
         webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         webDriver.manage().window().maximize();
     }
