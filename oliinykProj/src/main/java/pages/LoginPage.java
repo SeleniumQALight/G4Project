@@ -15,6 +15,7 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPage extends ParentPage {
     //postoyanno ispolyzuemie elementi
@@ -55,6 +56,18 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
     private WebElement alertInCenter;
+
+    @FindBy(xpath = ".//*[@id='username-register']/../div")
+    private WebElement alertLoginSignUp;
+
+    @FindBy(xpath = ".//*[@id='email-register']/../div")
+    private WebElement alertEmailSignUp;
+
+    @FindBy(xpath = ".//*[@id='password-register']/../div")
+    private WebElement alertPassSignUp;
+
+    @FindBy(xpath = "//*[text()='That username is already taken.']")
+    private WebElement alertExistingLoginSignUp;
 
     private String listErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
@@ -205,5 +218,25 @@ public class LoginPage extends ParentPage {
 
     public void checkAlertMessageText(String messageText) {
         Assert.assertEquals("Incorrect login message ", messageText, alertInCenter.getText());
+    }
+
+    public void checkTextAlertSignUpLogin(String popUp){
+        //driver.manage().timeouts().setScriptTimeout(1, TimeUnit.SECONDS);
+        Assert.assertEquals("Incorrect login message in sign up form", popUp, errorTextLoginSignUp.getText());
+    }
+
+
+    public void checkTextAlertSignUpEmail(String popUp) {
+        //driver.manage().timeouts().setScriptTimeout(1, TimeUnit.SECONDS);
+        Assert.assertEquals("Incorrect email message in sign up form", popUp, errorTextMailSignUp.getText());
+    }
+
+    public void checkTextAlertSignUpPassword(String popUp) {
+        //driver.manage().timeouts().setScriptTimeout(1, TimeUnit.SECONDS);
+        Assert.assertEquals("Incorrect password message in sign up form", popUp, errorTextPassSignUp.getText());
+    }
+
+    public void checkTextAlertSignUpLoginExisting(String popUp) {
+        Assert.assertEquals("Incorrect login message in sign up form", popUp, alertExistingLoginSignUp);
     }
 }

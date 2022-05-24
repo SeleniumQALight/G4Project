@@ -32,7 +32,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPasswordIntoInputPassword(dataForValidLogin.get("pass"));
         loginPage.clickOnSignIn();
 
-       checkER("Button Sign Out went for vacation", homePage.isDispayedButtonSignOut());
+       checkER("Button Sign Out went for vacation", homePage.isDisplayedButtonSignOut());
     }
     @Test
     public void notValidLogin(){
