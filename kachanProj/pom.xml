@@ -311,7 +311,7 @@
             </goals>
 
             <configuration>
-              <glue>StepDefinitions</glue>
+              <glue>stepDefinitions</glue>
               <featuresDirectory>
                 src/test/resources
               </featuresDirectory>

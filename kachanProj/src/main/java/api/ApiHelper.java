@@ -68,7 +68,7 @@ public class ApiHelper {
     public void deletePostsTillPresent(String userName, String passWord) {
 PostDTO[] listOfPosts = getAllPostsByUser(userName);
         for (int i = 0; i < listOfPosts.length; i++) {
-            delePostById(userName,passWord, listOfPosts[i].get_id());
+            deletePostById(userName,passWord, listOfPosts[i].get_id());
             logger.info(String.format("Post with id %s and title '%s' was deleted"
                     , listOfPosts[i].get_id(), listOfPosts[i].getTitle()));
         }
@@ -76,7 +76,7 @@ PostDTO[] listOfPosts = getAllPostsByUser(userName);
         Assert.assertEquals("Number of posts ", 0 , getAllPostsByUser(userName).length);
     }
 
-    private void delePostById(String userName, String passWord, String id) {
+    private void deletePostById(String userName, String passWord, String id) {
         JSONObject bodyParams = new JSONObject();
         bodyParams.put("token", getToken(userName, passWord));
         given()
