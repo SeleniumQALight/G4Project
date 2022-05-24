@@ -16,6 +16,9 @@ private String postTitleLocator = ".//*[text()='%s']";
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private WebElement successDeletedPostMessage;
 
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -65,5 +68,9 @@ private String postTitleLocator = ".//*[text()='%s']";
     public PostPage clickOnPostName(String postTitle){
         clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,postTitle))));
         return new PostPage(webDriver);
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }
