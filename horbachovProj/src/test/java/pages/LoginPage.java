@@ -31,6 +31,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign In']")
     private Button buttonSingIn;
 
+    @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
+    private Button buttonSignUp;
+
     @FindBy(id = "username-register")
     private WebElement inputLoginRegistration;
 
@@ -103,6 +106,11 @@ public void clickOnButtonSignIn() {
 //    }
     clickOnElement(buttonSingIn);
 }
+
+    public void clickOnButtonSignUp() {
+
+        clickOnElement(buttonSignUp);
+    }
 
 public HomePage loginWithValidCred(){
         openLoginPage();
