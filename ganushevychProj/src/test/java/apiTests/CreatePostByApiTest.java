@@ -22,7 +22,7 @@ public class CreatePostByApiTest {
 
     @Before
     public void deleteAllPosts(){
-        apiHelper.deletePostsTillEnter();
+        apiHelper.deletePostsTillPresent();
     }
 
     @Test
