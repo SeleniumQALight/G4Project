@@ -1,5 +1,6 @@
 package pages;
 
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,9 @@ public class MyProfilePage extends ParrentPageWithHeader{
 
     @FindBy(xpath = ".//div[@class='list-group']//a[1]")
     private WebElement firstPost;
+
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> quantityOfPosts;
 
     public MyProfilePage(WebDriver driver) {
         super(driver);
@@ -67,5 +71,9 @@ public class MyProfilePage extends ParrentPageWithHeader{
         clickOnElement(firstPost);
         logger.info("post was opened");
         return new PostPage(driver);
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, quantityOfPosts.size());
     }
 }
