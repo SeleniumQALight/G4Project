@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -57,9 +58,12 @@ public class LoginPage extends ParentPage {
 
     private String listErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    WebDriverWait webDriverWait5;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
+        webDriverWait5 = new WebDriverWait(webDriver, configProperties.TIME_FOR_DEFAULT_WAIT());
     }
 
     @Override
@@ -172,5 +176,20 @@ public class LoginPage extends ParentPage {
 
     public void checkAlertMessageText(String messageText) {
         Assert.assertEquals("Message in Center", messageText, alertInCenter.getText());
+    }
+
+    public void checkAlertRegistrationUsernameMessage(String messageText) {
+        webDriverWait5.until(ExpectedConditions.visibilityOf(errorSignUpLoginValidation));
+        Assert.assertEquals("Alert of registration username", messageText, errorSignUpLoginValidation.getText());
+    }
+
+    public void checkAlertRegistrationPassMessage(String messageText) {
+        webDriverWait5.until(ExpectedConditions.visibilityOf(errorSignUpPasswordValidation));
+        Assert.assertEquals("Alert of registration password", messageText, errorSignUpPasswordValidation.getText());
+    }
+
+    public void checkAlertRegistrationEmailMessage(String messageText) {
+        webDriverWait5.until(ExpectedConditions.visibilityOf(errorSignUpEmailValidation));
+        Assert.assertEquals("Alert of registration email", messageText, errorSignUpEmailValidation.getText());
     }
 }
