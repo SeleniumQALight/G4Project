@@ -1,14 +1,15 @@
 package StepDefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import libs.DriverHelper;
 
 public class Hooks {
 DriverHelper driverHelper = new DriverHelper();
    @Before
     public void setUp(){
-       driverHelper.closeDriver();
+       driverHelper.createDriver();
 
    }
    @After
