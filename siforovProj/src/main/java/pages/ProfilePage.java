@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,7 +22,7 @@ public class ProfilePage extends ParentPageWithHeader {
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private WebElement deletePostSuccessText;
 
-    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']/strong")
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
     private List<WebElement> postsList;
 
     @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
@@ -30,6 +31,7 @@ public class ProfilePage extends ParentPageWithHeader {
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+
 
     @Override
     String getRelativeUrl() {
@@ -104,5 +106,11 @@ public class ProfilePage extends ParentPageWithHeader {
     public PostPage clickOnEditedPost() {
         clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator,TestData.VALID_POST_TITLE_AFTER_UPDATE))));
         return new PostPage(webDriver);
+    }
+
+    @Step
+    public ProfilePage checkNumberOfPosts(int expectedPostsNumber) {
+        Assert.assertEquals("Number of posts" , expectedPostsNumber, postsList.size());
+        return this;
     }
 }
