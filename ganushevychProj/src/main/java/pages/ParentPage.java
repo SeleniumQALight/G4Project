@@ -120,7 +120,7 @@ abstract public class ParentPage {
         }
     }
 
-    protected void waitChatTobeHide(){
+    public void waitChatTobeHide(){
         webDriverWait10
                 .withMessage("Chat is no closed")
                 .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(".//*[@id='chat-wrapper']")));

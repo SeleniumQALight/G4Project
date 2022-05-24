@@ -127,6 +127,7 @@ public class LoginPage extends ParentPage {
         }
 
         softAssertions.assertAll();
+        logger.info("Error messages above registration inputs were checked");
         return this;
     }
 
