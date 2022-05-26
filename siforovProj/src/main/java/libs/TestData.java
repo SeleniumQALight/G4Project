@@ -3,8 +3,8 @@ package libs;
 import java.util.Date;
 
 public class TestData {
-    public final static String VALID_LOGIN = "qaauto";
-    public final static String VALID_PASS = "123456qwerty";
+    public final static String VALID_LOGIN = "romansiforov";
+    public final static String VALID_PASS = "111111111111";
     public final static String VALID_USERNAME = "Roman"+(new Date().getTime());
     public final static String VALID_EMAIL = "roman"+(new Date().getTime())+"@gmail.com";
     public final static String VALID_SIGN_UP_PASSWORD = "RomanSiforov1988";
