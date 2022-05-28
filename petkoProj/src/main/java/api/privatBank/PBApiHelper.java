@@ -27,15 +27,14 @@ public class PBApiHelper {
         for (int i = 0; i < responseBody.length; i++) {
 
             if(Objects.equals(responseBody[i].getCcy(), "USD")){
-                PBTestData.API_USD_BUY_RATE = responseBody[i].getBuy().substring(0,5);
-                PBTestData.API_USD_SALE_RATE = responseBody[i].getSale().substring(0,5);
+                PBTestData.API_USD_BUY_RATE = responseBody[i].getBuy().substring(0,2);
+                PBTestData.API_USD_SALE_RATE = responseBody[i].getSale().substring(0,4);
             }
 
             if(Objects.equals(responseBody[i].getCcy(), "EUR")){
-                PBTestData.API_EUR_BUY_RATE = responseBody[i].getBuy().substring(0,5);
-                PBTestData.API_EUR_SALE_RATE = responseBody[i].getSale().substring(0,5);
+                PBTestData.API_EUR_BUY_RATE = responseBody[i].getBuy().substring(0,4);
+                PBTestData.API_EUR_SALE_RATE = responseBody[i].getSale().substring(0,4);
             }
-
         }
     }
 }
