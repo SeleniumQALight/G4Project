@@ -53,6 +53,8 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsList;
 
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
 
     private String listErrors = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
@@ -159,5 +161,10 @@ public class LoginPage extends ParentPage {
         }
         softAssertions.assertAll();
         return this;
+    }
+
+    @Step
+    public void checkAlertMessageText(String errorMessageText) {
+        Assert.assertEquals("The error message is incorrect", errorMessageText, alertInCenter.getText());
     }
 }

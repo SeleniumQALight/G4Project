@@ -10,6 +10,7 @@ import org.junit.Test;
 import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 
 public class ApiExchangeRates {
@@ -47,5 +48,13 @@ public class ApiExchangeRates {
             softAssertions.assertThat(responseBody[i]).isEqualToIgnoringGivenFields(exchangeRatesDTOS[i], "buy", "sale");
         }
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void privatSchemaValidation(){
+        given()
+                .contentType(ContentType.JSON).log().all()
+                .when().get(EndPoints.exchangeURL)
+                .then().statusCode(200).log().all().assertThat().body(matchesJsonSchemaInClasspath("schemaprivat.json"));
     }
 }

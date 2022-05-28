@@ -2,6 +2,7 @@ package pages;
 
 import io.qameta.allure.Step;
 import libs.TestData;
+import org.apache.groovy.parser.antlr4.GroovyLexer;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -55,6 +56,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrors;
+
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -193,5 +197,9 @@ public class LoginPage extends ParentPage {
 
         softAssertions.assertAll();
         return this;
+    }
+
+    public void checkAlertMessageText(String messageText) {
+        Assert.assertEquals("Message in Center ", messageText, alertInCenter.getText());
     }
 }

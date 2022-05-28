@@ -1,6 +1,9 @@
 package apiTests;
 
+import api.AuthorDTO;
 import api.Endpoints;
+import api.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -25,6 +28,7 @@ public class ApiTests {
                 given()
                         .contentType(ContentType.JSON)
                         .accept(ContentType.JSON)
+                        .filter(new AllureRestAssured())
                         .log().all()
                 .when()
                         .get(Endpoints.POST_BY_USER, USER_NAME)
@@ -36,8 +40,8 @@ public class ApiTests {
                         .as(PostDTO[].class);
 
         logger.info("Number of messages is " + responseBody.length);
-        logger.info("Post name is " + responseBody[0].title);
-        logger.info("Username " + responseBody[0].author.username);
+        logger.info("Post name is " + responseBody[0].getTitle());
+        logger.info("Username " + responseBody[0].getAuthor().getUsername());
 
         for (int i = 0; i < responseBody.length; i++) {
             Assert.assertEquals("Username ", USER_NAME, responseBody[i].getAuthor().getUsername());
@@ -45,7 +49,7 @@ public class ApiTests {
 
         PostDTO[] expectedPostDTO = {
 //                new PostDTO("test", "test", "All Users", new AuthorDTO("romansiforov"), false)
-                PostDTO.builder().title("test").body("test").select1("All Users")
+                PostDTO.builder().title("New Post Api").body("Some test body for the post").select1("One Person")
                         .author(AuthorDTO.builder().username("romansiforov").build())
                         .isVisitorOwner(false)
                         .build()

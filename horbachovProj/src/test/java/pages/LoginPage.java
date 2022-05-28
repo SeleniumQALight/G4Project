@@ -31,6 +31,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign In']")
     private Button buttonSingIn;
 
+    @FindBy(xpath = ".//button[text()='Sign up for OurApp']")
+    private Button buttonSignUp;
+
     @FindBy(id = "username-register")
     private WebElement inputLoginRegistration;
 
@@ -42,6 +45,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrors;
+
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
 
 
     private String listErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
@@ -101,6 +107,11 @@ public void clickOnButtonSignIn() {
     clickOnElement(buttonSingIn);
 }
 
+    public void clickOnButtonSignUp() {
+
+        clickOnElement(buttonSignUp);
+    }
+
 public HomePage loginWithValidCred(){
         openLoginPage();
         enterLoginIntoInputLogin(TestData.VALID_LOGIN);
@@ -144,5 +155,9 @@ public HomePage loginWithValidCred(){
 
         softAssertions.assertAll();
         return this;
+    }
+
+    public void checkAlertMessageText(String messageText) {
+        Assert.assertEquals("Message in Center ", messageText, alertInCenter.getText());
     }
 }

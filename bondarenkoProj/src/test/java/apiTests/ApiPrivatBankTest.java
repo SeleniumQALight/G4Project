@@ -8,17 +8,22 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiPrivatBankTest {
 
     @Test
-    public void getAllPostsByUser(){
-        ExchangeRateDTO[] responseBody =  given()
+    public void getNonCashExchangeRates(){
+        ExchangeRateDTO[] responseBody =
+        given()
                 .contentType(ContentType.JSON)
+                .param("exchange")
+                .param("json")
+                .param("coursid", 11)
                 .log().all()
-                .when()
+        .when()
                 .get(EndPointsPrivatBank.EXCHANGE_RATE)
-                .then()
+        .then()
                 .statusCode(200)
                 .log().all()
                 .extract()
@@ -43,4 +48,21 @@ public class ApiPrivatBankTest {
 
             softAssertions.assertAll();
         }
+
+        @Test
+        public void getNonCashExchangeRatesSchema(){
+            given()
+                    .contentType(ContentType.JSON)
+                    .param("exchange")
+                    .param("json")
+                    .param("coursid", 11)
+                    .log().all()
+            .when()
+                    .get(EndPointsPrivatBank.EXCHANGE_RATE)
+            .then()
+                    .statusCode(200)
+                    .log().all()
+                    .assertThat().body(matchesJsonSchemaInClasspath("responsePrivat.json"));
+        }
 }
+

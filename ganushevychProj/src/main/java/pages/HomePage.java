@@ -27,6 +27,7 @@ public class HomePage extends ParentPageWithHeader{
     @Step
     public HomePage checkIsButtonSignOutDisplayed(){
         Assert.assertTrue("Button SignOut is not displayed", isButtonSignOutDisplayed());
+        logger.info("Button SignOut is displayed");
         return this;
     }
     @Step

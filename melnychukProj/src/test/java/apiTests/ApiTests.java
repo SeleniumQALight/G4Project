@@ -3,6 +3,7 @@ package apiTests;
 import api.AuthorDTO;
 import api.EndPoints;
 import api.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -10,7 +11,6 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.jws.soap.SOAPBinding;
 
 import java.util.List;
 import java.util.Map;
@@ -25,6 +25,7 @@ public class ApiTests {
     public void getAllPostsByUser() {
         PostDTO[] responseBody = given()
                 .contentType(ContentType.JSON)
+                .filter(new AllureRestAssured())
                 .log().all()
                 .when()
                 .get(EndPoints.POST_BY_USER, USER_NAME)

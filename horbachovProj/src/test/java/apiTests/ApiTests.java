@@ -2,7 +2,9 @@ package apiTests;
 
 import api.AuthorDTO;
 import api.EndPoints;
+import api.ExchangeRatesDTO;
 import api.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -17,13 +19,14 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiTests {
-    final String USER_NAME = "autoapi";
+    final String USER_NAME = "serge";
     Logger logger = Logger.getLogger(getClass());
 
     @Test
     public void getAllPostsByUser() {
         PostDTO[] responseBody = given()
                 .contentType(ContentType.JSON)
+                .filter(new AllureRestAssured())
                 .log().all()
                 .when()
                 .get(EndPoints.POST_BY_USER, USER_NAME)
@@ -72,6 +75,7 @@ public class ApiTests {
         String actualResponse =
                 given()
                         .contentType(ContentType.JSON)
+                        .filter(new AllureRestAssured())
                         .log().all()
                  .when()
                         .get(EndPoints.POST_BY_USER, "notValidUser")
