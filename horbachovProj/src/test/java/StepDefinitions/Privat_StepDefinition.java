@@ -24,8 +24,9 @@ public class Privat_StepDefinition {
     private PrivatBankPage privatBankPage = new PrivatBankPage(DriverHelper.getWebDriver());
 
 
-    @Given("^User sends request to Privat Bank API$")
-    public ExchangeRatesDTO[] userSendsRequestToPrivatBankAPI() {
+    @Given("^User sends request to Privat Bank API for '(.*)'$")
+    public ExchangeRatesDTO[] userSendsRequestToPrivatBankAPI(String ccy) {
+
 
         ExchangeRatesDTO[] responseBody =
                 given()
@@ -42,25 +43,13 @@ public class Privat_StepDefinition {
                         .extract()
                         .response().as(ExchangeRatesDTO[].class);
 
+
         for (ExchangeRatesDTO exchangeRatesDTO : responseBody) {
-            if (exchangeRatesDTO.getCcy().equals("USD")) {
-                TestData.apiUsdRateBuy = Float.parseFloat(exchangeRatesDTO.getBuy());
-                TestData.apiUsdRateSell = Float.parseFloat(exchangeRatesDTO.getSale());
-            } else if (exchangeRatesDTO.getCcy().equals("EUR")) {
-                TestData.apiEurRateBuy = Float.parseFloat(exchangeRatesDTO.getBuy());
-                TestData.apiEurRateSell = Float.parseFloat(exchangeRatesDTO.getSale());
-                break;
-            } else {
-                Assert.fail("there is no such ccy on ui");
+            if (exchangeRatesDTO.getCcy().equals(ccy)) {
+                TestData.apiRateBuy = Float.parseFloat(exchangeRatesDTO.getBuy());
+                TestData.apiRateSell = Float.parseFloat(exchangeRatesDTO.getSale());
             }
-
         }
-
-//        logger.info(TestData.apiUsdRateBuy);
-//        logger.info(TestData.apiUsdRateSell);
-//        logger.info(TestData.apiEurRateBuy);
-//        logger.info(TestData.apiEurRateSell);
-
 
         return responseBody;
     }
@@ -76,24 +65,13 @@ public class Privat_StepDefinition {
         privatBankPage.readAndSaveUiRates(ccy);
     }
 
-    @Then("^'(.*)' rate from api and ui are equal$")
-    public void ccyRateFromApiAndUiAreEqual(String ccy) {
-
-        if (ccy.equals("USD")) {
-            Assert.assertTrue(apiUsdRateBuy==uiUsdRateBuy);
-            Assert.assertTrue(apiUsdRateSell==uiUsdRateSell);
+    @Then("Api and ui rates are equal$")
+    public void ccyRateFromApiAndUiAreEqual() {
 
 
-
-        } else if(ccy.equals("EUR")) {
-            logger.info("apiEurRateBuy is " + apiEurRateBuy);
-            logger.info("apiEurRateSell is " + apiEurRateSell);
-            logger.info("uiEurRateBuy is " + uiEurRateBuy);
-            logger.info("uiEurRateSell is " + uiEurRateSell);
-            Assert.assertTrue(apiEurRateBuy==uiEurRateBuy);
-            Assert.assertTrue(apiEurRateSell==uiEurRateSell);
-
+            Assert.assertTrue(apiRateBuy == uiRateBuy);
+            Assert.assertTrue(apiRateSell == uiRateSell);
 
         }
     }
-}
+

@@ -22,7 +22,7 @@ public class Hooks {
 
     @After(order = 0) //отрабатывает последний
     public void tearDown(Scenario scenario){
-        logger.info(scenario.getName() + " was ended with status" + scenario.getStatus());
+        logger.info(scenario.getName() + " was ended with status " + scenario.getStatus());
         driverHelper.closeDriver();
     }
 

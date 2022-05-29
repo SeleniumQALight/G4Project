@@ -5,22 +5,14 @@ import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
+import static libs.TestData.apiRateBuy;
+import static libs.TestData.apiRateSell;
 
 public class PrivatBankPage extends ParentPage {
 
-//    @FindBy(xpath = "//*[@id='USD_buy']")
-//    private WebElement ccyUsdBuyRate;
-//
-//    @FindBy(xpath = "//*[@id='USD_sell']")
-//    private WebElement ccyUsdSellRate;
-//
-//    @FindBy(xpath = "//*[@id='EUR_buy']")
-//    private WebElement ccyEurBuyRate;
-//
-//    @FindBy(xpath = "//*[@id='EUR_sell']")
-//    private WebElement ccyEurSellRate;
+    String ccyBuyRateLocator = "//*[@id='%S_buy']";
+    String ccySellRateLocator = "//*[@id='%S_sell']";
 
 
 
@@ -46,27 +38,16 @@ public class PrivatBankPage extends ParentPage {
     }
 
     public void readAndSaveUiRates(String ccy) {
-        if (ccy.equals("USD")) {
-            String ccyUsdBuyRate = webDriver.findElement(By.xpath("//*[@id='USD_buy']")).getText();
-            String ccyUsdSellRate = webDriver.findElement(By.xpath("//*[@id='USD_sell']")).getText();
-            TestData.uiUsdRateBuy = Float.parseFloat(ccyUsdBuyRate);
-            TestData.uiUsdRateSell = Float.parseFloat(ccyUsdSellRate);
+            String ccyBuyRate = webDriver.findElement(By.xpath(String.format(ccyBuyRateLocator, ccy))).getText();
+            TestData.uiRateBuy = Float.parseFloat(ccyBuyRate);
+            String ccySellRate = webDriver.findElement(By.xpath(String.format(ccySellRateLocator, ccy))).getText();
+            TestData.uiRateSell = Float.parseFloat(ccySellRate);
 
+            logger.info("uiRateBuy is " + TestData.uiRateBuy);
+            logger.info("uiRateSell is " + TestData.uiRateSell);
+            logger.info("apiRateBuy is " + apiRateBuy);
+            logger.info("apiRateSell is " + apiRateSell);
 
-            logger.info("uiUsdRateBuy is " + TestData.uiUsdRateBuy);
-            logger.info("uiUsdRateSell is " + TestData.uiUsdRateSell);
-        } else if (ccy.equals("EUR")) {
-            String ccyEurBuyRate = webDriver.findElement(By.xpath("//*[@id='EUR_buy']")).getText();
-            String ccyEurSellRate = webDriver.findElement(By.xpath("//*[@id='EUR_sell']")).getText();
-            TestData.uiEurRateBuy = Float.parseFloat(ccyEurBuyRate);
-            TestData.uiEurRateSell = Float.parseFloat(ccyEurSellRate);
-
-            logger.info("uiEurRateBuy is " + TestData.uiEurRateBuy);
-            logger.info("uiEurRateSell is " + TestData.uiEurRateSell);
-
-        } else {
-            Assert.fail("there is no such ccy on ui");
-        }
     }
     }
 
