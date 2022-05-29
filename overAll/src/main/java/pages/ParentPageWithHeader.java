@@ -21,6 +21,7 @@ abstract public class ParentPageWithHeader extends ParentPage{
     }
 
     public MyProfilePage clickOnMyProfileButton(){
+        waitChatTobeHide();
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
