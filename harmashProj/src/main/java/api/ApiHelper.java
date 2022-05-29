@@ -9,6 +9,9 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;
 
+import java.util.HashMap;
+import java.util.Locale;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
@@ -90,4 +93,32 @@ public class ApiHelper {
                 .statusCode(200)
                 .log().all();
     }
+
+    public void createPost(String title, String userName, String passWord){
+        String token = getToken(userName.toLowerCase(),passWord);
+
+        HashMap<String,String> requestParams = new HashMap<>();
+        requestParams.put("title", title);
+        requestParams.put("body", "This is our first test body");
+        requestParams.put("select1","One Person");
+        requestParams.put("token", token);
+
+        given()
+                        .contentType(ContentType.JSON)
+                        .body(requestParams)
+                        .log().all()
+                        .when()
+                        .post(EndPoints.CREATE_POST)
+                        .then()
+                        .statusCode(200);
+
+    }
+
+
+
+
+
+
+
+
 }
