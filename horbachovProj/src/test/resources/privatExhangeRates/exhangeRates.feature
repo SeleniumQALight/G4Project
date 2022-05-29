@@ -14,3 +14,4 @@ Feature: Exchange Rates Feature
       | USD |
       | EUR |
 
+

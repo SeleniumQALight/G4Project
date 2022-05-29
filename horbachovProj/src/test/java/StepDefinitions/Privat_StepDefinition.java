@@ -49,8 +49,9 @@ public class Privat_StepDefinition {
             } else if (exchangeRatesDTO.getCcy().equals("EUR")) {
                 TestData.apiEurRateBuy = Float.parseFloat(exchangeRatesDTO.getBuy());
                 TestData.apiEurRateSell = Float.parseFloat(exchangeRatesDTO.getSale());
+                break;
             } else {
-                logger.info("there is no such ccy on ui");
+                Assert.fail("there is no such ccy on ui");
             }
 
         }
@@ -85,10 +86,10 @@ public class Privat_StepDefinition {
 
 
         } else if(ccy.equals("EUR")) {
-//            logger.info("apiEurRateBuy is " + apiEurRateBuy);
-//            logger.info("apiEurRateSell is " + apiEurRateSell);
-//            logger.info("uiEurRateBuy is " + uiEurRateBuy);
-//            logger.info("uiEurRateSell is " + uiEurRateSell);
+            logger.info("apiEurRateBuy is " + apiEurRateBuy);
+            logger.info("apiEurRateSell is " + apiEurRateSell);
+            logger.info("uiEurRateBuy is " + uiEurRateBuy);
+            logger.info("uiEurRateSell is " + uiEurRateSell);
             Assert.assertTrue(apiEurRateBuy==uiEurRateBuy);
             Assert.assertTrue(apiEurRateSell==uiEurRateSell);
 

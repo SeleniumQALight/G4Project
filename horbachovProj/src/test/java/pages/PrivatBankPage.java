@@ -65,7 +65,7 @@ public class PrivatBankPage extends ParentPage {
             logger.info("uiEurRateSell is " + TestData.uiEurRateSell);
 
         } else {
-            logger.info("there is no such ccy on ui");
+            Assert.fail("there is no such ccy on ui");
         }
     }
     }
