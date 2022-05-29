@@ -2,6 +2,8 @@ package api;
 
 import static io.restassured.RestAssured.given;
 
+import java.util.HashMap;
+
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -89,6 +91,33 @@ public class ApiHelper {
                 .statusCode(200)
                 .log().all();
     }
+
+    public void createPost(String title, String userName, String passWord){
+        String token = getToken(userName.toLowerCase(), passWord);
+
+        HashMap<String,String> requestParams = new HashMap<>();
+        requestParams.put("title", title);
+        requestParams.put("body","post body");
+        requestParams.put("select1", "One Person");
+        requestParams.put("token", token);
+
+        given()
+                        .contentType(ContentType.JSON)
+                        .body(requestParams)
+                        .log().all()
+                        .when()
+                        .post(EndPoints.CREATE_POST)
+                        .then()
+                        .statusCode(200);
+
+    }
+
+
+
+
+
+
+
 
 
 }

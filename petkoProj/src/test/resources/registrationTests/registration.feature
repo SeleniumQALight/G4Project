@@ -29,4 +29,4 @@ Feature: User Registration
     Examples:
       |  login     | email                    | password     | errors                                                                                                                      |
       |  t         | 123                      | 123          |  Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters.   |
-      |  t         | ivan.taurus777@gmail.com | 123          |  Username must be at least 3 characters.;That email is already being used.;Password must be at least 12 characters.         |
+      |  t         | ivan.taurus7778@gmail.com| 123          |  Username must be at least 3 characters.;Password must be at least 12 characters.                                          |
