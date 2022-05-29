@@ -11,6 +11,7 @@ import org.junit.Test;
 
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 
 public class apiPrivatBankTest {
@@ -25,9 +26,9 @@ public class apiPrivatBankTest {
                         .param("json")
                         .param("coursid", 11)
                         .log().all()
-                        .when()
+                .when()
                         .get(EndPointsPrivatBank.EXCHANGE_CURRENCY)
-                        .then()
+                .then()
                         .statusCode(200)
                         .log().all()
                         .extract()
@@ -93,6 +94,28 @@ public class apiPrivatBankTest {
         Assert.assertEquals("Message in response", "invalid request", actualResponse
                 .replace("<error>", "").replace("</error>", ""));
     }
+
+
+@Test
+    public void getAllCurrencyByPrivatBankSchema(){
+    given()
+            .contentType(ContentType.JSON)
+            .param("exchange")
+            .param("json")
+            .param("coursid", 11)
+            .log().all()
+    .when()
+            .get(EndPointsPrivatBank.EXCHANGE_CURRENCY)
+    .then()
+            .statusCode(200)
+            .log().all()
+            .assertThat().body(matchesJsonSchemaInClasspath("privatBankApiResponse.json"))
+    ;
+
+}
+
+
+
 
 
 }
