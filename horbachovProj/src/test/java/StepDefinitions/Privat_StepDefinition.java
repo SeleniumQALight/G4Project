@@ -42,10 +42,19 @@ public class Privat_StepDefinition {
                         .extract()
                         .response().as(ExchangeRatesDTO[].class);
 
-        TestData.apiUsdRateBuy = Float.parseFloat(responseBody[0].getBuy());
-        TestData.apiUsdRateSell = Float.parseFloat(responseBody[0].getSale());
-        TestData.apiEurRateBuy = Float.parseFloat(responseBody[1].getBuy());
-        TestData.apiEurRateSell = Float.parseFloat(responseBody[1].getSale());
+        for (ExchangeRatesDTO exchangeRatesDTO : responseBody) {
+            if (exchangeRatesDTO.getCcy().equals("USD")) {
+                TestData.apiUsdRateBuy = Float.parseFloat(exchangeRatesDTO.getBuy());
+                TestData.apiUsdRateSell = Float.parseFloat(exchangeRatesDTO.getSale());
+            } else if (exchangeRatesDTO.getCcy().equals("EUR")) {
+                TestData.apiEurRateBuy = Float.parseFloat(exchangeRatesDTO.getBuy());
+                TestData.apiEurRateSell = Float.parseFloat(exchangeRatesDTO.getSale());
+            } else {
+                logger.info("there is no such ccy on ui");
+            }
+
+        }
+
 //        logger.info(TestData.apiUsdRateBuy);
 //        logger.info(TestData.apiUsdRateSell);
 //        logger.info(TestData.apiEurRateBuy);
