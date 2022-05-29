@@ -53,16 +53,16 @@ public class PrivatBankPage extends ParentPage {
             TestData.uiUsdRateSell = Float.parseFloat(ccyUsdSellRate);
 
 
-            logger.info(TestData.uiUsdRateBuy);
-            logger.info(TestData.uiUsdRateSell);
+            logger.info("uiUsdRateBuy is " + TestData.uiUsdRateBuy);
+            logger.info("uiUsdRateSell is " + TestData.uiUsdRateSell);
         } else if (ccy.equals("EUR")) {
             String ccyEurBuyRate = webDriver.findElement(By.xpath("//*[@id='EUR_buy']")).getText();
             String ccyEurSellRate = webDriver.findElement(By.xpath("//*[@id='EUR_sell']")).getText();
             TestData.uiEurRateBuy = Float.parseFloat(ccyEurBuyRate);
             TestData.uiEurRateSell = Float.parseFloat(ccyEurSellRate);
 
-            logger.info(TestData.uiEurRateBuy);
-            logger.info(TestData.uiEurRateSell);
+            logger.info("uiEurRateBuy is " + TestData.uiEurRateBuy);
+            logger.info("uiEurRateSell is " + TestData.uiEurRateSell);
 
         } else {
             logger.info("there is no such ccy on ui");

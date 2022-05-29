@@ -1,7 +1,4 @@
 Feature: Exchange Rates Feature
-#
-#  Background:
-#    Given User opens 'Home' page
 
   @P001
 
@@ -16,3 +13,4 @@ Feature: Exchange Rates Feature
       | ccy |
       | USD |
       | EUR |
+
