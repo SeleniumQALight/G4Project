@@ -10,17 +10,17 @@ import org.openqa.selenium.support.FindBy;
 
 public class PrivatBankPage extends ParentPage {
 
-    @FindBy(xpath = "//*[@id='USD_buy']")
-    private WebElement ccyUsdBuyRate;
-
-    @FindBy(xpath = "//*[@id='USD_sell']")
-    private WebElement ccyUsdSellRate;
-
-    @FindBy(xpath = "//*[@id='EUR_buy']")
-    private WebElement ccyEurBuyRate;
-
-    @FindBy(xpath = "//*[@id='EUR_sell']")
-    private WebElement ccyEurSellRate;
+//    @FindBy(xpath = "//*[@id='USD_buy']")
+//    private WebElement ccyUsdBuyRate;
+//
+//    @FindBy(xpath = "//*[@id='USD_sell']")
+//    private WebElement ccyUsdSellRate;
+//
+//    @FindBy(xpath = "//*[@id='EUR_buy']")
+//    private WebElement ccyEurBuyRate;
+//
+//    @FindBy(xpath = "//*[@id='EUR_sell']")
+//    private WebElement ccyEurSellRate;
 
 
 
