@@ -3,6 +3,7 @@ package StepDefinitions;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libs.DriverHelper;
+import org.junit.Assert;
 import pages.LoginPage;
 
 public class RegisterPage_StepDefinition {
@@ -44,5 +45,27 @@ public class RegisterPage_StepDefinition {
     @Then("User sees alert message  for the wrong email with text '(.*)'$")
     public void userSeesAlertMessageForTheWrongEmailWithTextYouMustProvideAValidEmailAddress(String message) {
         loginPage.checkTextInValidationMail(message);
+    }
+
+    @Then("^User sees alert message '(.*)'$")
+    public void userSeesAlertMessage(String message) {
+
+        String usernameError = "Username must be at least 3 characters.";
+        String passwordError = "Password must be at least 12 characters.";
+        String emailError = "You must provide a valid email address.";
+
+        if (message.equalsIgnoreCase(usernameError)){
+            loginPage.checkTextInValidationUsername(message);
+        }
+        else if (message.equalsIgnoreCase(passwordError)) {
+            loginPage.checkTextInValidationPassword(message);
+        }
+        else if (message.equalsIgnoreCase(emailError)){
+           loginPage.checkTextInValidationMail(message);
+        }
+        else{
+            Assert.fail("unexpected message");
+        }
+
     }
 }

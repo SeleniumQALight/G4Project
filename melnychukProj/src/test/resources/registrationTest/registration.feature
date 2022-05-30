@@ -40,3 +40,18 @@ Feature: User Registration
     Examples:
       | Username | Password       | Email     |
       | olga     | qsfgsdjkhds212 | gmail.com |
+
+  @R007
+  Scenario Outline: R007  error messages
+    Given User opens 'Login' page
+    When User enters   '<Username>' into 'Register name' input on 'Login' page
+    And User enters '<Password>' into 'Register password' input on 'Login' page
+    And User enters '<Email>' into 'Register Email' input on 'Login' page
+    And User click on 'SingUp' button on 'Login' page
+    Then User sees alert message '<Text>'
+    Examples:
+      | Username | Password       | Email          | Text                                     |
+      | o        | Qwerty123456   | test@gmail.com | Username must be at least 3 characters.  |
+      | olga     | q              | test@gmail.com | Password must be at least 12 characters. |
+      | olga     | qsfgsdjkhds212 | gmail.com      | You must provide a valid email address.  |
+
