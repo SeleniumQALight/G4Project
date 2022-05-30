@@ -7,7 +7,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libs.DriverHelper;
 import pages.PBMainPage;
-import java.util.Objects;
 
 public class PBMainPage_StepDefinitions {
 
@@ -21,23 +20,18 @@ public class PBMainPage_StepDefinitions {
         pbMainPage.clickOnAcceptCookies();
     }
 
-    @And("^User gets currency rates by API$")
-    public void userGetsCurrencyRatesByAPI() {
-        pbApiHelper.getCurrencyRate();
+    @And("^User gets currency rates by API for '(.*)'$")
+    public void userGetsCurrencyRatesByAPI(String currency) {
+        pbApiHelper.getCurrencyRate(currency);
     }
 
-    @When("^User checks currency rates on the UI$")
-    public void userChecksCurrencyRatesOnTheUI() {
-        pbMainPage.getUIRates();
+    @When("^User checks currency rates on the UI for '(.*)'$")
+    public void userChecksCurrencyRatesOnTheUI(String currency) {
+        pbMainPage.getUIRates(currency);
     }
 
-    @Then("^User compares rate for '(.*)'$")
-    public void userComparesRateForCurrency(String currency) {
-        if(Objects.equals(currency, "USD")){
-            pbMainPage.compareUsdRates();
-        }
-        if(Objects.equals(currency, "EUR")){
-            pbMainPage.compareEurRates();
-        }
+    @Then("^User compares rates from UI and API$")
+    public void userComparesRateForCurrency() {
+        pbMainPage.compareCurrencyRates();
     }
 }

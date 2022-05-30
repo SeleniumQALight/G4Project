@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class PBApiHelper {
 
-    public void getCurrencyRate() {
+    public void getCurrencyRate(String currency) {
         PBExchangeRateDTO[] responseBody = given()
                 .contentType(ContentType.JSON)
                 .param("exchange")
@@ -25,15 +25,10 @@ public class PBApiHelper {
                 .extract().response().as(PBExchangeRateDTO[].class);
 
         for (int i = 0; i < responseBody.length; i++) {
-
-            if(Objects.equals(responseBody[i].getCcy(), "USD")){
-                PBTestData.API_USD_BUY_RATE = responseBody[i].getBuy().substring(0,2);
-                PBTestData.API_USD_SALE_RATE = responseBody[i].getSale().substring(0,4);
-            }
-
-            if(Objects.equals(responseBody[i].getCcy(), "EUR")){
-                PBTestData.API_EUR_BUY_RATE = responseBody[i].getBuy().substring(0,4);
-                PBTestData.API_EUR_SALE_RATE = responseBody[i].getSale().substring(0,4);
+            if(Objects.equals(responseBody[i].getCcy(), currency)){
+                PBTestData.CURRENCY = currency;
+                PBTestData.API_BUY_RATE = responseBody[i].getBuy().substring(0,4);
+                PBTestData.API_SALE_RATE = responseBody[i].getSale().substring(0,4);
             }
         }
     }

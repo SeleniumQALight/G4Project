@@ -3,6 +3,7 @@ package pages;
 import libs.PBTestData;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,22 +21,8 @@ public class PBMainPage {
         PageFactory.initElements(this.webDriver, this);
     }
 
-    @FindBy(xpath = ".//td[@id='EUR_buy']")
-    public WebElement rateEurBuy;
-
-    @FindBy(xpath = ".//td[@id='EUR_sell']")
-    public WebElement rateEurSale;
-
-    @FindBy(xpath = ".//td[@id='USD_buy']")
-    public WebElement rateUsdBuy;
-
-    @FindBy(xpath = ".//td[@id='USD_sell']")
-    public WebElement rateUsdSale;
-
     @FindBy(xpath = ".//a[@class='cookies-btn btn-success']")
     public WebElement buttonAcceptCookies;
-
-
 
     public void openMainPage(){
         try {
@@ -51,24 +38,20 @@ public class PBMainPage {
             buttonAcceptCookies.click();
     }
 
-    public void getUIRates(){
-        PBTestData.UI_USD_BUY_RATE = rateUsdBuy.getText().trim();
-        PBTestData.UI_USD_SALE_RATE = rateUsdSale.getText().trim();
-        PBTestData.UI_EUR_BUY_RATE = rateEurBuy.getText().trim();
-        PBTestData.UI_EUR_SALE_RATE = rateEurSale.getText().trim();
+    public void getUIRates(String currency){
+
+        String locatorBuy = String.format(".//td[@id='%s_buy']", currency);
+        String locatorSale = String.format(".//td[@id='%s_sell']", currency);
+
+        PBTestData.UI_BUY_RATE = webDriver.findElement(By.xpath(locatorBuy)).getText().trim();
+        PBTestData.UI_SALE_RATE = webDriver.findElement(By.xpath(locatorSale)).getText().trim();
 
     }
 
-    public void compareUsdRates(){
-        Assert.assertEquals("Buy rates for USD are not match", PBTestData.UI_USD_BUY_RATE, PBTestData.API_USD_BUY_RATE);
-        Assert.assertEquals("Sale rates for USD are not match", PBTestData.UI_USD_SALE_RATE, PBTestData.API_USD_SALE_RATE);
-        logger.info("Rates for USD are matched");
-    }
-
-    public void compareEurRates(){
-        Assert.assertEquals("Buy rates for EUR are not match", PBTestData.UI_EUR_BUY_RATE, PBTestData.API_EUR_BUY_RATE);
-        Assert.assertEquals("Sale rates for EUR are not match", PBTestData.UI_EUR_SALE_RATE, PBTestData.API_EUR_SALE_RATE);
-        logger.info("Rates for EUR are matched");
+    public void compareCurrencyRates(){
+        Assert.assertEquals("Buy rates for currency are not match", PBTestData.UI_BUY_RATE, PBTestData.API_BUY_RATE);
+        Assert.assertEquals("Sale rates for currency are not match", PBTestData.UI_SALE_RATE, PBTestData.API_SALE_RATE);
+        logger.info("Rates for currency are matched");
     }
 
 }
