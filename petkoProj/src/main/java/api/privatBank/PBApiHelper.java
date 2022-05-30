@@ -3,12 +3,14 @@ package api.privatBank;
 import io.restassured.http.ContentType;
 import libs.PBTestData;
 
-
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 import static io.restassured.RestAssured.given;
 
 public class PBApiHelper {
+
+    DecimalFormat decimalFormat = new DecimalFormat( "#.#" );
 
     public void getCurrencyRate(String currency) {
         PBExchangeRateDTO[] responseBody = given()
@@ -27,8 +29,8 @@ public class PBApiHelper {
         for (int i = 0; i < responseBody.length; i++) {
             if(Objects.equals(responseBody[i].getCcy(), currency)){
                 PBTestData.CURRENCY = currency;
-                PBTestData.API_BUY_RATE = responseBody[i].getBuy().substring(0,4);
-                PBTestData.API_SALE_RATE = responseBody[i].getSale().substring(0,4);
+                PBTestData.API_BUY_RATE = decimalFormat.format(Double.valueOf(responseBody[i].getBuy())).replace(",",".");
+                PBTestData.API_SALE_RATE = decimalFormat.format(Double.valueOf(responseBody[i].getSale())).replace(",",".");
             }
         }
     }
