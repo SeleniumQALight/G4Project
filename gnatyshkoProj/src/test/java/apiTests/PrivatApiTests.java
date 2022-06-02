@@ -3,7 +3,7 @@ package apiTests;
 import api.privatbank.ApiHelperPrivatBank;
 import api.privatbank.Currency;
 import api.privatbank.ExchangeRateDTO;
-import api.privatbank.PrivatEndPoins;
+import api.privatbank.PrivatEndPoints;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -16,7 +16,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PrivatApiTests {
-    final String COURSE_ID = "11";
+    final String COURSE_ID = "5";
     Logger logger = Logger.getLogger(getClass());
 
     ApiHelperPrivatBank apiHelperPrivatBank = new ApiHelperPrivatBank();
@@ -29,13 +29,13 @@ public class PrivatApiTests {
                 .queryParam("json")
                 .queryParam("coursid", COURSE_ID)
                 .when()
-                .get(PrivatEndPoins.GET_EXCHANGE_RATE)
+                .get(PrivatEndPoints.GET_EXCHANGE_RATE)
                 .then()
                 .statusCode(200)
                 .log().all()
                 .extract()
                 .response().as(ExchangeRateDTO[].class);
-        ;
+
 
         logger.info("The number of exchange rates is: " + responseBody.length);
 
@@ -75,10 +75,11 @@ public class PrivatApiTests {
                     .isGreaterThan("0");
         }
 
-        for (int i = 0; i <actualSaleValueList.size() ; i++) {
+        for (int i = 0; i < actualSaleValueList.size(); i++) {
             softAssertions.assertThat(actualSaleValueList.get(i))
                     .isGreaterThan("0");
         }
         softAssertions.assertAll();
     }
+
 }
