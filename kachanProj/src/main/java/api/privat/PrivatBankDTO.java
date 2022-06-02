@@ -1,4 +1,4 @@
-package api;
+package api.privat;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
@@ -9,7 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @Builder
-
 public class PrivatBankDTO {
     @SerializedName("ccy")
     String ccy;
