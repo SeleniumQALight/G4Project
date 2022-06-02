@@ -12,6 +12,9 @@ import org.json.JSONObject;
 import org.junit.Assert;
 
 
+import java.util.HashMap;
+import java.util.Locale;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
@@ -97,6 +100,33 @@ public class ApiHelper {
 
 
     }
+
+    public void createPost(String title, String username, String password){
+        String token = getToken(username.toLowerCase(), password);
+
+
+        HashMap<String, String> requestParams = new HashMap<>();
+        requestParams.put("title", title);
+        requestParams.put("body", "post body");
+        requestParams.put("select1", "One Person");
+        requestParams.put("token", token);
+
+
+                given()
+                        .contentType(ContentType.JSON)
+                        .body(requestParams)
+                        .log().all()
+                        .when()
+                        .post(EndPoints.CREATE_POST)
+                        .then()
+                        .statusCode(200);
+
+    }
+
+
+
+
+
 
 
 }
