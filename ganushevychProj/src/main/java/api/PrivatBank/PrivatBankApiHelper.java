@@ -1,6 +1,7 @@
 package api.PrivatBank;
 
 import io.restassured.http.ContentType;
+import org.apache.commons.math3.util.Precision;
 import org.apache.log4j.Logger;
 
 import static io.restassured.RestAssured.given;
@@ -27,8 +28,8 @@ public class PrivatBankApiHelper {
 
         for (int i = 0; i < responseBody.length; i++) {
             if (responseBody[i].getCcy().equals(currency)){
-                COURSE_BUY_API = Double.parseDouble(responseBody[i].getBuy());
-                COURSE_SALE_API = Double.parseDouble(responseBody[i].getSale());
+                COURSE_BUY_API = Precision.round(Double.parseDouble(responseBody[i].getBuy()), 2);
+                COURSE_SALE_API = Precision.round(Double.parseDouble(responseBody[i].getSale()), 2);
                 logger.info("Валюта " + currency);
                 logger.info("Курс купівлі валюти (API): " + COURSE_BUY_API);
                 logger.info("Курс продажу валюти (API): " + COURSE_SALE_API);

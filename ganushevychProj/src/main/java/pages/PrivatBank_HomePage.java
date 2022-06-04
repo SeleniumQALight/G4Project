@@ -2,8 +2,10 @@ package pages;
 
 import io.qameta.allure.Step;
 import libs.DriverHelper;
+import org.apache.commons.math3.util.Precision;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,39 +28,24 @@ public class PrivatBank_HomePage {
                 ,this);
     }
 
-    @FindBy(id = "EUR_buy")
-    private WebElement fieldEUR_buy;
-
-    @FindBy(id = "EUR_sell")
-    private WebElement fieldEUR_sale;
-
-    @FindBy(id = "USD_buy")
-    private WebElement fieldUSD_buy;
-
-    @FindBy(id = "USD_sell")
-    private WebElement fieldUSD_sell;
-
     @Step
     public void openHomePage(){
         try{
             webDriver.get(BASE_URL);
-            logger.info("Login page was opened");
+            logger.info("PrivatBank Home page was opened");
         }catch (Exception e){
-            logger.error("Can not open Login Page" + e);
-            Assert.fail("Can not open Login Page" + e);
+            logger.error("Can not open PrivatBank Home Page" + e);
+            Assert.fail("Can not open PrivatBank Home Page" + e);
         }
         Assert.assertTrue(webDriver.getTitle().contains("ПриватБанк"));
     }
 
     @Step
     public void getExchangeRateOnHomePageAndSave(String currency) {
-        if (currency.equals("USD")){
-            COURSE_BUY_UI = Double.parseDouble(fieldUSD_buy.getText());
-            COURSE_SALE_UI = Double.parseDouble(fieldUSD_sell.getText());
-        }else if (currency.equals("EUR")){
-            COURSE_BUY_UI = Double.parseDouble(fieldEUR_buy.getText());
-            COURSE_SALE_UI = Double.parseDouble(fieldEUR_sale.getText());
-        }
+        WebElement fieldBuy = webDriver.findElement(By.id(String.format("%s_buy", currency)));
+        WebElement fieldSell = webDriver.findElement(By.id(String.format("%s_sell", currency)));
+        COURSE_BUY_UI = Precision.round(Double.parseDouble(fieldBuy.getText()), 2);
+        COURSE_SALE_UI = Precision.round(Double.parseDouble(fieldSell.getText()), 2);
         logger.info("------------------------------------");
         logger.info("Курс купівлі валюти (UI): " + COURSE_BUY_UI);
         logger.info("Курс продажу валюти (UI): " + COURSE_SALE_UI);
