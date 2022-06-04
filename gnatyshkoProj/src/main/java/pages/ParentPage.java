@@ -20,6 +20,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.containsString;
 
 abstract public class ParentPage {
+
     Logger logger = Logger.getLogger(getClass());
 
     WebDriver webDriver;
