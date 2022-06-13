@@ -34,6 +34,6 @@
     "hubHost": "localhost",
     "register": true,
     "registerCycle": 5000,
-    "hubPort": 4444
+    "hubPort": 5555
   }
 }
