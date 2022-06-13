@@ -2,7 +2,7 @@ package api.PrivatBank;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PrivatDTO {
+public class PrivatBankDTO {
     @SerializedName("ccy")
     String ccy;
     @SerializedName("base_ccy")
@@ -12,12 +12,12 @@ public class PrivatDTO {
     @SerializedName("sale")
     String sale;
 
-    public PrivatDTO(String ccy, String base_ccy) {
+    public PrivatBankDTO(String ccy, String base_ccy) {
         this.ccy = ccy;
         this.base_ccy = base_ccy;
     }
 
-    public PrivatDTO() {
+    public PrivatBankDTO() {
     }
 
     public String getCcy() {

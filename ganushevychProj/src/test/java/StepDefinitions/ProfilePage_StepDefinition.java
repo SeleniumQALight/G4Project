@@ -15,7 +15,7 @@ public class ProfilePage_StepDefinition {
 
     }
 
-    @And("User sees (\\d+) posts in Post list on Profile page")
+    @And("^User sees (\\d+) posts in Post list on Profile page$")
     public void userSeesPostsInPostListOnProfilePage(int expectedNumberOfPosts) {
         myProfilePage.checkNumberOfPosts(expectedNumberOfPosts);
     }

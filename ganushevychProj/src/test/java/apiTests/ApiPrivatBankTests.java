@@ -2,8 +2,8 @@ package apiTests;
 
 import api.EndPoints;
 
-import api.PrivatBank.PrivatDTO;
-import api.PrivatBank.PrivatEndPoints;
+import api.PrivatBank.PrivatBankDTO;
+import api.PrivatBank.PrivatBankEndPoints;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -18,27 +18,27 @@ public class ApiPrivatBankTests {
 
     @Test
     public void getPrivatPosts() {
-        PrivatDTO[] responseBody = given()
+        PrivatBankDTO[] responseBody = given()
                 .contentType(ContentType.JSON)
                 .param("exchange")
                 .param("json")
                 .param("coursid", 11)
                 .log().all()
                 .when()
-                .get(PrivatEndPoints.EXCHANGE_COURSE)
+                .get(PrivatBankEndPoints.EXCHANGE_COURSE)
                 .then()
                 .statusCode(200)
                 .log().all()
                 .extract()
-                .response().as(PrivatDTO[].class);
+                .response().as(PrivatBankDTO[].class);
 
         logger.info("Number of posts: " + responseBody.length);
 
-        PrivatDTO[] expectedPrivatDTO = {
-                new PrivatDTO("USD", "UAH"),
-                new PrivatDTO("EUR", "UAH"),
-                new PrivatDTO("RUR", "UAH"),
-                new PrivatDTO("BTC", "USD")
+        PrivatBankDTO[] expectedPrivatDTO = {
+                new PrivatBankDTO("USD", "UAH"),
+                new PrivatBankDTO("EUR", "UAH"),
+                new PrivatBankDTO("RUR", "UAH"),
+                new PrivatBankDTO("BTC", "USD")
         };
 
         Assert.assertEquals("Length doesn`t match expected one", expectedPrivatDTO.length, responseBody.length);
@@ -61,7 +61,7 @@ public class ApiPrivatBankTests {
                 .param("coursid", 11)
                 .log().all()
                 .when()
-                .get(PrivatEndPoints.EXCHANGE_COURSE)
+                .get(PrivatBankEndPoints.EXCHANGE_COURSE)
                 .then()
                 .statusCode(200)
                 .log().all()
