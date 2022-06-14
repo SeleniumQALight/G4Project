@@ -1,13 +1,15 @@
 package api.privatBank;
 
 import io.restassured.http.ContentType;
-import org.junit.Assert;
+
+import java.util.Objects;
+
 import static io.restassured.RestAssured.given;
 
 public class PrivatBankApiHelper {
 
-    public static String ExchangeRateBuyAPI;
-    public static String ExchangeRateSaleAPI;
+    public static String exchangeRateBuyAPI;
+    public static String exchangeRateSaleAPI;
 
     public void getCurrencyExchangeRateFromAPI(String currency) {
         ExchangeRateDTO[] responseBody =
@@ -27,12 +29,12 @@ public class PrivatBankApiHelper {
 
 
 
-     //   for (int i = 0; i < responseBody.length; i++) {
-            //if(Assert.assertEquals(responseBody[i].getCcy(), currency)){
-           //     ExchangeRateBuyAPI = String.format((responseBody[i].getBuy()));
-          //      ExchangeRateSaleAPI = String.format((responseBody[i].getSale()));
-          //  }
-      // }
+//       for (int i = 0; i < responseBody.length; i++) {
+//            if(currency.equals(responseBody[i].getCcy(), currency)){
+//                exchangeRateBuyAPI = String.format((responseBody[i].getBuy()));
+//              exchangeRateSaleAPI = String.format((responseBody[i].getSale()));
+//           }
+//      }
 
     }
 }

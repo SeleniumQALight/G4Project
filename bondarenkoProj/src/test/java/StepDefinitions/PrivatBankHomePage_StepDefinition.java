@@ -9,7 +9,7 @@ public class PrivatBankHomePage_StepDefinition {
     PrivatBankHomePage privatBankHomePage = new PrivatBankHomePage();
 
     @Given("^User opens 'PrivatBankHome' page$")
-    public void userOpensPrivatBankHomePage() {
+    public void userOpensPrivatBankHomePage() throws Exception {
         privatBankHomePage.openPrivatBankHomePage();
     }
 

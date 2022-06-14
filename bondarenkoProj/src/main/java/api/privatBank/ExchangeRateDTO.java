@@ -12,11 +12,9 @@ public class ExchangeRateDTO {
     @SerializedName("sale")
     String sale;
 
-    public ExchangeRateDTO(String ccy, String base_ccy, String buy, String sale) {
+    public ExchangeRateDTO(String ccy, String base_ccy) {
         this.ccy = ccy;
         this.base_ccy = base_ccy;
-        this.buy = buy;
-        this.sale = sale;
     }
 
     public ExchangeRateDTO(){
@@ -60,8 +58,8 @@ public class ExchangeRateDTO {
         return "ExchangeRateDTO{" +
                 "ccy='" + ccy + '\'' +
                 ", base_ccy='" + base_ccy + '\'' +
-                ", buy=" + buy + '\'' +
-                ", sale=" + sale + '\'' +
+                ", buy=" + buy +
+                ", sale=" + sale +
                 '}';
     }
 }

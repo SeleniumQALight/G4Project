@@ -31,10 +31,10 @@ public class ApiPrivatBankTest {
 
 
         ExchangeRateDTO[] expectedExchangeRateDTO = {
-                new ExchangeRateDTO("USD", "UAH", "29.25490", "32.78689"),
-                new ExchangeRateDTO("EUR", "UAH", "30.93270", "34.36426"),
-                new ExchangeRateDTO("RUR", "UAH", "0.32000", "0.35001"),
-                new ExchangeRateDTO("BTC", "USD", "23555.0129", "26034.4879"),
+                new ExchangeRateDTO("USD", "UAH"),
+                new ExchangeRateDTO("EUR", "UAH"),
+                new ExchangeRateDTO("RUR", "UAH"),
+                new ExchangeRateDTO("BTC", "USD"),
         };
 
         Assert.assertEquals(expectedExchangeRateDTO.length, responseBody.length);

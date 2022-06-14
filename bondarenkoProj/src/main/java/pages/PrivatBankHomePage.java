@@ -12,8 +12,8 @@ public class PrivatBankHomePage {
     Logger logger = Logger.getLogger(getClass());
     WebDriver webDriver;
 
-    public static String ExchangeRateBuyUI;
-    public static String ExchangeRateSaleUI;
+    public static String exchangeRateBuyUI;
+    public static String exchangeRateSaleUI;
 
     PrivatBankApiHelper privatBankApiHelper = new PrivatBankApiHelper();
 
@@ -34,14 +34,14 @@ public class PrivatBankHomePage {
         String exchangeRateBuy = String.format(".//*[@id='%s_buy']", currency);
         String exchangeRateSale = String.format(".//*[@id='%s_sell']", currency);
 
-        ExchangeRateBuyUI = webDriver.findElement(By.xpath(exchangeRateBuy)).getText();
-        ExchangeRateSaleUI = webDriver.findElement(By.xpath(exchangeRateSale)).getText();
+        exchangeRateBuyUI = webDriver.findElement(By.xpath(exchangeRateBuy)).getText();
+        exchangeRateSaleUI = webDriver.findElement(By.xpath(exchangeRateSale)).getText();
 
     }
 
     public void checkExchangeRatesAreTheSame(){
-        Assert.assertEquals("Buy exchange rates for aren't the same", ExchangeRateBuyUI , privatBankApiHelper.ExchangeRateBuyAPI);
-        Assert.assertEquals("Sale exchange rates for aren't the same", ExchangeRateSaleUI, privatBankApiHelper.ExchangeRateSaleAPI);
+        Assert.assertEquals("Buy exchange rates for aren't the same", exchangeRateBuyUI, privatBankApiHelper.exchangeRateBuyAPI);
+        Assert.assertEquals("Sale exchange rates for aren't the same", exchangeRateSaleUI, privatBankApiHelper.exchangeRateSaleAPI);
 
     }
 }
