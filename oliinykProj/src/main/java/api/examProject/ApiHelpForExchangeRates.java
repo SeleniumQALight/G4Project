@@ -5,9 +5,9 @@ import api.ExchangeRatesDTO;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 
-import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
+import static libs.TestData.*;
 
 public class ApiHelpForExchangeRates {
 
@@ -21,12 +21,14 @@ public class ApiHelpForExchangeRates {
                 .extract().response().as(ExchangeRatesDTO[].class);
         logger.info("Quantity of exchange rates: " + responseBody.length);
 
-        HashMap<String, String> currencyRatesSale = new HashMap<>();
-        HashMap<String, String> currencyRatesBuy = new HashMap<>();
         for (int i = 0; i < responseBody.length; i++) {
-            currencyRatesSale.put(responseBody[i].getCcy(), responseBody[i].getSale());
-            currencyRatesBuy.put(responseBody[i].getCcy(), responseBody[i].getBuy());
+            String sellCourseText = responseBody[i].getSale();
+            String buyCourseText = responseBody[i].getBuy();
+            sellCourseFromAPI.put(responseBody[i].getCcy(), Double.parseDouble(sellCourseText));
+            buyCourseFromAPI.put(responseBody[i].getCcy(), Double.parseDouble(buyCourseText));
         }
+        logger.info("Sell course API " + sellCourseFromAPI);
+        logger.info("Buy course API " + buyCourseFromAPI);
 
     }
 }
