@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 
 public class PrivatBankHomePage {
@@ -19,10 +20,15 @@ public class PrivatBankHomePage {
 
     private String linkToHomePage = "https://privatbank.ua/";
 
+    public PrivatBankHomePage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+        PageFactory.initElements(this.webDriver, this);
+    }
+
     public void openPrivatBankHomePage() {
         try {
             webDriver.get(linkToHomePage);
-            logger.info("Privat Bank Home Page was opened" + linkToHomePage);
+            logger.info("Privat Bank Home Page was opened " + linkToHomePage);
         } catch (Exception e) {
             logger.error("Can not open Privat Bank Home Page" + e);
             Assert.fail("Can not open Privat Bank Home Page" + e);
@@ -40,8 +46,8 @@ public class PrivatBankHomePage {
     }
 
     public void checkExchangeRatesAreTheSame(){
-        Assert.assertEquals("Buy exchange rates for aren't the same", exchangeRateBuyUI, privatBankApiHelper.exchangeRateBuyAPI);
-        Assert.assertEquals("Sale exchange rates for aren't the same", exchangeRateSaleUI, privatBankApiHelper.exchangeRateSaleAPI);
+        Assert.assertEquals("Buy exchange rates aren't the same", exchangeRateBuyUI, privatBankApiHelper.exchangeRateBuyAPI);
+        Assert.assertEquals("Sale exchange rates aren't the same", exchangeRateSaleUI, privatBankApiHelper.exchangeRateSaleAPI);
 
     }
 }

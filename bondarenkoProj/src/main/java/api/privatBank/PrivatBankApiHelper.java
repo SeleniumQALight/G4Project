@@ -29,12 +29,12 @@ public class PrivatBankApiHelper {
 
 
 
-//       for (int i = 0; i < responseBody.length; i++) {
-//            if(currency.equals(responseBody[i].getCcy(), currency)){
-//                exchangeRateBuyAPI = String.format((responseBody[i].getBuy()));
-//              exchangeRateSaleAPI = String.format((responseBody[i].getSale()));
-//           }
-//      }
+       for (int i = 0; i < responseBody.length; i++) {
+            if(Objects.equals(responseBody[i].getCcy(), currency)){
+                exchangeRateBuyAPI = String.format((responseBody[i].getBuy()).substring(0,4));
+              exchangeRateSaleAPI = String.format((responseBody[i].getSale()).substring(0,4));
+           }
+      }
 
     }
 }
