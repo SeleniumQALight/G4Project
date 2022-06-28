@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,19 +43,21 @@ public class PrivatHomePage{
         Assert.assertTrue("Page was not open", courseBlock.isDisplayed());
     }
 
-    public void webCourseBuy(){
-        String eurCourseText = buyEurCourse.getText();
-        String usdCourseText = buyUsdCourse.getText();
-        buyCourseFromPrivatePage.put("EUR", Double.parseDouble(eurCourseText));
-        buyCourseFromPrivatePage.put("USD", Double.parseDouble(usdCourseText));
-        logger.info("Buy course web " + buyCourseFromPrivatePage);
+    public void webCourseBuy(String currency){
+        String courseText = driver.findElement(By.id(currency+"_buy")).getText();
+        buyCourse = Double.parseDouble(courseText);
+        //String usdCourseText = buyUsdCourse.getText();
+        //buyCourseFromPrivatePage.put("EUR", Double.parseDouble(eurCourseText));
+        //buyCourseFromPrivatePage.put("USD", Double.parseDouble(usdCourseText));
+        logger.info("Buy course web " + currency + buyCourse);
     }
 
-    public void webCourseSell() {
-        String eurCourseText = sellEurCourse.getText();
-        String usdCourseText = sellUsdCourse.getText();
-        sellCourseFromPrivatePage.put("EUR", Double.parseDouble(eurCourseText));
-        sellCourseFromPrivatePage.put("USD", Double.parseDouble(usdCourseText));
-        logger.info("Sale course web " + sellCourseFromPrivatePage);
+    public void webCourseSell(String currency) {
+        String courseText = driver.findElement(By.id(currency + "_sell")).getText();
+        sellCourse = Double.parseDouble(courseText);
+//        String usdCourseText = sellUsdCourse.getText();
+//        sellCourseFromPrivatePage.put("EUR", Double.parseDouble(eurCourseText) + 1);
+//        sellCourseFromPrivatePage.put("USD", Double.parseDouble(usdCourseText));
+        logger.info("Sale course web " + currency + sellCourse);
     }
 }
