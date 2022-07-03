@@ -2,6 +2,7 @@ package api.privatBank;
 
 import io.restassured.http.ContentType;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 import static io.restassured.RestAssured.given;
@@ -10,6 +11,8 @@ public class PrivatBankApiHelper {
 
     public static String exchangeRateBuyAPI;
     public static String exchangeRateSaleAPI;
+
+    DecimalFormat df = new DecimalFormat("#.0");
 
     public void getCurrencyExchangeRateFromAPI(String currency) {
         ExchangeRateDTO[] responseBody =
@@ -31,8 +34,8 @@ public class PrivatBankApiHelper {
 
        for (int i = 0; i < responseBody.length; i++) {
             if(Objects.equals(responseBody[i].getCcy(), currency)){
-                exchangeRateBuyAPI = String.format((responseBody[i].getBuy()).substring(0,4));
-              exchangeRateSaleAPI = String.format((responseBody[i].getSale()).substring(0,4));
+                exchangeRateBuyAPI = df.format(Float.parseFloat(responseBody[i].getBuy())).replace(",",".");
+              exchangeRateSaleAPI = df.format(Float.parseFloat(responseBody[i].getSale())).replace(",",".");
            }
       }
 
