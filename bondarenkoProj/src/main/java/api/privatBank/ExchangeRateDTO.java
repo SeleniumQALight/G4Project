@@ -8,9 +8,9 @@ public class ExchangeRateDTO {
     @SerializedName("base_ccy")
     String base_ccy;
     @SerializedName("buy")
-    Float buy;
+    String buy;
     @SerializedName("sale")
-    Float sale;
+    String sale;
 
     public ExchangeRateDTO(String ccy, String base_ccy) {
         this.ccy = ccy;
@@ -37,19 +37,19 @@ public class ExchangeRateDTO {
         this.base_ccy = base_ccy;
     }
 
-    public Float getBuy() {
+    public String getBuy() {
         return buy;
     }
 
-    public void setBuy(Float buy) {
+    public void setBuy(String buy) {
         this.buy = buy;
     }
 
-    public Float getSale() {
+    public String getSale() {
         return sale;
     }
 
-    public void setSale(Float sale) {
+    public void setSale(String sale) {
         this.sale = sale;
     }
 
