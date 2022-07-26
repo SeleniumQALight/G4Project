@@ -18,6 +18,8 @@ public class CreatePostPage extends ParentPageWithHeader{
     private WebElement clickOnButtonSaveNewPost;
     @FindBy(xpath = ".//select")
     private WebElement clickOnItemPrivateMessage;
+    @FindBy(xpath = "//*[@type='checkbox']")
+    private WebElement checkBox;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -70,6 +72,10 @@ public class CreatePostPage extends ParentPageWithHeader{
             logger.error("Can not found" + e);
             Assert.fail("Can not found" + e);
         }
+        return this;
+    }
+    public CreatePostPage checkBoxState(String state) {
+        checkBoxCondition(checkBox, state);
         return this;
     }
 

@@ -149,4 +149,37 @@ abstract public class ParentPage {
     protected void checkIsElementDisplayed(String message, WebElement webElement){
         Assert.assertTrue(message, isElementDisplayed(webElement));
     }
+
+    protected void checkBoxCondition (WebElement  checkBox ,String  checkBoxCondition ){
+        boolean checkBoxState = checkBox.isSelected();
+        switch (checkBoxCondition){
+            case("check"):
+                if (checkBoxState) {
+                    logger.info("checkBox is selekted");
+                }else {
+                    clickOnElement(checkBox);
+                    logger.info("checkBox is clicked and have status selekted");}
+                break;
+
+            case ("uncheck"):
+                if (!checkBoxState) {
+                    logger.info("checkBox is unselekted");
+                }else {
+                    clickOnElement(checkBox);
+                    logger.info("checkBox is clicked and have status unselekted");}
+                break;
+            default:clickOnElement(checkBox);
+                logger.info("checkBox is clicked");
+        }
+    }
+
+    protected void checkTextInElem(String text, WebElement element) {
+        try {
+            Assert.assertEquals(text, element.getText());
+            logger.info("Text '" + text + "' right");
+        } catch (Exception e) {
+            logger.error("Text '" + text + "' not right" + e);
+            Assert.fail("Text '" + text + "' not right" + e);
+        }
+    }
 }

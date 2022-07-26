@@ -5,39 +5,41 @@ import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
-public class CreatePostTest extends BaseTest {
-    final String title = "G4-kuschch: 1-13" + Util.getDateAndTimeFormatted();
+public class EditPostTest extends BaseTest {
+
+    final String title = "G4-kuschch: " + Util.getDateAndTimeFormatted();
+    final String editTitleText = title + "title edited";
 
     @Test
-    public void createNewPost(){
-
+    public void editPost(){
         loginPage
                 .loginWithValidCred()
                 .checkIsButtonSignOutDisplayed()
-                .clickOnCreatePostButton();
-        createPostPage
+                .clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoTitleInput(title)
-                .enterTextIntoBody("Body post")
-//                .selectTextInDropDownRole("Частное сообщение")
-                .selectTextInDropDownRole("Частное сообщение")
-                .checkBoxState("check")
-//                .selectValueDropdownRole("One Person")
+                .enterTextIntoBody("New post text")
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
                 .checkTestInAlert("New post successfully created.")
+                .clickOnEditBtn()
+                .checkIsRedirectToEditPostPage()
+                .enterTextInToTitle(editTitleText)
+                .clickOnBtnUpdateSavePost()
+                .checkTextInAlert("Post successfully updated.")
                 .clickOnMyProfileButton()
-                .checkPostWasCreated(title)
-        ;
+                .checkPostWasCreated(editTitleText);
     }
 
     @After
-    public void deletePost(){
+    public void deletePost() {
         homePage
                 .openHomePage()
                 .checkIsButtonSignOutDisplayed()
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .deletePostWithTitleWhilePresent(title);
+                .deletePostWithTitleWhilePresent(editTitleText);
+
     }
+
 }
